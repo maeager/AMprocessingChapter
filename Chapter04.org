@@ -388,19 +388,33 @@ Sinusoidal \AM tones with fixed carrier and modulation frequencies (\fc = 8.9
 kHz and \fm = 150 Hz) were presented to the \CNSM model to measure the f_0
 response.  The f_0 response illustrates the effects of synchrony to the stimulus
 envelope (\fm) with respect to the stimulus sound level, typically measured with
-\fc at a neuron's \CF. The stimulus paradigm is similar to experimental methods,
-however the \CNSM model allows the inspection of a whole network of units with
-different CFs.  The AM stimulus was presented to the AN and \CNSM model, with
-duration of 150 ms and repeated 50 times.  Spiking outputs 20 ms after the
-stimulus onset were used to measure firing rate and \SI.
+the carrier frequency at a neuron's characteristic frequency. The stimulus
+paradigm is similar to experimental methods; however, the \CNSM model allows the
+inspection of a whole network of units with different CFs.  The fixed modulation
+frequency in this study, 150 Hz, is within the range of human speech fundamental
+frequencies (women 150-300 Hz, men 75-150 Hz).  The carrier frequency is not in
+the human speech range (most speech is between 200 - 3400 Hz with limited
+communication sounds up to 8 kHz) but is in the human audibility range (64 Hz to
+23 kHz) \citep{Bregman:1990}.  This study uses the cat \AN model which has an
+audibility range up-to 64 kHz \citep{SimmonsPopperEtAl:2002,FayPopper:1994}. The
+carrier frequency of 8.9 kHz was chosen to avoid harmonics of \fm to interfere
+with the lateral side-bands of the stimulus and the range of \DS cell inputs.
+The AM stimulus was presented to the AN and \CNSM model with duration of 150 ms
+and repeated 50 times.  Spiking outputs 20 ms after the stimulus onset were used
+to measure firing rate and \SI.
 
 # See Figures.org  fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
 #+ATTR_LaTeX: width=\columnwidth 
-#+CAPTION: [The f0 response in the CNSM model]{The $f_0$ response map of each cell in the CNSM model to AM tones of different stimulus intensities. The colour bar shows the synchronisation index from 0 to 1, with white representing areas with Rayleigh test not statistically significant (p $>0.05$). The $f_0$ stimulus was an AM tone with $f_\mathsf{c} = 8.9$ kHz, $f_\mathsf{m} = 150$ Hz, duration 150 ms, 20 ms delay, and 2 ms on-off ramp. Each column represents a single unit's $f_0$ response to the AM stimulus.  Each row represents the frequency channel CF vs. SI curve of a single presentation of the stimulus to the CNSM model.}
+#+CAPTION: [The f0 response in the CNSM model]{The $f_0$ response map of each cell in the CNSM model to AM tones of different stimulus intensities and units with different CFs. The colour bar shows the synchronisation index from 0 to 1, with white representing areas with Rayleigh test not statistically significant (p $>0.05$). The $f_0$ stimulus was an AM tone with $f_\mathsf{c} = 8.9$ kHz, $f_\mathsf{m} = 150$ Hz, duration 150 ms, 20 ms delay, and 2 ms on-off ramp.}
 #+LABEL: fig:fzero
 [[../VowelProcessingChapter/gfx/fresponse-vs.pdf]]
 
-
+The f_0 response maps for each cell in the \CNSM model are shown in Figure
+\ref{fig:fzero}.  Each column represents a single unit's $f_0$ response to the
+AM stimulus, where, traversing from bottom to top, the stimulus level increases
+from 0 to 90 dB SPL.  Each row in the f_0 response maps represent the temporal
+response of units in adjacent frequency channels to a single presentation of the
+stimulus to the \CNSM model at a fixed intensity. 
 
 \HSR \ANFs have a non-linear f_0 response, with \SI peaking around 0.6 at
 intensities 20-30 dB above threshold then reducing to below 0.2 for intensities
@@ -420,13 +434,18 @@ subsequently fell below the Rayleigh test for statistical significance (p
 $<0.05$) when the unit reached maximum firing rate at 40 dB SPL.  Adjacent
 network channels showed similar behaviour with an adjustment in rise and
 fall of SI based on excitation from the cochlea filter.  These results are
-similar to the model results presented in \citet{ZilanyBruceEtAl:2009}.  The
+similar to the model results presented by \citet{ZilanyBruceEtAl:2009}.  The
 peak SI in the map was 0.777 by unit 84 (CF 20.7 kHz) at 90 dB at approximately
-50\% of maximum firing rate.  In \LSR \ANFs, Figure \ref{fig:fzero}B, the f_0
-response slides from its peak temporal response at excitation threshold to a
-moderate temporal response at high intensity.  Across frequency channels at high
-intensity, all active units provide high ($>$ 0.8 SI) to moderate ($0.5 - 0.6$
-SI) temporal information that is lacking in the HSR units.
+50\% of maximum firing rate.  
+
+In \LSR \ANFs, Figure \ref{fig:fzero}B, the f_0 response map maintains moderate
+temporal information throughout the response area.  The f_0 response of the
+on-CF unit has its peak temporal response at rate threshold then slowly reduces
+to a moderate temporal response at high intensity.  Across frequency channels
+and intensities, active units near the edges of the response area provide high
+($>$ 0.8 SI) temporal information.  At high intensities, units with CFs near the
+carrier frequency maintain moderate ($0.5 - 0.6$ SI) temporal information that
+is lacking in the \HSR units in this area.
 
    
 The f_0 response of cells in the \CN reflect the ANF input responses, the
