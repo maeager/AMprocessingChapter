@@ -1,0 +1,760 @@
+#+TITLE: Amplitude Modulation and Vowel Coding in the Stellate Microcircuit
+#+DATE:
+#+AUTHOR: Michael A Eager
+#+OPTIONS: toc:nil H:5 author:nil <:t >:t
+#+STARTUP: oddeven hideblocks fold align hidestars
+#+TODO: REFTEX
+#+LANGUAGE: en_GB
+#+LATEX_HEADER:\graphicspath{{./}{./gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
+#+LATEX_HEADER:\setcounter{secnumdepth}{5}
+#+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
+#+LATEX_HEADER:\usepackage{transparent}
+#+BIBLIOGRAPHY: MyBib alphanat
+#+LaTeX_CLASS: UoM-draft-org-article
+#+TEXT:\singlespacing{\tableofcontents\printglossaries}
+#+TEXT:\setcounter{chapter}{3}
+#+TEXT:\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
+
+
+* Prelude                                                          :noexport:
+
+#+begin_src emacs-lisp results: silent
+ (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "pdflatex -interaction nonstopmode %f"  "pdflatex -interaction nonstopmode %f" ))
+;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=xelatex LitReview2.pdf"))
+;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf"))
+;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "xelatex -interaction nonstopmode %f"  "xelatex -interaction nonstopmode %f" ))
+
+(add-to-list 'org-export-latex-classes
+  '("UoM-draft-org-article"
+"\\documentclass[10pt,a4paper,twoside,openright]{book}
+\\usepackage{../hg/manuscript/style/uomthesis}
+\\input{../hg/manuscript/user-defined}
+\\usepackage[acronym]{glossaries}
+\\input{../hg/manuscript/misc/glossary}
+\\makeglossaries
+\\graphicspath{{./gfx/}}
+\\pretolerance=150
+\\tolerance=100
+\\setlength{\\emergencystretch}{3em}
+\\overfullrule=1mm
+% \\usepackage[notcite]{showkeys}
+\\lfoot{\\footnotesize\\today\\ at \\thistime}
+\\usepackage{rotating,calc}
+\\usepackage{booktabs,ltxtable,lscape}
+      [NO-DEFAULT-PACKAGES]
+      [NO-PACKAGES]"
+     ("\\clearpage\\section{%s}" . "\n\\clearpage\\section{%s}")
+     ("\\clearpage\\subsection{%s}" . "\n\\clearpage\\subsection{%s}")
+     ("\\clearpage\\subsubsection{%s}" . "\n\\subsubsection{%s}")
+     ("\\paragraph{%s}" . "\n\\paragraph{%s}")
+     ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
+
+ (setq org-export-latex-title-command "{\n\\singlespacing\n\\tableofcontents\n\\printglossaries\n}\n\\setcounter{chapter}{0}")
+ (setq org-entities-user '(("space" "\\ " nil " " " " " " " ")))
+#+end_src
+
+#+RESULTS:
+| space | \ | nil |   |   |   |   |
+
+
+
+* Layout 						
+
+ | Section                  |          | Pages | Actual | \%TODO/DONE |
+ |--------------------------+----------+-------+--------+-------------|
+ | Introduction             |          |       |        | [90%]       |
+ | Amplitude Modulation     |          |       |        | [50%]       |
+ | \quad F0 response        | AN       |       |        |             |
+ |                          | CN units |       |        | [95%]       |
+ | \quad MTF                | AN       |       |        |             |
+ |                          | CN units |       |        |             |
+ | Temporal Coding in Vowel |          |       |        |             |
+ |                          | AN       |       |        | [20%]       |
+ |                          | CN       |       |        |             |
+ | Discussion               |          |       |        |             |
+ |--------------------------+----------+-------+--------+-------------|
+ |                          | Total    |    20 |        |             |
+  #+TBLFM: @19$4=vsum(@3$4..@18$4);
+
+
+  \newpage
+
+* Amplitude Modulation
+
+** F_0 response
+
+*** The Rayleigh statistic
+
+The Rayleigh test is a statistical significance test for circular data. The
+Rayleigh statistic is equivalent to a uniformity Chi-squared test and is
+calculated using: $2 n R^2$, where /n/ is the number of samples and /R/ is the
+vector strength.  The critical values for the Rayleigh test are 5.991 for \alpha
+= 0.05, 9.21 or \alpha = 0.01, and 13.816 for \alpha = 0.001
+\citep{Mardia:1972}.
+
+  \citep{KajikawaHackett:2005}.
+
+
+#+latex: \yellownote{
+See W. Rhode's analysis on the vector strength and Rayleigh statistic
+[[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]]
+#+latex: }
+
+
+
+#+name: F0_Rayexample
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+#datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
+ii =  4
+  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+ significant = ray > 13.816;
+ z0 = significant .* vs;
+ cmap1 = hot(); cmap2=jet();
+ cmap=[cmap1(64:-1:1,:);];# cmap2]; # inverse of hot and jet combined
+ colormap(cmap);
+ subplot(1,2,1);
+ surf([0:99],[0:5:70],ray');
+ set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ subplot(1,2,2);
+ surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
+ set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ # subplot(2,2,3);
+ # surf([0:99],[0:5:70],(vs + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
+ # set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ # subplot(2,2,4);
+ # surf([0:99],[0:5:70],(z0 + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
+ # set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ # ## Set CLim on both axes
+ # ax = findobj(gcf,'Type','axes');
+ # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
+ print -dpng "gfx/F0_Rayexample.png"
+ ans = "gfx/F0_Rayexample.png"
+#+end_src
+
+#+CAPTION: [Rayleigh test of $F_0$ response in HSR units]{Rayleigh test of $F_0$ response in HSR units at 150 Hz (a) with accompanying mask for statistically significant values (b).  The method for improved presentation of vector strength plots for units in the stellate microcircuit uses the mask in (b).  Amplitude modulated tones at carrier frequency 8.9~kHz and modulated frequency of 150 Hz were presented from 0 to 70 db SPL ( increments of 5 dB SPL).
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:F0_Rayexample
+#+RESULTS: F0_Rayexample
+[[file:gfx/F0_Rayexample.png]]
+
+
+Figure \ref{fig:MTFexample} demonstrates the method for removing noise in the vector strength plots using a mask.
+
+#+CAPTION: Method for improved presentation of vector strength in the stellate microcircuit.  Amplitude modulated tones at  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB SPL
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:MTFexample
+#+RESULTS: MTF_example
+
+
+*** Auditory Nerve units
+
+
+
+
+
+*** Cn units
+
+**** Chopper Sustained model: Low Freq (3.9 kHz)
+
+
+#+name:TStellate_CS_F0Response
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/"
+for ii = 0:5
+ vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+ significant = ray > 5.991;
+ z0 = significant .* vs;
+ subplot(3,2,ii+1)
+ imagesc([0:99],0:5:70,z0', [0 1]);axis("xy")
+end
+
+# xlim([30 60]);
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+
+ print -dpng "gfx/TStellate_CS_F0Response.png"
+ ans = "gfx/TStellate_CS_F0Response.png"
+#+end_src
+
+#+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
+#+LABEL: fig:F0ResponseCS
+#+RESULTS: TStellate_CS_F0Response
+[[file:gfx/TStellate_CS_F0Response.png]]
+
+**** Chopper Transient 1: Mid Freq (8.2 kHz)
+
+#+name: TStellate_CT1_F0Response
+#+begin_src octave :exports none  :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/F0Response/"
+for ii = 0:5
+ vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+ significant = ray > 5.991;
+ z0 = significant .* vs;
+ subplot(3,2,ii+1)
+ imagesc([0:99],0:5:70,z0', [0 1]);axis("xy")
+end
+
+# xlim([30 60]);
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+
+ print -dpng "gfx/TStellate_CT1_F0Response.png"
+ ans = "gfx/TStellate_CT1_F0Response.png"
+#+end_src
+
+#+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
+#+LABEL: fig:F0ResponseCT1
+#+RESULTS: TStellate_CT1_F0Response
+[[file:gfx/TStellate_CT1_F0Response.png]]
+
+
+**** Chopper Transient 2 model: High Freq (12.9 kHz)
+
+#+name: TStellate_CT2_F0Response
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/F0Response/"
+for ii = 0:5
+ vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+ significant = ray > 5.991;
+ z0 = significant .* vs;
+ subplot(3,2,ii+1)
+ imagesc([0:99],0:5:70,z0', [0 1]);axis("xy"); shading interp;
+end
+
+# xlim([30 60]);
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+
+ print -dpng "gfx/TStellate_CT2_F0Response.png"
+ ans = "gfx/TStellate_CT2_F0Response.png"
+#+end_src
+
+
+#+CAPTION: F_0 response of all 6 units at high carrier frequency (12.9 kHz). TS uses CT2 optimised model
+#+LABEL: fig:F0ResponseCT2
+#+RESULTS: TStellate_CT2_F0Response
+[[file:gfx/TStellate_CT2_F0Response.png]]
+
+
+
+** Modulation Transfer Function
+
+
+#+name: MTF_example
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
+addpath('~/octave/freezeColors/');    # grab freezeColors
+ spl = 60
+ ii = 4
+colormap('hot');cmap = colormap();
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+ maskray = (13.816) * (ray > 13.816);
+
+ii=5
+ vsP = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ rayP = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ maskrayP = (13.816-5.991) * (rayP > 13.816) + 5.991*(rayP > 5.991);
+ significant = ray > 13.816; # 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+ significantP = rayP > 5.991;
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+ z0 = significant .* vs;
+z1 = significantP .* vsP;
+
+## Plot 1
+colormap('jet');
+subplot(2,4,1);
+surf(50:50:1200,1:100,vs,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log","xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+ colorbar ("SouthOutside");
+text (200, 110, "R","fontname","Helvetica","fontsize",16);
+text (10, 50, "HSR","fontname","Helvetica","fontsize",16);
+freezeColors;
+
+## Plot 2
+subplot(2,4,2)
+colormap(cmap(64:-1:1,:));
+surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+
+# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+# surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+colorbar ("SouthOutside");
+text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16);
+freezeColors;
+
+## Plot 3
+subplot(2,4,3);
+colormap(cmap(64:-1:1,:));
+surf(50:50:1200,1:100,maskray1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+colorbar ("SouthOutside");
+text (120, 110, "Mask","fontname","Helvetica","fontsize",16);
+
+freezeColors;
+
+## Plot 4
+subplot(2,4,4)
+colormap('jet');
+surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+colorbar ("SouthOutside")
+text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+
+# subplot(2,4,5)
+
+# surf(50:50:1200,1:100,vsP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+# view(2);
+# # colorbar ("SouthOutside")
+# # text (200, 110, "R","fontname","Helvetica","fontsize",16)
+# text (10, 50, "LSR","fontname","Helvetica","fontsize",16);
+
+# subplot(2,4,6)
+# surf(50:50:1200,1:100,rayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# # contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+# # surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100]);
+# view(2);
+# #colorbar ("SouthOutside")
+# #text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16)
+
+# subplot(2,4,7);
+# surf(50:50:1200,1:100,maskrayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100]);
+# view(2);
+# #text (120, 110, "Mask","fontname","Helvetica","fontsize",16)
+
+# subplot(2,4,8)
+# surf(50:50:1200,1:100,z1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0  100],"zlim", [0   1],"clim",[0  1]);
+# view(2);
+# #colorbar ("SouthOutside")
+
+# #text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+
+%axis("xy")
+# set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+ print -dpng "gfx/MTF_example.png"
+ ans = "gfx/MTF_example.png"
+#+end_src
+
+
+#+name: MTF_example
+#+begin_src gnuplot :exports none :results file
+print "gfx/MTF_example.png"
+reset
+load "/media/data/Work/cnstellate/ResponsesNoComp/default.gnu"
+
+ set terminal postscript eps enhanced defaultplex \
+    leveldefault mono \
+    solid dashlength 1.0 linewidth 2.0 butt noclip \
+    palfuncparam 2000,0.003 \
+    "Helvetica" 18
+set output  "gfx/MTF_example.eps"
+
+#set term pngcairo
+#set output "gfx/MTF_example.png"
+#datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/"
+#spl = 60
+#ii = 4
+
+# vs = "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat"
+# ray = "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/rayltest.4.dat"
+ maskray1(r) = (13.816- 9.210) * (r > 13.816) + (9.210-5.991) * (r > 9.210) + 5.991*(r > 5.991)
+# maskray(ray) = (13.816) * (ray > 13.816);
+
+ significant(r) = r > 5.991 ? r : 0
+# 5.991 # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+# z0 = significant .* vs;
+
+set multiplot layout 4,1
+## Plot 1
+set pm3d map
+set palette @JET
+set xrange [50:800]
+set logscale x 10
+set yrange [0:99]
+set zrange [0:1]
+set cbrange [0:1]
+set xtics nomirror out
+set ytics nomirror out
+set label 1 "R" at 200, 110 font "Helvetica,16"
+set label 2 "HSR" at 10, 50 font "Helvetica,16"
+#splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
+
+unset label 1
+unset label 2
+set palette @IHOT
+set label 1 "Rayleigh Test" at 50, 110 ,font "Helvetica,16"
+#splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/rayltest.4.dat" matrix using ($1*50):2:3
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/rayltest.0.dat" matrix using ($1*50):2:3
+
+
+set label 1 "Mask" at 50, 110  font "Helvetica,16"
+#splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/rayltest.4.dat" matrix using ($1*50):2:(maskray1($3))
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/rayltest.0.dat" matrix using ($1*50):2:(maskray1($3))
+
+
+set label 1 "R .* Mask" at 100, 110 font "Helvetica,16"
+set palette @JET
+#splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:(significant($3))
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:(significant($3))
+
+#+end_src
+
+
+
+
+#+name: MTF_atCF_gnu
+#+begin_src gnuplot :exports none :results file
+print "gfx/MTF_atCF.png"
+reset
+load "/media/data/Work/cnstellate/ResponsesNoComp/default.gnu"
+
+# set terminal postscript eps enhanced defaultplex \
+#    leveldefault mono \
+#    solid dashlength 1.0 linewidth 2.0 butt noclip \
+#    palfuncparam 2000,0.003 \
+#    "Helvetica" 18
+#set output  "gfx/MTF_example.eps"
+#set term pngcairo
+set output "gfx/MTF_atCF.png"
+
+reset
+print "gfx/MTF_atCF.png"
+
+
+#+end_src
+
+#+RESULTS: MTF_atCF_gnu
+
+
+#+name: MTF_atCF
+#+begin_src octave :exports none :results file
+
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+
+ ii = 4
+ vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+ significant = ray > 5.991;
+ z0 = significant .* vs;
+ subplot(3,2,ii+1)
+ imagesc([0:99],0:5:70,z0', [0 1]);
+ axis("xy")
+
+# xlim([30 60]);
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ maskray1 = (13.816-5.991) * (ray > 13.816) + 5.991*(ray > 5.991);
+ maskray = (13.816) * (ray > 13.816);
+
+ii=5
+ vsP = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ rayP = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ maskrayP = (13.816-5.991) * (rayP > 13.816) + 5.991*(rayP > 5.991);
+ significant = ray > 13.816; # 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+ significantP = rayP > 5.991;
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+ z0 = significant .* vs;
+z1 = significantP .* vsP;
+ subplot(2,4,1);
+% imagesc(z0, [0 1]);
+
+surf(50:50:1200,1:100,vs,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log","xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+ colorbar ("SouthOutside");
+text (200, 110, "R","fontname","Helvetica","fontsize",16);
+text (10, 50, "HSR","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,2);
+surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+
+# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+# surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+colorbar ("SouthOutside");
+text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,3);
+surf(50:50:1200,1:100,maskray1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+colorbar ("SouthOutside");
+text (120, 110, "Mask","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,4)
+surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+colorbar ("SouthOutside")
+text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+
+subplot(2,4,5)
+
+surf(50:50:1200,1:100,vsP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+# colorbar ("SouthOutside")
+# text (200, 110, "R","fontname","Helvetica","fontsize",16)
+text (10, 50, "LSR","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,6)
+surf(50:50:1200,1:100,rayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+# surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+#colorbar ("SouthOutside")
+#text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16)
+
+subplot(2,4,7);
+surf(50:50:1200,1:100,maskrayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+#text (120, 110, "Mask","fontname","Helvetica","fontsize",16)
+
+subplot(2,4,8)
+surf(50:50:1200,1:100,z1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0  100],"zlim", [0   1],"clim",[0  1]);
+view(2);
+#colorbar ("SouthOutside")
+
+#text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+%axis("xy")
+set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+ print -dpng "gfx/MTF_atCF.png"
+ ans = "gfx/MTF_atCF.png"
+#+end_src
+
+
+** MTF plots
+
+
+
+The vector strength for
+
+#+BEGIN_SRC gnuplot :exports none :results file
+reset
+load '/media/data/cnstellate/ResponsesNoComp/default.gnu'
+
+set term pngcairo size 350,262 enhanced font 'Verdana,10'
+set output "gfx/MTF_example.png"
+
+# Margins for each row resp. column
+TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
+LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
+RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
+
+set tics scale 0.5
+set ytics 1
+# Placement of the a,b,c,d labels in the graphs
+POS = "at graph 0.92,0.9 font ',8'"
+unset key
+# x- and ytics for each row resp. column
+NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
+          unset xlabel"
+XTICS = "set xtics 100,100,800;\
+          set xlabel 'f_m (Hz)'"
+NOYTICS = "set format y ''; unset ylabel"
+YTICS = "set format y '%d'; set ylabel 'Channel No.'"
+
+set multiplot layout 2,2 rowsfirst
+set pm3d map
+set palette @JET
+# --- GRAPH a
+@NOXTICS; @YTICS
+@TMARGIN; @LMARGIN
+set label 1 'a' @POS
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+
+# --- GRAPH b
+@NOXTICS; @NOYTICS
+@TMARGIN; @RMARGIN
+set label 1 'b' @POS
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
+
+# --- GRAPH c
+@XTICS; @YTICS
+@BMARGIN; @LMARGIN
+set label 1 'c' @POS
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
+
+# --- GRAPH d
+@XTICS; @NOYTICS
+@BMARGIN; @RMARGIN
+set label 1 'd' @POS
+splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.2.dat" matrix using ($1*50):2:3
+
+unset multiplot
+
+#+END_SRC
+
+#+RESULTS:
+
+
+#+name: TStellate_CS_MTF
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
+ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
+
+for spl = 20:20:80
+for ii = 0:5
+
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+% vs = load ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]);
+% ray = load([datapath num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
+
+ significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+ z0 = significant .* vs;
+# subplot(4,6,((spl/20)-1)*6 + (ii+1));
+axes(ha(((spl/20)-1)*6 + (ii+1)));
+
+surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+
+%axis("xy")
+end;
+end;
+
+# set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+ print -dpng "gfx/TStellate_CS_MTF.png"
+ ans = "gfx/TStellate_CS_MTF.png"
+#+end_src
+
+#+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:CSMTF
+#+RESULTS: TStellate_CS_MTF
+[[file:gfx/TStellate_CS_MTF.png]]
+
+
+
+
+#+name: TStellate_CT1_MTF
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/";
+
+ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
+for spl = 20:20:80
+for ii = 0:5
+
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+% vs = load ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]);
+% ray = load([datapath num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
+ significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+ z0 = significant .* vs;
+# subplot(4,6,((spl/20)-1)*6 + (ii+1));
+axes(ha(((spl/20)-1)*6 + (ii+1)));
+
+surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[40   90],"zlim",[0   1],"clim",[0   1]);
+view(2);
+
+%axis("xy")
+end;
+end;
+
+# set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+ print -dpng "gfx/TStellate_CT1_MTF.png"
+ ans = "gfx/TStellate_CT1_MTF.png"
+#+end_src
+
+#+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq f_m and CT1 model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:CT1MTF
+#+RESULTS: TStellate_CT1_MTF
+[[file:gfx/TStellate_CT1_MTF.png]]
+
+
+#+name: TStellate_CT2_MTF
+#+begin_src octave :exports none :results file
+datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/";
+
+ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
+for spl = 20:20:80
+for ii = 0:5
+
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+
+ significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+ z0 = significant .* vs;
+
+# subplot(4,6,((spl/20)-1)*6 + (ii+1));
+axes(ha(((spl/20)-1)*6 + (ii+1)));
+
+surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"XTickLabel",{},"YTick",[50:10:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+
+
+%axis("xy")
+end;
+end;
+
+set(ha([1:7 12 13 18:24]),"TickDir","out");
+
+set(ha(19),"xlabel"," Modulation Frequency (Hz) ", "fontname","Helvetica","fontsize",20)
+set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
+
+ print -r300 -depsc2 "gfx/TStellate_CT2_MTF.eps"
+ ans = "gfx/TStellate_CT2_MTF.png"
+#+end_src
+
+#+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). High freq f_m and CT2 model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:CT2MTF
+#+RESULTS: TStellate_CT2_MTF
+[[file:gfx/TStellate_CT2_MTF.png]]

@@ -1,0 +1,449 @@
+
+\section{Amplitude Modulation}
+
+\textit{Extracted from ISSNIP Conference paper}
+
+\subsection*{Outline}
+  This paper presents the amplitude modulated coding behaviour
+  in a biophysically-realistic neural network model of the cochlear
+  nucleus. It focuses specifically on the microcircuit of
+  T~stellate (TS) cells.  TS cells provide a robust spectral
+  representation of auditory information, and enhanced coding of
+  temporal information (especially the pitch in complex
+  environments \cite{KeilsonRichardsEtAl:1997}).  The model
+  contains three inhibitory interneurons, each controlling the rate
+  and temporal response of TS cells.  Despite saturation of TS
+  units on their characteristic frequency, their ability to code
+  temporal information is not disabled.  The optimal coding of
+  amplitude modulation is still provided across the network, more
+  specifically in lateral sidebands around the carrier frequency.
+
+
+
+\subsection{Introduction}
+%
+
+This paper simulates the amplitude modulation (AM) coding behaviour
+in a biophysically-realistic neural network model of the CN
+stellate microcircuit. TS cells are the major output of the CN and
+provide a robust spectral representation of auditory information.
+TS cells also show enhanced coding of temporal information,
+particularly in the synchronisation to modulation in speech
+sounds~\cite{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.  The
+coding of AM in neurons is measured using a modulation transfer
+function (MTF), which is calculated using its firing rate (rMTF) or
+temporal information (tMTF).
+
+To develop and optimise detailed neural models and neural network
+models, reproducible research methods are required. The Nordlie
+approach to reproducible neural network simulations
+\cite{NordlieGewaltigEtAl:2009} is followed in
+Table~\ref{tab:TSModelSummary}. 
+% The optimisation of the parameters
+% in the CN stellate model is the subject of the doctoral research of
+% Michael Eager.
+
+
+\begin{figure}[tb]
+  \centerline{\includegraphics[width=0.9\columnwidth]{CNcircuit}}
+  \caption{Cochlear nucleus stellate microcircuit. Each cell type
+    is shown with its response area (frequency (F) vs sound level
+    (L)) and peri-stimulus time histogram (PSTH).  Synapse types:
+    Excitatory (open triangle), glycinergic (closed circle), and
+    GABAergic (closed rectangle).} \label{fig:microcircuit}
+\end{figure}
+
+\subsection{Cochlear Nucleus Stellate Microcircuit}
+
+The tonotopic organisation of the auditory pathway (i.e.\ the continuous
+mapping of sound frequency to place of resonance in the cochlea) is
+transferred to the CN through the population of auditory nerve fibres
+(ANFs) \cite{Lorente:1981}.
+
+
+The CN stellate network model drawn in Figure~\ref{fig:microcircuit}
+describes the following cells and models:
+\begin{enumerate}
+\item The auditory nerve fibre model: The base line in
+  Figure~\ref{fig:microcircuit} is a simplification of ANFs from
+  low characteristic frequency (CF) to high CF (left to right).
+  The model reproduces responses for high and low spontaneous rate
+  (SR) ANFs at 100 channels across the frequency range 200 Hz to 48
+  kHz.
+\item The Golgi cell: A {GABA}ergic VCN~marginal shell unit is
+  assumed to regulate excitability in the GCD~and core VCN~units
+  \cite{FerragamoGoldingEtAl:1998}.  Only one \textit{in vivo}
+  study has recorded extracellular data in the marginal shell area
+  of the CN~\cite{GhoshalKim:1997}.  The presumed characteristics
+  of Golgi cells are taken from that study and are defined by a
+  monotonic response to tones and noise,
+  and an unusual or chopper peri-stimulus time histogram (PSTH).
+\item The D~stellate cell: A glycinergic, large multipolar cell
+  with OnC PSTH~response  that acts as a coincidence detector.  Its
+  large dendritic area increases its response to noise allowing it
+  to behave as a wide-band inhibitor in the VCN, DCN, and
+  contralateral
+  CN~\cite{SmithMassieEtAl:2005,ArnottWallaceEtAl:2004,NeedhamPaolini:2007}.
+\item The Tuberculoventral cell: A glycinergic, type II~{EIRA}~unit
+  in the deep layer of the DCN~\cite{SpirouDavisEtAl:1999}.  This
+  cell acts as a delayed echo-suppressor and narrow-band inhibitor,
+  with recurrent connections between D~and T~stellate cells in the
+  VCN~\cite{Alibardi:2006,OertelWickesberg:1993,WickesbergWhitlonEtAl:1991}.
+\item The T~stellate cell: One of the major output projection cells
+  of the CN to the inferior colliculus.  This
+  multipolar neuron has been shown to have robust spectral
+  representation and enhanced synchronisation to modulation in
+  speech
+  sounds~\cite{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.
+\end{enumerate}
+
+%\input{NordlieTemplate}
+
+\subsection{Methods}
+
+Tables~\ref{tab:TSModelSummary}i through \ref{tab:TSModelSummary}v
+show the detailed summary of the CN stellate microcircuit used in
+the AM simulations.
+% The Nordlie
+% \cite{NordlieGewaltigEtAl:2009} table format splits the tables into Model
+% Summary, Populations, Connectivity, Neuron Model, and Input\slash
+% Output.
+
+\subsubsection{Simulations}
+
+The simulations were performed using the neural simulation package
+NEURON \cite{CarnevaleHines:2006}. NEURON's Crank-Nicholson
+integration method was used in the simulations with time step, $dt=
+0.05$ ms, and total duration 270 ms. Stimuli were repeated 25 times
+and the spike times of all CN neurons recorded.
+
+\subsubsection{Stimulus}
+
+Stimulus generation follows Rhode and Greenberg's
+\cite{RhodeGreenberg:1994} encoding of amplitude modulation in
+cats.  AM signals were generated by modulating a carrier signal of
+specified frequency, amplitude, and phase by a sinusoidal modulator
+whose amplitude and phase were equal to that of the carrier (100\%
+AM). The carrier frequency was set to the central frequency channel
+of the CN model (5.82 kHz).  Modulation frequency, $f_m$, ranged
+from 50 to 800 Hz and was stepped up by 50 Hz.
+
+\subsubsection{Auditory Model}
+
+The input auditory model used in this paper provides the major
+phenomenological qualities of experimentally recorded ANFs. The
+Zilany model \cite{ZilanyBruceEtAl:2009} is based on many auditory
+models from the Carney Lab
+\cite{HeinzColburnEtAl:2001,ZhangCarney:2001,Carney:1993}. The
+centre frequencies for 100 channels is determined by the logarithmic
+Greenwood function \cite{Greenwood:1990} of the basilar membrane in
+cats. The model reproduces responses for 50 high and 30 low SR ANFs
+in each frequency channel, across the frequency range 200 Hz to 64
+kHz.
+
+
+\subsubsection{Golgi Cell Model}
+
+Inputs to Golgi cells are more complicated than the inputs to core
+VCN~neurons.  Golgi cells are sparse in the region surrounding the
+VCN called the granule cell domain.  Extracellular recordings from
+labelled Golgi cells are not available in the literature; however,
+the GCD~(or marginal shell of the VCN~in cats) has been studied by
+one group \cite{GhoshalKim:1997} without direct labelling of
+recorded units.  Any extracellular spikes recorded in the GCD~are
+most likely from Golgi cells since granule cell somata are less
+than $10 \mu{m}$ and their narrow axons are unlikely to elicit
+electrical activity in the electrodes.  The majority of recorded
+units showed a monotonic increase in firing rate with increasing
+sound intensity \cite{GhoshalKim:1997}.
+
+The Golgi cell model is implemented as an instantaneous-rate
+Poisson rate model.  The primary inputs are from the auditory
+model's instantaneous rate outputs with connections across
+frequency channels.  HSR~and LSR~ANF~inputs to Golgi cells were
+specified  by a Gaussian distribution in fibres across the network.
+The weighted sum of HSR~and LSR~instantaneous-rate vectors were
+smoothed out by an alpha function mimicking a synaptic and
+dendritic smoothing filter.
+
+\subsubsection{Neural Models}
+
+The spiking neural models used in the auditory nerve fibres and
+Golgi cell model are inhomogeneous Poisson processes.  The
+instantaneous rate is passed through the Jackson spiking model,
+which includes refractory effects typical of the auditory nerve
+fibres \cite{Jackson:2003,JacksonCarney:2005}.  Spike trains for
+each neuron in the model are created at the start of each
+repetition of the stimulus, but can be saved and loaded from a file.
+
+
+Membrane current models (Table~\ref{tab:TSModelSummary}iv) used in
+DS, TV and TS cell models were developed from kinectic analysis of
+ventral cochlear nucleus (VCN) neurons in mice
+\cite{RothmanManis:2003b}. Their activation and deactivation
+functions (\textit{a, b, c, h, m, n, p, r, w} and \textit{z}) are
+described in detail by Rothman and Manis \cite{RothmanManis:2003}
+and the NEURON source code is freely available online at ModelDB
+\cite{HinesMorseEtAl:2004}.  Table~\ref{tab:2} shows the membrane
+conductance parameters of the cell types.  
+%Conductance parameters
+%were adjusted from \cite{RothmanManis:2003b} due to temperature and
+%soma diameter changes.
+% Rothman and Manis used 22$^\circ$C slice preparation.
+% Temperature effects the activation and deactivation functions'
+% time constants of the current models that used 37$^\circ$C. The
+% temperature quotient, Q=Q$_{10}^{((37^\circ -22^\circ )/10)}$,
+% was used to adjust the current models where Q$_{10}=3.0$
+% \\ %\hline
+The reversal potential for potassium, sodium, leak, and h currents were -72,
+0, -65, and -43 mV, respectively.
+
+\begin{table}[!th]
+  \centering
+  \caption{Cell-type Membrane Current Parameters}\label{tab:2}
+  \begin{tabular}{lccc}
+\hline
+                Cells                 &   TS   &   DS   &   TV     \\ %\hline
+         Current Clamp Model          &  I-t   &  I-II  &   I-c    \\
+\hline
+ $\bar{g}_{{\rm Na}} $, S cm$^{-2}$   & 0.235  & 0.235  &  0.235      \\ %\hline
+ $\bar{g}_{{\rm KHT}} $, S cm$^{-2}$  & 0.018  &  0.02  &  0.019      \\ %\hline
+$\bar{g}_{{\rm  KLT}} $, S cm$^{-2}$  &   0    & 0.0047 &    0         \\ %\hline
+ $\bar{g}_{{\rm KA}} $, S cm$^{-2}$   & 0.0153 &   0    &    0        \\ %\hline
+ $\bar{g}_{{\rm h}} $, mS cm$^{-2}$   & 0.0618 & 0.247  & 0.06178     \\ %\hline
+$\bar{g}_{{\rm leak}} $, mS cm$^{-2}$ & 0.471  & 0.471  &  0.471      \\ %\hline
+        Soma Diameter, $\mu$m         &   21   &   25   &  19.5   \\ %\hline
+    Input Resistance, M$\Omega $      &  163   &   73   &   170   \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Synapse Parameters}
+
+NEURON's conductance synapse models, {\it ExpSyn} and {\it
+  Exp2Syn}, were used in the CN stellate microcircuit.  Single
+exponential excitatory synapses ($\tau _{{\rm AMPA}}=0.36$~ ms)
+model the experimental recordings in VCN neurons
+\cite{GardnerTrussellEtAl:1999}.  Double exponential inhibitory
+synapses are used in the network from glycinergic and GABAergice
+neurons. Glycinergic synapses \cite{LeaoOleskevichEtAl:2004} ($\tau
+_{{\rm Gly1}}=0.4$ ms and $\tau _{{\rm Gly2}}=2.5$ ms) and
+GABA$_{\mathrm{A}}$ synapses
+\cite{AwatramaniTurecekEtAl:2005}($\tau _{{\rm GABA1}}=0.7$ ms and
+$\tau _{{\rm GABA2}}=9.0$ ms) were modeled from MNTB neurons in
+mature guinea pigs.  Chlorine reversal potential in Glycine and
+GABA$_{\mathrm{A}}$ receptors was set to -75 mV and excitatory
+reversal potential was set to 0 mV.
+
+
+\subsubsection{Connectivity}
+
+The connectivity of the cell types involved in the stellate
+microcircuit is shown in Figure~\ref{fig:microcircuit} and in
+Table~\ref{tab:TSModelSummary}iii. Fast, glycinergic inhibition from
+TV cells and DS cells (Fig.~\ref{fig:microcircuit}) is involved in modulating the firing rate and
+spike interval variability in TS cells
+\cite{FerragamoGoldingEtAl:1998,WickesbergOertel:1993}. TV cells
+in the deep layer of the dorsal CN, provide a delayed narrowband
+inhibition to TS and DS cells in the ventral CN\@.  
+%The dendrites
+%of DS cells cover 1/3~of the cross-frequency axis in the CN,
+%contributing to this cell's wide frequency response. In turn this
+%cell is responsible for altering the frequency responses in TS and
+%TV cells \cite{SpirouDavisEtAl:1999}. 
+DS cells are coincidence detectors and have a precisely timed onset
+response that affects the temporal properties of TS cells
+\cite{PaoliniClareyEtAl:2005,RhodeGreenberg:1994a} and completely
+inhibit TV cell responses to loud clicks
+\cite{SpirouDavisEtAl:1999}. GABAergic inhibition from Golgi cells
+modulates the level of excitation necessary to reach threshold for
+all CN cells
+\cite{CasparyBackoffEtAl:1994,FerragamoGoldingEtAl:1998}.
+%Feedback
+%circuits from the olivary complex to the ventral CN are also known
+%to use GABA as a neurotransmitter \cite{SaintMorestEtAl:1989},
+%however this is not included in the model.
+
+
+
+
+\subsubsection{Analysis}
+
+Temporal information was measured using the synchronisation index
+relative to the modulation frequency of the stimuli.  The
+synchronisation index (SI) was calculated 20 ms after the onset on
+the stimulus (20 ms delay) \cite{KajikawaHackett:2005}. Vector
+strength and Rayleigh coefficient were also calculated to verify
+the SI values using an FFT of the period histogram.  SI values
+below 0.1 are considered insignificant.
+
+%\clearpage
+\subsection{Results}
+
+The figures below show the rate and temporal responses, across the
+entire network, to an AM tone with carrier frequency equal to the
+central channel's characteristic frequency (5.82 kHz).
+Modulation frequency ranged from 50 to 800 Hz.  Each figure shows the mean
+firing rate on the left and the synchronisation index on the right.
+The sound level of each stimulus was set to 40 dB SPL for the top
+row and 60 dB SPL for the bottom row.  
+
+\subsubsection{Golgi Cells}
+\begin{figure}[tb]
+\centering 
+%\caption{GLG Rate (spks/s) and SI 60 dB}
+\caption{Golgi cell rate and temporal modulation responses}\label{fig:G}
+{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal.3.eps}}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal.3.eps}}
+\end{figure}
+Figure~\ref{fig:G} shows the rate and temporal MTF across the whole
+network to AM tone centred at channel 50. The Golgi units had very
+low rates for 40 and 60 dB SPL AM tones which were limited to a
+narrow range around the central channel.  The temporal response of
+Golgi units was almost non-existent except for very low modulation.
+
+\subsubsection{D~Stellate Cells}
+\begin{figure}[tb]
+\centering 
+\caption{DS cell rate and temporal modulation responses}\label{fig:DS}
+{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal.2.eps}}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal.2.eps}}
+\end{figure}
+The broad range of CF inputs to DS units allow for a greater
+likelihood of coincident detection and an increase in
+synchronisation relative to the inputs.  The rate responses of DS
+units (Fig.~\ref{fig:DS}) were wider for 40 and 60 SPL stimuli
+relative to the narrow band TS units.  For 40 dB SPL stimuli, most
+DS units had a band-pass rMTF. For higher SPL, a greater number of
+spikes occured between 100 and 500 Hz for units above CF (band-pass
+rMTF), but the rest of the active units remained stable (low-pass
+rMTF). This ``rate-responder'' behaviour is similar in ideal onset
+units in the VCN (octopus cells) but the cut-off of the rMTF is much
+lower. The temporal responses of DS units were predominantly
+band-pass, with higher SI values than ANFs.  For lower SPL, the
+responses were consistent across active units with a falling cut-off
+frequency with falling CF. For high SPL, the DS units were divided
+along the central channel.  The DS units above the central channel
+had the strongest synchronisation and cut-off frequencies near the
+upper limit of the AN model.  The DS units below the central
+channel had cut-off frequencies around 400 Hz, similar to TS and TV
+units.
+
+\subsubsection{Tuberculoventral Cells}
+\begin{figure}[tb]
+\centering 
+%\caption{TV Rate (spks/s) and SI 60 dB}
+\caption{TV cell rate and temporal modulation responses}\label{fig:TV}
+{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal.1.eps}}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal.1.eps}}
+\end{figure}
+The rate and temporal responses of TV units (Fig.~\ref{fig:TV})
+showed the non-linear effects of strong inhibition from DS
+units. TS and TV units received similar ANF inputs, but the
+inhibition limited the activity at low sound level and then to a
+narrow range at higher SPL.  The temporal responses of TV units
+were similar to TS units but with lesser synchronisation and
+sharper cut-off.  The outer edges of active units provided the best
+temporal response with little to no temporal information at the
+carrier frequency units.
+
+
+\subsubsection{T~Stellate Cells}
+\begin{figure}[tb]
+\centering 
+%\caption{TS Rate (spks/s) and SI 60 dB}
+\caption{TS cell rate and temporal modulation responses}\label{fig:TS}
+{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal.0.eps}}\\
+\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal.0.eps}}
+\end{figure}
+Figure~\ref{fig:TS} shows the final MTF response of the TS units in
+the network.  The spread of excitation in TS units was narrow
+around the central channel, with greater excitation above CF around
+fm=300 Hz. For higher sound levels, the spread of excitation was
+wider but the rate was steadier for each stimuli.  The significant
+features of the temporal responses in the right of the figure are
+the very poor synchronisation in the central channel and dominant
+synchronous responses at the outer edge of excitation.  For 40 dB
+SPL, most active units showed a band-pass MTF; however, the
+dominant units above CF (channels 55 to 58) had low-pass MTFs.  For
+60 dB SPL, most active units showed band-pass MTFs except for the
+central units, which showed limited results or a low-pass MTF.
+Outermost active units (channels 65 to 60 and 45 to 40) had the
+most dominant temporal response across the TS cell population.
+
+
+\subsection{Discussion}
+
+Golgi cells are low-firing monotonic units that influence the
+general excitability of DS and TS units using GABA.  The results in
+Fig.~\ref{fig:G} show that the rate and temporal response to AM
+tones is only dependent on the sound level. 
+
+The rate and temporal response of TV cells was
+strongly inhibited by DS units.  TV cells are thought to be
+responsible for delayed inhibition or echo-supression
+\cite{WickesbergOertel:1990}, but can also be involved in tuning
+the temporal MTF behaviour in TS cells.
+
+D~stellate cells have an onset chopping behaviour to tones, but can
+follow the repetition of amplitude modulated tones. The entrainment
+to the stimulus envelope produced band-pass rate MTFs in DS units
+with a CF above $f_c$.  The temporal information at the channel
+with CF=$f_c$ (Fig.~\ref{fig:DS}) was diminished by the strong
+GABAergic inhibition of Golgi cells; however, the majority of active
+DS units showed strong synchronisation, which suggests 
+synchronous tuning in TV and TS units throughout the CN.
+
+Intrinsic membrane properties and synaptic connections enable TS
+units to be enhanced or tuned to important features of the acoustic
+input \cite{PaoliniClareyEtAl:2005}. The behaviour of TS units is
+influenced by all three interneurons in the stellate
+microcircuit. Rate saturation of TS units on CF (Fig.~\ref{fig:TS})
+does not disable their ability to encode temporal information.
+Experimental data has shown TS cells generally have low-pass MTF at
+low sound level and band-pass MTF for higher sound levels for AM
+tones on CF \cite{RhodeGreenberg:1994}. A whole-network approach
+may provide a more advantageous basis for optimal temporal coding
+of AM than an approach based solely on CF.
+
+% The inhomogeneous T~stellate cell population are classified as
+% either sustained or transient choppers.
+
+
+\subsection{Conclusion}
+
+The CN stellate microcircuit provides controlled and modulated
+enhancement of the output of TS cells, one of the major outputs of
+the cochlear nucleus.  This paper has shown the necessity to model
+detailed neural microcircuits away from basic receptive fields of
+individual units.  The model has been used for detailed
+optimisation \cite{EagerGraydenEtAl:2006,EagerGraydenEtAl:2006a} so
+that it can be used to investigate detailed physiological
+properties in the CN stellate network.
+
+
+
+% With the acceleration of computational
+% power and enhanced experimental techniques in multi-unit
+% recordings are enabling more detailed neural models to be
+% developed. There is much to be gained from biophysically-
+% realistic modelling approaches, especially in the heavily in-
+% vestigated cochlear nucleus of mammals and birds.
+% This paper simulates the amplitude modulated (AM) coding
+% behaviour in a biophysically-realistic neural network model
+% of the cochlear nucleus stellate microcircuit
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% mode: tex-fold
+%%% mode: visual-line
+%%% TeX-master: "VowelProcessing"
+%%% TeX-PDF-mode: nil
+%%% End:
