@@ -1,0 +1,111 @@
+%{%\vspace{2ex}
+%\small\linespread{0.5}
+\begin{table*}[tb]
+    \caption{CN Stellate Microcircuit Network Model Summary}\label{tab:TSModelSummary}
+%  \end{table}
+%\noindent%
+\begin{tabularx}{\textwidth}{|l|X|}\hline %
+\hdr{2}{i}{Model Summary}\\\hline
+         \textbf{Populations}          & Six: HSR \& LSR ANFs, Golgi, DS, TV and TS cells \\\hline
+          \textbf{Topology}            & Tono-topicity of the rat AN and CN \\\hline
+        \textbf{Connectivity}          & ANF$\to${Golgi,DS,TV,TS}, Golgi$\to$DS,TS, DS$\to$TV,TS, and TV$\to$TS  \\\hline
+         \textbf{Input model}          & ANF~model: instantaneous-rate Poisson model \cite{ZilanyBruce:2007} \\\hline
+\multirow{4}{*}{\textbf{Neuron model}} & Golgi: instantaneous-rate Poisson model\\
+                                       & D~stellate cell: HH-like single-compartment type I-II R\&M model \cite{RothmanManis:2003b}\\ 
+                                       & Tuberculoventral cell:  HH-like single-compartment type I-c R\&M model \cite{RothmanManis:2003b}\\
+                                       & T~stellate cell: HH-like single-compartment type I-t R\&M model \cite{RothmanManis:2003b}\\ \hline
+       \textbf{Channel models}         & $I_{\textrm{Na}}$, $I_{\textrm{KHT}}$, $I_{\textrm{KLT}}$, $I_{\textrm{KA}}$ and $I_{\textrm{h}}$ \cite{RothmanManis:2003b}\\\hline
+        \textbf{Synapse model}         & AMPA (\textit{ExpSyn}), GABA$_{\rm A}$ (\textit{Exp2Syn}), Glycine (\textit{Exp2Syn}) \\\hline
+            \textbf{Input}             & 250 ms amplitude modulated tones ($f_c=5.82$ kHz, $f_m=$50-800 Hz) at 40 and 60 dB SPL \\\hline
+        \textbf{Measurements}          & Spikes recorded over 25 repetitions.  Mean rate and synchronisation index measured from the spike times. \\\hline
+\end{tabularx}
+
+\vspace{1ex}
+% - B -----------------------------------------------------------------------------
+\begin{tabularx}{\textwidth}{|l|X|X|}\hline
+\hdr{3}{ii}{Populations}\\\hline
+\textbf{Name} &            \textbf{Elements}            & \textbf{Size} \\\hline
+     HSR      &  Poisson model with refractory effects  & $N_{\text{HSR}} = 50$ per freq.\ channel \\\hline
+     LSR      &  Poisson model with refractory effects  & $N_{\text{LSR}}= 20$  per freq.\ channel \\\hline
+     GLG      &  Poisson model with refractory effects  & $N_{\text{GLG}}= 1$  per freq.\ channel  \\\hline
+     DS       &    Type I-II Rothman \& Manis model     & $N_{\text{DS}}= 1$ per freq.\ channel \\\hline
+     TV       &  Type I-classic Rothman \& Manis model  & $N_{\text{TV}}= 1$ per freq.\ channel\\\hline
+     TS       & Type I-transient Rothman \& Manis model & $N_{\text{TS}}= 1$ per freq.\ channel\\\hline
+\end{tabularx}
+
+\vspace{1ex}
+% - C ------------------------------------------------------------------------------
+%\noindent%
+\begin{tabularx}{\textwidth}{|l|l|l|X|}\hline
+\hdr{4}{iii}{Connectivity}\\\hline
+ \textbf{Name}   & \textbf{Source} & \textbf{Target} & \textbf{Pattern} \\\hline
+    \ANFGLG      &    HSR, LSR     &       GLG       & 
+Gaussian convergence, spread \sLSRGLG \sHSRGLG, weight \wHSRGLG \wLSRGLG, delay \dANFGLG \\\hline
+     \ANFDS      &    HSR, LSR     &       DS        & 
+Skewed Gaussian convergence,  2 octave spread below CF and 1 octave spread above CF, weight \wHSRDS \wLSRDS, number \nHSRDS \nLSRDS, delay \dANFDS \\\hline
+     \ANFTV      &    LSR, HSR     &       TV        & 
+Narrowband connection, weight \wLSRTV and \wHSRTV, number \nLSRTV and \nHSRTV, delay \dANFTV \\\hline
+     \ANFTS      &    LSR, HSR     &       TS        & 
+Narrowband connection, weight \wLSRTS and \wHSRTS, number \nLSRTS and \nHSRTS, delay \dANFTS \\\hline
+     \GLGDS      &       GLG       &       DS        & 
+Gaussian convergence, spread $\sGLGDS$, uniform weight \wGLGDS, number \nGLGDS, delay \dGLGDS \\\hline
+     \DSTV       &       DS        &       TV        & Gaussian convergence with offset \oDSTV, with spread \sDSTV, weight \wDSTV \\\hline
+     \GLGTS      &       GLG       &       TS        & 
+Gaussian convergence, spread $\sGLGTS$, weight \wGLGTS, number \nGLGTS, delay $\dGLGTS=0.5$ ms \\\hline
+     \DSTS       &       DS        &       TS        & 
+Gaussian convergence, spread $\sDSTS$, weight \wDSTS, number \nDSTS, delay $\dDSTS=0.5$ ms \\\hline
+     \TVTS       &       TV        &       TS        & 
+Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTVTS=0.5$ ms \\\hline
+\end{tabularx}
+
+\vspace{1ex}
+\begin{tabularx}{\textwidth}{|l|X|}\hline
+\hdr{2}{iv}{Neuron and Synapse Model}\\\hline
+ \textbf{Name} & DS, TV and TS cell models \\\hline
+ \textbf{Type} & Na, KA, KHT, Ih, and leak currents \cite{RothmanManis:2003b}, conductance synapse input \\\hline
+\raisebox{-4.5ex}{\parbox{0.2\textwidth}{\textbf{Subthreshold dynamics}}}& % \\%&%
+\rule{1em}{0em}\vspace*{-3.5ex}
+\begin{eqnarray*}
+ I_{{\rm Na}} (t,V)=\bar{g}_{{\rm Na}} m^{3} h (V-E_{{\rm Na}} )\quad,\quad I_{KA} (t,V)=\bar{g}_{{\rm KA}} a^{4} b c (V-E_{K})\quad,\quad I_{{\rm h}} (t,V)=\bar{g}_{{\rm h}} r (V-E_{{\rm h}} )\\
+    I_{{\rm KHT}}(t,V)=\bar{g}_{{\rm KHT}} ( \frac{n^{2}+p}{2})(V-E_{K})\quad,\quad I_{{\rm KLT}}(t,V)=\bar{g}_{{\rm KLT}} w^{3} z (V-E_{K} )\\
+\end{eqnarray*} \vspace*{-5.5ex}\rule{1em}{0em}
+\\\hline
+ \textbf{Spiking} & Emit spike when $V(t)\geq -20$ mV  \\\hline
+\end{tabularx}
+
+\vspace{1ex}
+\begin{tabularx}{\textwidth}{|l|X|}\hline %
+\hdr{2}{v}{Input\slash Ouput}\\\hline
+\textbf{Input Stimulus} & Pure tone AM stimuli with 250 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay. Carrier frequency 5.82 kHz, modulation frequencies 50-800 Hz, with 50 Hz increments. \\\hline 
+    \textbf{Input}      & Stimulus induced Poisson spike trains from GLG units, HSR and LSR ANFs, and natural synaptic input from DS and TV units\\\hline
+%\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}
+%\includegraphics[width=0.8\textwidth,keepaspectratio]{./gfx/Notch-Wl-12.5kHz-0.5.eps}
+%\end{minipage}}\\\hline
+   % \textbf{Output}    & Output of 100 TV cells, across the network, with 25 repetitions\\\hline
+%\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}%
+%\includegraphics[width=0.8\textwidth,keepaspectratio]{./gfx/AN_rateplace_12.5_0.5.eps}
+%\end{minipage}}\\\hline
+%\textbf{Measurements}    & PSTH sampled at each click for 2 ms to measure click recovery\\\hline
+%\textbf{Optimisation}    & Parameters for \GLGDS are optimised based on experimental click recovery date from \citet{BackoffPalombiEtAl:1997}. The praxis method is used for optimisation.  \\\hline
+\textbf{Measurements}    &  
+Mean rate and synchronisation index were calculated from each CN unit for each stimuli over 25 repetitions.
+
+Synchronisation index was calculated relative to the modulation frequency
+using the vector strength method \cite{KajikawaHackett:2005}.
+%Intracellular voltage was recorded and special measures were calculated.  Spikes recorded and co-efficient of variation statistic was calculated in 10 ms windows.
+\\\hline
+\end{tabularx}
+\end{table*}
+%}
+
+%  \textbf{Assumptions}    & The spread ANF to DS cells (\sANFDSh,\sANFDSl) is arbitrary at this point and will be explored in the next experiment.\\ \hline
+%   \textbf{Function}     & Weighted mean squared error see listing below  \\ \hline
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: nil
+%%% TeX-master: "Eager_ISSNIP2011"
+%%% End: 
