@@ -1,14 +1,16 @@
 #+TITLE: Amplitude Modulation and Vowel Coding in the Stellate Microcircuit
-#+DATE:
 #+AUTHOR: Michael A Eager
+#+DATE:
 #+OPTIONS: toc:nil H:5 author:nil <:t >:t
 #+STARTUP: oddeven hideblocks fold align hidestars
 #+TODO: REFTEX
+
 #+LANGUAGE: en_GB
 #+LATEX_HEADER:\graphicspath{{./}{./gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 #+LATEX_HEADER:\usepackage{transparent}
+
 #+BIBLIOGRAPHY: MyBib alphanat
 #+LaTeX_CLASS: UoM-draft-org-article
 
@@ -17,7 +19,7 @@
 #+TEXT:\setcounter{chapter}{3}
 #+TEXT:\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
 
-## set global variables for in-code blocks #+  PROPERTY: cache yes
+## set global variables for in-code blocks 
 
 * Prelude 							   :noexport:
 
@@ -53,10 +55,13 @@
      ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
 
  (setq org-export-latex-title-command "{\n\\singlespacing\n\\tableofcontents\n\\printglossaries\n}\n\\setcounter{chapter}{0}")
- (setq org-entities-user '(("space" "\\ " nil " " " " " " " ")))
+ (setq org-entities-user '(("space" "\\ " nil " " " " " " " ")
+;           ("cite" "~\\cite" nil " " " " " " " ")
+; ("ref" "~\\ref" nil " " " " " " " ")
+))
 #+end_src
 
-#+RESULTS[8ce00b5ef52b4ed30831df1b641dac51b7b93f29]:
+#+RESULTS:
 | space | \ | nil |   |   |   |   |
 
 
@@ -83,183 +88,216 @@
   \newpage
 
 
+
+
 * Introduction
 
 This chapter presents the amplitude modulated coding behaviour in a
 biophysically-realistic neural network model of the cochlear nucleus. It focuses
 specifically on the microcircuit regulating the output of \TS cells.
-TS cells provide a robust spectral representation of auditory information, and
+\TS cells provide a robust spectral representation of auditory information, and
 enhanced coding of temporal information (especially the pitch in complex
 environments \citep{KeilsonRichardsEtAl:1997}).  The model contains three
-inhibitory interneurons, each controlling the rate and temporal response of TS
+inhibitory interneurons, each controlling the rate and temporal response of \TS
 cells.  Despite saturation of TS units on their characteristic frequency, their
 ability to code temporal information is not disabled.  The optimal coding of
 amplitude modulation is still provided across the network, more specifically in
 lateral sidebands around the carrier frequency.
 
 
-Here we simulate the amplitude modulation (AM) coding behaviour
-in a biophysically-realistic neural network model of the CN
-stellate microcircuit (previously discussed in Chapter \SS 3). TS cells are the major output of the CN and
-provide a robust spectral representation of auditory information.
-TS cells also show enhanced coding of temporal information,
-particularly in the synchronisation to modulation in speech
-sounds~\citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.  The
-coding of AM in neurons is measured using a modulation transfer
-function (MTF), which is calculated using its firing rate (rMTF) or
-temporal information (tMTF).
+Here we simulate the \AM coding behaviour in a biophysically-realistic neural
+network model of the \CN stellate microcircuit (previously discussed in Chapter
+3).  \TS cells are the major output of the \CN and provide a robust spectral
+representation of auditory information.  \TS cells also show enhanced coding of
+temporal information, particularly in the synchronisation to modulation in
+speech sounds \citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.  The coding
+of \AM in neurons is measured using a \MTF, which is calculated using its firing
+rate (rMTF) or temporal information (tMTF).
 
-To develop and optimise detailed neural models and neural network
-models, reproducible research methods are required. The Nordlie
-approach to reproducible neural network simulations
-\citep{NordlieGewaltigEtAl:2009} is followed in
-Table~\ref{tab:TSModelSummary}. 
-% The optimisation of the parameters
-% in the CN stellate model is the subject of the doctoral research of
-% Michael Eager.
+
+To develop and optimise detailed neural models and neural network models,
+reproducible research methods are required. The Nordlie approach to reproducible
+neural network simulations \citep{NordlieGewaltigEtAl:2009} is followed in
+Table \ref{tab:TSModelSummary}.  
 
 
 #+caption [Cochlear nucleus stellate microcircuit]{Cochlear nucleus stellate microcircuit. Each cell type is shown with its response area (frequency (F) vs sound level (L)) and peri-stimulus time histogram (PSTH).  Synapse types:    Excitatory (open triangle), glycinergic (closed circle), and    GABAergic (closed rectangle).} 
 #+label: fig:microcircuit
-[[file:./gfx/CNcircuit.eps]]
+[[file:./gfx/CNcircuit.pdf]]
 
 ** Cochlear Nucleus Stellate Microcircuit
 
-The tonotopic organisation of the auditory pathway (i.e.\ the continuous
-mapping of sound frequency to place of resonance in the cochlea) is
-transferred to the CN through the population of auditory nerve fibres
-(ANFs) \citep{Lorente:1981}.
-
-
-The CN stellate network model drawn in Figure~\ref{fig:microcircuit}
+The tonotopic organisation of the auditory pathway (i.e.\space the continuous mapping
+of sound frequency to place of resonance in the cochlea) is transferred to the
+\CN through the population of \ANFs \citep{Lorente:1981}.
+The CN stellate network model drawn in Figure \ref{fig:microcircuit}
 describes the following cells and models:
+1.  Auditory nerve fibres :: The base line in Figure \ref{fig:microcircuit} is a
+     simplification of \ANFs from low \CF to high \CF (left to right).  The
+     model reproduces responses for high and low \SR \ANFs at 100 channels
+     across the frequency range 200 Hz to 48 kHz.
+2. The Golgi cell :: A GABAergic \VCN marginal shell unit is assumed to regulate
+     excitability in the GCD and core VCN units
+     \citep{FerragamoGoldingEtAl:1998}.  Only one /in vivo/ study has recorded
+     extracellular data in the marginal shell area of the CN
+     \citep{GhoshalKim:1997}.  The presumed characteristics of Golgi cells are
+     taken from that study and are defined by a monotonic response to tones and
+     noise, and an unusual or chopper \PSTH.
+3. The D stellate cell :: A glycinergic, large multipolar cell with \OnC \PSTH
+     response that acts as a coincidence detector.  Its large dendritic area
+     increases its response to noise allowing it to behave as a wide-band
+     inhibitor in the \VCN, \DCN, and contralateral CN
+     \citep{SmithMassieEtAl:2005,ArnottWallaceEtAl:2004,NeedhamPaolini:2007}.
+4. The Tuberculoventral cell :: A glycinergic, type II \EIRA unit in the deep
+     layer of the \DCN \citep{SpirouDavisEtAl:1999}.  This cell acts as a
+     delayed echo-suppressor and narrow-band inhibitor, with recurrent
+     connections between D and T stellate cells in the \VCN
+     \citep{Alibardi:2006,OertelWickesberg:1993,WickesbergWhitlonEtAl:1991}.
+5. The T stellate cell :: One of the major output projection cells of the \CN to
+     the inferior colliculus.  This multipolar neuron has been shown to have
+     robust spectral representation and enhanced synchronisation to modulation
+     in speech sounds \citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.
 
-  1.  The auditory nerve fibre model: The base line in
-  Figure~\ref{fig:microcircuit} is a simplification of ANFs from
-  low characteristic frequency (CF) to high CF (left to right).
-  The model reproduces responses for high and low spontaneous rate
-  (SR) ANFs at 100 channels across the frequency range 200 Hz to 48
-  kHz.
-  2. The Golgi cell: A {GABA}ergic VCN~marginal shell unit is
-  assumed to regulate excitability in the GCD~and core VCN~units
-  \citep{FerragamoGoldingEtAl:1998}.  Only one \textit{in vivo}
-  study has recorded extracellular data in the marginal shell area
-  of the CN~\citep{GhoshalKim:1997}.  The presumed characteristics
-  of Golgi cells are taken from that study and are defined by a
-  monotonic response to tones and noise,
-  and an unusual or chopper peri-stimulus time histogram (PSTH).
-  3. The D~stellate cell: A glycinergic, large multipolar cell
-  with OnC PSTH~response  that acts as a coincidence detector.  Its
-  large dendritic area increases its response to noise allowing it
-  to behave as a wide-band inhibitor in the VCN, DCN, and
-  contralateral
-  CN~\citep{SmithMassieEtAl:2005,ArnottWallaceEtAl:2004,NeedhamPaolini:2007}.
-  4. The Tuberculoventral cell: A glycinergic, type II~{EIRA}~unit
-  in the deep layer of the DCN~\citep{SpirouDavisEtAl:1999}.  This
-  cell acts as a delayed echo-suppressor and narrow-band inhibitor,
-  with recurrent connections between D~and T~stellate cells in the
-  VCN~\citep{Alibardi:2006,OertelWickesberg:1993,WickesbergWhitlonEtAl:1991}.
-  5. The T~stellate cell: One of the major output projection cells
-  of the CN to the inferior colliculus.  This
-  multipolar neuron has been shown to have robust spectral
-  representation and enhanced synchronisation to modulation in
-  speech
-  sounds~\citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.
+* Temporal Coding in the Auditory Pathway
+
+- Need to expand on why temporal coding is essential
+ - eg. Spectral/Rate Coding poor representation of modulated signals
+    - mean rate of spikes
+    - saturation at high sound level
+    - poor SNR in auditory nerve 
+- Measures of temporal code
+  - phasic or circular data
+  - synchronisation coefficient/vector strength
+  - statistical tests: Rayleigh Test, (one more recent measure but not done here)
+  
+
+#+label: fig:MTFdef
+[[file:../figures/JorisAM_Fig1.png]]
+
+- Variation in sound level
+  - poor in AN  (note measurements for f_m at CF in most studies)
+  - enhanced in T stellate cells at high SPL
+
+#+CAPTION: [Temporal response in ANFs]{Rate and temporal response property of a single HSR ANF. Figure reproduced from \citet{RhodeGreenberg:1994} }
+#+LABEL: fig:RG94_AN
+[[file:/media/data/Work/pubs/2011 ISSNIP (Adelaide)/RG94-AN_MTF.png]]
+
+- Variation in modulation frequency
+  - definition of \MTF or tMTF
+  - Low-pass to band-pass with high peak in vector strength. 
+  - Reduced cut-off due to membrane characteristics rather than network effects.
+
+
+#+LaTeX:{\hfill\includegraphics[width=\columnwidth,keepaspectratio]{../thesis/figures/JorisAM_Fig4A.png}\hfill}
+#+LaTeX:{\hfill\includegraphics[width=\columnwidth,keepaspectratio]{../thesis/figures/JorisAM_Fig4B.png}\hfill}
+
+
+
+
+
+
+** Existing CN and AN Models
+
+  - Inadequate existing CN models
+  - Zilany AN model
+    - accurate synchronisation behaviour
+  - Existing models not realistic
+    - Wiegrebe \& Meddis: Point neurons, strong recurrent connections,
+      operate outside physiological range
+    - Bahmer \& Lagner: Point neurons, hypothetical network
+    - New AN model synchronisation behaviour more accurate
+
+
+
+
 
 
 \input{NordlieTemplate}
 
 
+
+
 * Methods
 
-Tables~\ref{tab:TSModelSummary}i through \ref{tab:TSModelSummary}v
-show the detailed summary of the CN stellate microcircuit used in
-the AM simulations.
-# The Nordlie
-# \citep{NordlieGewaltigEtAl:2009} table format splits the tables into Model
-# Summary, Populations, Connectivity, Neuron Model, and Input\slash
-# Output.
+Tables \ref{tab:TSModelSummary}i 
+through \ref{tab:TSModelSummary}v
+show the detailed summary of the \CN stellate microcircuit used in
+the \AM simulations.
+The Nordlie  table format splits the tables into Model
+ Summary, Populations, Connectivity, Neuron Model, and Input\slash
+ Output \citep{NordlieGewaltigEtAl:2009}.
 
 ** Simulations
 
 The simulations were performed using the neural simulation package
 NEURON \citep{CarnevaleHines:2006}. NEURON's Crank-Nicholson
 integration method was used in the simulations with time step, /dt/ =
-0.05 ms, and total duration 270 ms. Stimuli were repeated 50 times
-and the spike times of all CN neurons recorded.
+0.05 ms, and total duration 170 ms. Stimuli were repeated 50 times
+and the spike times of all \ANF and \CN units recorded.
 
 ** Stimulus
 
-Stimulus generation follows Rhode and Greenberg's
-\citep{RhodeGreenberg:1994} encoding of amplitude modulation in
-cats.  AM signals were generated by modulating a carrier signal of
-specified frequency, amplitude, and phase by a sinusoidal modulator
-whose amplitude and phase were equal to that of the carrier (100\%
-AM). The carrier frequency was set to the central frequency channel
-of the CN model (5.82 kHz).  Modulation frequency, f_m, ranged
-from 50 to 800 Hz and was stepped up by 50 Hz.
+Stimulus generation follows Rhode and Greenberg's \citep{RhodeGreenberg:1994}
+encoding of amplitude modulation in cats.  \AM signals were generated by
+modulating a carrier signal of specified frequency, amplitude, and phase by a
+sinusoidal modulator whose amplitude and phase were equal to that of the carrier
+(100\% modulation).  Modulation frequency, f_m, ranged from 50 to 800 Hz and was
+stepped up by 50 Hz. The carrier frequency was set to the central frequency
+channel of the \CN model (5.82 kHz) or to the characteristic frequency of the
+different TS chopper models.
 
 ** Auditory Model
 
-The input auditory model used in this paper provides the major
-phenomenological qualities of experimentally recorded ANFs. The
-Zilany model \citep{ZilanyBruceEtAl:2009} is based on many auditory
-models from the Carney Lab
-\citep{HeinzColburnEtAl:2001,ZhangCarney:2001,Carney:1993}. The
-centre frequencies for 100 channels is determined by the logarithmic
-Greenwood function \citep{Greenwood:1990} of the basilar membrane in
-cats. The model reproduces responses for 50 high and 30 low SR ANFs
-in each frequency channel, across the frequency range 200 Hz to 64
-kHz.
+The input auditory model used in this paper provides the major phenomenological
+qualities of experimentally recorded \ANFs. The Zilany model
+\citep{ZilanyBruceEtAl:2009} is based on many auditory models from the Carney
+Lab \citep{HeinzColburnEtAl:2001,ZhangCarney:2001,Carney:1993}. The centre
+frequencies for 100 channels is determined by the logarithmic Greenwood function
+\citep{Greenwood:1990} of the basilar membrane in cats. The model reproduces
+responses for 50 high and 30 low \SR \ANFs in each frequency channel, across the
+frequency range 200 Hz to 64 kHz.
 
 
 ** Golgi Cell Model
 
-Inputs to Golgi cells are more complicated than the inputs to core
-\VCN neurons.  Golgi cells are sparse in the region surrounding the
-\VCN called the granule cell domain.  Extracellular recordings from
-labelled Golgi cells are not available in the literature; however,
-the \GCD (or marginal shell of the \VCN in cats) has been studied by
-one group \citep{GhoshalKim:1997} without direct labelling of
-recorded units.  Any extracellular spikes recorded in the GCD~are
-most likely from Golgi cells since granule cell somata are less
-than 10 \mu{m} and their narrow axons are unlikely to elicit
-electrical activity in the electrodes.  The majority of recorded
-units showed a monotonic increase in firing rate with increasing
-sound intensity \citep{GhoshalKim:1997}.
+Inputs to Golgi cells are more complicated than the inputs to core \VCN neurons.
+Golgi cells are sparse in the region surrounding the \VCN called the granule
+cell domain.  Extracellular recordings from labelled Golgi cells are not
+available in the literature; however, the \GCD (or marginal shell of the \VCN in
+cats) has been studied by one group \citep{GhoshalKim:1997} without direct
+labelling of recorded units.  Any extracellular spikes recorded in the \GCD are
+most likely from Golgi cells since granule cell somata are less than 10 \um
+and their narrow axons are unlikely to elicit electrical activity in the
+electrodes.  The majority of recorded units showed a monotonic increase in
+firing rate with increasing sound intensity \citep{GhoshalKim:1997}.
 
-The Golgi cell model is implemented as an instantaneous-rate
-Poisson rate model.  The primary inputs are from the auditory
-model's instantaneous rate outputs with connections across
-frequency channels.  \HSR and \LSR \ANF inputs to Golgi cells were
-specified  by a Gaussian distribution in fibres across the network.
-The weighted sum of \HSR and \LSR instantaneous-rate vectors were
-smoothed out by an alpha function mimicking a synaptic and
-dendritic smoothing filter.
+The Golgi cell model is implemented as an instantaneous-rate Poisson rate model.
+The primary inputs are from the auditory model's instantaneous rate outputs with
+connections across frequency channels.  \HSR and \LSR \ANF inputs to Golgi cells
+were specified by a Gaussian distribution in fibres across the network.  The
+weighted sum of \HSR and \LSR instantaneous-rate vectors were smoothed out by an
+alpha function mimicking a synaptic and dendritic smoothing filter.
 
 ** Neural Models
 
-The spiking neural models used in the auditory nerve fibres and
-Golgi cell model are inhomogeneous Poisson processes.  The
-instantaneous rate is passed through the Jackson spiking model,
-which includes refractory effects typical of the auditory nerve
-fibres \citep{Jackson:2003,JacksonCarney:2005}.  Spike trains for
-each neuron in the model are created at the start of each
-repetition of the stimulus, but can be saved and loaded from a file.
+The spiking neural models used in the auditory nerve fibres and Golgi cell model
+are inhomogeneous Poisson processes.  The instantaneous rate is passed through
+the Jackson spiking model, which includes refractory effects typical of the
+auditory nerve fibres \citep{Jackson:2003,JacksonCarney:2005}.  Spike trains for
+each neuron in the model are created at the start of each repetition of the
+stimulus, but can be saved and loaded from a file.
 
 
-Membrane current models (Table~\ref{tab:TSModelSummary}iv) used in
-DS, TV and TS cell models were developed from kinectic analysis of
-\VCN neurons in mice
-\citep{RothmanManis:2003b}. Their activation and deactivation
-functions (/a, b, c, h, m, n, p, r, w/ and /z/) are
-described in detail by Rothman and Manis \citep{RothmanManis:2003}
-and the NEURON source code is freely available online at ModelDB
-\citep{HinesMorseEtAl:2004}.  Table~\ref{tab:Celltypes2} shows the membrane
-conductance parameters of the cell types.  
-# Conductance parameters
-# were adjusted from \citep{RothmanManis:2003b} due to temperature and
-# soma diameter changes.
+Membrane current models (Table \ref{tab:TSModelSummary}iv) used in \DS, \TV and \TS
+cell models were developed from kinectic analysis of \VCN neurons in mice
+\citep{RothmanManis:2003b}. Their activation and deactivation functions (/a, b,
+c, h, m, n, p, r, w/ and /z/) are described in detail by Rothman and Manis
+\citep{RothmanManis:2003} and the NEURON source code is freely available online
+at ModelDB \citep{HinesMorseEtAl:2004}.  Table \ref{tab:Celltypes2} shows the
+membrane conductance parameters of the cell types.
+Conductance parameters
+were adjusted from \citep{RothmanManis:2003b} due to temperature and
+soma diameter changes.
 #  Rothman and Manis used 22$^\circ$C slice preparation.
 #  Temperature effects the activation and deactivation functions'
 #  time constants of the current models that used 37$^\circ$C. The
@@ -272,30 +310,31 @@ The reversal potential for potassium, sodium, leak, and Ih currents were -72,
 
 #+caption: Cell-type Membrane Current Parameters}
 #+label: tab:Celltypes2
-#+attr_latex: table tabularx
-| Cells                                 |     TS |     DS |      TV |
-| Current Clamp Model                   |    I-t |   I-II |     I-c |
-|---------------------------------------+--------+--------+---------|
-| $\bar{g}_{{\rm Na}} $, S cm$^{-2}$    |  0.235 |  0.235 |   0.235 |
-| $\bar{g}_{{\rm KHT}} $, S cm$^{-2}$   |  0.018 |   0.02 |   0.019 |
-| $\bar{g}_{{\rm  KLT}} $, S cm$^{-2}$  |      0 | 0.0047 |       0 |
-| $\bar{g}_{{\rm KA}} $, S cm$^{-2}$    | 0.0153 |      0 |       0 |
-| $\bar{g}_{{\rm h}} $, mS cm$^{-2}$    | 0.0618 |  0.247 | 0.06178 |
-| $\bar{g}_{{\rm leak}} $, mS cm$^{-2}$ |  0.471 |  0.471 |   0.471 |
-| Soma Diameter, $\mu$m                 |     21 |     25 |    19.5 |
-| Input Resistance, M$\Omega $          |    163 |     73 |     170 |
+# + attr_latex : table tabularx
+| Cells                     |     TS |     DS |      TV |
+| Current Clamp Model       |    I-t |   I-II |     I-c |
+|---------------------------+--------+--------+---------|
+| \gNa , S/cm^{2}           |  0.235 |  0.235 |   0.235 |
+| \gKHT, S/cm^{2}           |  0.018 |   0.02 |   0.019 |
+| \gKLT, S/cm^{2}           |      0 | 0.0047 |       0 |
+| \gKA, S/cm^{2}            | 0.0153 |      0 |       0 |
+| \gh,  mS/cm^{2}           | 0.0618 |  0.247 | 0.06178 |
+| \gleak, mS/cm^{2}         |  0.471 |  0.471 |   0.471 |
+| Soma Diameter, \um        |     21 |     25 |    19.5 |
+| Input Resistance, M\Omega |    163 |     73 |     170 |
 
 
 
 ** Synapse Parameters
 
 [[latex:progname][NEURON]]'s conductance synapse models, /ExpSyn/ and /Exp2Syn/, were used in the CN
-stellate microcircuit.  Single exponential excitatory synapses (\tAMPA = 0.36 ms) model the experimental recordings in VCN neurons
+stellate microcircuit.  Single exponential excitatory synapses (\tAMPA = 0.36
+ms) model the experimental recordings in VCN neurons
 \citep{GardnerTrussellEtAl:1999}.  Double exponential inhibitory synapses are
 used in the network from glycinergic and GABAergice neurons. Glycinergic
-synapses \citep{LeaoOleskevichEtAl:2004} (\tGly1=0.4 ms and \tGly2=2.5 ms) and
-\GABAa synapses \citep{AwatramaniTurecekEtAl:2005} (\tGABA1=0.7 ms and
-\tGABA2=9.0 ms) were modeled from MNTB neurons in mature guinea pigs.  Chlorine
+synapses \citep{LeaoOleskevichEtAl:2004} (\tGlyone=0.4 ms and \tGlytwo=2.5 ms) and
+\GABAa synapses \citep{AwatramaniTurecekEtAl:2005} (\tGABAone=0.7 ms and
+\tGABAtwo=9.0 ms) were modeled from MNTB neurons in mature guinea pigs.  Chlorine
 reversal potential in Glycine and \GABAa receptors was set to -75 mV and
 excitatory reversal potential was set to 0 mV.
 
@@ -303,38 +342,47 @@ excitatory reversal potential was set to 0 mV.
 ** Connectivity
 
 The connectivity of the cell types involved in the stellate microcircuit is
-shown in Figure~\ref{fig:microcircuit} and in
-Table~\ref{tab:TSModelSummary}iii. Fast, glycinergic inhibition from TV cells
-and DS cells (Fig.~\ref{fig:microcircuit}) is involved in modulating the firing
+shown in Figure \ref{fig:microcircuit} and in
+Table \ref{tab:TSModelSummary}iii. Fast, glycinergic inhibition from \TV cells
+and \DS cells (Fig. \ref{fig:microcircuit}) is involved in modulating the firing
 rate and spike interval variability in TS cells
-\citep{FerragamoGoldingEtAl:1998,WickesbergOertel:1993}. TV cells in the deep
-layer of the dorsal CN, provide a delayed narrowband inhibition to TS and DS
-cells in the ventral CN\@.
-# The dendrites of DS cells cover 1/3~of the cross-frequency axis in the CN,
-# contributing to this cell's wide frequency response. In turn this cell is
-# responsible for altering the frequency responses in TS and TV cells
-# \citep{SpirouDavisEtAl:1999}.
-DS cells are coincidence detectors and have a precisely timed onset response
-that affects the temporal properties of TS cells
+\citep{FerragamoGoldingEtAl:1998,WickesbergOertel:1993}. \TV cells in the deep
+layer of the dorsal \CN, provide a delayed narrowband inhibition to \TS and \DS
+cells in the ventral \CN\@.
+The dendrites of \DS cells cover 1/3 of the cross-frequency axis in the \CN,
+contributing to this cell's wide frequency response. In turn this cell is
+responsible for altering the frequency responses in \TS and \TV cells
+\citep{SpirouDavisEtAl:1999}.
+\DS cells are coincidence detectors and have a precisely timed onset response
+that affects the temporal properties of \TS cells
 \citep{PaoliniClareyEtAl:2005,RhodeGreenberg:1994a} and completely inhibit TV
 cell responses to loud clicks \citep{SpirouDavisEtAl:1999}. GABAergic inhibition
 from Golgi cells modulates the level of excitation necessary to reach threshold
-for all CN cells \citep{CasparyBackoffEtAl:1994,FerragamoGoldingEtAl:1998}.
-#Feedback circuits from the olivary complex to the ventral CN are also known to
-#use GABA as a neurotransmitter \citep{SaintMorestEtAl:1989}, however this is not
-#included in the model.
-
-
+for all \CN cells \citep{CasparyBackoffEtAl:1994,FerragamoGoldingEtAl:1998}.
+Feedback circuits from the olivary complex to the ventral CN are also known to
+use GABA as a neurotransmitter \citep{SaintMorestEtAl:1989}, however this is not
+included in this model.
 
 
 ** Analysis
 
 Temporal information was measured using the synchronisation index relative to
-the modulation frequency of the stimuli.  The synchronisation index (SI) was
+the modulation frequency of the stimuli.  The \SI was
 calculated 20 ms after the onset on the stimulus (20 ms delay)
 \citep{KajikawaHackett:2005}. Vector strength and Rayleigh coefficient were also
-calculated to verify the SI values using an FFT of the period histogram.  SI
+calculated to verify the SI values using an FFT of the period histogram.  \SI
 values below 0.1 are considered insignificant.
+
+#+latex:\begin{eqnarray}
+#+latex:   SI = \frac{\sqrt{\left(\sum_i^n x_i \right)^2 + \left(\sum_i^n y_i \right)^2 }}{n}\\
+#+latex:   x_i = \cos{}\theta_i$, $y_i = \sin{}\theta_i\\
+#+latex:\end{equation}
+
+#+latex:\includegraphics[height=0.6\textheight,keepaspectratio]{/media/data/Work/pubs/2011\ ISSNIP/RG94-MTF.png}\\
+#+latex:{\tiny Rhode and Greenberg (1994)}
+
+
+
 
 \clearpage
 
@@ -352,37 +400,31 @@ vector strength.  The critical values for the Rayleigh test are 5.991 for \alpha
 = 0.05, 9.21 or \alpha = 0.01, and 13.816 for \alpha = 0.001
 \citep{Mardia:1972}.
 
+Analysis for the critical values was obtained [fn:Rhode] 
 #  \citep{KajikawaHackett:2005}.
 
-
-#+latex: \yellownote{
-See W. Rhode's analysis on the vector strength and Rayleigh statistic
-[[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]]. 
-
-A more recent study looking at another SI verification statistic has been published by Joris et al.  
-#+latex: }
+ 
 
 
 #+name: F0_Rayexample
 #+begin_src octave :exports none :results file
-datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
-
-
-  vs = /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/vsSPIKES.4.dat
-  ray = /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/rayltest.4.dat
-
-  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
- significant = ray > 13.816;
- z0 = significant .* vs;
- cmap1 = hot(); cmap2=jet();
- cmap=[cmap1(64:-1:1,:);];# cmap2]; # inverse of hot and jet combined
- colormap(cmap);
- subplot(2,2,1);
- surf([0:99],[0:5:70],ray');
- set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
- subplot(1,2,2);
- surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
- set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+# datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+# # vs = /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/vsSPIKES.4.dat;
+# # ray = /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/rayltest.4.dat;
+#   vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+#   ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+#   maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+#  significant = ray > 13.816;
+#  z0 = significant .* vs;
+#  cmap1 = hot(); cmap2=jet();
+#  cmap=[cmap1(64:-1:1,:);];# cmap2]; # inverse of hot and jet combined
+#  colormap(cmap);
+#  subplot(2,2,1);
+#  surf([0:99],[0:5:70],ray');
+#  set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+#  subplot(1,2,2);
+#  surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
+#  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
 
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
 ii =  4
@@ -392,7 +434,7 @@ ii =  4
  significant = ray > 13.816;
  z0 = significant .* vs;
   subplot(2,2,3);
-  surf([0:99],[0:5:70],(vs ',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
+  surf([0:99],[0:5:70],(vs',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
   set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
   subplot(2,2,4);
   surf([0:99],[0:5:70],(z0 + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
@@ -440,15 +482,15 @@ ii =  4
  # ## Set CLim on both axes
  # ax = findobj(gcf,'Type','axes');
  # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
- print -dpng "gfx/F0_Rayexample.png"
- ans = "gfx/F0_Rayexample.png"
+ print -dpng "gfx/F0_Rayexample2.png"
+ ans = "gfx/F0_Rayexample2.png"
 #+end_src
 
-#+CAPTION: [Rayleigh test of $F_0$ response in HSR units]{Rayleigh test of $F_0$ response in HSR units at 150 Hz (a) with accompanying mask for statistically significant values (b).  The method for improved presentation of vector strength plots for units in the stellate microcircuit uses the mask in (b).  Amplitude modulated tones at carrier frequency 8.9~kHz and modulated frequency of 150 Hz were presented from 0 to 70 db SPL ( increments of 5 dB SPL).
+
+#+CAPTION: [Rayleigh test of $F_0$ response in HSR units]{Rayleigh test of $F_0$ response in HSR units at 150 Hz (a) with accompanying mask for statistically significant values (b).  The method for improved presentation of vector strength plots for units in the stellate microcircuit uses the mask in (b).  Amplitude modulated tones at carrier frequency 8.9 kHz and modulated frequency of 150 Hz were presented from 0 to 70 db SPL ( increments of 5 dB SPL).
 #+ATTR_LaTeX: width=0.9\linewidth
 #+LABEL: fig:F0_Rayexample
 #+RESULTS: F0_Rayexample
-[[file:gfx/F0_Rayexample.png]]
 
 
 Figure \ref{fig:MTFexample} demonstrates the method for removing noise in the vector strength plots using a mask.
@@ -462,80 +504,109 @@ Figure \ref{fig:MTFexample} demonstrates the method for removing noise in the ve
 *** Auditory Nerve units
 
 #+name: AN_F0
-#+BEGIN_SRC gnuplot :exports none :file ./gfx/AN_f0.png :term pngcairo size 700,524 enhanced 
-reset
-load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
-
-# set term pngcairo size 350,262 enhanced font 'Verdana,10'
-# set output "gfx/AN_f0.png"
-
-# Margins for each row resp. column
-TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
-BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
-LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
-RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
-
-set tics scale 0.5
-set ytics 1
-# Placement of the a,b,c,d labels in the graphs
-POS = "at graph 0.92,0.9 font ',16' "
-unset key
-# x- and ytics for each row resp. column
-NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
-          unset xlabel"
-XTICS = "set xtics 100,100,800;\
-          set xlabel 'Mod Freq (Hz)'"
-NOYTICS = "set format y ''; unset ylabel"
-YTICS = "set format y '%.0f'; set ylabel 'Channel No.'"
-
-# set multiplot layout 2,1
-# set pm3d map
-# set palette @JET
-# set zrange [0:1]
-# set cbrange [0:1]
-# # --- GRAPH a
-# @NOXTICS; @YTICS
-# @TMARGIN; @LMARGIN
-# set label 1 'A' @POS
-# splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
-
-# # # --- GRAPH b
-# # @NOXTICS; @NOYTICS
-# # @TMARGIN; @RMARGIN
-# # set label 1 'B' @POS
-# # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
-
-#  # --- GRAPH c
-#  @XTICS; @YTICS
-#  @BMARGIN; @LMARGIN
-#  set label 1 'C' @POS
-#  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
-
-#  # --- GRAPH d
-#  @XTICS; @NOYTICS
-#  @BMARGIN; @RMARGIN
-#  set label 1 'd' @POS
-#  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
-
-plot '< tail -1| head -50 /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat'  using 
-
-set yrange [0:1]
-plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.5.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 w l
-plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.4.dat| xargs awk '/^50\t/ {print $2}' "  w l
-
-"ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (50*$1)
-
-plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.2.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 w l axes x1y1, \
-"< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.2.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):2 w l axes x1y2, \
-"< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.2.dat | xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) w l axes x1y2
-
-
+#+begin_src gnuplot :exports none :file ./gfx/AN_f0.png :term pngcairo size 700,524 enhanced font 'Verdana,10'
+    reset
+    load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
+    
+    # set term pngcairo size 350,262 enhanced font 'Verdana,10'
+    # set output "gfx/AN_f0.png"
+    
+    # Margins for each row resp. column
+    TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+    BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
+    LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
+    RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
+    
+  #  set tics scale 0.5
+  #  set ytics 1
+    # Placement of the a,b,c,d labels in the graphs
+    POS = "at graph 0.92,0.9 font ',16' "
+    unset key
+    # x- and ytics for each row resp. column
+    NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
+              unset xlabel"
+    XTICS = "set xtics 100,100,800;\
+              set xlabel 'Mod Freq (Hz)'"
+    NOYTICS = "set format y ''; unset ylabel"
+    YTICS = "set format y '%.0f'; set ylabel 'Channel No.'"
+    
+    # set multiplot layout 2,1
+    # set pm3d map
+    # set palette @JET
+    # set zrange [0:1]
+    # set cbrange [0:1]
+    # # --- GRAPH a
+    # @NOXTICS; @YTICS
+    # @TMARGIN; @LMARGIN
+    # set label 1 'A' @POS
+    # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+    
+    # # # --- GRAPH b
+    # # @NOXTICS; @NOYTICS
+    # # @TMARGIN; @RMARGIN
+    # # set label 1 'B' @POS
+    # # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
+    
+    #  # --- GRAPH c
+    #  @XTICS; @YTICS
+    #  @BMARGIN; @LMARGIN
+    #  set label 1 'C' @POS
+    #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+    
+    #  # --- GRAPH d
+    #  @XTICS; @NOYTICS
+    #  @BMARGIN; @RMARGIN
+    #  set label 1 'd' @POS
+    #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
+    
+  # plot '< tail -1| head -50 /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat'  using 
+  #  set multiplot 3,1
+  
+  #  plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.5.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 w l
+  #  plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.4.dat| xargs awk '/^50\t/ {print $2}' "  w l
+  
+    
+    # "ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (50*$1)
+  
+    set multiplot layout 2,1
+    set size 0.85,0.3
+    set origin 0,0.7
+    set border 2
+    set ytics nomirror out
+    set logscale x 10
+    set xrange [40:1500]
+    set xtics nomirror out
+  #  unset xtics
+    unset xlabel
+    set ylabel "Firing Rate (sp/s)" font "Helvetica,14"
+    plot  "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l 
+  
+    set border 11
+    set size 1,0.7
+    set origin 0,0
+    
+    set ytics nomirror out
+    set y2tics nomirror out
+    set xtics nomirror out
+    set yrange [0:1]
+    set logscale x 10
+    set logscale y2 10
+    set xrange [40:1500]
+    set xlabel "Modulation Frequency (Hz)" font "Helvetica,14"
+    set y2label "Rayleigh Test" font "Helvetica,14"
+    set ylabel "Vector Strength" font "Helvetica,14"
+    set key on inside top right
+  
+    set arrow 1 from 300,13 to 1400,13  nohead
+    set arrow 1 from 300,5 to 1400,5  nohead
+    
+    plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 t "VS" w l lw 4 axes x1y1, \
+    "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):2 t "RayleighTest " w l axes x1y2, \
+   "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l axes x1y2
+  
+    unset multiplot
 #+END_SRC
 
-
-#+CAPTION: 
-#+results: AN_F0 
-file:gfx/AN_f0.png
 
 
 *** Cn units
@@ -630,7 +701,7 @@ end
 #+name: MTF_example
 #+begin_src octave :exports none :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
-addpath('~/octave/freezeColors/');    # grab freezeColors
+addpath(' /octave/freezeColors/');    # grab freezeColors
  spl = 60
  ii = 4
 colormap('hot');cmap = colormap();
@@ -745,7 +816,8 @@ text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
 
 
 #+name: MTF_example2
-#+begin_src gnuplot :exports none :file ./gfx/MTF_example.png :term postscript eps size 3.5,2.62 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+begin_src gnuplot :exports none :file ./gfx/MTF_example.png :term pngcairo size 350,262 enhanced font 'Verdana,10'
+# :file ./gfx/MTF_example.eps :term postscript eps size 3.5,2.62 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   reset
   load "/media/data/Work/cnstellate/ResponsesNoComp/default.gnu"
   
@@ -812,7 +884,8 @@ text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
 
 
 #+name: MTF_atCF_gnu
-#+begin_src gnuplot :exports none :file gfx/MTF_atCF.eps :term post eps size 3.5,2.62 enh color solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+#+begin_src gnuplot :exports none :file gfx/MTF_atCF.png :term pngcairo size 350,262 enhanced font 'Verdana,10'
+#.eps :term post eps size 3.5,2.62 enh color solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
   reset
   load "/media/data/Work/cnstellate/ResponsesNoComp/default.gnu"
   
@@ -838,202 +911,195 @@ text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
   
 #+end_src
 
-#+RESULTS: MTF_atCF_gnu
 
 
-#+name: MTF_atCF
-#+begin_src octave :exports none :results file
+# #+name: MTF_atCF
+# #+begin_src octave :exports none :results file
+# datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+#  ii = 4
+#  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+#  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+#  significant = ray > 5.991;
+#  z0 = significant .* vs;
+#  subplot(3,2,ii+1)
+#  imagesc([0:99],0:5:70,z0', [0 1]);
+#  axis("xy")
 
-datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+# # xlim([30 60]);
+#  set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
 
- ii = 4
- vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath "rayltest." num2str(ii) ".dat"]);
- significant = ray > 5.991;
- z0 = significant .* vs;
- subplot(3,2,ii+1)
- imagesc([0:99],0:5:70,z0', [0 1]);
- axis("xy")
+#  vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+#  ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+#  maskray1 = (13.816-5.991) * (ray > 13.816) + 5.991*(ray > 5.991);
+#  maskray = (13.816) * (ray > 13.816);
 
-# xlim([30 60]);
- set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+# ii=5
+#  vsP = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+#  rayP = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+#  maskrayP = (13.816-5.991) * (rayP > 13.816) + 5.991*(rayP > 5.991);
+#  significant = ray > 13.816; # 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+#  significantP = rayP > 5.991;
+# # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+#  z0 = significant .* vs;
+# z1 = significantP .* vsP;
+#  subplot(2,4,1);
+# % imagesc(z0, [0 1]);
 
- vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
- maskray1 = (13.816-5.991) * (ray > 13.816) + 5.991*(ray > 5.991);
- maskray = (13.816) * (ray > 13.816);
+# surf(50:50:1200,1:100,vs,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log","xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+# view(2);
+#  colorbar ("SouthOutside");
+# text (200, 110, "R","fontname","Helvetica","fontsize",16);
+# text (10, 50, "HSR","fontname","Helvetica","fontsize",16);
 
-ii=5
- vsP = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
- rayP = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
- maskrayP = (13.816-5.991) * (rayP > 13.816) + 5.991*(rayP > 5.991);
- significant = ray > 13.816; # 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
- significantP = rayP > 5.991;
-# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
- z0 = significant .* vs;
-z1 = significantP .* vsP;
- subplot(2,4,1);
-% imagesc(z0, [0 1]);
-
-surf(50:50:1200,1:100,vs,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log","xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
-view(2);
- colorbar ("SouthOutside");
-text (200, 110, "R","fontname","Helvetica","fontsize",16);
-text (10, 50, "HSR","fontname","Helvetica","fontsize",16);
-
-subplot(2,4,2);
-surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-
-# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
-
+# subplot(2,4,2);
 # surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100]);
-view(2);
-colorbar ("SouthOutside");
-text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16);
 
-subplot(2,4,3);
-surf(50:50:1200,1:100,maskray1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100]);
-view(2);
-colorbar ("SouthOutside");
-text (120, 110, "Mask","fontname","Helvetica","fontsize",16);
+# # contourf(50:50:1200,1:100,rayP,[5.991 13.816])
 
-subplot(2,4,4)
-surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
-view(2);
-colorbar ("SouthOutside")
-text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+# # surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100]);
+# view(2);
+# colorbar ("SouthOutside");
+# text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16);
 
+# subplot(2,4,3);
+# surf(50:50:1200,1:100,maskray1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100]);
+# view(2);
+# colorbar ("SouthOutside");
+# text (120, 110, "Mask","fontname","Helvetica","fontsize",16);
 
-subplot(2,4,5)
-
-surf(50:50:1200,1:100,vsP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
-view(2);
+# subplot(2,4,4)
+# surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+# view(2);
 # colorbar ("SouthOutside")
-# text (200, 110, "R","fontname","Helvetica","fontsize",16)
-text (10, 50, "LSR","fontname","Helvetica","fontsize",16);
+# text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
 
-subplot(2,4,6)
-surf(50:50:1200,1:100,rayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
 
-# surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100]);
-view(2);
-#colorbar ("SouthOutside")
-#text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16)
+# subplot(2,4,5)
 
-subplot(2,4,7);
-surf(50:50:1200,1:100,maskrayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100]);
-view(2);
-#text (120, 110, "Mask","fontname","Helvetica","fontsize",16)
+# surf(50:50:1200,1:100,vsP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+# view(2);
+# # colorbar ("SouthOutside")
+# # text (200, 110, "R","fontname","Helvetica","fontsize",16)
+# text (10, 50, "LSR","fontname","Helvetica","fontsize",16);
 
-subplot(2,4,8)
-surf(50:50:1200,1:100,z1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0  100],"zlim", [0   1],"clim",[0  1]);
-view(2);
-#colorbar ("SouthOutside")
+# subplot(2,4,6)
+# surf(50:50:1200,1:100,rayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# # contourf(50:50:1200,1:100,rayP,[5.991 13.816])
 
-#text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+# # surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100]);
+# view(2);
+# #colorbar ("SouthOutside")
+# #text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16)
 
-%axis("xy")
-set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+# subplot(2,4,7);
+# surf(50:50:1200,1:100,maskrayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0   100]);
+# view(2);
+# #text (120, 110, "Mask","fontname","Helvetica","fontsize",16)
 
- print -dpng "gfx/MTF_atCF.png"
- ans = "gfx/MTF_atCF.png"
-#+end_src
+# subplot(2,4,8)
+# surf(50:50:1200,1:100,z1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+# "xlim", [50   1200],"ylim",[0  100],"zlim", [0   1],"clim",[0  1]);
+# view(2);
+# #colorbar ("SouthOutside")
+
+# #text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+# %axis("xy")
+# set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+#  print -dpng "gfx/MTF_atCF.png"
+#  ans = "gfx/MTF_atCF.png"
+# #+end_src
 
 
 ** MTF plots
 
 
 
-The vector strength for
+The vector strength for 
 
-#+name MTF_example3
-#+BEGIN_SRC gnuplot :file gfx/MTF_example.eps :term post eps size 7.00,5.24 enh color solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
-#  :term pngcairo enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
-  reset
-  load '/media/data/cnstellate/ResponsesNoComp/default.gnu'
+# #+name MTF_example3
+# #+begin_src gnuplot :exports none :file gfx/MTF_example3.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+# :file gfx/MTF_example3.eps :term post eps size 7.00,5.24 enh color solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12# 
+#   reset
+#   load '/media/data/cnstellate/ResponsesNoComp/default.gnu'
   
-  # set term pngcairo size 350,262 enhanced font 'Verdana,10'
-  # set output "gfx/MTF_example.png"
+#   # set term pngcairo size 350,262 enhanced font 'Verdana,10'
+#   # set output "gfx/MTF_example.png"
   
-  # Margins for each row resp. column
-  TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
-  R2MARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+#   # Margins for each row resp. column
+#   TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+#   R2MARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
   
-  BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
-  LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
-  RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
+#   BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
+#   LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
+#   RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
 
-  set autoscale 
-  set zrange [0:1]
-  set cbrange [0:1]
-  set tics scale 0.5
-  set logscale x 10
-  unset colorbox
-  # Placement of the a,b,c,d labels in the graphs
-  POS = "at graph 0.92,0.9 font 'Helvetica,18' front "
-  unset key
+#   set autoscale 
+#   set zrange [0:1]
+#   set cbrange [0:1]
+#   set tics scale 0.5
+#   set logscale x 10
+#   unset colorbox
+#   # Placement of the a,b,c,d labels in the graphs
+#   POS = "at graph 0.92,0.9 font 'Helvetica,18' front "
+#   unset key
 
-  # x- and ytics for each row resp. column
-  NOXTICS = "set xtics out ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
-            unset xlabel"
-  XTICS = "set xtics border out ('100' 100,'' 200,'300' 300,'' 400,'' 500,'' 600,'' 700,'800' 800);\
-            set xlabel 'f_m (Hz)'"
-  NOYTICS = "unset ytics; unset ylabel"
-  YTICS = "set ytics border out 0,20,100; set ylabel 'Channel No.'"
+#   # x- and ytics for each row resp. column
+#   NOXTICS = "set xtics out ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
+#             unset xlabel"
+#   XTICS = "set xtics border out ('100' 100,'' 200,'300' 300,'' 400,'' 500,'' 600,'' 700,'800' 800);\
+#             set xlabel 'f_m (Hz)'"
+#   NOYTICS = "unset ytics; unset ylabel"
+#   YTICS = "set ytics border out 0,20,100; set ylabel 'Channel No.'"
   
-  set multiplot layout 2,2 rowsfirst
-  set pm3d map
-  set palette @JET
-  # --- GRAPH a
-  @NOXTICS; @YTICS
-  @TMARGIN; @LMARGIN
-  set label 1 'a' @POS
-  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+#   set multiplot layout 2,2 rowsfirst
+#   set pm3d map
+#   set palette @JET
+#   # --- GRAPH a
+#   @NOXTICS; @YTICS
+#   @TMARGIN; @LMARGIN
+#   set label 1 'a' @POS
+#   splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
   
-  # --- GRAPH b
-  @NOXTICS; @NOYTICS
-  @TMARGIN; @RMARGIN
-  set label 1 'b' @POS
-  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.1.dat" matrix using ($1*50):2:3
+#   # --- GRAPH b
+#   @NOXTICS; @NOYTICS
+#   @TMARGIN; @RMARGIN
+#   set label 1 'b' @POS
+#   splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.1.dat" matrix using ($1*50):2:3
   
-  # --- GRAPH c
-  @XTICS; @YTICS
-  @BMARGIN; @LMARGIN
-  set label 1 'c' @POS
-  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
-  set colorbox
-  set cbtics ('0' 0,'0.2' 0.2,'0.4' 0.4,'0.6' 0.6,'0.8' 0.8,'1.0' 1)
-  # --- GRAPH d
-  @XTICS; @NOYTICS
-  @BMARGIN; @RMARGIN
-  set label 1 'd' @POS
-  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.2.dat" matrix using ($1*50):2:3
+#   # --- GRAPH c
+#   @XTICS; @YTICS
+#   @BMARGIN; @LMARGIN
+#   set label 1 'c' @POS
+#   splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
+#   set colorbox
+#   set cbtics ('0' 0,'0.2' 0.2,'0.4' 0.4,'0.6' 0.6,'0.8' 0.8,'1.0' 1)
+#   # --- GRAPH d
+#   @XTICS; @NOYTICS
+#   @BMARGIN; @RMARGIN
+#   set label 1 'd' @POS
+#   splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.2.dat" matrix using ($1*50):2:3
   
-  unset multiplot
-#+END_SRC
+#   unset multiplot
+# #+END_SRC
 
-#+RESULTS[46e4c45c581de8786ec839967c764a832f8bb3fb]:
-[[file:gfx/MTF_example.eps]]
 
-#+BEGIN_LaTeX
 
-#+END_LaTeX
 
 #+name: TStellate_CS_MTF
 #+begin_src octave :exports none :results file
@@ -1162,7 +1228,8 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 
 
 #+name CS_MTF
-#+BEGIN_SRC gnuplot :file gfx/CS_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+#+begin_src gnuplot :exports none :file gfx/CS_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+:file gfx/CS_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
   reset
   ## Keep the figure clean
     set border 0          # no borders
@@ -1206,8 +1273,12 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 #  !fixbb 'gfx/CS_MTF.eps' && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
 #+END_SRC
 
+#+RESULTS:
+[[file:gfx/CS_MTF.png]]
+
 #+name CT1_MTF
-#+BEGIN_SRC gnuplot :file gfx/CT1_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+#+begin_src gnuplot :exports none :file gfx/CT1_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+# :file gfx/CT1_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
   reset
   ## Keep the figure clean
     set border 0          # no borders
@@ -1252,7 +1323,8 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 #+END_SRC
 
 #+name CT2_MTF
-#+BEGIN_SRC gnuplot :file gfx/CT2_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+#+begin_src gnuplot :exports none :file gfx/CT2_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+# :file gfx/CT2_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
   reset
   ## Keep the figure clean
     set border 0          # no borders
@@ -1276,7 +1348,7 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
   set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front 
   set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front 
   
-    set multiplot layout 4,6 scale 1.5,1.65
+    set multiplot layout 4,6 scale 1.5,1.3
     set yrange [0:100]
     set cbrange [0:1]
     set zrange [0:1]
@@ -1297,17 +1369,21 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 #+END_SRC
 
 
-#+caption: AM coding in stellate microcircuit
-#+results: CT2_MTF
-file:gfx/CT2_MTF.eps
+#+caption:    AM coding in stellate microcircuit
+#+Attr_LATEX: width=0.95\linewidth
+#+results:    CT2_MTF
+[[file:gfx/CT2_MTF.png]]
 
 
 * Discussion
 
+
 Golgi cells are low-firing monotonic units that influence the general
-excitability of DS and TS units using GABA.  The results in Fig.~\ref{fig:G}
-show that the rate and temporal response to AM tones is only dependent on the
-sound level.
+excitability of DS and TS units using GABA.  The results in Fig. \ref{fig:GLG_AM}
+show that the rate response to AM tones is only dependent on the
+sound level. The temporal response of the Golgi cell model is negligible. 
+
+
 
 
 The rate and temporal response of TV cells was strongly inhibited by DS units.
@@ -1316,29 +1392,31 @@ TV cells are thought to be responsible for delayed inhibition or echo-suppressio
 MTF behaviour in TS cells.
 
 
-D~stellate cells have an onset chopping behaviour to tones, but can follow the
+
+
+D stellate cells have an onset chopping behaviour to tones, but can follow the
 repetition of amplitude modulated tones. The entrainment to the stimulus
-envelope produced band-pass rate MTFs in DS units with a CF above $f_c$.  The
-temporal information at the channel with CF=$f_c$ (Fig.~\ref{fig:DS}) was
+envelope produced band-pass rate \MTFs in \DS units with a \CF above $f_c$.  The
+temporal information at the channel with CF=$f_c$ (Fig. \ref{fig:DS}) was
 diminished by the strong GABAergic inhibition of Golgi cells; however, the
 majority of active DS units showed strong synchronisation, which suggests
-synchronous tuning in TV and TS units throughout the CN.
+synchronous tuning in \TV and \TS units throughout the \CN.
 
 
-The inhomogeneous population of TS cells are classified into different
+The inhomogeneous population of \TS cells are classified into different
 subgroups, namely sustained or transient choppers.  Intrinsic membrane
 properties and synaptic connections enable TS units to be enhanced or tuned to
 important features of the acoustic input \citep{PaoliniClareyEtAl:2005}. The
 behaviour of TS units is influenced by all three interneurons in the stellate
-microcircuit. 
+microcircuit.
 
 
-AM rate saturation of TS units on CF (Fig.~\ref{fig:TS}) does not disable their
-ability to encode temporal information.  Experimental data has shown TS cells
-generally have low-pass MTF at low sound level and band-pass MTF for higher
-sound levels for AM tones on CF~\citep{RhodeGreenberg:1994}.  The implications
-for the AM coding in TS output on higher-order auditory centres have been
-investigated but not fully understood
+\AM rate saturation of \TS units on CF (Fig. \ref{fig:TS}) does not disable
+their ability to encode temporal information.  Experimental data has shown TS
+cells generally have low-pass MTF at low sound level and band-pass MTF for
+higher sound levels for AM tones on CF \citep{RhodeGreenberg:1994}.  The
+implications for the AM coding in TS output on higher-order auditory centres
+have been investigated but not fully understood
 \citep{WiegrebeMeddis:2004,BahmerLangner:2006a}. A whole-network approach may
 provide a stronger basis for optimal temporal coding of AM than an approach
 based solely on CF.
@@ -1355,4 +1433,24 @@ basic receptive fields of individual units.  The model has been used for
 detailed optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so
 that it can be used to investigate detailed physiological properties in the CN
 stellate network.
+
+
+ - Transition from temporal to rate coding in auditory pathway
+ - Stellate microcircuit provides controlled and enhanced output of TS cells
+ - AM representation in lateral sidebands essential
+
+ - Exploration of the CN stellate microcircuit
+ - Spectral/Rate representation in speech and speech in noise
+   - lateral inhibition
+   - neuromodulation
+ - Temporal representation
+   - enhancement of SNR relative to individual ANFs
+   - period-tagging linked to multiple auditory streams
+
+
+* Footnotes
+
+[fn:Rhode] See W. Rhode's analysis on the vector strength and Rayleigh statistic
+[[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]]. 
+A more recent study looking at another SI verification statistic has been published by Joris et al.  
 
