@@ -1,0 +1,131 @@
+
+*** Modulation Transfer Function
+
+
+
+
+#+name: ratetemporal
+#+header: :term pngcairo size 700,524 enhanced font 'Verdana,10' 
+#+BEGIN_SRC gnuplot :export none 
+reset
+if (INDEX == "" || SPL == "") { unset output; quit} 
+set xlabel "f_m (Hz)" font "Helvetica,16"
+set ylabel "Channel Position" font "Helvetica,16"
+
+set pm3d map
+#set logscale x 10
+set colorbox noborder
+set multiplot layout 1,2
+set xtics out ( "100" 100, "" 200, "300" 300, "" 400, "500" 500, "" 600, "700" 700, "" 800)
+unset key
+#set logscale y 10
+set cbrange [0:400]
+#set palette model RGB
+#set palette defined
+#set palette defined (0 "blue", 150 "white", 300 "red")
+set palette rgbformulae 22,13,-31
+
+splot [50:800][0:99] datapath.spl.'response_area.'.INDEX.'.dat' u 1:2:($4*5)
+#unset palette
+unset ylabel
+unset logscale y
+set cbrange [0:1]
+#set palette model HSV rgbformulae 3,2,2
+#set palette model XYZ rgbformulae 7,5,15
+#set palette defined ( 0 0 0 0, 1 1 1 1 )
+set palette rgbformulae 7,5,15
+splot [50:800][0:99] datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3
+unset multiplot
+#+END_SRC
+
+#+call: ratetemporal[ :file ./40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./40/ratetemporal-1.png ](spl="40/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./40/ratetemporal-2.png ](spl="40/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./60/ratetemporal-1.png ](spl="60/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./60/ratetemporal-2.png ](spl="60/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./60/ratetemporal-3.png ](spl="60/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+
+
+
+
+#+call: ratetemporal[:file ./gfx/03Feb/CS/20/ratetemporal-0.png](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CS/20/ratetemporal-1.png](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/20/ratetemporal-2.png](INDEX=2,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/20/ratetemporal-3.png](INDEX=3,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CS/40/ratetemporal-0.png](INDEX=0,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/40/ratetemporal-1.png](INDEX=1,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/40/ratetemporal-2.png](INDEX=2,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/40/ratetemporal-3.png](INDEX=3,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CS/60/ratetemporal-0.png](INDEX=0,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/60/ratetemporal-1.png](INDEX=1,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/60/ratetemporal-2.png](INDEX=2,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/60/ratetemporal-3.png](INDEX=3,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/80/ratetemporal-0.png](INDEX=0,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/80/ratetemporal-1.png](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/80/ratetemporal-2.png](INDEX=2,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CS/80/ratetemporal-3.png](INDEX=3,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/")
+
+
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/20/ratetemporal-0.png](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/20/ratetemporal-1.png](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/20/ratetemporal-2.png](INDEX=2,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/20/ratetemporal-3.png](INDEX=3,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/40/ratetemporal-0.png](INDEX=0,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/40/ratetemporal-1.png](INDEX=1,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/40/ratetemporal-2.png](INDEX=2,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/40/ratetemporal-3.png](INDEX=3,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/60/ratetemporal-0.png](INDEX=0,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/60/ratetemporal-1.png](INDEX=1,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/60/ratetemporal-2.png](INDEX=2,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/60/ratetemporal-3.png](INDEX=3,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/80/ratetemporal-0.png](INDEX=0,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/80/ratetemporal-1.png](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/80/ratetemporal-2.png](INDEX=2,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT1/80/ratetemporal-3.png](INDEX=3,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
+
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/20/ratetemporal-0.png](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/20/ratetemporal-1.png](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/20/ratetemporal-2.png](INDEX=2,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/20/ratetemporal-3.png](INDEX=3,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/40/ratetemporal-0.png](INDEX=0,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/40/ratetemporal-1.png](INDEX=1,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/40/ratetemporal-2.png](INDEX=2,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/40/ratetemporal-3.png](INDEX=3,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/60/ratetemporal-0.png](INDEX=0,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/60/ratetemporal-1.png](INDEX=1,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/60/ratetemporal-2.png](INDEX=2,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/60/ratetemporal-3.png](INDEX=3,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/80/ratetemporal-0.png](INDEX=0,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/80/ratetemporal-1.png](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/80/ratetemporal-2.png](INDEX=2,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/03Feb/CT2/80/ratetemporal-3.png](INDEX=3,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/")
+
+
+
+
+#+call: ratetemporal[:file ./gfx/16Jan/CS/20/ratetemporal-0.png](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/")
+
+#+RESULTS: ratetemporal[:file ./gfx/16Jan/CS/20/ratetemporal-0.png](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/")
+: file:./gfx/16Jan/CS/20/ratetemporal-0.png
+
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/20/ratetemporal-1.png](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+
+#+RESULTS: ratetemporal[:file ./gfx/16Jan/CT1/20/ratetemporal-1.png](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/")
+: file:./gfx/16Jan/CT1/20/ratetemporal-1.png
+
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/20/ratetemporal-2.png](INDEX=2,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/20/ratetemporal-3.png](INDEX=3,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/40/ratetemporal-0.png](INDEX=0,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/40/ratetemporal-1.png](INDEX=1,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/40/ratetemporal-2.png](INDEX=2,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/40/ratetemporal-3.png](INDEX=3,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/")
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/60/ratetemporal-0.png](INDEX=0,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/60/ratetemporal-1.png](INDEX=1,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/60/ratetemporal-2.png](INDEX=2,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/60/ratetemporal-3.png](INDEX=3,spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/80/ratetemporal-0.png](INDEX=0,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/80/ratetemporal-1.png](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/80/ratetemporal-2.png](INDEX=2,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/") 
+#+call: ratetemporal[:file ./gfx/16Jan/CT1/80/ratetemporal-3.png](INDEX=3,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CT1/ModulationTransferFunction/")
