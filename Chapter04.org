@@ -24,46 +24,73 @@
 * Prelude 							   :noexport:
 
 #+begin_src emacs-lisp results: silent
- (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "pdflatex -interaction nonstopmode %f"  "pdflatex -interaction nonstopmode %f" ))
-;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=xelatex LitReview2.pdf"))
-;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf"))
-;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "xelatex -interaction nonstopmode %f"  "xelatex -interaction nonstopmode %f" ))
- (setq org-export-latex-title-command "")
-
-(add-to-list 'org-export-latex-classes
-  '("UoM-draft-org-article"
-"\\documentclass[10pt,a4paper,twoside,openright]{book}
-\\usepackage{../hg/manuscript/style/uomthesis}
-\\input{../hg/manuscript/user-defined}
-\\usepackage[acronym]{glossaries}
-\\input{../hg/manuscript/misc/glossary}
-\\makeglossaries
-\\graphicspath{{./gfx/}}
-\\pretolerance=150
-\\tolerance=100
-\\setlength{\\emergencystretch}{3em}
-\\overfullrule=1mm
-% \\usepackage[notcite]{showkeys}
-\\lfoot{\\footnotesize\\today\\ at \\thistime}
-\\usepackage{rotating,calc}
-\\usepackage{booktabs,ltxtable,lscape}
-      [NO-DEFAULT-PACKAGES]
-      [NO-PACKAGES]"
-     ("\\clearpage\\section{%s}" . "\n\\clearpage\\section{%s}")
-     ("\\subsection{%s}" . "\n\\clearpage\\subsection{%s}")
-     ("\\subsubsection{%s}" . "\n\\subsubsection{%s}")
-     ("\\paragraph{%s}" . "\n\\paragraph{%s}")
-     ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
-
-;; (setq org-export-latex-title-command "{\n\\singlespacing\n\\tableofcontents\n\\printglossaries\n}\n\\setcounter{chapter}{0}")
- (setq org-entities-user '(("space" "\\ " nil " " " " " " " ")
-;           ("cite" "~\\cite" nil " " " " " " " ")
-; ("ref" "~\\ref" nil " " " " " " " ")
-))
+       (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "pdflatex -interaction nonstopmode %f"  "pdflatex -interaction nonstopmode %f" ))
+      ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=xelatex LitReview2.pdf"))
+      ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf"))
+      ;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "xelatex -interaction nonstopmode %f"  "xelatex -interaction nonstopmode %f" ))
+      (setq org-export-latex-title-command "")
+      
+      (add-to-list 'org-export-latex-classes
+        '("UoM-draft-org-article"
+      "\\documentclass[10pt,a4paper,twoside,openright]{book}
+      \\usepackage{../hg/manuscript/style/uomthesis}
+      \\input{../hg/manuscript/user-defined}
+      \\usepackage[acronym]{glossaries}
+      \\input{../hg/manuscript/misc/glossary}
+      \\makeglossaries
+      \\graphicspath{{./gfx/}}
+      \\pretolerance=150
+      \\tolerance=100
+      \\setlength{\\emergencystretch}{3em}
+      \\overfullrule=1mm
+      % \\usepackage[notcite]{showkeys}
+      \\lfoot{\\footnotesize\\today\\ at \\thistime}
+      \\usepackage{rotating,calc}
+      \\usepackage{booktabs,ltxtable,lscape}
+            [NO-DEFAULT-PACKAGES]
+            [NO-PACKAGES]"
+           ("\\clearpage\\section{%s}" . "\n\\clearpage\\section{%s}")
+           ("\\subsection{%s}" . "\n\\clearpage\\subsection{%s}")
+           ("\\subsubsection{%s}" . "\n\\subsubsection{%s}")
+           ("\\paragraph{%s}" . "\n\\paragraph{%s}")
+           ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
+      
+      ;; (setq org-export-latex-title-command "{\n\\singlespacing\n\\tableofcontents\n\\printglossaries\n}\n\\setcounter{chapter}{0}")
+       (setq org-entities-user '(("space" "\\ " nil " " " " " " " ")
+      ;           ("cite" "~\\cite" nil " " " " " " " ")
+      ; ("ref" "~\\ref" nil " " " " " " " ")
+      ))
+;; Remember to double your slashes
+      (setq  org-export-latex-final-hook nil)
+      (add-hook 'org-export-latex-final-hook
+                (lambda ()
+                  (goto-char (point-min))
+                  (replace-regexp "\\( \\|\n\\)\\\\ref" 
+                                  "~\\\\ref")
+                  (goto-char (point-min))
+                  (replace-regexp "\\( \\|\n\\)\\\\cite" 
+                                  "\\\\ \\\\cite")
+                  (goto-char (point-min))
+  ;; Correct for citations immediately after an item
+                  (replace-regexp "item~" 
+                                  "item ")
+  ;; Acronyms at the end of a sentence cause poor spacing
+                  (goto-char (point-min))
+                  (replace-regexp "\\([A-Z][A-Z]\\)\\.\\( \\|\n\\)" 
+                                  "\\1\\\\@. ")
+  ;; Double acronyms
+                  (goto-char (point-min))
+                  (replace-regexp "\\([A-Z][A-Zs]\\) \\([\\\\A-Z]\\)" 
+                                  "\\1\\\\ \\2")
+  ;; Force a sticky space between numbers followed by text or acronym 
+                  (goto-char (point-min))
+                  (replace-regexp "\\([0-9]\\)\\( \\|\n\\)\\{1,\\}\\([\\\\A-Za-z]\\)" 
+                                  "\\1~\\2")
+    ))
+      
 #+end_src
 
-#+RESULTS:
-| space | \ | nil |   |   |   |   |
+
 
 
 
@@ -91,7 +118,7 @@
 
 
 
-* Introduction
+* Introduction 
 
 This chapter presents the amplitude modulated coding behaviour in a
 biophysically-realistic neural network model of the cochlear nucleus. It focuses
@@ -126,7 +153,7 @@ rate (rMTF) or temporal information (tMTF).
  - eg. Spectral/Rate Coding poor representation of modulated signals
     - mean rate of spikes
     - saturation at high sound level
-    - poor SNR in auditory nerve 
+    - poor \SNR in auditory nerve 
 
 - Measures of temporal code
   - phasic or circular data
@@ -199,19 +226,19 @@ peaks greater than ANFs (B). Figure reproduced from
 
 ** Cochlear Nucleus Stellate Microcircuit
 
-The tonotopic organisation of the auditory pathway (i.e.\space the continuous mapping
-of sound frequency to place of resonance in the cochlea) is transferred to the
-\CN through the population of \ANFs \citep{Lorente:1981}.
-The CN stellate network model drawn in Figure \ref{fig:microcircuit}
-describes the following cells and models:
+The tonotopic organisation of the auditory pathway (i.e.\space the continuous
+mapping of sound frequency to place of resonance in the cochlea) is transferred
+to the \CN through the population of \ANFs \citep{Lorente:1981}.  The CN
+stellate network model drawn in Figure \ref{fig:microcircuit} describes the
+following cells and models:
 1.  Auditory nerve fibres :: The base line in Figure \ref{fig:microcircuit} is a
      simplification of \ANFs from low \CF to high \CF (left to right).  The
      model reproduces responses for high and low \SR \ANFs at 100 channels
      across the frequency range 200 Hz to 48 kHz.
 2. The Golgi cell :: A GABAergic \VCN marginal shell unit is assumed to regulate
-     excitability in the GCD and core VCN units
-     \citep{FerragamoGoldingEtAl:1998}.  Only one /in vivo/ study has recorded
-     extracellular data in the marginal shell area of the CN
+     excitability in the GCD and core VCN
+     units \citep{FerragamoGoldingEtAl:1998}.  Only one /in vivo/ study has
+     recorded extracellular data in the marginal shell area of the CN
      \citep{GhoshalKim:1997}.  The presumed characteristics of Golgi cells are
      taken from that study and are defined by a monotonic response to tones and
      noise, and an unusual or chopper \PSTH.
@@ -290,16 +317,15 @@ each neuron in the model are created at the start of each repetition of the
 stimulus, but can be saved and loaded from a file.
 
 
-Membrane current models (Table \ref{tab:TSModelSummary}iv) used in \DS, \TV and \TS
-cell models were developed from kinectic analysis of \VCN neurons in mice
+Membrane current models (Table \ref{tab:TSModelSummary}iv) used in \DS, \TV and
+\TS cell models were developed from kinectic analysis of \VCN neurons in mice
 \citep{RothmanManis:2003b}. Their activation and deactivation functions (/a, b,
 c, h, m, n, p, r, w/ and /z/) are described in detail by Rothman and Manis
 \citep{RothmanManis:2003} and the NEURON source code is freely available online
 at ModelDB \citep{HinesMorseEtAl:2004}.  Table \ref{tab:Celltypes2} shows the
-membrane conductance parameters of the cell types.
-Conductance parameters
-were adjusted from \citep{RothmanManis:2003b} due to temperature and
-soma diameter changes.
+membrane conductance parameters of the cell types.  Conductance parameters were
+adjusted from \citep{RothmanManis:2003b} due to temperature and soma diameter
+changes.
 #  Rothman and Manis used 22$^\circ$C slice preparation.
 #  Temperature effects the activation and deactivation functions'
 #  time constants of the current models that used 37$^\circ$C. The
@@ -314,18 +340,17 @@ The reversal potential for potassium, sodium, leak, and Ih currents were -72,
 #+label: tab:Celltypes2
 #+Attr_LaTeX :align=l|ccc placement=[t!]\footnotesize
 #+Caption: Cell-type Membrane Current Parameters
-| Cells                     |     TS |     DS |      TV |
-| Current Clamp Model       |    I-t |   I-II |     I-c |
-|---------------------------+--------+--------+---------|
-| \gNa , S/cm^{2}           |  0.235 |  0.235 |   0.235 |
-| \gKHT, S/cm^{2}           |  0.018 |   0.02 |   0.019 |
-| \gKLT, S/cm^{2}           |      0 | 0.0047 |       0 |
-| \gKA, S/cm^{2}            | 0.0153 |      0 |       0 |
-| \gh,  mS/cm^{2}           | 0.0618 |  0.247 | 0.06178 |
-| \gleak, mS/cm^{2}         |  0.471 |  0.471 |   0.471 |
-| Soma Diameter, \um        |     21 |     25 |    19.5 |
-| Input Resistance, M\Omega |    163 |     73 |     170 |
-
+| Cells                           |     TS |     DS |      TV |
+| Current Clamp Model             |    I-t |   I-II |     I-c |
+|---------------------------------+--------+--------+---------|
+| \gNa ,\hfill S/cm^{2}              |  0.235 |  0.235 |   0.235 |
+| \gKHT,\hfill S/cm^{2}              |  0.018 |   0.02 |   0.019 |
+| \gKLT,\hfill S/cm^{2}              |      0 | 0.0047 |       0 |
+| \gKA,\hfill S/cm^{2}               | 0.0153 |      0 |       0 |
+| \gh,\hfill  mS/cm^{2}              | 0.0618 |  0.247 | 0.06178 |
+| \gleak,\hfill mS/cm^{2}            |  0.471 |  0.471 |   0.471 |
+| Soma Diameter,\hfill \um        |     21 |     25 |    19.5 |
+| Input Resistance,\hfill M\Omega |    163 |     73 |     170 |
 
 ** Synapse Parameters
 
@@ -334,35 +359,34 @@ stellate microcircuit.  Single exponential excitatory synapses (\tAMPA = 0.36
 ms) model the experimental recordings in VCN neurons
 \citep{GardnerTrussellEtAl:1999}.  Double exponential inhibitory synapses are
 used in the network from glycinergic and GABAergice neurons. Glycinergic
-synapses \citep{LeaoOleskevichEtAl:2004} (\tGlyone=0.4 ms and \tGlytwo=2.5 ms) and
-\GABAa synapses \citep{AwatramaniTurecekEtAl:2005} (\tGABAone=0.7 ms and
-\tGABAtwo=9.0 ms) were modeled from MNTB neurons in mature guinea pigs.  Chlorine
-reversal potential in Glycine and \GABAa receptors was set to -75 mV and
-excitatory reversal potential was set to 0 mV.
+synapses \citep{LeaoOleskevichEtAl:2004} (\tGlyone=0.4 ms and \tGlytwo=2.5 ms)
+and \GABAa synapses \citep{AwatramaniTurecekEtAl:2005} (\tGABAone=0.7 ms and
+\tGABAtwo=9.0 ms) were modeled from MNTB neurons in mature guinea pigs.
+Chlorine reversal potential in Glycine and \GABAa receptors was set to -75 mV
+and excitatory reversal potential was set to 0 mV.
 
 ** Connectivity
 
 The connectivity of the cell types involved in the stellate microcircuit is
-shown in Figure \ref{fig:microcircuit} and in
-Table \ref{tab:TSModelSummary}iii. Fast, glycinergic inhibition from \TV cells
-and \DS cells (Fig. \ref{fig:microcircuit}) is involved in modulating the firing
-rate and spike interval variability in TS cells
+shown in Figure \ref{fig:microcircuit} and in Table
+\ref{tab:TSModelSummary}iii. Fast, glycinergic inhibition from \TV cells and \DS
+cells (Fig. \ref{fig:microcircuit}) is involved in modulating the firing rate
+and spike interval variability in TS cells
 \citep{FerragamoGoldingEtAl:1998,WickesbergOertel:1993}. \TV cells in the deep
 layer of the dorsal \CN, provide a delayed narrowband inhibition to \TS and \DS
-cells in the ventral \CN\@.
-The dendrites of \DS cells cover 1/3 of the cross-frequency axis in the \CN,
-contributing to this cell's wide frequency response. In turn this cell is
-responsible for altering the frequency responses in \TS and \TV cells
-\citep{SpirouDavisEtAl:1999}.
-\DS cells are coincidence detectors and have a precisely timed onset response
-that affects the temporal properties of \TS cells
-\citep{PaoliniClareyEtAl:2005,RhodeGreenberg:1994a} and completely inhibit TV
-cell responses to loud clicks \citep{SpirouDavisEtAl:1999}. GABAergic inhibition
-from Golgi cells modulates the level of excitation necessary to reach threshold
-for all \CN cells \citep{CasparyBackoffEtAl:1994,FerragamoGoldingEtAl:1998}.
-Feedback circuits from the olivary complex to the ventral CN are also known to
-use GABA as a neurotransmitter \citep{SaintMorestEtAl:1989}, however this is not
-included in this model.
+cells in the ventral \CN.  The dendrites of \DS cells cover 1/3 of the
+cross-frequency axis in the \CN, contributing to this cell's wide frequency
+response. In turn this cell is responsible for altering the frequency responses
+in \TS and \TV cells \citep{SpirouDavisEtAl:1999}.  \DS cells are coincidence
+detectors and have a precisely timed onset response that affects the temporal
+properties of \TS cells \citep{PaoliniClareyEtAl:2005,RhodeGreenberg:1994a} and
+completely inhibit TV cell responses to loud clicks
+\citep{SpirouDavisEtAl:1999}. GABAergic inhibition from Golgi cells modulates
+the level of excitation necessary to reach threshold for all \CN cells
+\citep{CasparyBackoffEtAl:1994,FerragamoGoldingEtAl:1998}.  Feedback circuits
+from the olivary complex to the ventral CN are also known to use GABA as a
+neurotransmitter \citep{SaintMorestEtAl:1989}, however this is not included in
+this model.
 
 ** Analysis
 
@@ -370,15 +394,16 @@ The rate measure (rMTF) was calculated from the mean firing rate in the PSTH,
 between 20 ms and the end of the stimulus. 
 
 Temporal information was measured using the synchronisation index relative to
-the modulation frequency of the stimuli.   Vector strength and Rayleigh coefficient were also
-calculated to verify the SI values using an FFT of the period histogram.  
+the modulation frequency of the stimuli.  Vector strength and Rayleigh
+coefficient were also calculated to verify the SI values using an FFT of the
+period histogram.
 # \SI values below 0.1 are considered insignificant.
 
 The temporal measure used to analyse the spike output of an individual neuron
 for one AM stimulus is called the synchronization index or vector strength
 \cite{GoldbergBrown:1969}.  The synchronisation index (SI) was calculated 20 ms
 after the onset of the stimulus \cite{JorisSchreinerEtAl:2004}, using
-Eq.~\ref{eq:SI}:
+Eq. \ref{eq:SI}:
 
 #+latex:\begin{equation}\label{eq:SI}
 #+latex:   SI = \frac{\sqrt{\left(\sum_i^n x_i \right)^2 + \left(\sum_i^n y_i \right)^2 }}{n}\\
@@ -386,34 +411,36 @@ Eq.~\ref{eq:SI}:
 
 \noindent where $x_i = \cos{}\theta_i$, $x_i = \sin{}\theta_i$, and $n$ is the
 number of spike times.  Each spike is treated as a vector of unit length and
-with phase $\theta_i$ between 0 and 2$\pi$ measured as the spike time modulo of the
-stimulus period, $1/f_m$.  Perfect synchronisation will give SI = 1, whereas
+with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
+the stimulus period, $1/f_m$.  Perfect synchronisation will give SI = 1, whereas
 values below 0.1 are considered insignificant.  The SI values are combined for
 each modulation frequency to create the tMTF.
 
 
 *** The Rayleigh statistic
 
-The Rayleigh coefficient is a statistical test used for verifying the significance of circular data. The
-Rayleigh statistic is equivalent to a Chi-squared test and is
-calculated using: \(2 n R^2\), where /n/ is the number of spikes and /R/ is the
-vector strength.  The critical values for the Rayleigh test are 5.991 for \alpha
-= 0.05, 9.21 or \alpha = 0.01, and 13.816 for \alpha = 0.001
-\citep{Mardia:1972,ShannonZengEtAl:1995}. 
-(Further analysis of the critical values see Rhode [fn:Rhode])
+The Rayleigh coefficient is a statistical test used for verifying the
+significance of circular data. The Rayleigh statistic is equivalent to a
+Chi-squared test and is calculated using: $2\cdot n\cdot R^2$, where /n/ is the number
+of spikes and /R/ is the vector strength.  The critical values for the Rayleigh
+test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and 13.816 for \alpha =
+0.001 \citep{Mardia:1972,ShannonZengEtAl:1995}.  (Further analysis of the
+critical values see Rhode [fn:Rhode])
 
-- A more recent study looking at another SI verification statistic has been published (need to look into this).  
+- A more recent study looking at another SI verification statistic has been
+  published (need to look into this).
 
+\citep{ChangEtAl:}
 
 \clearpage
 
 ** Simulations
 
-The simulations were performed using the neural simulation package
-NEURON \citep{CarnevaleHines:2006}. NEURON's Crank-Nicholson
-integration method was used in the simulations with time step, /dt/ =
-0.05 ms, and total duration 170 ms. Stimuli were repeated 50 times
-and the spike times of all \ANF and \CN units recorded.
+The simulations were performed using the neural simulation package NEURON
+\citep{CarnevaleHines:2006}. NEURON's Crank-Nicholson integration method was
+used in the simulations with time step, /dt/ = 0.05 ms, and total duration 170
+ms. Stimuli were repeated 50 times and the spike times of all \ANF and \CN units
+recorded.
 
 ** Stimulus
 
@@ -427,12 +454,11 @@ channel of the \CN model (5.82 kHz) or to the characteristic frequency of the
 different TS chopper models.
 
 
-* Results
+* Results 
 
 ** ISSNIP results
 
-#+name localdatapath
-
+# #+name localdatapath
 # #+BEGIN_SRC gnuplot :export none
 # localpath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/"
 # do for [level in "40 60"] {
@@ -483,16 +509,14 @@ splot [50:800][0:99] datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2
 unset multiplot
 #+END_SRC
 
-#+call: ratetemporal[ :file ./40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
-#+call: ratetemporal[ :file ./40/ratetemporal-1.png ](spl="40/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-#+call: ratetemporal[ :file ./40/ratetemporal-2.png ](spl="40/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-#+call: ratetemporal[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
-#+call: ratetemporal[ :file ./60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-#+call: ratetemporal[ :file ./60/ratetemporal-1.png ](spl="60/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-#+call: ratetemporal[ :file ./60/ratetemporal-2.png ](spl="60/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-#+call: ratetemporal[ :file ./60/ratetemporal-3.png ](spl="60/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-
-
+#+ call: ratetemporal[ :file ./40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+ call: ratetemporal[ :file ./40/ratetemporal-1.png ](spl="40/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+ call: ratetemporal[ :file ./40/ratetemporal-2.png ](spl="40/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+ call: ratetemporal[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+ call: ratetemporal[ :file ./60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+ call: ratetemporal[ :file ./60/ratetemporal-1.png ](spl="60/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+ call: ratetemporal[ :file ./60/ratetemporal-2.png ](spl="60/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+ call: ratetemporal[ :file ./60/ratetemporal-3.png ](spl="60/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
 
 
 
@@ -560,7 +584,7 @@ modulation.
 #+END_LaTeX
 The broad range of CF inputs to DS units allow for a greater likelihood of
 coincident detection and an increase in synchronisation relative to the inputs.
-The rate responses of DS units (Fig.~\ref{fig:DS}) were wider for 40 and 60 SPL
+The rate responses of DS units (Fig. \ref{fig:DS}) were wider for 40 and 60 SPL
 stimuli relative to the narrow band TS units.  For 40 dB SPL stimuli, most DS
 units had a band-pass rMTF.  For higher SPL, a greater number of spikes occured
 between 100 and 500 Hz for units above CF (band-pass rMTF), but the rest of the
@@ -581,7 +605,8 @@ units.
    - Near perfect synchronisation
  - Level dependent
    - Wide-band onset inhibitor
-   - Golgi input suppresses saturated AN input and provides a sustained a-phasic input of GABA inhibition
+   - Golgi input suppresses saturated AN input and provides a sustained a-phasic
+     input of GABA inhibition
 
 
 *** Model Results: Tuberculoventral Cells
@@ -619,7 +644,8 @@ to no temporal information at the carrier frequency units.
 
 *** T Stellate Cells
 
-- Note this section was simulated with default TS parameters, see new data for optimised Chopper parameters
+- Note this section was simulated with default TS parameters, see new data for
+  optimised Chopper parameters
 
 #+BEGIN_LaTeX
 
@@ -652,7 +678,8 @@ temporal response across the TS cell population.
 
 - Notes
  - Sustained chopper level independent
-   - AM rate saturation of TS units on CF does not disable their ability to encode temporal information
+   - AM rate saturation of TS units on CF does not disable their ability to
+     encode temporal information
  - Band-pass synchronisation
    - enhancement off-CF
  - Effects of inhibition
@@ -664,8 +691,10 @@ temporal response across the TS cell population.
 
 ** New Data
 
-- The following results were simulated with the newest Zilany AN model with a Cat compression audiogram
-- The f_c was simulated at three values corresponding to the CF of the chopper optimisation models
+- The following results were simulated with the newest Zilany AN model with a
+  Cat compression audiogram
+- The f_c was simulated at three values corresponding to the CF of the chopper
+  optimisation models
 
 *** F_0 Response: Variation in Level
 
@@ -1085,49 +1114,6 @@ end
 
 
 
-
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-0.png  ](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") :results none 
-
-#+RESULTS: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-0.png  ](INDEX=0,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-file:./gfx/03Feb/CT1/20/ratetemporal-0.png
-
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-1.png  ](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-
-#+RESULTS: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-1.png  ](INDEX=1,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-file:./gfx/03Feb/CT1/20/ratetemporal-1.png
-
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-2.png  ](INDEX=2,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-
-#+RESULTS: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-2.png  ](INDEX=2,spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-:file:./gfx/03Feb/CT1/20/ratetemporal-2.png
-
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/20/ratetemporal-3.png ](INDEX=3, spl="20/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/40/ratetemporal-0.png  ](INDEX=0,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/40/ratetemporal-1.png  ](INDEX=1,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/40/ratetemporal-2.png  ](INDEX=2,spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/40/ratetemporal-3.png ](INDEX=3, spl="40/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/60/ratetemporal-0.png ](INDEX=0, spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/60/ratetemporal-1.png ](INDEX=1, spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/60/ratetemporal-2.png ](INDEX=2, spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/60/ratetemporal-3.png ](INDEX=3, spl="60/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/16Jan/CS/80/ratetemporal-0.png  ](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/") 
-
-#+RESULTS: ratetemporal[ :file ./gfx/16Jan/CS/80/ratetemporal-0.png  ](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/")
-: ./gfx/16Jan/CS/80/ratetemporal-0.png
-
-#+RESULTS: ratetemporal[ :file ./gfx/16Jan/CS/80/ratetemporal-0.png  ](INDEX=0,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/")
-file:./gfx/16Jan/CS/80/ratetemporal-0.png
-
-#+RESULTS: ratetemporal[ :file ./gfx/03Feb/CT1/80/ratetemporal-0.png  ](INDEX=0,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-:file:./gfx/03Feb/CT1/80/ratetemporal-0.png
-
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/80/ratetemporal-1.png  ](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-
-#+RESULTS: ratetemporal[ :file ./gfx/03Feb/CT1/80/ratetemporal-1.png  ](INDEX=1,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
-: file:./gfx/03Feb/CT1/80/ratetemporal-1.png
-
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/80/ratetemporal-2.png  ](INDEX=2,spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/") 
-#+call: ratetemporal[ :file ./gfx/03Feb/CT1/80/ratetemporal-3.png ](INDEX=3, spl="80/",datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/")
 
 
 
@@ -1823,17 +1809,17 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 
 
 Golgi cells are low-firing monotonic units that influence the general
-excitability of DS and TS units using GABA.  The results in Fig. \ref{fig:GLG_AM}
-show that the rate response to AM tones is only dependent on the
-sound level. The temporal response of the Golgi cell model is negligible. 
+excitability of DS and TS units using GABA.  The results in
+Fig. \ref{fig:GLG_AM} show that the rate response to AM tones is only dependent
+on the sound level. The temporal response of the Golgi cell model is negligible.
 
 
 
 
 The rate and temporal response of TV cells was strongly inhibited by DS units.
-TV cells are thought to be responsible for delayed inhibition or echo-suppression
-\citep{WickesbergOertel:1990}, but can also be involved in tuning the temporal
-MTF behaviour in TS cells.
+TV cells are thought to be responsible for delayed inhibition or
+echo-suppression \citep{WickesbergOertel:1990}, but can also be involved in
+tuning the temporal MTF behaviour in TS cells.
 
 
 
@@ -1903,7 +1889,7 @@ stellate network.
 * Footnotes
 
 [fn:Rhode] See W. Rhode's analysis on the vector strength and Rayleigh statistic
-[[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]]. 
+[[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]].
 
 
 
