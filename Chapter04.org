@@ -257,24 +257,17 @@ following cells and models:
      robust spectral representation and enhanced synchronisation to modulation
      in speech sounds \citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.
 
-
-
-
 To develop and simulate detailed neural models and neural network models,
 reproducible research methods are required. The Nordlie approach to reproducible
-neural network simulations \citep{NordlieGewaltigEtAl:2009} is followed in
-Table \ref{tab:TSModelSummary}.  Tables \ref{tab:TSModelSummary}i 
-through \ref{tab:TSModelSummary}v
-show the detailed summary of the \CN stellate microcircuit used in
-the \AM simulations.
-The Nordlie  table format splits the tables into Model
- Summary, Populations, Connectivity, Neuron Model, and Input\slash
- Output \citep{NordlieGewaltigEtAl:2009}.
-
+neural network simulations \citep{NordlieGewaltigEtAl:2009} is followed in Table
+\ref{tab:TSModelSummary}.  Tables \ref{tab:TSModelSummary}i through
+\ref{tab:TSModelSummary}v show the detailed summary of the \CN stellate
+microcircuit used in the \AM simulations.  The Nordlie table format splits the
+tables into Model Summary, Populations, Connectivity, Neuron Model, and
+Input\slash Output \citep{NordlieGewaltigEtAl:2009}.
 
 
 \input{NordlieTemplate}
-
 
 ** Auditory Model
 
@@ -405,11 +398,13 @@ for one AM stimulus is called the synchronization index or vector strength
 after the onset of the stimulus \cite{JorisSchreinerEtAl:2004}, using
 Eq. \ref{eq:SI}:
 
-#+latex:\begin{equation}\label{eq:SI}
-#+latex:   SI = \frac{\sqrt{\left(\sum_i^n x_i \right)^2 + \left(\sum_i^n y_i \right)^2 }}{n}\\
-#+latex:\end{equation}
+#+BEGIN_LaTeX:
+\begin{equation}\label{eq:SI}
+   SI = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
+\end{equation}
+#+END_LaTeX
 
-\noindent where $x_i = \cos{}\theta_i$, $x_i = \sin{}\theta_i$, and $n$ is the
+\noindent where $x_i = \cos{}\theta_i$, $x_i = \sin{}\theta_i$, and $N$ is the
 number of spike times.  Each spike is treated as a vector of unit length and
 with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
 the stimulus period, $1/f_m$.  Perfect synchronisation will give SI = 1, whereas
