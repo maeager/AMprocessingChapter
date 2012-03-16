@@ -14,7 +14,7 @@
 #+BIBLIOGRAPHY: MyBib alphanat
 #+LaTeX_CLASS: UoM-draft-org-article
 
-## Write text after \begin{document} 
+## Write text after begin { document } 
 #+TEXT: \singlespacing{\tableofcontents\printglossaries}
 #+TEXT:\setcounter{chapter}{3}
 #+TEXT:\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
@@ -90,6 +90,8 @@
       
 #+end_src
 
+
+
 * Layout 						
 
  | Section                  |          | Pages | Actual | \%TODO/DONE |
@@ -136,7 +138,7 @@ representation of auditory information.  \TS cells also show enhanced coding of
 temporal information, particularly in the synchronisation to modulation in
 speech sounds \citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.  The coding
 of \AM in neurons is measured using a \MTF, which is calculated using its firing
-rate (rMTF) or temporal information (tMTF).
+rate (\rMTF) or temporal information (\tMTF).
 
 
 
@@ -173,14 +175,14 @@ rate (rMTF) or temporal information (tMTF).
 [[file:./gfx/RG94-AN_MTF.png]]
 
 - Variation in modulation frequency
-  - definition of \MTF or tMTF
+  - definition of \MTF or \tMTF
   - Low-pass to band-pass with high peak in vector strength. 
   - Reduced cut-off due to membrane characteristics rather than network effects.
 
 - \citet{JorisSchreinerEtAl:2004} showed the simplified temporal responses from
   multiple studies in \ANFs and chopper units (Figure \ref{fig:AMSummary}).
 
-#+begin_LaTeX
+#+BEGIN_LaTeX:
 \begin{figure}[htb] 
 \centering
 {\hfill\includegraphics[width=0.45\linewidth,keepaspectratio]{../figures/JorisAM_Fig4A.png}\hfill%
@@ -190,7 +192,7 @@ cells have enhanced synchronisation at high SPL (A) and a band-pass tMTF with
 peaks greater than ANFs (B). Figure reproduced from
 \citet{JorisSchreinerEtAl:2004}.}  \label{fig:AMSummary}
 \end{figure}
-#+end_LaTeX
+#+END_LaTeX
 
 
 
@@ -310,7 +312,7 @@ Membrane current models (Table \ref{tab:TSModelSummary}iv) used in \DS, \TV and
 \TS cell models were developed from kinectic analysis of \VCN neurons in mice
 \citep{RothmanManis:2003b}. Their activation and deactivation functions (/a, b,
 c, h, m, n, p, r, w/ and /z/) are described in detail by Rothman and Manis
-\citep{RothmanManis:2003} and the NEURON source code is freely available online
+\citep{RothmanManis:2003} and the [[latex:progname][NEURON]] source code is freely available online
 at ModelDB \citep{HinesMorseEtAl:2004}.  Table \ref{tab:Celltypes2} shows the
 membrane conductance parameters of the cell types.  Conductance parameters were
 adjusted from \citep{RothmanManis:2003b} due to temperature and soma diameter
@@ -329,21 +331,21 @@ The reversal potential for potassium, sodium, leak, and Ih currents were -72,
 #+label: tab:Celltypes2
 #+Attr_LaTeX :align=l|ccc placement=[t!]\footnotesize
 #+Caption: Cell-type Membrane Current Parameters
-| Cells                           |     \TS |     \DS |      \TV |
-| Current Clamp Model             |    I-t |   I-II |     I-c |
-|---------------------------------+--------+--------+---------|
-| \gNa ,\hfill S/cm^{2}              |  0.235 |  0.235 |   0.235 |
-| \gKHT,\hfill S/cm^{2}              |  0.018 |   0.02 |   0.019 |
-| \gKLT,\hfill S/cm^{2}              |      0 | 0.0047 |       0 |
-| \gKA,\hfill S/cm^{2}               | 0.0153 |      0 |       0 |
-| \gh,\hfill  mS/cm^{2}              | 0.0618 |  0.247 | 0.06178 |
-| \gleak,\hfill mS/cm^{2}            |  0.471 |  0.471 |   0.471 |
-| Soma Diameter,\hfill \um        |     21 |     25 |    19.5 |
+| Cells                      |    \TS |    \DS |     \TV |
+| Current Clamp Model        |    I-t |   I-II |     I-c |
+|----------------------------+--------+--------+---------|
+| \gNa ,\hfill S/cm^{2}         |  0.235 |  0.235 |   0.235 |
+| \gKHT,\hfill S/cm^{2}         |  0.018 |   0.02 |   0.019 |
+| \gKLT,\hfill S/cm^{2}         |      0 | 0.0047 |       0 |
+| \gKA,\hfill S/cm^{2}          | 0.0153 |      0 |       0 |
+| \gh,\hfill  mS/cm^{2}         | 0.0618 |  0.247 | 0.06178 |
+| \gleak,\hfill mS/cm^{2}       |  0.471 |  0.471 |   0.471 |
+| Soma Diameter,\hfill \um   |     21 |     25 |    19.5 |
 | Input Resistance,\hfill M\Omega |    163 |     73 |     170 |
 
 ** Synapse Parameters
 
-[[latex:textsf][NEURON]]'s conductance synapse models, /ExpSyn/ and /Exp2Syn/, were used in the \CN
+[[latex:progname][NEURON]]'s conductance synapse models, /ExpSyn/ and /Exp2Syn/, were used in the \CN
 stellate microcircuit.  Single exponential excitatory synapses (\tAMPA = 0.36
 ms) model the experimental recordings in \VCN neurons
 \citep{GardnerTrussellEtAl:1999}.  Double exponential inhibitory synapses are
@@ -359,7 +361,7 @@ and excitatory reversal potential was set to 0 mV.
 The connectivity of the cell types involved in the stellate microcircuit is
 shown in Figure \ref{fig:microcircuit} and in Table
 \ref{tab:TSModelSummary}iii. Fast, glycinergic inhibition from \TV cells and \DS
-cells (Fig. \ref{fig:microcircuit}) is involved in modulating the firing rate
+cells (Figure \ref{fig:microcircuit}) is involved in modulating the firing rate
 and spike interval variability in \TS cells
 \citep{FerragamoGoldingEtAl:1998,WickesbergOertel:1993}. \TV cells in the deep
 layer of the dorsal \CN, provide a delayed narrowband inhibition to \TS and \DS
@@ -379,7 +381,7 @@ this model.
 
 ** Analysis
 
-The rate measure (rMTF) was calculated from the mean firing rate in the \PSTH,
+The rate measure (\rMTF) was calculated from the mean firing rate in the \PSTH,
 between 20 ms and the end of the stimulus. 
 
 Temporal information was measured using the synchronisation index relative to
@@ -405,7 +407,7 @@ number of spike times.  Each spike is treated as a vector of unit length and
 with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
 the stimulus period, $1/f_m$.  Perfect synchronisation will give \SI = 1, whereas
 values below 0.1 are considered insignificant.  The \SI values are combined for
-each modulation frequency to create the tMTF.
+each modulation frequency to create the \tMTF.
 
 
 *** The Rayleigh statistic
@@ -427,8 +429,8 @@ critical values see Rhode [fn:Rhode])
 
 ** Simulations
 
-The simulations were performed using the neural simulation package NEURON
-\citep{CarnevaleHines:2006}. NEURON's Crank-Nicholson integration method was
+The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
+\citep{CarnevaleHines:2006}. [[latex:progname][NEURON]]'s Crank-Nicholson integration method was
 used in the simulations with time step, /dt/ = 0.05 ms, and total duration 170
 ms. Stimuli were repeated 50 times and the spike times of all \ANF and \CN units
 recorded.
@@ -525,7 +527,7 @@ the top row and 60 dB \SPL for the bottom row.
 
  - High \SR fibres at 60 dB \SPL
 
-#+begin_latex
+#+BEGIN_LaTeX
 \begin{figure}[thb]
 \centering
 {\hfill{ Rate (sp/s)\hfill Temporal}}\\
@@ -533,11 +535,11 @@ the top row and 60 dB \SPL for the bottom row.
 \caption{Rate and temporal modulation transfer functions (MTF) of HSR auditory nerve fibres at 60 dB SPL.}
 \label{fig:ANMTF}
 \end{figure}
-#+end_latex
+#+END_LaTeX
 
 *** Model Results: Golgi Cells
 
-#+BEGIN_LaTeX
+#+BEGIN_LaTeX:
 \begin{figure}[tb]
 \centering 
 %\caption{GLG Rate (spks/s) and SI 60 dB}
@@ -575,13 +577,13 @@ modulation.
 #+END_LaTeX
 The broad range of \CF inputs to \DS units allow for a greater likelihood of
 coincident detection and an increase in synchronisation relative to the inputs.
-The rate responses of \DS units (Fig. \ref{fig:DS}) were wider for 40 and 60 \SPL
+The rate responses of \DS units (Figure \ref{fig:DS}) were wider for 40 and 60 \SPL
 stimuli relative to the narrow band \TS units.  For 40 dB \SPL stimuli, most \DS
-units had a band-pass rMTF.  For higher \SPL, a greater number of spikes occured
-between 100 and 500 Hz for units above \CF (band-pass rMTF), but the rest of the
-active units remained stable (low-pass rMTF). This ``rate-responder'' behaviour
+units had a band-pass \rMTF.  For higher \SPL, a greater number of spikes occured
+between 100 and 500 Hz for units above \CF (band-pass \rMTF), but the rest of the
+active units remained stable (low-pass \rMTF). This ``rate-responder'' behaviour
 is similar in ideal onset units in the \VCN (octopus cells) but the cut-off of
-the rMTF is much lower. The temporal responses of \DS units were predominantly
+the \rMTF is much lower. The temporal responses of \DS units were predominantly
 band-pass, with higher \SI values than \ANFs.  For lower \SPL, the responses were
 consistent across active units with a falling cut-off frequency with falling \CF.
 For high \SPL, the \DS units were divided along the central channel.  The \DS units
@@ -603,8 +605,6 @@ units.
 *** Model Results: Tuberculoventral Cells
 
 #+BEGIN_LaTeX
-
-
 \begin{figure}[tb]
 \centering 
 %\caption{TV Rate (spks/s) and SI 60 dB}
@@ -618,7 +618,7 @@ units.
 \end{figure}
 #+END_LaTeX
 
-The rate and temporal responses of \TV units (Fig. \ref{fig:TV}) showed the
+The rate and temporal responses of \TV units (Figure \ref{fig:TV}) showed the
 non-linear effects of strong inhibition from \DS units. \TS and \TV units received
 similar \ANF inputs, but the inhibition limited the activity at low sound level
 and then to a narrow range at higher \SPL.  The temporal responses of \TV units
@@ -638,9 +638,7 @@ to no temporal information at the carrier frequency units.
 - Note this section was simulated with default \TS parameters, see new data for
   optimised Chopper parameters
 
-#+BEGIN_LaTeX
-
-
+#+BEGIN_LaTeX:
 \begin{figure}[tb]
 \centering 
 %\caption{TS Rate (spks/s) and SI 60 dB}
@@ -1801,7 +1799,7 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 
 Golgi cells are low-firing monotonic units that influence the general
 excitability of \DS and \TS units using \GABA.  The results in
-Fig. \ref{fig:GLG_AM} show that the rate response to \AM tones is only dependent
+Figure \ref{fig:GLG_AM} show that the rate response to \AM tones is only dependent
 on the sound level. The temporal response of the Golgi cell model is negligible.
 
 
@@ -1818,7 +1816,7 @@ tuning the temporal \MTF behaviour in \TS cells.
 D stellate cells have an onset chopping behaviour to tones, but can follow the
 repetition of amplitude modulated tones. The entrainment to the stimulus
 envelope produced band-pass rate \MTFs in \DS units with a \CF above $f_c$.  The
-temporal information at the channel with \CF=$f_c$ (Fig. \ref{fig:DS}) was
+temporal information at the channel with \CF=$f_c$ (Figure \ref{fig:DS}) was
 diminished by the strong \GABAergic inhibition of Golgi cells; however, the
 majority of active \DS units showed strong synchronisation, which suggests
 synchronous tuning in \TV and \TS units throughout the \CN.
@@ -1832,7 +1830,7 @@ behaviour of \TS units is influenced by all three interneurons in the stellate
 microcircuit.
 
 
-\AM rate saturation of \TS units on \CF (Fig. \ref{fig:TS}) does not disable
+\AM rate saturation of \TS units on \CF (Figure \ref{fig:TS}) does not disable
 their ability to encode temporal information.  Experimental data has shown \TS
 cells generally have low-pass \MTF at low sound level and band-pass \MTF for
 higher sound levels for \AM tones on \CF \citep{RhodeGreenberg:1994}.  The
@@ -1870,15 +1868,14 @@ stellate network.
 
 
 
-#+BEGIN_LaTeX
-\newpage
+# + BEGIN_LaTeX
 \newpage
 \singlespacing
 \listoftodos
 \printglossaries
 \bibliographystyle{plainnat}
 \bibliography{MyBib}
-#+END_LaTeX
+# + END_LaTeX
 
 
 * Footnotes
