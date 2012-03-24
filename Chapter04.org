@@ -56,43 +56,23 @@
            ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
       
       ;; (setq org-export-latex-title-command "{\n\\singlespacing\n\\tableofcontents\n\\printglossaries\n}\n\\setcounter{chapter}{0}")
-       (setq org-entities-user '(("space" "\\ " nil " " " " " " " ")
-      ;           ("cite" "~\\cite" nil " " " " " " " ")
-      ; ("ref" "~\\ref" nil " " " " " " " ")
-      ))
-;; Remember to double your slashes
-      (setq  org-export-latex-final-hook nil)
-      (add-hook 'org-export-latex-final-hook
-                (lambda ()
-                  (goto-char (point-min))
-                  (replace-regexp "\\( \\|\n\\)\\\\ref" 
-                                  "~\\\\ref")
-                  (goto-char (point-min))
-                  (replace-regexp "\\( \\|\n\\)\\\\cite" 
-                                  "\\\\ \\\\cite")
-                  (goto-char (point-min))
-  ;; Correct for citations immediately after an item
-                  (replace-regexp "item~" 
-                                  "item ")
-  ;; Acronyms at the end of a sentence cause poor spacing
-                  (goto-char (point-min))
-                  (replace-regexp "\\([A-Z][A-Z]\\)\\.\\( \\|\n\\)" 
-                                  "\\1\\\\@. ")
-  ;; Double acronyms
-                  (goto-char (point-min))
-                  (replace-regexp "\\([A-Z][A-Zs]\\) \\([\\\\A-Z]\\)" 
-                                  "\\1\\\\ \\2")
-  ;; Force a sticky space between numbers followed by text or acronym 
-                  (goto-char (point-min))
-                  (replace-regexp "\\([0-9]\\)\\( \\|\n\\)\\{1,\\}\\([\\\\A-Za-z]\\)" 
-                                  "\\1~\\2")
-    ))
-      
+
 #+end_src
 
+#+RESULTS:
+| UoM-draft-org-article | \documentclass[10pt,a4paper,twoside,openright]{book}\n\usepackage{../hg/manuscript/style/uomthesis}\n\input{../hg/manuscript/user-defined}\n\usepackage[acronym]{glossaries}\n\input{../hg/manuscript/misc/glossary}\n\makeglossaries\n\graphicspath{{./gfx/}}\n\pretolerance=150\n\tolerance=100\n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm\n% \usepackage[notcite]{showkeys}\n\lfoot{\footnotesize\today\ at \thistime}\n\usepackage{rotating,calc}\n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | (\clearpage\section{%s} . \n\clearpage\section{%s}) | (\subsection{%s} . \n\clearpage\subsection{%s})                                                       | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) | (\subparagraph{%s} . \n\subparagraph{%s}) |
+| UoM-draft-org-article | \n\documentclass[11pt,a4paper,twoside,openright]{book}\n\usepackage{style/uomthesis}      \n\input{user-defined}              \n\usepackage[acronym]{glossaries}  \n\input{../hg/manuscript/misc/glossary}\n\makeglossaries                   \n\graphicspath{{./gfx/}}           \n\pretolerance=150                 \n\tolerance=100                    \n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm                 \n% \usepackage[notcite]{showkeys}  \n\lfoot{\footnotesize\today\ at \thistime Hg:70}\n\usepackage{rotating,calc}        \n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]        \n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                | (\section{%s} . \n\section{%s})                     | (\subsection{%s} . \n\subsection{%s})                                                                 | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) | (\subparagraph{%s} . \n\subparagraph{%s}) |
+| UoM-draft-org-article | \documentclass[10pt,a4paper,twoside,openright]{book}\n\usepackage{style/uomthesis}\n\input{user-defined}\n\usepackage[nonumberlist,acronym]{glossaries}\n\input{../hg/manuscript/misc/glossary}\n\makeglossaries\n\graphicspath{{./gfx/}}\n\pretolerance=150\n\tolerance=100\n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm\n% \usepackage[notcite]{showkeys}\n\lfoot{\footnotesize\today\ at \thistime}\n\usepackage{rotating,calc}\n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | (\section{%s} . \n\section{%s})                     | (\subsection{%s} . \n\subsection{%s})                                                                 | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) |                                           |
+| UoM-draft-org-article | \documentclass[10pt,a4paper,twoside,openright]{book}\n\usepackage{style/uomthesis}\n\input{user-defined}\n\usepackage[acronym]{glossaries}\n\input{../hg/manuscript/misc/glossary}\n\makeglossaries\n\graphicspath{{./gfx/}}\n\pretolerance=150\n\tolerance=100\n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm\n% \usepackage[notcite]{showkeys}\n\lfoot{\footnotesize\today\ at \thistime}\n\usepackage{rotating,calc}\n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | (\section{%s} . \n\section{%s})                     | (\subsection{%s} . \n\subsection{%s})                                                                 | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) | (\subparagraph{%s} . \n\subparagraph{%s}) |
+| svjour-org-article    | \documentclass[12pt,natbib]{svjour3}\n\n\usepackage{amssymb}\n\n\usepackage{amsfonts}\n\n\usepackage{amsmath}\n\n\usepackage[dvips]{graphicx}\n\n\usepackage[latin1]{inputenc}\n\n\usepackage{psfrag}\n\n\usepackage{rotating}\n\n\usepackage{tabularx}\n\n\newcommand{\figfont}[1]{\large{\textbf{\textsf{#1}}}}\n\n\graphicspath{{./gfx/}}\n\n\usepackage[usenames,dvipsnames]{xcolor}\n\n\definecolor{halfgray}{gray}{0.55}\n\n\usepackage{natbib}\n\n\usepackage{multirow}\n\n\usepackage{ifpdf}\n\n\usepackage{calc}\n\n\usepackage{booktabs,ltxtable}\n\n\newcommand{\yellownote}[1]{\textbf{\textit{#1}}}\n\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                        | (\section{%s} . \section{%s})                       | (\subsection{%s} . \subsection{%s})                                                                   | (\subsubsection{%s} . \subsubsection{%s})   | (\paragraph{%s} . \paragraph{%s})   | (\subparagraph{%s} . \subparagraph{%s})   |
+| beamer-xelatex        | \documentclass[11pt]{beamer}\n\n      \mode<{{{beamermode}}}>\n\n      \usetheme{{{{beamertheme}}}}\n\n      \usecolortheme{{{{beamercolortheme}}}}\n\n      \beamertemplateballitem\n\n      \setbeameroption{show notes}\n      \usepackage[utf8]{inputenc}\n\n\usepackage[T1]{fontenc}\n\usepackage{fontspec}\n\usepackage{graphicx}\n\defaultfontfeatures{Mapping=tex-text}\n\setromanfont{Gentium}\n\setromanfont [BoldFont={Gentium Basic Bold},\n                ItalicFont={Gentium Basic Italic}]{Gentium Basic}\n\setsansfont{Charis SIL}\n\setmonofont[Scale=0.8]{DejaVu Sans Mono}\n      \usepackage{hyperref}\n\n      \usepackage{color,tabularx}\n      \usepackage[sort,round,authoryear]{natbib}\n      \usepackage{listings}\n      \lstset{numbers=none,language=[ISO]C++,tabsize=4,\n  frame=single,\n  basicstyle=\small,\n  showspaces=false,showstringspaces=false,\n  showtabs=false,\n  keywordstyle=\color{blue}\bfseries,\n  commentstyle=\color{red},\n  }\n\n      \usepackage{verbatim}\n\n      \institute{{{{beamerinstitute}}}}\n\n       \subject{{{{beamersubject}}}}\n | (\section{%s} . \section*{%s})                      | (\begin{frame}[fragile]\frametitle{%s} \end{frame} \begin{frame}[fragile]\frametitle{%s} \end{frame}) |                                             |                                     |                                           |
+| djcb-org-article      | \documentclass[11pt,a4paper]{article}\n\usepackage[T1]{fontenc}\n\usepackage{fontspec}\n\usepackage{graphicx}\n\defaultfontfeatures{Mapping=tex-text}\n\setromanfont{Gentium}\n\setromanfont [BoldFont={Gentium Basic Bold},\n                ItalicFont={Gentium Basic Italic}]{Gentium Basic}\n\setsansfont{Charis SIL}\n\setmonofont[Scale=0.8]{DejaVu Sans Mono}\n\usepackage{geometry}\n\geometry{a4paper, textwidth=6.5in, textheight=10in,\n            marginparsep=7pt, marginparwidth=.6in}\n\pagestyle{empty}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | (\section{%s} . \section*{%s})                      | (\subsection{%s} . \subsection*{%s})                                                                  | (\subsubsection{%s} . \subsubsection*{%s})  | (\paragraph{%s} . \paragraph*{%s})  | (\subparagraph{%s} . \subparagraph*{%s})  |
+| letter                | \documentclass[11pt]{letter}\n\n      \usepackage[utf8]{inputenc}\n\n      \usepackage[T1]{fontenc}\n\n      \usepackage{color}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | (\section{%s} . \section*{%s})                      | (\subsection{%s} . \subsection*{%s})                                                                  | (\subsubsection{%s} . \subsubsection*{%s})  | (\paragraph{%s} . \paragraph*{%s})  | (\subparagraph{%s} . \subparagraph*{%s})  |
+| beamer2               | \documentclass[11pt]{beamer}\n\n      \mode<{{{beamermode}}}>\n\n      \usetheme{{{{beamertheme}}}}\n\n      \usecolortheme{{{{beamercolortheme}}}}\n\n      \beamertemplateballitem\n\n      \usepackage[utf8]{inputenc}\n\n      \usepackage[T1]{fontenc}\n\n      \usepackage{hyperref}\n\n      \usepackage{color,tabularx}\n      \usepackage[sort,round,authoryear]{natbib}\n      \usepackage{listings}\n      \lstset{numbers=none,language=[ISO]C++,tabsize=4,\n  frame=single,\n  basicstyle=\small,\n  showspaces=false,showstringspaces=false,\n  showtabs=false,\n  keywordstyle=\color{blue}\bfseries,\n  commentstyle=\color{red},\n  }\n\n      \usepackage{verbatim}\n\n      \institute{{{{beamerinstitute}}}}\n\n       \subject{{{{beamersubject}}}}\n                                                                                                                                                                                                                                                                                                                                  | (\section{%s} . \section*{%s})                      | (\begin{frame}[fragile]\frametitle{%s} \end{frame} \begin{frame}[fragile]\frametitle{%s} \end{frame}) |                                             |                                     |                                           |
 
 
-* Layout 						
+
+* Layout 					:noexport:	
 
  | Section                  |          | Pages | Actual | \%TODO/DONE |
  |--------------------------+----------+-------+--------+-------------|
@@ -152,12 +132,41 @@ rate (\rMTF) or temporal information (\tMTF).
     - mean rate of spikes
     - saturation at high sound level
     - poor \SNR in auditory nerve 
-
-- Measures of temporal code
-  - phasic or circular data
-  - synchronisation coefficient/vector strength
-  - statistical tests: Rayleigh Test, (one more recent measure but not done here)
   
+The coding of \AM in neurons is measured using a \MTF, which is calculated using
+its firing rate (\rMTF) or temporal information (\tMTF). The degree of phase
+locking is measured by the synchronisation coefficient or vector strength
+\citep{GoldbergBrownell:1973,GoldbergBrown:1969}.  The \SI is calculated by
+Equation \ref{eq:SI} \cite{JorisSchreinerEtAl:2004}:
+
+#+BEGIN_LaTeX
+\begin{equation} \label{eq:SI}
+   SI = \frac{1}{N} \sqrt{\left(\sum_{i}^{N} x_i \right)^{2}+\left(\sum_{i}^{N} y_i \right)^{2}}
+\end{equation} 
+#+END_LaTeX
+\noindent where $x_{i} = \cos\theta_{i}$, $x_{i} = \sin\theta_{i}$, and /n/ is
+the number of spike times.  Each spike is treated as a vector of unit length and
+with phase $\theta_{i}$ between 0 and $2\pi$ measured as the spike time modulo
+of the stimulus period, $1/f_{m}$.  Perfect synchronisation will give SI = 1,
+whereas values below 0.1 are considered insignificant.  The SI values are
+combined for each modulation frequency to create the \tMTF.  Statistical
+significance of synchronization is usually quantified with the Rayleigh test
+\cite{BuunenRhode:1978,MardiaJupp:1999}. Vector strength and Rayleigh
+coefficient, calculated to verify the statistical significance of
+synchronisation, can also be obtained from the Fourier spectrum of the \PSTH or
+period histogram.
+#, in which case it equals the magnitude of the first harmonic, normalised by
+# the DC component (average firing rate).  Phase can also be retrieved with
+# either technique.  The rate measure (\rMTF) is calculated from the mean firing
+# rate in the \PSTH, between 20 ms and the end of the stimulus.
+
+
+
+#+CAPTION: Amplitude modulated waveform, spectrum and temporal modulation transfer function (tMTF) with low and band-pass functions typical TS cells. BMF: best modulation frequency.  Image reprinted from \citet{JorisSchreinerEtAl:2004}.
+#+LABEL: fig:AM
+#+Attr_LATEX: width=0.5\textwidth
+[[file:../figures/NoFigure.pdf]]
+
 
 
 #+label: fig:AMdef
@@ -331,16 +340,16 @@ The reversal potential for potassium, sodium, leak, and Ih currents were -72,
 #+label: tab:Celltypes2
 #+Attr_LaTeX :align=l|ccc placement=[t!]\footnotesize
 #+Caption: Cell-type Membrane Current Parameters
-| Cells                      |    \TS |    \DS |     \TV |
-| Current Clamp Model        |    I-t |   I-II |     I-c |
-|----------------------------+--------+--------+---------|
-| \gNa ,\hfill S/cm^{2}         |  0.235 |  0.235 |   0.235 |
-| \gKHT,\hfill S/cm^{2}         |  0.018 |   0.02 |   0.019 |
-| \gKLT,\hfill S/cm^{2}         |      0 | 0.0047 |       0 |
-| \gKA,\hfill S/cm^{2}          | 0.0153 |      0 |       0 |
-| \gh,\hfill  mS/cm^{2}         | 0.0618 |  0.247 | 0.06178 |
-| \gleak,\hfill mS/cm^{2}       |  0.471 |  0.471 |   0.471 |
-| Soma Diameter,\hfill \um   |     21 |     25 |    19.5 |
+| Cells                           |    \TS |    \DS |     \TV |
+| Current Clamp Model             |    I-t |   I-II |     I-c |
+|---------------------------------+--------+--------+---------|
+| \gNa ,\hfill S/cm^{2}              |  0.235 |  0.235 |   0.235 |
+| \gKHT,\hfill S/cm^{2}              |  0.018 |   0.02 |   0.019 |
+| \gKLT,\hfill S/cm^{2}              |      0 | 0.0047 |       0 |
+| \gKA,\hfill S/cm^{2}               | 0.0153 |      0 |       0 |
+| \gh,\hfill  mS/cm^{2}              | 0.0618 |  0.247 | 0.06178 |
+| \gleak,\hfill mS/cm^{2}            |  0.471 |  0.471 |   0.471 |
+| Soma Diameter,\hfill \um        |     21 |     25 |    19.5 |
 | Input Resistance,\hfill M\Omega |    163 |     73 |     170 |
 
 ** Synapse Parameters
@@ -410,7 +419,7 @@ values below 0.1 are considered insignificant.  The \SI values are combined for
 each modulation frequency to create the \tMTF.
 
 
-*** The Rayleigh statistic
+*** The Rayleigh Test
 
 The Rayleigh coefficient is a statistical test used for verifying the
 significance of circular data. The Rayleigh statistic is equivalent to a
