@@ -24,51 +24,39 @@
 * Prelude 							   :noexport:
 
 #+begin_src emacs-lisp results: silent
-       (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "pdflatex -interaction nonstopmode %f"  "pdflatex -interaction nonstopmode %f" ))
-      ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=xelatex LitReview2.pdf"))
-      ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf"))
-      ;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "xelatex -interaction nonstopmode %f"  "xelatex -interaction nonstopmode %f" ))
-      (setq org-export-latex-title-command "")
-      
-      (add-to-list 'org-export-latex-classes
-        '("UoM-draft-org-article"
-      "\\documentclass[10pt,a4paper,twoside,openright]{book}
-      \\usepackage{../hg/manuscript/style/uomthesis}
-      \\input{../hg/manuscript/user-defined}
-      \\usepackage[acronym]{glossaries}
-      \\input{../hg/manuscript/misc/glossary}
-      \\makeglossaries
-      \\graphicspath{{./gfx/}}
-      \\pretolerance=150
-      \\tolerance=100
-      \\setlength{\\emergencystretch}{3em}
-      \\overfullrule=1mm
-      % \\usepackage[notcite]{showkeys}
-      \\lfoot{\\footnotesize\\today\\ at \\thistime}
-      \\usepackage{rotating,calc}
-      \\usepackage{booktabs,ltxtable,lscape}
-            [NO-DEFAULT-PACKAGES]
-            [NO-PACKAGES]"
-           ("\\clearpage\\section{%s}" . "\n\\clearpage\\section{%s}")
-           ("\\subsection{%s}" . "\n\\clearpage\\subsection{%s}")
-           ("\\subsubsection{%s}" . "\n\\subsubsection{%s}")
-           ("\\paragraph{%s}" . "\n\\paragraph{%s}")
-           ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
-      
-      ;; (setq org-export-latex-title-command "{\n\\singlespacing\n\\tableofcontents\n\\printglossaries\n}\n\\setcounter{chapter}{0}")
-
+  (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "pdflatex -interaction nonstopmode %f"  "pdflatex -interaction nonstopmode %f" ))
+  ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=xelatex LitReview2.pdf"))
+  ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf"))
+  ;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "xelatex -interaction nonstopmode %f"  "xelatex -interaction nonstopmode %f" ))
+  (setq org-export-latex-title-command "")
+  
+  (add-to-list 'org-export-latex-classes
+               '("UoM-draft-org-article"
+                 "\\documentclass[10pt,a4paper,twoside,openright]{book}
+  \\usepackage{../hg/manuscript/style/uomthesis}
+  \\input{../hg/manuscript/user-defined}
+  \\usepackage[acronym]{glossaries}
+  \\input{../hg/manuscript/misc/glossary}
+  \\makeglossaries
+  \\graphicspath{{./gfx/}}
+  \\pretolerance=150
+  \\tolerance=100
+  \\setlength{\\emergencystretch}{3em}
+  \\overfullrule=1mm
+  % \\usepackage[notcite]{showkeys}
+  \\lfoot{\\footnotesize\\today\\ at \\thistime}
+  \\usepackage{rotating,calc}
+  \\usepackage{booktabs,ltxtable,lscape}
+        [NO-DEFAULT-PACKAGES]
+        [NO-PACKAGES]"
+                 ("\\clearpage\\section{%s}" . "\n\\clearpage\\section{%s}")
+                 ("\\subsection{%s}" . "\n\\clearpage\\subsection{%s}")
+                 ("\\subsubsection{%s}" . "\n\\subsubsection{%s}")
+                 ("\\paragraph{%s}" . "\n\\paragraph{%s}")
+                 ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
 #+end_src
 
-#+RESULTS:
-| UoM-draft-org-article | \documentclass[10pt,a4paper,twoside,openright]{book}\n\usepackage{../hg/manuscript/style/uomthesis}\n\input{../hg/manuscript/user-defined}\n\usepackage[acronym]{glossaries}\n\input{../hg/manuscript/misc/glossary}\n\makeglossaries\n\graphicspath{{./gfx/}}\n\pretolerance=150\n\tolerance=100\n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm\n% \usepackage[notcite]{showkeys}\n\lfoot{\footnotesize\today\ at \thistime}\n\usepackage{rotating,calc}\n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | (\clearpage\section{%s} . \n\clearpage\section{%s}) | (\subsection{%s} . \n\clearpage\subsection{%s})                                                       | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) | (\subparagraph{%s} . \n\subparagraph{%s}) |
-| UoM-draft-org-article | \n\documentclass[11pt,a4paper,twoside,openright]{book}\n\usepackage{style/uomthesis}      \n\input{user-defined}              \n\usepackage[acronym]{glossaries}  \n\input{../hg/manuscript/misc/glossary}\n\makeglossaries                   \n\graphicspath{{./gfx/}}           \n\pretolerance=150                 \n\tolerance=100                    \n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm                 \n% \usepackage[notcite]{showkeys}  \n\lfoot{\footnotesize\today\ at \thistime Hg:70}\n\usepackage{rotating,calc}        \n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]        \n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                | (\section{%s} . \n\section{%s})                     | (\subsection{%s} . \n\subsection{%s})                                                                 | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) | (\subparagraph{%s} . \n\subparagraph{%s}) |
-| UoM-draft-org-article | \documentclass[10pt,a4paper,twoside,openright]{book}\n\usepackage{style/uomthesis}\n\input{user-defined}\n\usepackage[nonumberlist,acronym]{glossaries}\n\input{../hg/manuscript/misc/glossary}\n\makeglossaries\n\graphicspath{{./gfx/}}\n\pretolerance=150\n\tolerance=100\n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm\n% \usepackage[notcite]{showkeys}\n\lfoot{\footnotesize\today\ at \thistime}\n\usepackage{rotating,calc}\n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | (\section{%s} . \n\section{%s})                     | (\subsection{%s} . \n\subsection{%s})                                                                 | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) |                                           |
-| UoM-draft-org-article | \documentclass[10pt,a4paper,twoside,openright]{book}\n\usepackage{style/uomthesis}\n\input{user-defined}\n\usepackage[acronym]{glossaries}\n\input{../hg/manuscript/misc/glossary}\n\makeglossaries\n\graphicspath{{./gfx/}}\n\pretolerance=150\n\tolerance=100\n\setlength{\emergencystretch}{3em}\n\overfullrule=1mm\n% \usepackage[notcite]{showkeys}\n\lfoot{\footnotesize\today\ at \thistime}\n\usepackage{rotating,calc}\n\usepackage{booktabs,ltxtable,lscape}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | (\section{%s} . \n\section{%s})                     | (\subsection{%s} . \n\subsection{%s})                                                                 | (\subsubsection{%s} . \n\subsubsection{%s}) | (\paragraph{%s} . \n\paragraph{%s}) | (\subparagraph{%s} . \n\subparagraph{%s}) |
-| svjour-org-article    | \documentclass[12pt,natbib]{svjour3}\n\n\usepackage{amssymb}\n\n\usepackage{amsfonts}\n\n\usepackage{amsmath}\n\n\usepackage[dvips]{graphicx}\n\n\usepackage[latin1]{inputenc}\n\n\usepackage{psfrag}\n\n\usepackage{rotating}\n\n\usepackage{tabularx}\n\n\newcommand{\figfont}[1]{\large{\textbf{\textsf{#1}}}}\n\n\graphicspath{{./gfx/}}\n\n\usepackage[usenames,dvipsnames]{xcolor}\n\n\definecolor{halfgray}{gray}{0.55}\n\n\usepackage{natbib}\n\n\usepackage{multirow}\n\n\usepackage{ifpdf}\n\n\usepackage{calc}\n\n\usepackage{booktabs,ltxtable}\n\n\newcommand{\yellownote}[1]{\textbf{\textit{#1}}}\n\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                        | (\section{%s} . \section{%s})                       | (\subsection{%s} . \subsection{%s})                                                                   | (\subsubsection{%s} . \subsubsection{%s})   | (\paragraph{%s} . \paragraph{%s})   | (\subparagraph{%s} . \subparagraph{%s})   |
-| beamer-xelatex        | \documentclass[11pt]{beamer}\n\n      \mode<{{{beamermode}}}>\n\n      \usetheme{{{{beamertheme}}}}\n\n      \usecolortheme{{{{beamercolortheme}}}}\n\n      \beamertemplateballitem\n\n      \setbeameroption{show notes}\n      \usepackage[utf8]{inputenc}\n\n\usepackage[T1]{fontenc}\n\usepackage{fontspec}\n\usepackage{graphicx}\n\defaultfontfeatures{Mapping=tex-text}\n\setromanfont{Gentium}\n\setromanfont [BoldFont={Gentium Basic Bold},\n                ItalicFont={Gentium Basic Italic}]{Gentium Basic}\n\setsansfont{Charis SIL}\n\setmonofont[Scale=0.8]{DejaVu Sans Mono}\n      \usepackage{hyperref}\n\n      \usepackage{color,tabularx}\n      \usepackage[sort,round,authoryear]{natbib}\n      \usepackage{listings}\n      \lstset{numbers=none,language=[ISO]C++,tabsize=4,\n  frame=single,\n  basicstyle=\small,\n  showspaces=false,showstringspaces=false,\n  showtabs=false,\n  keywordstyle=\color{blue}\bfseries,\n  commentstyle=\color{red},\n  }\n\n      \usepackage{verbatim}\n\n      \institute{{{{beamerinstitute}}}}\n\n       \subject{{{{beamersubject}}}}\n | (\section{%s} . \section*{%s})                      | (\begin{frame}[fragile]\frametitle{%s} \end{frame} \begin{frame}[fragile]\frametitle{%s} \end{frame}) |                                             |                                     |                                           |
-| djcb-org-article      | \documentclass[11pt,a4paper]{article}\n\usepackage[T1]{fontenc}\n\usepackage{fontspec}\n\usepackage{graphicx}\n\defaultfontfeatures{Mapping=tex-text}\n\setromanfont{Gentium}\n\setromanfont [BoldFont={Gentium Basic Bold},\n                ItalicFont={Gentium Basic Italic}]{Gentium Basic}\n\setsansfont{Charis SIL}\n\setmonofont[Scale=0.8]{DejaVu Sans Mono}\n\usepackage{geometry}\n\geometry{a4paper, textwidth=6.5in, textheight=10in,\n            marginparsep=7pt, marginparwidth=.6in}\n\pagestyle{empty}\n      [NO-DEFAULT-PACKAGES]\n      [NO-PACKAGES]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | (\section{%s} . \section*{%s})                      | (\subsection{%s} . \subsection*{%s})                                                                  | (\subsubsection{%s} . \subsubsection*{%s})  | (\paragraph{%s} . \paragraph*{%s})  | (\subparagraph{%s} . \subparagraph*{%s})  |
-| letter                | \documentclass[11pt]{letter}\n\n      \usepackage[utf8]{inputenc}\n\n      \usepackage[T1]{fontenc}\n\n      \usepackage{color}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | (\section{%s} . \section*{%s})                      | (\subsection{%s} . \subsection*{%s})                                                                  | (\subsubsection{%s} . \subsubsection*{%s})  | (\paragraph{%s} . \paragraph*{%s})  | (\subparagraph{%s} . \subparagraph*{%s})  |
-| beamer2               | \documentclass[11pt]{beamer}\n\n      \mode<{{{beamermode}}}>\n\n      \usetheme{{{{beamertheme}}}}\n\n      \usecolortheme{{{{beamercolortheme}}}}\n\n      \beamertemplateballitem\n\n      \usepackage[utf8]{inputenc}\n\n      \usepackage[T1]{fontenc}\n\n      \usepackage{hyperref}\n\n      \usepackage{color,tabularx}\n      \usepackage[sort,round,authoryear]{natbib}\n      \usepackage{listings}\n      \lstset{numbers=none,language=[ISO]C++,tabsize=4,\n  frame=single,\n  basicstyle=\small,\n  showspaces=false,showstringspaces=false,\n  showtabs=false,\n  keywordstyle=\color{blue}\bfseries,\n  commentstyle=\color{red},\n  }\n\n      \usepackage{verbatim}\n\n      \institute{{{{beamerinstitute}}}}\n\n       \subject{{{{beamersubject}}}}\n                                                                                                                                                                                                                                                                                                                                  | (\section{%s} . \section*{%s})                      | (\begin{frame}[fragile]\frametitle{%s} \end{frame} \begin{frame}[fragile]\frametitle{%s} \end{frame}) |                                             |                                     |                                           |
+
 
 
 
@@ -429,10 +417,10 @@ test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and 13.816 for \alpha 
 0.001 \citep{Mardia:1972,ShannonZengEtAl:1995}.  (Further analysis of the
 critical values see Rhode [fn:Rhode])
 
-- A more recent study looking at another \SI verification statistic has been
-  published (need to look into this).
+#- A more recent study looking at another \SI verification statistic has been
+#  published (need to look into this).
 
-\citep{ChangEtAl:}
+# \citep{ChangEtAl:}
 
 \clearpage
 
