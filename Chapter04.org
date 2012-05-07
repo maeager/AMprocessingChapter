@@ -15,46 +15,44 @@
 #+LaTeX_CLASS: UoM-draft-org-article
 
 ## Write text after begin { document } 
-#+TEXT: \singlespacing{\tableofcontents\printglossaries}
-#+TEXT:\setcounter{chapter}{3}
-#+TEXT:\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
+\singlespacing{\tableofcontents\printglossaries}
+\setcounter{chapter}{3}
+\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
 
 ## set global variables for in-code blocks 
 
 * Prelude 							   :noexport:
 
 #+begin_src emacs-lisp results: silent
-  (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "pdflatex -interaction nonstopmode %f"  "pdflatex -interaction nonstopmode %f" ))
-  ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=xelatex LitReview2.pdf"))
-  ;; (setq org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf"))
-  ;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f" "makeglossaries %b" "bibtex %b"  "xelatex -interaction nonstopmode %f"  "xelatex -interaction nonstopmode %f" ))
-  (setq org-export-latex-title-command "")
-  
-  (add-to-list 'org-export-latex-classes
-               '("UoM-draft-org-article"
-                 "\\documentclass[10pt,a4paper,twoside,openright]{book}
-  \\usepackage{../hg/manuscript/style/uomthesis}
-  \\input{../hg/manuscript/user-defined}
-  \\usepackage[acronym]{glossaries}
-  \\input{../hg/manuscript/misc/glossary}
-  \\makeglossaries
-  \\graphicspath{{./gfx/}}
-  \\pretolerance=150
-  \\tolerance=100
-  \\setlength{\\emergencystretch}{3em}
-  \\overfullrule=1mm
-  % \\usepackage[notcite]{showkeys}
-  \\lfoot{\\footnotesize\\today\\ at \\thistime}
-  \\usepackage{rotating,calc}
-  \\usepackage{booktabs,ltxtable,lscape}
-        [NO-DEFAULT-PACKAGES]
-        [NO-PACKAGES]"
-                 ("\\clearpage\\section{%s}" . "\n\\clearpage\\section{%s}")
-                 ("\\subsection{%s}" . "\n\\clearpage\\subsection{%s}")
-                 ("\\subsubsection{%s}" . "\n\\subsubsection{%s}")
-                 ("\\paragraph{%s}" . "\n\\paragraph{%s}")
-                 ("\\subparagraph{%s}" . "\n\\subparagraph{%s}")))
+  (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f"
+  "makeglossaries %b" "bibtex %b" "pdflatex -interaction nonstopmode %f"
+  "pdflatex -interaction nonstopmode %f" )) 
+;; (setq org-latex-to-pdf-process  '("make BUILD_STRATEGY=xelatex LitReview2.pdf")) 
+;; (setq  org-latex-to-pdf-process '("make BUILD_STRATEGY=pdflatex LitReview2.pdf")) 
+;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f"   "makeglossaries %b" "bibtex %b" "xelatex -interaction nonstopmode %f" "xelatex  -interaction nonstopmode %f" )) 
+(setq org-export-latex-title-command "")  
+  (add-to-list 'org-export-latex-classes '("UoM-draft-org-article"
+               "\\documentclass[11pt,a4paper,twoside,openright]{book}
+               \\usepackage{../hg/manuscript/style/uomthesis}
+               \\input{../hg/manuscript/user-defined}
+               \\usepackage[acronym]{glossaries}
+               \\input{../hg/manuscript/misc/glossary} \\makeglossaries
+               \\graphicspath{{./gfx/}} \\pretolerance=150 \\tolerance=100
+               \\setlength{\\emergencystretch}{3em} \\overfullrule=1mm %
+               \\usepackage[notcite]{showkeys}
+               \\lfoot{\\footnotesize\\today\\ at \\thistime}
+               \\usepackage{rotating,calc}
+               \\usepackage{booktabs,ltxtable,lscape} [NO-DEFAULT-PACKAGES]
+               [NO-PACKAGES]" ("\\clearpage\\section{%s}"
+               . "\n\\clearpage\\section{%s}") ("\\subsection{%s}"
+               . "\n\\clearpage\\subsection{%s}") ("\\subsubsection{%s}"
+               . "\n\\subsubsection{%s}") ("\\paragraph{%s}"
+               . "\n\\paragraph{%s}") ("\\subparagraph{%s}"
+               . "\n\\subparagraph{%s}")))
+(setq org-export-latex-title-command "")  
 #+end_src
+
+#+RESULTS:
 
 
 
@@ -88,15 +86,15 @@
 
 This chapter presents the amplitude modulated coding behaviour in a
 biophysically-realistic neural network model of the cochlear nucleus. It focuses
-specifically on the microcircuit regulating the output of \TS cells.
-\TS cells provide a robust spectral representation of auditory information, and
-enhanced coding of temporal information (especially the pitch in complex
-environments \citep{KeilsonRichardsEtAl:1997}).  The model contains three
-inhibitory interneurons, each controlling the rate and temporal response of \TS
-cells.  Despite saturation of \TS units on their characteristic frequency, their
-ability to code temporal information is not disabled.  The optimal coding of
-amplitude modulation is still provided across the network, more specifically in
-lateral sidebands around the carrier frequency.
+specifically on the microcircuit regulating the output of \TS cells.  \TS cells
+provide a robust spectral representation of auditory information, and enhanced
+coding of temporal information (especially the pitch in complex environments
+\citep{KeilsonRichardsEtAl:1997}).  The model contains three inhibitory
+interneurons, each controlling the rate and temporal response of \TS cells.
+Despite saturation of \TS units on their characteristic frequency, their ability
+to code temporal information is not disabled.  The optimal coding of amplitude
+modulation is still provided across the network, more specifically in lateral
+sidebands around the carrier frequency.
 
 
 Here we simulate the \AM coding behaviour in a biophysically-realistic neural
@@ -115,11 +113,11 @@ rate (\rMTF) or temporal information (\tMTF).
 
 - Need to expand on why temporal coding is essential
  - voice communication in mammals, birds, frogs etc.
- - summary of work   \citep{JorisSchreinerEtAl:2004}
+ - summary of work \citep{JorisSchreinerEtAl:2004}
  - eg. Spectral/Rate Coding poor representation of modulated signals
     - mean rate of spikes
     - saturation at high sound level
-    - poor \SNR in auditory nerve 
+    - poor \SNR in auditory nerve
   
 The coding of \AM in neurons is measured using a \MTF, which is calculated using
 its firing rate (\rMTF) or temporal information (\tMTF). The degree of phase
@@ -127,11 +125,12 @@ locking is measured by the synchronisation coefficient or vector strength
 \citep{GoldbergBrownell:1973,GoldbergBrown:1969}.  The \SI is calculated by
 Equation \ref{eq:SI} \cite{JorisSchreinerEtAl:2004}:
 
-#+BEGIN_LaTeX
-\begin{equation} \label{eq:SI}
-   SI = \frac{1}{N} \sqrt{\left(\sum_{i}^{N} x_i \right)^{2}+\left(\sum_{i}^{N} y_i \right)^{2}}
-\end{equation} 
-#+END_LaTeX
+# #+BEGIN_LaTeX
+# \begin{equation} \label{eq:SI} 
+# SI = \frac{1}{N} \sqrt{\left(\sum_{i}^{N} x_i \right)^{2} + \left( \sum_{i}^{N} y_i \right)^{2}}
+# \end{equation}
+# #+END_LaTeX
+
 \noindent where $x_{i} = \cos\theta_{i}$, $x_{i} = \sin\theta_{i}$, and /n/ is
 the number of spike times.  Each spike is treated as a vector of unit length and
 with phase $\theta_{i}$ between 0 and $2\pi$ measured as the spike time modulo
@@ -163,7 +162,7 @@ period histogram.
  [[file:../figures/JorisAM_Fig1.png]]
 
 - Variation in sound level
-  - poor in \AN  (note measurements for f_m at \CF in most studies)
+  - poor in \AN (note measurements for f_m at \CF in most studies)
   - enhanced in T stellate cells at high \SPL
 
 #+LABEL: fig:RG94_AN
@@ -173,15 +172,14 @@ period histogram.
 
 - Variation in modulation frequency
   - definition of \MTF or \tMTF
-  - Low-pass to band-pass with high peak in vector strength. 
+  - Low-pass to band-pass with high peak in vector strength.
   - Reduced cut-off due to membrane characteristics rather than network effects.
 
 - \citet{JorisSchreinerEtAl:2004} showed the simplified temporal responses from
-  multiple studies in \ANFs and chopper units (Figure \ref{fig:AMSummary}).
+multiple studies in \ANFs and chopper units (Figure \ref{fig:AMSummary}).
 
 #+BEGIN_LaTeX:
-\begin{figure}[htb] 
-\centering
+\begin{figure}[htb] \centering
 {\hfill\includegraphics[width=0.45\linewidth,keepaspectratio]{../figures/JorisAM_Fig4A.png}\hfill%
 \includegraphics[width=0.45\linewidth,keepaspectratio]{../figures/JorisAM_Fig4B.png}\hfill}
 \caption{Simplified temporal responses of ANFs and T stellate cells. T stellate
@@ -198,8 +196,8 @@ peaks greater than ANFs (B). Figure reproduced from
   - Zilany \AN model
     - accurate synchronisation behaviour
   - Existing models not realistic
-    - Wiegrebe \& Meddis: Point neurons, strong recurrent connections,
-      operate outside physiological range
+    - Wiegrebe \& Meddis: Point neurons, strong recurrent connections, operate
+outside physiological range
     - Bahmer \& Lagner: Point neurons, hypothetical network
     - New \AN model synchronisation behaviour more accurate
 
@@ -226,11 +224,12 @@ different \TS chopper models.
 
 ** Simulations
 
-The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
-\citep{CarnevaleHines:2006}. [[latex:progname][NEURON]]'s Crank-Nicholson integration method was
-used in the simulations with time step, /dt/ = 0.05 ms, and total duration 170
-ms. Stimuli were repeated 50 times and the spike times of all \ANF and \CN units
-recorded.
+The simulations were performed using the neural simulation package
+[[latex:progname][NEURON]]
+\citep{CarnevaleHines:2006}. [[latex:progname][NEURON]]'s Crank-Nicholson
+integration method was used in the simulations with time step, /dt/ = 0.05 ms,
+and total duration 170 ms. Stimuli were repeated 50 times and the spike times of
+all \ANF and \CN units recorded.
 
 ** Output and Data Storage
 
@@ -239,7 +238,7 @@ recorded.
 ** Analysis
 
 The rate measure (\rMTF) was calculated from the mean firing rate in the \PSTH,
-between 20 ms and the end of the stimulus. 
+between 20 ms and the end of the stimulus.
 
 Temporal information was measured using the synchronisation index relative to
 the modulation frequency of the stimuli.  Vector strength and Rayleigh
@@ -254,27 +253,29 @@ after the onset of the stimulus \cite{JorisSchreinerEtAl:2004}, using
 Eq. \ref{eq:SI}:
 
 #+BEGIN_LaTeX:
-\begin{equation}\label{eq:SI}
-   SI = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
+\begin{equation}\label{eq:SIb} 
+SI = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
 \end{equation}
 #+END_LaTeX
 
 \noindent where $x_i = \cos{}\theta_i$, $x_i = \sin{}\theta_i$, and $N$ is the
 number of spike times.  Each spike is treated as a vector of unit length and
 with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
-the stimulus period, $1/f_m$.  Perfect synchronisation will give \SI = 1, whereas
-values below 0.1 are considered insignificant.  The \SI values are combined for
-each modulation frequency to create the \tMTF.
+the stimulus period, $1/f_m$.  Perfect synchronisation will give \SI = 1,
+whereas values below 0.1 are considered insignificant.  The \SI values are
+combined for each modulation frequency to create the \tMTF.
 
 *** The Rayleigh Test
 
 The Rayleigh coefficient is a statistical test used for verifying the
 significance of circular data. The Rayleigh statistic is equivalent to a
-Chi-squared test and is calculated using: $2\cdot n\cdot R^2$, where /n/ is the number
-of spikes and /R/ is the vector strength.  The critical values for the Rayleigh
-test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and 13.816 for \alpha =
-0.001 \citep{Mardia:1972,ShannonZengEtAl:1995}.  (Further analysis of the
-critical values see Rhode [fn:Rhode])
+Chi-squared test and is calculated using: $2\cdot n\cdot R^2$, where /n/ is the
+number of spikes and /R/ is the vector strength.  The critical values for the
+Rayleigh test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and 13.816
+for \alpha = 0.001 \citep{Mardia:1972,ShannonZengEtAl:1995}.  (Further analysis of
+the critical values see Rhode[fn:Rhode: See W. Rhode's analysis on the vector
+strength and Rayleigh statistic
+[[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]].])
 
 #- A more recent study looking at another \SI verification statistic has been
 #  published (need to look into this).
@@ -288,7 +289,9 @@ critical values see Rhode [fn:Rhode])
 
 ** ISSNIP results
 
-- Note the responses in the ISSNIP data was simulated with the early Bruce model and the \TS parameters were just the default values (equivalent to the \CS model)
+- Note the responses in the ISSNIP data was simulated with the early Bruce model
+  and the \TS parameters were just the default values (equivalent to the \CS
+  model)
 
 The figures below show the rate and temporal responses, across the entire
 network, to an \AM tone with carrier frequency equal to the central channel's
@@ -302,66 +305,62 @@ the top row and 60 dB \SPL for the bottom row.
  - High \SR fibres at 60 dB \SPL
 
 #+BEGIN_LaTeX
-\begin{figure}[thb]
-\centering
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\
-\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-4.png}}}\\
-\caption{Rate and temporal modulation transfer functions (MTF) of HSR auditory nerve fibres at 60 dB SPL.}
-\label{fig:ANMTF}
+\begin{figure}[thb] \centering {\hfill{ Rate (sp/s)\hfill
+Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 60
+dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-4.png}}}\\ \caption{Rate
+and temporal modulation transfer functions (MTF) of HSR auditory nerve fibres at
+60 dB SPL.}  \label{fig:ANMTF}
 \end{figure}
 #+END_LaTeX
 
 *** Model Results: Golgi Cells
 
 #+BEGIN_LaTeX:
-\begin{figure}[tb]
-\centering 
-%\caption{GLG Rate (spks/s) and SI 60 dB}
-%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-3.eps}}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-3.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\
-\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-3.png}}}\\
-\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-3.png}}}
-\caption{Golgi cell rate (rMTF) and temporal (tMTF) responses for stimulus sound levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:G}
+\begin{figure}[tb] \centering %\caption{GLG Rate (spks/s) and SI 60 dB}
+%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth}
+tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-3.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-3.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
+dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-3.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
+60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-3.png}}}
+\caption{Golgi cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
+levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:G}
 \end{figure}
 #+END_LaTeX
 
 Figure \ref{fig:G} shows the rate and temporal \MTF across the whole network to
 AM tone centred at channel 50. The Golgi units had very low rates for 40 and 60
-dB \SPL \AM tones which were limited to a narrow range around the central channel.
-The temporal response of Golgi units was almost non-existent except for very low
-modulation.
+dB \SPL \AM tones which were limited to a narrow range around the central
+channel.  The temporal response of Golgi units was almost non-existent except
+for very low modulation.
 
 *** Model Results: D Stellate Cells
 #+BEGIN_LaTeX
-\begin{figure}[tb]
-\centering 
-%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-2.eps}}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-2.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\
-\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-2.png}}}\\
-\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-2.png}}}
-\caption{DS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:DS}
+\begin{figure}[tb] \centering %{\hspace{0.2\columnwidth}rMTF (sp/s)
+\hspace{0.35\columnwidth}
+tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-2.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-2.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
+dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-2.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
+60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-2.png}}}
+\caption{DS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
+levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:DS}
 \end{figure}
 #+END_LaTeX
 The broad range of \CF inputs to \DS units allow for a greater likelihood of
 coincident detection and an increase in synchronisation relative to the inputs.
-The rate responses of \DS units (Figure \ref{fig:DS}) were wider for 40 and 60 \SPL
-stimuli relative to the narrow band \TS units.  For 40 dB \SPL stimuli, most \DS
-units had a band-pass \rMTF.  For higher \SPL, a greater number of spikes occured
-between 100 and 500 Hz for units above \CF (band-pass \rMTF), but the rest of the
-active units remained stable (low-pass \rMTF). This ``rate-responder'' behaviour
-is similar in ideal onset units in the \VCN (octopus cells) but the cut-off of
-the \rMTF is much lower. The temporal responses of \DS units were predominantly
-band-pass, with higher \SI values than \ANFs.  For lower \SPL, the responses were
-consistent across active units with a falling cut-off frequency with falling \CF.
-For high \SPL, the \DS units were divided along the central channel.  The \DS units
-above the central channel had the strongest synchronisation and cut-off
-frequencies near the upper limit of the \AN model.  The \DS units below the
-central channel had cut-off frequencies around 400 Hz, similar to \TS and \TV
-units.
+The rate responses of \DS units (Figure \ref{fig:DS}) were wider for 40 and 60
+\SPL stimuli relative to the narrow band \TS units.  For 40 dB \SPL stimuli,
+most \DS units had a band-pass \rMTF.  For higher \SPL, a greater number of
+spikes occured between 100 and 500 Hz for units above \CF (band-pass \rMTF), but
+the rest of the active units remained stable (low-pass \rMTF). This
+``rate-responder'' behaviour is similar in ideal onset units in the \VCN
+(octopus cells) but the cut-off of the \rMTF is much lower. The temporal
+responses of \DS units were predominantly band-pass, with higher \SI values than
+\ANFs.  For lower \SPL, the responses were consistent across active units with a
+falling cut-off frequency with falling \CF.  For high \SPL, the \DS units were
+divided along the central channel.  The \DS units above the central channel had
+the strongest synchronisation and cut-off frequencies near the upper limit of
+the \AN model.  The \DS units below the central channel had cut-off frequencies
+around 400 Hz, similar to \TS and \TV units.
 
 - Notes
  - "Rate-responder" \MTF characteristics
@@ -369,32 +368,30 @@ units.
    - Near perfect synchronisation
  - Level dependent
    - Wide-band onset inhibitor
-   - Golgi input suppresses saturated \AN input and provides a sustained a-phasic
-     input of \GABA inhibition
+   - Golgi input suppresses saturated \AN input and provides a sustained
+a-phasic input of \GABA inhibition
 
 *** Model Results: Tuberculoventral Cells
 
 #+BEGIN_LaTeX
-\begin{figure}[tb]
-\centering 
-%\caption{TV Rate (spks/s) and SI 60 dB}
-%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-1.eps}}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-1.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\
-\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-1.png}}}\\
-\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-1.png}}}
-\caption{TV cell rate (rMTF) and temporal (tMTF) responses for stimulus sound levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:TV}
+\begin{figure}[tb] \centering %\caption{TV Rate (spks/s) and SI 60 dB}
+%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth}
+tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-1.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-1.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
+dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-1.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
+60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-1.png}}}
+\caption{TV cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
+levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:TV}
 \end{figure}
 #+END_LaTeX
 
 The rate and temporal responses of \TV units (Figure \ref{fig:TV}) showed the
-non-linear effects of strong inhibition from \DS units. \TS and \TV units received
-similar \ANF inputs, but the inhibition limited the activity at low sound level
-and then to a narrow range at higher \SPL.  The temporal responses of \TV units
-were similar to \TS units but with lesser synchronisation and sharper cut-off.
-The outer edges of active units provided the best temporal response with little
-to no temporal information at the carrier frequency units.
+non-linear effects of strong inhibition from \DS units. \TS and \TV units
+received similar \ANF inputs, but the inhibition limited the activity at low
+sound level and then to a narrow range at higher \SPL.  The temporal responses
+of \TV units were similar to \TS units but with lesser synchronisation and
+sharper cut-off.  The outer edges of active units provided the best temporal
+response with little to no temporal information at the carrier frequency units.
 
 - Notes
  - Low rate
@@ -409,58 +406,55 @@ to no temporal information at the carrier frequency units.
   optimised Chopper parameters
   
 #+BEGIN_LaTeX:
-\begin{figure}[tb]
-\centering 
-%\caption{TS Rate (spks/s) and SI 60 dB}
-%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-0.eps}}\\
-%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-0.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\
-\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-0.png}}}\\
-\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-0.png}}}
-\caption{TS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:TS}
+\begin{figure}[tb] \centering %\caption{TS Rate (spks/s) and SI 60 dB}
+%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth}
+tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-0.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-0.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
+dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-0.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
+60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-0.png}}}
+\caption{TS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
+levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:TS}
 \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:TS} shows the final \MTF response of the \TS units in the network.
-The spread of excitation in \TS units was narrow around the central channel, with
-greater excitation above \CF around fm=300 Hz. For higher sound levels, the
-spread of excitation was wider but the rate was steadier for each stimuli.  The
-significant features of the temporal responses in the right of the figure are
-the very poor synchronisation in the central channel and dominant synchronous
-responses at the outer edge of excitation.  For 40 dB \SPL, most active units
-showed a band-pass \MTF; however, the dominant units above \CF (channels 55 to 58)
-had low-pass \MTFs.  For 60 dB \SPL, most active units showed band-pass \MTFs
-except for the central units, which showed limited results or a low-pass \MTF.
-Outermost active units (channels 65 to 60 and 45 to 40) had the most dominant
-temporal response across the \TS cell population.
+Figure \ref{fig:TS} shows the final \MTF response of the \TS units in the
+network.  The spread of excitation in \TS units was narrow around the central
+channel, with greater excitation above \CF around fm=300 Hz. For higher sound
+levels, the spread of excitation was wider but the rate was steadier for each
+stimuli.  The significant features of the temporal responses in the right of the
+figure are the very poor synchronisation in the central channel and dominant
+synchronous responses at the outer edge of excitation.  For 40 dB \SPL, most
+active units showed a band-pass \MTF; however, the dominant units above \CF
+(channels 55 to 58) had low-pass \MTFs.  For 60 dB \SPL, most active units
+showed band-pass \MTFs except for the central units, which showed limited
+results or a low-pass \MTF.  Outermost active units (channels 65 to 60 and 45
+to 40) had the most dominant temporal response across the \TS cell population.
 
 - Notes
  - Sustained chopper level independent
    - \AM rate saturation of \TS units on \CF does not disable their ability to
-     encode temporal information
+encode temporal information
  - Band-pass synchronisation
    - enhancement off-CF
  - Effects of inhibition
    - \DS : phasic inhibition
    - Golgi : slow level dependent
-   - \TV :  delayed echo suppression
-\clearpage
+   - \TV : delayed echo suppression \clearpage
 
 
 ** New Data
 
 - The following results were simulated with the newest Zilany \AN model with a
-  Cat compression audiogram
+Cat compression audiogram
 - The f_c was simulated at three values corresponding to the \CF of the chopper
-  optimisation models
+optimisation models
 
 
 *** F_0 Response: Variation in Level
 
 - The f_0 response is the behaviour characterised in
-  \citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
-  where the f_c is fixed at the \CF of the unit.
+\citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
+where the f_c is fixed at the \CF of the unit.
 
 #+LABEL: fig:F0_Rayexample
 #+ATTR_LaTeX: width=0.9\linewidth
@@ -506,7 +500,8 @@ vector strength plots using a mask.
 
 **** Golgi, DS and TV cell responses to AM 
 
-TODO show AN Golgi DS and TV in one plot then do the choppers in the next section
+TODO show AN Golgi DS and TV in one plot then do the choppers in the next
+section
 
 
 
@@ -588,9 +583,9 @@ TODO show AN Golgi DS and TV in one plot then do the choppers in the next sectio
 
 
 Golgi cells are low-firing monotonic units that influence the general
-excitability of \DS and \TS units using \GABA.  The results in
-Figure \ref{fig:GLG_AM} show that the rate response to \AM tones is only dependent
-on the sound level. The temporal response of the Golgi cell model is negligible.
+excitability of \DS and \TS units using \GABA.  The results in Figure
+\ref{fig:GLG_AM} show that the rate response to \AM tones is only dependent on
+the sound level. The temporal response of the Golgi cell model is negligible.
 
 
 
@@ -659,18 +654,9 @@ stellate network.
 
 
 # + BEGIN_LaTeX
-\newpage
-\singlespacing
-\listoftodos
-\printglossaries
-\bibliographystyle{plainnat}
-\bibliography{MyBib}
+\newpage \singlespacing \listoftodos \printglossaries
+\bibliographystyle{plainnat} \bibliography{MyBib}
 # + END_LaTeX
-
-
-* Footnotes
-
-[fn:Rhode] See W. Rhode's analysis on the vector strength and Rayleigh statistic [[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]].
 
 
 
@@ -698,17 +684,13 @@ stellate network.
 #+name: ratetemporal
 #+header: :term pngcairo size 700,524 enhanced font 'Verdana,10' 
 #+BEGIN_SRC gnuplot :export none 
-reset
-if (INDEX == "" || SPL == "") { unset output; quit} 
-set xlabel "f_m (Hz)" font "Helvetica,16"
-set ylabel "Channel Position" font "Helvetica,16"
+reset if (INDEX == "" || SPL == "") { unset output; quit} set xlabel "f_m (Hz)"
+font "Helvetica,16" set ylabel "Channel Position" font "Helvetica,16"
 
 set pm3d map
 #set logscale x 10
-set colorbox noborder
-set multiplot layout 1,2
-set xtics out ( "100" 100, "" 200, "300" 300, "" 400, "500" 500, "" 600, "700" 700, "" 800)
-unset key
+set colorbox noborder set multiplot layout 1,2 set xtics out ( "100" 100, ""
+200, "300" 300, "" 400, "500" 500, "" 600, "700" 700, "" 800) unset key
 #set logscale y 10
 set cbrange [0:400]
 #set palette model RGB
@@ -718,15 +700,12 @@ set palette rgbformulae 22,13,-31
 
 splot [50:800][0:99] datapath.spl.'response_area.'.INDEX.'.dat' u 1:2:($4*5)
 #unset palette
-unset ylabel
-unset logscale y
-set cbrange [0:1]
+unset ylabel unset logscale y set cbrange [0:1]
 #set palette model HSV rgbformulae 3,2,2
 #set palette model XYZ rgbformulae 7,5,15
 #set palette defined ( 0 0 0 0, 1 1 1 1 )
-set palette rgbformulae 7,5,15
-splot [50:800][0:99] datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3
-unset multiplot
+set palette rgbformulae 7,5,15 splot [50:800][0:99]
+datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3 unset multiplot
 #+END_SRC
 
 
@@ -761,8 +740,8 @@ unset multiplot
 ** F_0 Response: Variation in Level
 
 - The f_0 response is the behaviour characterised in
-  \citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
-  where the f_c is fixed at the \CF of the unit.
+\citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
+where the f_c is fixed at the \CF of the unit.
 
 #+NAME: F0_Rayexample
 #+begin_src octave :exports none :results file
@@ -786,23 +765,19 @@ unset multiplot
 #  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
 
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
-ii =  4
-  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
-  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
-  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
- significant = ray > 13.816;
- z0 = significant .* vs;
-  subplot(2,2,3);
-  surf([0:99],[0:5:70],vs',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
-  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
-  subplot(2,2,4);
-  surf([0:99],[0:5:70],(z0 + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
-  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ii = 4 vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]); ray =
+load([datapath "rayltest." num2str(ii) ".dat"]); maskray1 = (13.816- 9.210) *
+(ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+significant = ray > 13.816; z0 = significant .* vs; subplot(2,2,3);
+surf([0:99],[0:5:70],vs',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+subplot(2,2,4); surf([0:99],[0:5:70],(z0 +
+max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
  # ## Set CLim on both axes
  # ax = findobj(gcf,'Type','axes');
  # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
- print -dpng "gfx/F0_Rayexample.png"
- ans = "./gfx/F0_Rayexample.png"
+ print -dpng "gfx/F0_Rayexample.png" ans = "./gfx/F0_Rayexample.png"
 #+end_src
 
 
@@ -810,40 +785,33 @@ ii =  4
 #+begin_src octave :exports none :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
 #datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
-ii =  4
-  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
-  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
-  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
- significant = ray > 13.816;
- z0 = significant .* vs;
- cmap1 = hot(); cmap2=jet();
- cmap=[cmap1(64:-1:1,:);];# cmap2]; # inverse of hot and jet combined
- colormap(cmap);
- subplot(2,2,1);
- surf([0:99],[0:5:70],ray');
- set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
- subplot(1,2,2);
- surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
- set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ii = 4 vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]); ray =
+  load([datapath "rayltest." num2str(ii) ".dat"]); maskray1 = (13.816- 9.210) *
+  (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+  significant = ray > 13.816; z0 = significant .* vs; cmap1 = hot();
+  cmap2=jet(); cmap=[cmap1(64:-1:1,:);];# cmap2]; # inverse of hot and jet
+  combined colormap(cmap); subplot(2,2,1); surf([0:99],[0:5:70],ray');
+  set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel",
+  "Sound Level (dB SPL)"); subplot(1,2,2);
+  surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB
+  SPL)");
 
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
-ii =  4
-  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
-  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
-  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
- significant = ray > 13.816;
- z0 = significant .* vs;
-  subplot(2,2,3);
-  surf([0:99],[0:5:70],(vs + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
-  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
-  subplot(2,2,4);
-  surf([0:99],[0:5:70],(z0 + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
-  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+ii = 4 vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]); ray =
+load([datapath "rayltest." num2str(ii) ".dat"]); maskray1 = (13.816- 9.210) *
+(ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+significant = ray > 13.816; z0 = significant .* vs; subplot(2,2,3);
+surf([0:99],[0:5:70],(vs +
+max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+subplot(2,2,4); surf([0:99],[0:5:70],(z0 +
+max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
  # ## Set CLim on both axes
  # ax = findobj(gcf,'Type','axes');
  # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
- print -dpng "gfx/F0_Rayexample2.png"
- ans = "./gfx/F0_Rayexample2.png"
+ print -dpng "gfx/F0_Rayexample2.png" ans = "./gfx/F0_Rayexample2.png"
 #+end_src
 
 
@@ -875,8 +843,7 @@ ii =  4
   #              set xlabel 'Mod Freq (Hz)'"
   #    NOYTICS = "set format y ''; unset ylabel"
   #    YTICS = "set format y '%.0f'; set ylabel 'Channel No.'"
-      unset key
-       set multiplot layout 2, 2
+      unset key set multiplot layout 2, 2
       # set pm3d map
       # set palette @JET
       # set zrange [0:1]
@@ -886,49 +853,42 @@ ii =  4
       # @TMARGIN; @LMARGIN
        set label 1 'A' @POS
       # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
-      set xtics nomirror out
-      set border 3
-      set boxwidth 1.0 relative
-      set style fill transparent solid 0.8 
-      set ylabel "Spikes"
-      unset xlabel  
-      plot [-0.5:10.5] "<awk '/^50/ {print $2,$3}' /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/periodhist.0.dat" using 1:2  w boxes lc 'black'
+      set xtics nomirror out set border 3 set boxwidth 1.0 relative set style
+      fill transparent solid 0.8 set ylabel "Spikes" unset xlabel plot
+      [-0.5:10.5] "<awk '/^50/ {print $2,$3}'
+      /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/periodhist.0.dat"
+      using 1:2 w boxes lc 'black'
     
     
       
       # # --- GRAPH b
       #  @NOXTICS; @NOYTICS
     #    @TMARGIN; @RMARGIN
-    set ylabel "Channel No." font "Helvetica,14" 
-    set xlabel "Fm (Hz)"  font "Helvetica,14"
-    set label 1 'B' @POS textcolor rgb #FFFFFF
-    set pm3d map  
-    set logscale x 10
-    splot [50:800] "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/ratetemporal.0.dat" matrix using ($1*50):2:3
-  unset pm3d  
-    unset logscale x
+    set ylabel "Channel No." font "Helvetica,14" set xlabel "Fm (Hz)" font
+    "Helvetica,14" set label 1 'B' @POS textcolor rgb #FFFFFF set pm3d map set
+    logscale x 10 splot [50:800]
+    "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/ratetemporal.0.dat"
+    matrix using ($1*50):2:3 unset pm3d unset logscale x
     
       #  # --- GRAPH c
       #  @XTICS; @YTICS
       #  @BMARGIN; @LMARGIN
       set label 1 'C' @POS
       #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
-      set ylabel "Spikes"
-      set xlabel "Time (ms)"
-      plot [0:270] "<awk '/^50/ {print $2,$3}' /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/psth.0.dat" using 1:2  w boxes lc 'black'
+      set ylabel "Spikes" set xlabel "Time (ms)" plot [0:270] "<awk '/^50/
+      {print $2,$3}'
+      /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/psth.0.dat"
+      using 1:2 w boxes lc 'black'
       
       #  # --- GRAPH d
       #  @XTICS; @NOYTICS
       #  @BMARGIN; @RMARGIN
   
-    set ylabel "Channel No." font "Helvetica,14" 
-    set xlabel "Fm (Hz)"  font "Helvetica,14"
-    set label 1 'D' @POS textcolor rgb #FFFFFF
-    set pm3d map  
-    set logscale x 10
-    splot [50:800] "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
-  unset pm3d  
-    unset logscale x
+    set ylabel "Channel No." font "Helvetica,14" set xlabel "Fm (Hz)" font
+    "Helvetica,14" set label 1 'D' @POS textcolor rgb #FFFFFF set pm3d map set
+    logscale x 10 splot [50:800]
+    "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat"
+    matrix using ($1*50):2:3 unset pm3d unset logscale x
   
       #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
       
@@ -955,30 +915,26 @@ ii =  4
 
 #+name: AN_F0
 #+begin_src gnuplot :exports none :file ./gfx/AN_f0.png :term pngcairo size 700,524 enhanced font 'Verdana,10'
-    reset
-    load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
+    reset load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
     
     # set term pngcairo size 350,262 enhanced font 'Verdana,10'
     # set output "gfx/AN_f0.png"
     
     # Margins for each row resp. column
-    TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
-    BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
-    LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
-    RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
+    TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55" BMARGIN =
+    "set tmargin at screen 0.55; set bmargin at screen 0.20" LMARGIN = "set
+    lmargin at screen 0.15; set rmargin at screen 0.55" RMARGIN = "set lmargin
+    at screen 0.55; set rmargin at screen 0.95"
     
   #  set tics scale 0.5
   #  set ytics 1
     # Placement of the a,b,c,d labels in the graphs
-    POS = "at graph 0.92,0.9 font ',16' "
-    unset key
+    POS = "at graph 0.92,0.9 font ',16' " unset key
     # x- and ytics for each row resp. column
-    NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
-              unset xlabel"
-    XTICS = "set xtics 100,100,800;\
-              set xlabel 'Mod Freq (Hz)'"
-    NOYTICS = "set format y ''; unset ylabel"
-    YTICS = "set format y '%.0f'; set ylabel 'Channel No.'"
+    NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,''
+              800); \ unset xlabel" XTICS = "set xtics 100,100,800;\ set xlabel
+              'Mod Freq (Hz)'" NOYTICS = "set format y ''; unset ylabel" YTICS =
+              "set format y '%.0f'; set ylabel 'Channel No.'"
     
     # set multiplot layout 2,1
     # set pm3d map
@@ -1018,40 +974,33 @@ ii =  4
     
     # "ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (50*$1)
   
-    set multiplot layout 2,1
-    set size 0.89,0.3
-    set origin 0,0.7
-    set border 2
-    set ytics nomirror out
-    set logscale x 10
-    set xrange [40:1500]
-    set xtics nomirror out
+    set multiplot layout 2,1 set size 0.89,0.3 set origin 0,0.7 set border 2 set
+    ytics nomirror out set logscale x 10 set xrange [40:1500] set xtics nomirror
+    out
   #  unset xtics
-    unset xlabel
-    set ylabel "Firing Rate (sp/s)" font "Helvetica,14"
-    plot  "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l 
+    unset xlabel set ylabel "Firing Rate (sp/s)" font "Helvetica,14" plot "< ls
+    -rt
+    /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat |
+    xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l
   
-    set border 11
-    set size 1,0.7
-    set origin 0,0
+    set border 11 set size 1,0.7 set origin 0,0
     
-    set ytics nomirror out
-    set y2tics nomirror out
-    set xtics nomirror out
-    set yrange [0:1]
-    set logscale x 10
-    set logscale y2 10
-    set xrange [40:1500]
-    set xlabel "Modulation Frequency (Hz)" font "Helvetica,14"
-    set y2label "Rayleigh Test" font "Helvetica,14"
-    set ylabel "Vector Strength" font "Helvetica,14"
+    set ytics nomirror out set y2tics nomirror out set xtics nomirror out set
+    yrange [0:1] set logscale x 10 set logscale y2 10 set xrange [40:1500] set
+    xlabel "Modulation Frequency (Hz)" font "Helvetica,14" set y2label "Rayleigh
+    Test" font "Helvetica,14" set ylabel "Vector Strength" font "Helvetica,14"
     set key on inside top right
   
-    set arrow 1 from 300,13 to 1400,13  nohead
-    set arrow 1 from 300,5 to 1400,5  nohead
+    set arrow 1 from 300,13 to 1400,13 nohead set arrow 1 from 300,5 to 1400,5
+    nohead
     
-    plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 t "VS" w l lw 4 axes x1y1, \
-    "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):2 t "RayleighTest " w l axes x1y2
+    plot "< ls -rt
+    /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat|
+    xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 t "VS" w l lw 4 axes
+    x1y1, \ "< ls -rt
+    /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat|
+    xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):2 t "RayleighTest " w l
+    axes x1y2
     #
   # "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l axes x1y2
   
@@ -1067,20 +1016,17 @@ ii =  4
 #+name:TStellate_CS_F0Response
 #+begin_src octave :exports none :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/"
-for ii = 0:5
- vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath "rayltest." num2str(ii) ".dat"]);
- significant = ray > 5.991;
- z0 = significant .* vs;
- subplot(3,2,ii+1)
- imagesc([0:99],0:5:70,z0', [0 1]);axis("xy")
-end
+for ii = 0:5 vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]); ray =
+load([datapath "rayltest." num2str(ii) ".dat"]); significant = ray > 5.991; z0 =
+significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
+1]);axis("xy") end
 
 # xlim([30 60]);
- set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel", " Level (dB
+ SPL)" )
 
- print -dpng "gfx/TStellate_CS_F0Response.png"
- ans = "gfx/TStellate_CS_F0Response.png"
+ print -dpng "gfx/TStellate_CS_F0Response.png" ans =
+ "gfx/TStellate_CS_F0Response.png"
 #+end_src
 
 #+LABEL: fig:F0ResponseCS
@@ -1092,20 +1038,17 @@ end
 #+name: TStellate_CT1_F0Response
 #+begin_src octave :exports none  :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/F0Response/"
-for ii = 0:5
- vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath "rayltest." num2str(ii) ".dat"]);
- significant = ray > 5.991;
- z0 = significant .* vs;
- subplot(3,2,ii+1)
- imagesc([0:99],0:5:70,z0', [0 1]);axis("xy")
-end
+for ii = 0:5 vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]); ray =
+load([datapath "rayltest." num2str(ii) ".dat"]); significant = ray > 5.991; z0 =
+significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
+1]);axis("xy") end
 
 # xlim([30 60]);
- set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel", " Level (dB
+ SPL)" )
 
- print -dpng "gfx/TStellate_CT1_F0Response.png"
- ans = "gfx/TStellate_CT1_F0Response.png"
+ print -dpng "gfx/TStellate_CT1_F0Response.png" ans =
+ "gfx/TStellate_CT1_F0Response.png"
 #+end_src
 
 
@@ -1115,20 +1058,17 @@ end
 #+name: TStellate_CT2_F0Response
 #+begin_src octave :exports none :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/F0Response/"
-for ii = 0:5
- vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath "rayltest." num2str(ii) ".dat"]);
- significant = ray > 5.991;
- z0 = significant .* vs;
- subplot(3,2,ii+1)
- imagesc([0:99],0:5:70,z0', [0 1]);axis("xy"); shading interp;
-end
+for ii = 0:5 vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]); ray =
+load([datapath "rayltest." num2str(ii) ".dat"]); significant = ray > 5.991; z0 =
+significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
+1]);axis("xy"); shading interp; end
 
 # xlim([30 60]);
- set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel", " Level (dB
+ SPL)" )
 
- print -dpng "gfx/TStellate_CT2_F0Response.png"
- ans = "gfx/TStellate_CT2_F0Response.png"
+ print -dpng "gfx/TStellate_CT2_F0Response.png" ans =
+ "gfx/TStellate_CT2_F0Response.png"
 #+end_src
 
 
@@ -1544,33 +1484,30 @@ end
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
 ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
 
-for spl = 20:20:80
-for ii = 0:5
+for spl = 20:20:80 for ii = 0:5
 
- vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
-% vs = load ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]);
-% ray = load([datapath num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]); ray =
+ load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]); % vs = load
+ ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]); % ray = load([datapath
+ num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
 
- significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+ significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test
+ > 13.816
 # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
  z0 = significant .* vs;
 # subplot(4,6,((spl/20)-1)*6 + (ii+1));
 axes(ha(((spl/20)-1)*6 + (ii+1)));
 
 surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:25:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
-view(2);
+set(gca,"TickDir","out","XTick",[50 100:100:1200],
+"XTickLabel",{},"YTick",[0:25:100], "YTickLabel",{},"XScale","log", \ "xlim",
+[50 1200],"ylim",[0 100],"zlim",[0 1],"clim",[0 1]); view(2);
 
-%axis("xy")
-end;
-end;
+%axis("xy") end; end;
 
 # set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
 
- print -dpng "gfx/TStellate_CS_MTF.png"
- ans = "gfx/TStellate_CS_MTF.png"
+ print -dpng "gfx/TStellate_CS_MTF.png" ans = "gfx/TStellate_CS_MTF.png"
 #+end_src
 
 #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
@@ -1584,33 +1521,29 @@ end;
 #+begin_src octave :exports none :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/";
 
-ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
-for spl = 20:20:80
-for ii = 0:5
+ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01]) for spl = 20:20:80 for
+ii = 0:5
 
- vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
-% vs = load ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]);
-% ray = load([datapath num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
- significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]); ray =
+ load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]); % vs = load
+ ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]); % ray = load([datapath
+ num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]); significant = ray >
+ 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
 # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
  z0 = significant .* vs;
 # subplot(4,6,((spl/20)-1)*6 + (ii+1));
 axes(ha(((spl/20)-1)*6 + (ii+1)));
 
 surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
-set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[40   90],"zlim",[0   1],"clim",[0   1]);
-view(2);
+set(gca,"TickDir","out","XTick",[50 100:100:1200],
+"XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \ "xlim",
+[50 1200],"ylim",[40 90],"zlim",[0 1],"clim",[0 1]); view(2);
 
-%axis("xy")
-end;
-end;
+%axis("xy") end; end;
 
 # set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
 
- print -dpng "gfx/TStellate_CT1_MTF.png"
- ans = "gfx/TStellate_CT1_MTF.png"
+ print -dpng "gfx/TStellate_CT1_MTF.png" ans = "gfx/TStellate_CT1_MTF.png"
 #+end_src
 
 #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq f_m and CT1 model.
@@ -1623,14 +1556,14 @@ end;
 #+begin_src octave :exports none :results file
 datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/";
 
-ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
-for spl = 20:20:80
-for ii = 0:5
+ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01]) for spl = 20:20:80 for
+ii = 0:5
 
- vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
- ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]); ray =
+ load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
 
- significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+ significant = ray > 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test
+ > 13.816
 # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
  z0 = significant .* vs;
 
@@ -1639,21 +1572,19 @@ axes(ha(((spl/20)-1)*6 + (ii+1)));
 
 surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
 set(gca,"XTickLabel",{},"YTick",[50:10:100], "YTickLabel",{},"XScale","log", \
-"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
-view(2);
+"xlim", [50 1200],"ylim",[0 100],"zlim",[0 1],"clim",[0 1]); view(2);
 
 
-%axis("xy")
-end;
-end;
+%axis("xy") end; end;
 
 set(ha([1:7 12 13 18:24]),"TickDir","out");
 
-set(ha(19),"xlabel"," Modulation Frequency (Hz) ", "fontname","Helvetica","fontsize",20)
-set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
+set(ha(19),"xlabel"," Modulation Frequency (Hz) ",
+"fontname","Helvetica","fontsize",20) set(ha(22),"ylabel"," Channel No. ",
+"fontname","Helvetica","fontsize",20)
 
- print -r300 -depsc2 "gfx/TStellate_CT2_MTF.eps"
- ans = "gfx/TStellate_CT2_MTF.png"
+ print -r300 -depsc2 "gfx/TStellate_CT2_MTF.eps" ans =
+ "gfx/TStellate_CT2_MTF.png"
 #+end_src
 
 #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). High freq f_m and CT2 model.
@@ -1667,95 +1598,95 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 
 #+name CS_MTF
 #+begin_src gnuplot :exports none :file ./gfx/CS_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
-# :file ./gfx/CS_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
-  reset
-  ## Keep the figure clean
-    set border 0          # no borders
-    unset key
-    unset xlabel
-    unset ylabel
-    unset xtics
-    unset ytics
-    unset ztics
-    unset colorbox
-  
-  ## Apply labels
-  set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front 
-  set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front 
-  set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front 
-  set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front 
-  set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front 
-  set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front 
-  set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front 
-  set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front 
-  set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front 
-  set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front 
-  
-    set multiplot layout 4,6 scale 1.5,1.65
-    set yrange [0:100]
-    set cbrange [0:1]
-    set zrange [0:1]
-    set pm3d map
-    set palette @JET  # macro set in $HOME/.gnuplot
-    set logscale x 10
+  # :file ./gfx/CS_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders
+      unset key
+      unset xlabel
+      unset ylabel
+      unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
     
-  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
-  ## 'do' command only valid for gnuplot versions 4.5 or above
-    do for [spl = 20:80:20] {
-      do for [ii = 0:5] {     
-        splot sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using (($1+1)*50):2:3
+    ## Apply labels
+    set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front
+    set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front
+    set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front
+    set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front
+    set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front
+    set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front
+    set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front
+    set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front
+    
+      set multiplot layout 4,6 scale 1.5,1.65
+      set yrange [0:100]
+      set cbrange [0:1]
+      set zrange [0:1]
+      set pm3d map
+      set palette @JET # macro set in $HOME/.gnuplot
+      set logscale x 10
+      
+    datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+      do for [spl = 20:80:20] {
+        do for [ii = 0:5] {
+         splot      sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using      (($1+1)*50):2:3
+        }
       }
-    }
-  
+    
     unset multiplot
-#  !fixbb 'gfx/CS_MTF.eps' && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
+  #  !fixbb 'gfx/CS_MTF.eps' && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
 #+END_SRC
 
 
 #+name CT1_MTF
 #+begin_src gnuplot :exports none :file ./gfx/CT1_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
-# :file ./gfx/CT1_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
-  reset
-  ## Keep the figure clean
-    set border 0          # no borders
-    unset key
-    unset xlabel
-    unset ylabel
-    unset xtics
-    unset ytics
-    unset ztics
-    unset colorbox
-  
-  ## Apply labels
-  set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front 
-  set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front 
-  set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front 
-  set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front 
-  set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front 
-  set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front 
-  set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front 
-  set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front 
-  set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front 
-  set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front 
-  
+  # :file ./gfx/CT1_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders unset key unset xlabel unset ylabel unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
+    
+    ## Apply labels
+    set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front
+    set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front
+    set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front
+    set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front
+    set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front
+    set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front
+    set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front
+    set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front
+    
     set multiplot layout 4,6 scale 1.5,1.65
+  
+  
     set yrange [0:100]
     set cbrange [0:1]
+  
     set zrange [0:1]
     set pm3d map
-    set palette @JET  # macro set in $HOME/.gnuplot
-    set logscale x 10
-    
-  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/";
-  ## 'do' command only valid for gnuplot versions 4.5 or above
-    do for [spl = 20:80:20] {
-      do for [ii = 0:5] {     
-        splot sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using (($1+1)*50):2:3
-      }
-    }
+    set palette @JET # macro
+    set in $HOME/.gnuplot
   
+    set logscale x 10
+      
+    datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/";
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+    do for [spl = 20:80:20] {
+    do for [ii = 0:5] {
+    splot      sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using      (($1+1)*50):2:3 }
+    }
+    
     unset multiplot
-#  !fixbb 'gfx/CT1_MTF.eps' && convert -density 300 './gfx/CT1_MTF.eps' './gfx/CT1_MTF.png'
+  #  !fixbb 'gfx/CT1_MTF.eps' && convert -density 300 './gfx/CT1_MTF.eps' './gfx/CT1_MTF.png'
 #+END_SRC
 
 #+RESULTS:
@@ -1765,47 +1696,48 @@ set(ha(22),"ylabel"," Channel No. ", "fontname","Helvetica","fontsize",20)
 
 #+name CT2_MTF
 #+begin_src gnuplot :exports none :file ./gfx/CT2_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10' 
-# :file ./gfx/CT2_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
-  reset
-  ## Keep the figure clean
-    set border 0          # no borders
-    unset key
-    unset xlabel
-    unset ylabel
-    unset xtics
-    unset ytics
-    unset ztics
-    unset colorbox
-  
-  ## Apply labels
-  set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front 
-  set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front 
-  set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front 
-  set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front 
-  set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front 
-  set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front 
-  set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front 
-  set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front 
-  set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front 
-  set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front 
-  
+  # :file ./gfx/CT2_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders unset key unset xlabel unset ylabel unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
+    
+    ## Apply labels
+    set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front
+    set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front
+    set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front
+    set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front
+    set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front
+    set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front
+    set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front
+    set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front
+    
     set multiplot layout 4,6 scale 1.5,1.3
     set yrange [0:100]
     set cbrange [0:1]
     set zrange [0:1]
     set pm3d map
-    set palette @JET  # macro set in $HOME/.gnuplot
+    set palette @JET # macro set in $HOME/.gnuplot
     set logscale x 10
-    
-  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/";
-  ## 'do' command only valid for gnuplot versions 4.5 or above
-    do for [spl = 20:80:20] {
-      do for [ii = 0:5] {     
-        splot sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using (($1+1)*50):2:3
-      }
+      
+    datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/";
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+    do for [spl = 20:80:20] { do for [ii = 0:5] {
+       splot sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using (($1+1)*50):2:3 }
     }
-  
-    unset multiplot
-#  !fixbb 'gfx/CT2_MTF.eps' && convert -density 300 './gfx/CT2_MTF.eps' './gfx/CT2_MTF.png'
+      unset multiplot
+  #  !fixbb 'gfx/CT2_MTF.eps' && convert -density 300 './gfx/CT2_MTF.eps' './gfx/CT2_MTF.png'
 #+END_SRC
 
+
+
+
+
+
+* Chapter 4 Appendix
+
+* Chapter 4 Source Code
