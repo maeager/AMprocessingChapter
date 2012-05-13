@@ -225,8 +225,7 @@ different \TS chopper models.
 ** Simulations
 
 The simulations were performed using the neural simulation package
-[[latex:progname][NEURON]]
-\citep{CarnevaleHines:2006}. [[latex:progname][NEURON]]'s Crank-Nicholson
+[[latex:progname][NEURON]] \citep{CarnevaleHines:2006}, as described in Chapter \ref{chp:Methods}. [[latex:progname][NEURON]]'s Crank-Nicholson
 integration method was used in the simulations with time step, /dt/ = 0.05 ms,
 and total duration 170 ms. Stimuli were repeated 50 times and the spike times of
 all \ANF and \CN units recorded.
@@ -653,10 +652,13 @@ stellate network.
 
 
 
-# + BEGIN_LaTeX
+
+
+
+## BIBLIOGRAPHY
 \newpage \singlespacing \listoftodos \printglossaries
 \bibliographystyle{plainnat} \bibliography{MyBib}
-# + END_LaTeX
+
 
 
 
@@ -1693,7 +1695,6 @@ set(ha(19),"xlabel"," Modulation Frequency (Hz) ",
 [[file:./gfx/CT1_MTF.png]]
 
 
-
 #+name CT2_MTF
 #+begin_src gnuplot :exports none :file ./gfx/CT2_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10' 
   # :file ./gfx/CT2_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
@@ -1736,8 +1737,3 @@ set(ha(19),"xlabel"," Modulation Frequency (Hz) ",
 
 
 
-
-
-* Chapter 4 Appendix
-
-* Chapter 4 Source Code
