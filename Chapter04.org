@@ -57,7 +57,6 @@
 
 
 
-
 * Layout 							   :noexport:	
 
  | Section                  |          | Pages | Actual | \%TODO/DONE |
@@ -78,8 +77,6 @@
 
 
 #  \newpage
-
-
 
 
 * Introduction 
@@ -105,7 +102,6 @@ temporal information, particularly in the synchronisation to modulation in
 speech sounds \citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.  The coding
 of \AM in neurons is measured using a \MTF, which is calculated using its firing
 rate (\rMTF) or temporal information (\tMTF).
-
 
 
 
@@ -189,7 +185,6 @@ peaks greater than ANFs (B). Figure reproduced from
 \end{figure}
 #+END_LaTeX
 
-
 ** Existing CN Models' response to AM  
 
   - Inadequate existing \CN models
@@ -200,8 +195,6 @@ peaks greater than ANFs (B). Figure reproduced from
 outside physiological range
     - Bahmer \& Lagner: Point neurons, hypothetical network
     - New \AN model synchronisation behaviour more accurate
-
-
 
 
 
@@ -232,8 +225,6 @@ all \ANF and \CN units recorded.
 
 ** Output and Data Storage
 
-
-
 ** Analysis
 
 The rate measure (\rMTF) was calculated from the mean firing rate in the \PSTH,
@@ -257,7 +248,7 @@ SI = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{
 \end{equation}
 #+END_LaTeX
 
-\noindent where $x_i = \cos{}\theta_i$, $x_i = \sin{}\theta_i$, and $N$ is the
+\noindent where $x_i = \cos \theta_i$, $x_i = \sin \theta_i$, and $N$ is the
 number of spike times.  Each spike is treated as a vector of unit length and
 with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
 the stimulus period, $1/f_m$.  Perfect synchronisation will give \SI = 1,
@@ -268,7 +259,7 @@ combined for each modulation frequency to create the \tMTF.
 
 The Rayleigh coefficient is a statistical test used for verifying the
 significance of circular data. The Rayleigh statistic is equivalent to a
-Chi-squared test and is calculated using: $2\cdot n\cdot R^2$, where /n/ is the
+Chi-squared test and is calculated using: $2 n R^2$, where /n/ is the
 number of spikes and /R/ is the vector strength.  The critical values for the
 Rayleigh test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and 13.816
 for \alpha = 0.001 \citep{Mardia:1972,ShannonZengEtAl:1995}.  (Further analysis of
@@ -280,8 +271,6 @@ strength and Rayleigh statistic
 #  published (need to look into this).
 
 # \citep{ChangEtAl:}
-
-\clearpage
 
 
 * Results 
@@ -304,23 +293,25 @@ the top row and 60 dB \SPL for the bottom row.
  - High \SR fibres at 60 dB \SPL
 
 #+BEGIN_LaTeX
-\begin{figure}[thb] \centering {\hfill{ Rate (sp/s)\hfill
-Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 60
-dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-4.png}}}\\ \caption{Rate
-and temporal modulation transfer functions (MTF) of HSR auditory nerve fibres at
-60 dB SPL.}  \label{fig:ANMTF}
+\begin{figure}[thb] 
+\centering 
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-4.png}}}\\ 
+\caption{Rate and temporal modulation transfer functions (MTF) of HSR auditory nerve fibres at 60 dB SPL.}  \label{fig:ANMTF}
 \end{figure}
 #+END_LaTeX
 
 *** Model Results: Golgi Cells
 
 #+BEGIN_LaTeX:
-\begin{figure}[tb] \centering %\caption{GLG Rate (spks/s) and SI 60 dB}
-%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth}
-tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-3.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-3.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
-dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-3.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
-60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-3.png}}}
+\begin{figure}[tb] 
+\centering %\caption{GLG Rate (spks/s) and SI 60 dB}
+%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\ 
+%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-3.eps}}\\ 
+%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-3.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-3.png}}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-3.png}}}
 \caption{Golgi cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
 levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:G}
 \end{figure}
@@ -334,12 +325,13 @@ for very low modulation.
 
 *** Model Results: D Stellate Cells
 #+BEGIN_LaTeX
-\begin{figure}[tb] \centering %{\hspace{0.2\columnwidth}rMTF (sp/s)
-\hspace{0.35\columnwidth}
-tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-2.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-2.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
-dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-2.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
-60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-2.png}}}
+\begin{figure}[tb] 
+\centering %{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\ 
+%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-2.eps}}\\ 
+%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-2.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-2.png}}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-2.png}}}
 \caption{DS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
 levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:DS}
 \end{figure}
@@ -373,12 +365,15 @@ a-phasic input of \GABA inhibition
 *** Model Results: Tuberculoventral Cells
 
 #+BEGIN_LaTeX
-\begin{figure}[tb] \centering %\caption{TV Rate (spks/s) and SI 60 dB}
-%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth}
-tMTF}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-1.eps}}\\ %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-1.eps}}
-{\hfill{ Rate (sp/s)\hfill Temporal}}\\ \resizebox{\columnwidth}{!}{{\Huge 40
-dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-1.png}}}\\ \resizebox{\columnwidth}{!}{{\Huge
-60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-1.png}}}
+\begin{figure}[tb] 
+\centering 
+%\caption{TV Rate (spks/s) and SI 60 dB}
+%{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} tMTF}\\ 
+%\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-1.eps}}\\ 
+%\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-1.eps}}
+{\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-1.png}}}\\ 
+\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-1.png}}}
 \caption{TV cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
 levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:TV}
 \end{figure}
@@ -440,14 +435,12 @@ encode temporal information
    - Golgi : slow level dependent
    - \TV : delayed echo suppression \clearpage
 
-
 ** New Data
 
 - The following results were simulated with the newest Zilany \AN model with a
 Cat compression audiogram
 - The f_c was simulated at three values corresponding to the \CF of the chopper
 optimisation models
-
 
 *** F_0 Response: Variation in Level
 
@@ -478,7 +471,6 @@ vector strength plots using a mask.
 #+RESULTS: MTF_example
 [[file:./gfx/MTF_example.png]]
 
-
 **** TODO Auditory Nerve units
 
 
@@ -494,14 +486,12 @@ vector strength plots using a mask.
 #+CAPTION: F_0 response in auditory nerve fibres
 [[file:./gfx/AN_f0.png]]
 
-
 **** Cochlear Nucleus units
 
 **** Golgi, DS and TV cell responses to AM 
 
 TODO show AN Golgi DS and TV in one plot then do the choppers in the next
 section
-
 
 
 ***** Chopper Sustained model: Low Freq (3.9 kHz)
@@ -528,7 +518,6 @@ section
 
 
 \clearpage
-
 
 *** Modulation Transfer Function
 
@@ -577,7 +566,6 @@ section
 #+RESULTS: CS_MTF
 [[file:./gfx/CT2_MTF.png]]
 
-
 * Discussion
 
 
@@ -625,8 +613,6 @@ provide a stronger basis for optimal temporal coding of \AM than an approach
 based solely on \CF.
 
 
-
-
 * Conclusion
 
 The \CN stellate microcircuit provides controlled and modulated enhancement of
@@ -658,8 +644,6 @@ stellate network.
 ## BIBLIOGRAPHY
 \newpage \singlespacing \listoftodos \printglossaries
 \bibliographystyle{plainnat} \bibliography{MyBib}
-
-
 
 
 * Figures 							   :noexport:
@@ -710,7 +694,6 @@ set palette rgbformulae 7,5,15 splot [50:800][0:99]
 datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3 unset multiplot
 #+END_SRC
 
-
 *** fig:ANMTF
 
 
@@ -735,7 +718,6 @@ datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3 unset multiplot
 
 #+call: ratetemporal[ :file ./40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
 #+call: ratetemporal[ :file ./60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
-
 
 
 
@@ -815,7 +797,6 @@ view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
  # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
  print -dpng "gfx/F0_Rayexample2.png" ans = "./gfx/F0_Rayexample2.png"
 #+end_src
-
 
 *** Auditory Nerve units
 
@@ -1009,7 +990,6 @@ view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
     unset multiplot
 #+END_SRC
 
-
 *** Cochlear Nucleus units
 
 **** Chopper Sustained model: Low Freq (3.9 kHz)
@@ -1054,7 +1034,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
 #+end_src
 
 
-
 **** Chopper Transient 2 model: High Freq (12.9 kHz)
 
 #+name: TStellate_CT2_F0Response
@@ -1077,7 +1056,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
 
 
 \clearpage
-
 
 ** Modulation Transfer Function
 
@@ -1198,7 +1176,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
 #  ans = "gfx/MTF_example.png"
 # #+end_src
 
-
 *** MTF example2
 # # +name: MTF_example2
 # #+begin_src gnuplot :exports none :file ./gfx/MTF_example2.png :term pngcairo size 700,524 enhanced font 'Verdana,10'
@@ -1265,7 +1242,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
   
 # #+end_src
 
-
 *** MTF atCF gnuplot
 
 # #+name: MTF_atCF_gnu
@@ -1294,7 +1270,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
 #        splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
     
 # #+end_src
-
 
 *** MTF at CF
 
@@ -1410,7 +1385,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
 #  ans = "gfx/MTF_atCF.png"
 # #+end_src
 
-
 *** MTF example3 
 # # +name MTF_example3
 # #+begin_src gnuplot :exports none :file ./gfx/MTF_example3.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
@@ -1477,7 +1451,6 @@ significant .* vs; subplot(3,2,ii+1) imagesc([0:99],0:5:70,z0', [0
   
 #   unset multiplot
 # #+END_SRC
-
 
 *** Octave versions
 
@@ -1593,7 +1566,6 @@ set(ha(19),"xlabel"," Modulation Frequency (Hz) ",
 #+ATTR_LaTeX: width=0.9\linewidth
 #+LABEL: fig:CT2MTF
 [[file:./gfx/TStellate_CT2_MTF.png]]
-
 
 
 *** Gnuplot versions
