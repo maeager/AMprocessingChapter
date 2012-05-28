@@ -6,8 +6,7 @@
 #+LANGUAGE: en_GB
 #+TODO: REFTEX
 
-
-#+LATEX_HEADER:\graphicspath{{./}{./gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
+#+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/}{../VowelProcessingChapter/gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 
@@ -17,6 +16,10 @@
 ## Write text after begin { document } 
 \setcounter{chapter}{3}
 \chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
+
+## NOINCLUDE
+#\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}
+## NOINCLUDE
 
 ## set global variables for in-code blocks 
 
@@ -35,7 +38,7 @@
     \\usepackage[acronym]{glossaries}
     \\input{../hg/manuscript/misc/glossary} 
     \\makeglossaries
-    \\graphicspath{{./gfx/}} 
+    \\graphicspath{{../VowelProcessingChapter/gfx/}} 
     \\pretolerance=150 
     \\tolerance=100
     \\setlength{\\emergencystretch}{3em} 
@@ -144,7 +147,7 @@ Equation \ref{eq:SI} \cite{JorisSchreinerEtAl:2004}.
 # either technique.  The rate measure (\rMTF) is calculated from the mean firing
 # rate in the \PSTH, between 20 ms and the end of the stimulus.
 
-#+LABEL: fig:AMdef
+#+LABEL: fig:AM:def
 #+ATTR_LaTeX: width=0.8\textwidth
 #+CAPTION: [Amplitude modulation and its response in a single auditory nerve fibre]{Amplitude modulated waveform, spectrum and temporal modulation transfer function (tMTF) with low and band-pass functions typical TS cells. BMF: best modulation frequency.  Image reprinted from \citet{JorisSchreinerEtAl:2004}.}
  [[file:../figures/JorisAM_Fig1.png]]
@@ -153,10 +156,10 @@ Equation \ref{eq:SI} \cite{JorisSchreinerEtAl:2004}.
   - poor in \AN (note measurements for f_m at \CF in most studies)
   - enhanced in T stellate cells at high \SPL
 
-#+LABEL: fig:RG94_AN
+#+LABEL: fig:AM:RG94_AN
 #+ATTR_LaTeX: width=0.8\textwidth
 #+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a single \HSR \ANF. Figure reproduced from \citet{RhodeGreenberg:1994}. }
-[[file:./gfx/RG94-AN_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 - Variation in modulation frequency
   - definition of \MTF or \tMTF
@@ -164,7 +167,7 @@ Equation \ref{eq:SI} \cite{JorisSchreinerEtAl:2004}.
   - Reduced cut-off due to membrane characteristics rather than network effects.
 
 - \citet{JorisSchreinerEtAl:2004} showed the simplified temporal responses from
-multiple studies in \ANFs and chopper units (Figure \ref{fig:AMSummary}).
+multiple studies in \ANFs and chopper units (Figure \ref{fig:AM:AMSummary}).
 
 #+BEGIN_LaTeX
   \begin{figure}[htb] \centering
@@ -173,7 +176,7 @@ multiple studies in \ANFs and chopper units (Figure \ref{fig:AMSummary}).
   \caption{Simplified temporal responses of ANFs and T stellate cells. T stellate
     cells have enhanced synchronisation at high SPL (A) and a band-pass tMTF with
     peaks greater than ANFs (B). Figure reproduced from
-    \citet{JorisSchreinerEtAl:2004}.}  \label{fig:AMSummary}
+    \citet{JorisSchreinerEtAl:2004}.}  \label{fig:AM:AMSummary}
   \end{figure}
 #+END_LaTeX
 
@@ -225,7 +228,7 @@ between 20 ms and the end of the stimulus.
 
 Temporal information was measured using the synchronisation index relative to
 the modulation frequency of the stimuli.  Vector strength and Rayleigh
-coefficient were also calculated to verify the \SI values using an \FFT of the
+coefficient were also calculated to verify the \SI values using an FFT of the
 period histogram.
 # \SI values below 0.1 are considered insignificant.
 
@@ -233,7 +236,7 @@ The temporal measure used to analyse the spike output of an individual neuron
 for one \AM stimulus is called the synchronization index or vector strength
 \cite{GoldbergBrown:1969}.  The synchronisation index (SI) was calculated 20 ms
 after the onset of the stimulus \cite{JorisSchreinerEtAl:2004}, using
-Equation \ref{eq:SI}:
+Equation \ref{eq:SIb}:
 
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SIb} 
@@ -263,7 +266,7 @@ The p-values were calculated using the equation:
 
 (Further analysis of
 the critical values see W. Rhode's analysis on the vector
-strength and Rayleigh statistic [fn::
+strength and Rayleigh statistic[fn::
  [[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]].] )
 
 #- A more recent study looking at another \SI verification statistic has been
@@ -276,9 +279,7 @@ strength and Rayleigh statistic [fn::
 
 ** ISSNIP results
 
-- Note the responses in the ISSNIP data was simulated with the early Bruce model
-  and the \TS parameters were just the default values (equivalent to the \CS
-  model)
+  - Note the responses in the ISSNIP data was simulated with the early Bruce model   and the \TS parameters were just the default values (equivalent to the \ChS model)
 
 The figures below show the rate and temporal responses, across the entire
 network, to an \AM tone with carrier frequency equal to the central channel's
@@ -295,9 +296,9 @@ the top row and 60 dB \SPL for the bottom row.
   \begin{figure}[thb] 
     \centering
     {\hfill{ Rate (sp/s)\hfill Temporal}}\\
-    \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-4.png}}}\\
+    \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-4.png}}}\\
     \caption{Rate and temporal modulation transfer functions (MTF) of HSR auditory
-      nerve fibres at 60 dB SPL.}  \label{fig:ANMTF}
+      nerve fibres at 60 dB SPL.}  \label{fig:AM:ANMTF}
   \end{figure}
 #+END_LaTeX
 
@@ -310,14 +311,14 @@ the top row and 60 dB \SPL for the bottom row.
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-3.eps}}\\ 
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-3.eps}}
     {\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
-    \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-3.png}}}\\ 
-    \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-3.png}}}
+    \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-3.png}}}\\ 
+    \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-3.png}}}
     \caption{Golgi cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
-      levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:G}
+      levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:AM:G}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:G} shows the rate and temporal \MTF across the whole network to
+Figure \ref{fig:AM:G} shows the rate and temporal \MTF across the whole network to
 AM tone centred at channel 50. The Golgi units had very low rates for 40 and 60
 dB \SPL \AM tones which were limited to a narrow range around the central
 channel.  The temporal response of Golgi units was almost non-existent except
@@ -331,16 +332,16 @@ for very low modulation.
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-2.eps}}\\ 
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-2.eps}}
   {\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
-  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-2.png}}}\\ 
-  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-2.png}}}
+  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-2.png}}}\\ 
+  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-2.png}}}
   \caption{DS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
-    levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:DS}
+    levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:AM:DS}
   \end{figure}
 #+END_LaTeX
 
 The broad range of \CF inputs to \DS units allow for a greater likelihood of
 coincident detection and an increase in synchronisation relative to the inputs.
-The rate responses of \DS units (Figure \ref{fig:DS}) were wider for 40 and 60
+The rate responses of \DS units (Figure \ref{fig:AM:DS}) were wider for 40 and 60
 \SPL stimuli relative to the narrow band \TS units.  For 40 dB \SPL stimuli,
 most \DS units had a band-pass \rMTF.  For higher \SPL, a greater number of
 spikes occured between 100 and 500 Hz for units above \CF (band-pass \rMTF), but
@@ -373,14 +374,14 @@ around 400 Hz, similar to \TS and \TV units.
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-1.eps}}\\ 
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-1.eps}}
   {\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
-  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-1.png}}}\\ 
-  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-1.png}}}
+  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-1.png}}}\\ 
+  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-1.png}}}
   \caption{TV cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
-  levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:TV}
+  levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}\label{fig:AM:TV}
   \end{figure}
 #+END_LaTeX
 
-The rate and temporal responses of \TV units (Figure \ref{fig:TV}) showed the
+The rate and temporal responses of \TV units (Figure \ref{fig:AM:TV}) showed the
 non-linear effects of strong inhibition from \DS units. \TS and \TV units
 received similar \ANF inputs, but the inhibition limited the activity at low
 sound level and then to a narrow range at higher \SPL.  The temporal responses
@@ -407,15 +408,15 @@ response with little to no temporal information at the carrier frequency units.
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-0.eps}}\\ 
   %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-0.eps}}
   {\hfill{ Rate (sp/s)\hfill Temporal}}\\ 
-  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{40/ratetemporal-0.png}}}\\ 
-  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{60/ratetemporal-0.png}}}
+  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-0.png}}}\\ 
+  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-0.png}}}
   \caption{TS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
     levels 40 dB SPL (top row) and 60 dB SPL (bottom row).}
-  \label{fig:TS}
+  \label{fig:AM:TS}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:TS} shows the final \MTF response of the \TS units in the
+Figure \ref{fig:AM:TS} shows the final \MTF response of the \TS units in the
 network.  The spread of excitation in \TS units was narrow around the central
 channel, with greater excitation above \CF around fm=300 Hz. For higher sound
 levels, the spread of excitation was wider but the rate was steadier for each
@@ -455,42 +456,42 @@ optimisation models
 \citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
 where the f_c is fixed at the \CF of the unit.
 
-#+LABEL: fig:F0_Rayexample
+#+LABEL: fig:AM:F0_Rayexample
 #+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: [Rayleigh test of $F_0$ response in HSR units]{Rayleigh test of $F_0$ response in HSR units at 150 Hz (a) with accompanying mask for statistically significant values (b).  The method for improved presentation of vector strength plots for units in the stellate microcircuit uses the mask in (b).  Amplitude modulated tones at carrier frequency 8.9 kHz and modulated frequency of 150 Hz were presented from 0 to 70 db SPL ( increments of 5 dB SPL).}
 #+RESULTS: F0_Rayexample
-[[file:./gfx/F0_Rayexample.png]]
+[[file:../VowelProcessingChapter/gfx/F0_Rayexample.png]]
 
 
-#+LABEL: fig:F0_Rayexample2
+#+LABEL: fig:AM:F0_Rayexample2
 #+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: Example Rayleigh test of F0 response in HSR units
 #+RESULTS: F0_Rayexample2
-[[file:./gfx/F0_Rayexample2.png]]
+[[file:../VowelProcessingChapter/gfx/F0_Rayexample2.png]]
 
 
-Figure \ref{fig:MTFexample} demonstrates the method for removing noise in the
+Figure \ref{fig:AM:MTFexample} demonstrates the method for removing noise in the
 vector strength plots using a mask.
 
-#+LABEL: fig:MTFexample
+#+LABEL: fig:AM:MTFexample
 #+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: Method for improved presentation of vector strength in the stellate microcircuit.  Amplitude modulated tones at  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB SPL.
 #+RESULTS: MTF_example
-[[file:./gfx/MTF_example.png]]
+[[file:../VowelProcessingChapter/gfx/MTF_example.png]]
 
 **** TODO Auditory Nerve units
 
 #+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: PDTH response in auditory nerve fibres
-#+LABEL: fig:ANpsth
+#+LABEL: fig:AM:ANpsth
 #+RESULTS: AN_psth
-[[file:./gfx/AN_psth.png]]
+[[file:../VowelProcessingChapter/gfx/AN_psth.png]]
 
 
-#+LABEL: fig:anf0
+#+LABEL: fig:AM:anf0
 #+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: F_0 response in auditory nerve fibres
-[[file:./gfx/AN_f0.png]]
+[[file:../VowelProcessingChapter/gfx/AN_f0.png]]
 
 **** Cochlear Nucleus units
 
@@ -502,24 +503,24 @@ section
 
 ***** Chopper Sustained model: Low Freq (3.9 kHz)
 
-#+LABEL: fig:F0ResponseCS
+#+LABEL: fig:AM:F0ResponseCS
 #+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
 #+RESULTS: TStellate_CS_F0Response
-[[file:./gfx/TStellate_CS_F0Response.png]]
+[[file:../VowelProcessingChapter/gfx/TStellate_CS_F0Response.png]]
 
 ***** Chopper Transient 1: Mid Freq (8.2 kHz)
 
-#+LABEL: fig:F0ResponseCT1
+#+LABEL: fig:AM:F0ResponseCT1
 #+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
 #+RESULTS: TStellate_CT1_F0Response
-[[file:./gfx/TStellate_CT1_F0Response.png]]
+[[file:../VowelProcessingChapter/gfx/TStellate_CT1_F0Response.png]]
 
 ***** Chopper Transient 2 model: High Freq (12.9 kHz)
 
-#+LABEL: fig:F0ResponseCT2
+#+LABEL: fig:AM:F0ResponseCT2
 #+CAPTION: F_0 response of all 6 units at high carrier frequency (12.9 kHz). TS uses CT2 optimised model
 #+RESULTS: TStellate_CT2_F0Response
-[[file:./gfx/TStellate_CT2_F0Response.png]]
+[[file:../VowelProcessingChapter/gfx/TStellate_CT2_F0Response.png]]
 
 
 
@@ -531,47 +532,47 @@ section
 
 #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
 #+ATTR_LaTeX: width=0.9\linewidth
-#+LABEL: fig:CSMTF
+#+LABEL: fig:AM:CSMTF
 #+RESULTS: TStellate_CS_MTF
-[[file:./gfx/TStellate_CS_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/TStellate_CS_MTF.png]]
 
 
 #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq f_m and CT1 model.
 #+ATTR_LaTeX: width=0.9\linewidth
-#+LABEL: fig:CT1MTF
+#+LABEL: fig:AM:CT1MTF
 #+RESULTS: TStellate_CT1_MTF
-[[file:./gfx/TStellate_CT1_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/TStellate_CT1_MTF.png]]
 
 
 #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). High freq f_m and CT2 model.
 #+ATTR_LaTeX: width=0.9\linewidth
-#+LABEL: fig:CT2MTF
+#+LABEL: fig:AM:CT2MTF
 #+RESULTS: TStellate_CT2_MTF
-[[file:./gfx/TStellate_CT2_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/TStellate_CT2_MTF.png]]
 
 \clearpage
 
 **** Gnuplot versions
 
-#+LABEL: fig:CSMTF
+#+LABEL: fig:AM:CSMTF
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CS parameters
 #+RESULTS: CS_MTF
-[[file:./gfx/CS_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/CS_MTF.png]]
 
 
-#+LABEL: fig:CT1MTF
+#+LABEL: fig:AM:CT1MTF
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CT1 parameters
 #+RESULTS: CS_MTF
-[[file:./gfx/CT1_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/CT1_MTF.png]]
 
 
-#+LABEL: fig:CT2MTF
+#+LABEL: fig:AM:CT2MTF
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CT2 parameters
 #+RESULTS: CS_MTF
-[[file:./gfx/CT2_MTF.png]]
+[[file:../VowelProcessingChapter/gfx/CT2_MTF.png]]
 
 
 * Discussion
@@ -579,7 +580,7 @@ section
 
 Golgi cells are low-firing monotonic units that influence the general
 excitability of \DS and \TS units using \GABA.  The results in Figure
-\ref{fig:GLG_AM} show that the rate response to \AM tones is only dependent on
+\ref{fig:AM:GLG_AM} show that the rate response to \AM tones is only dependent on
 the sound level. The temporal response of the Golgi cell model is negligible.
 
 
@@ -596,8 +597,8 @@ tuning the temporal \MTF behaviour in \TS cells.
 D stellate cells have an onset chopping behaviour to tones, but can follow the
 repetition of amplitude modulated tones. The entrainment to the stimulus
 envelope produced band-pass rate \MTFs in \DS units with a \CF above $f_c$.  The
-temporal information at the channel with \CF=$f_c$ (Figure \ref{fig:DS}) was
-diminished by the strong \GABAergic inhibition of Golgi cells; however, the
+temporal information at the channel with \CF=$f_c$ (Figure \ref{fig:AM:DS}) was
+diminished by the strong GABAergic inhibition of Golgi cells; however, the
 majority of active \DS units showed strong synchronisation, which suggests
 synchronous tuning in \TV and \TS units throughout the \CN.
 
@@ -610,7 +611,7 @@ behaviour of \TS units is influenced by all three interneurons in the stellate
 microcircuit.
 
 
-\AM rate saturation of \TS units on \CF (Figure \ref{fig:TS}) does not disable
+\AM rate saturation of \TS units on \CF (Figure \ref{fig:AM:TS}) does not disable
 their ability to encode temporal information.  Experimental data has shown \TS
 cells generally have low-pass \MTF at low sound level and band-pass \MTF for
 higher sound levels for \AM tones on \CF \citep{RhodeGreenberg:1994}.  The
@@ -695,26 +696,26 @@ stellate network.
 # datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3 unset multiplot
 # #+END_SRC
 
-# *** fig:ANMTF
+# *** fig:AM:ANMTF
 
 # #+call: ratetemporal[ :file ./60/ratetemporal-4.png ](spl="60/",INDEX=4,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
 
-# *** fig:G
+# *** fig:AM:G
 
 # #+call: ratetemporal[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
 # #+call: ratetemporal[ :file ./60/ratetemporal-3.png ](spl="60/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
 
-# *** fig:DS
+# *** fig:AM:DS
 
 # #+call: ratetemporal[ :file ./40/ratetemporal-2.png ](spl="40/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
 # #+call: ratetemporal[ :file ./60/ratetemporal-2.png ](spl="60/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
 
-# *** fig:TV
+# *** fig:AM:TV
 
 # #+call: ratetemporal[ :file ./40/ratetemporal-1.png ](spl="40/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
 # #+call: ratetemporal[ :file ./60/ratetemporal-1.png ](spl="60/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
 
-# *** fig:TS
+# *** fig:AM:TS
 
 # #+call: ratetemporal[ :file ./40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
 # #+call: ratetemporal[ :file ./60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
@@ -761,7 +762,7 @@ stellate network.
 # #  # ## Set CLim on both axes
 # #  # ax = findobj(gcf,'Type','axes');
 # #  # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
-# #  print -dpng "gfx/F0_Rayexample.png" ans = "./gfx/F0_Rayexample.png"
+# #  print -dpng "gfx/F0_Rayexample.png" ans = "../VowelProcessingChapter/gfx/F0_Rayexample.png"
 # # #+end_src
 
 
@@ -1011,9 +1012,9 @@ stellate network.
 # #  "gfx/TStellate_CS_F0Response.png"
 # # #+end_src
 
-# # #+LABEL: fig:F0ResponseCS
+# # #+LABEL: fig:AM:F0ResponseCS
 # # #+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
-# # [[file:./gfx/TStellate_CS_F0Response.png]]
+# # [[file:../VowelProcessingChapter/gfx/TStellate_CS_F0Response.png]]
 
 # # **** Chopper Transient 1: Mid Freq (8.2 kHz)
 
@@ -1487,8 +1488,8 @@ stellate network.
 
 # #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
 # #+ATTR_LaTeX: width=0.9\linewidth
-# #+LABEL: fig:CSMTF
-# [[file:./gfx/TStellate_CS_MTF.png]]
+# #+LABEL: fig:AM:CSMTF
+# [[file:../VowelProcessingChapter/gfx/TStellate_CS_MTF.png]]
 
 
 
@@ -1523,8 +1524,8 @@ stellate network.
 
 # #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq f_m and CT1 model.
 # #+ATTR_LaTeX: width=0.9\linewidth
-# #+LABEL: fig:CT1MTF
-# [[file:./gfx/TStellate_CT1_MTF.png]]
+# #+LABEL: fig:AM:CT1MTF
+# [[file:../VowelProcessingChapter/gfx/TStellate_CT1_MTF.png]]
 
 
 # #+name: TStellate_CT2_MTF
@@ -1564,8 +1565,8 @@ stellate network.
 
 # #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). High freq f_m and CT2 model.
 # #+ATTR_LaTeX: width=0.9\linewidth
-# #+LABEL: fig:CT2MTF
-# [[file:./gfx/TStellate_CT2_MTF.png]]
+# #+LABEL: fig:AM:CT2MTF
+# [[file:../VowelProcessingChapter/gfx/TStellate_CT2_MTF.png]]
 
 
 # *** Gnuplot versions
