@@ -645,11 +645,10 @@ stellate network.
    - period-tagging linked to multiple auditory streams
 
 
-## BIBLIOGRAPHY
-\newpage \singlespacing \bibliographystyle{plainnat} 
-\bibliography{MyBib}
-\newpage\listoftodos
-## BIBLIOGRAPHY
+#+BEGIN_LaTeX
+  \ifthenelse{\isundefined{\manuscript}}{\newpage\singlespacing\bibliographystyle{plainnat} \bibliography{../hg/manuscript/bib/MyBib}\newpage \listoftodos}{}
+#+END_LaTeX
+
 
 # * Figures 							   :noexport:
 
