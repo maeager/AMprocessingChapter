@@ -236,10 +236,10 @@ The temporal measure used to analyse the spike output of an individual neuron
 for one \AM stimulus is called the synchronization index or vector strength
 \cite{GoldbergBrown:1969}.  The synchronisation index (SI) was calculated 20 ms
 after the onset of the stimulus \cite{JorisSchreinerEtAl:2004}, using
-Equation \ref{eq:SIb}:
+Equation \ref{eq:SI}:
 
 #+BEGIN_LaTeX
-  \begin{equation}\label{eq:SIb} 
+  \begin{equation}\label{eq:SI} 
   SI = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
   \end{equation}
 #+END_LaTeX
@@ -579,20 +579,13 @@ section
 
 
 Golgi cells are low-firing monotonic units that influence the general
-excitability of \DS and \TS units using \GABA.  The results in Figure
-\ref{fig:AM:GLG_AM} show that the rate response to \AM tones is only dependent on
+excitability of \DS and \TS units using \GABA.  The results in Figure \ref{fig:AM:G} show that the rate response to \AM tones is only dependent on
 the sound level. The temporal response of the Golgi cell model is negligible.
-
-
-
 
 The rate and temporal response of \TV cells was strongly inhibited by \DS units.
 TV cells are thought to be responsible for delayed inhibition or
 echo-suppression \citep{WickesbergOertel:1990}, but can also be involved in
 tuning the temporal \MTF behaviour in \TS cells.
-
-
-
 
 D stellate cells have an onset chopping behaviour to tones, but can follow the
 repetition of amplitude modulated tones. The entrainment to the stimulus
