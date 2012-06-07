@@ -15,7 +15,7 @@
 
 ## Write text after begin { document } 
 \setcounter{chapter}{3}
-\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}
+\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}\label{sec:Chapter4}
 
 ## NOINCLUDE
 #\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}
@@ -554,21 +554,21 @@ section
 
 **** Gnuplot versions
 
-#+LABEL: fig:AM:CSMTF
+#+LABEL: fig:AM:CSMTFg
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CS parameters
 #+RESULTS: CS_MTF
 [[file:../VowelProcessingChapter/gfx/CS_MTF.png]]
 
 
-#+LABEL: fig:AM:CT1MTF
+#+LABEL: fig:AM:CT1MTFg
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CT1 parameters
 #+RESULTS: CS_MTF
 [[file:../VowelProcessingChapter/gfx/CT1_MTF.png]]
 
 
-#+LABEL: fig:AM:CT2MTF
+#+LABEL: fig:AM:CT2MTFg
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CT2 parameters
 #+RESULTS: CS_MTF
@@ -1478,9 +1478,9 @@ stellate network.
 #  print -dpng "gfx/TStellate_CS_MTF.png" ans = "gfx/TStellate_CS_MTF.png"
 # #+end_src
 
-# #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
-# #+ATTR_LaTeX: width=0.9\linewidth
-# #+LABEL: fig:AM:CSMTF
+# # + CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
+# # + ATTR_LaTeX: width=0.9\linewidth
+# # + LABEL: fig:AM:CSMTFc
 # [[file:../VowelProcessingChapter/gfx/TStellate_CS_MTF.png]]
 
 
@@ -1516,7 +1516,7 @@ stellate network.
 
 # #+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq f_m and CT1 model.
 # #+ATTR_LaTeX: width=0.9\linewidth
-# #+LABEL: fig:AM:CT1MTF
+# # + LABEL: fig:AM:CT1MTF
 # [[file:../VowelProcessingChapter/gfx/TStellate_CT1_MTF.png]]
 
 
