@@ -15,10 +15,15 @@
 
 ## Write text after begin { document } 
 \setcounter{chapter}{3}
-\chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}\label{sec:Chapter4}
+#+LaTeX: \chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}\label{sec:Chapter4}
+
+#+BEGIN_LaTeX
+  \ifthenelse{\isundefined{\manuscript}}{\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}}{}
+#+END_LaTeX
+
 
 ## NOINCLUDE
-#\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}
+#
 ## NOINCLUDE
 
 ## set global variables for in-code blocks 
