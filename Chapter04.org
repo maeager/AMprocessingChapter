@@ -15,7 +15,7 @@
 
 ## Write text after begin { document } 
 \setcounter{chapter}{3}
-#+LaTeX: \chapter[AM and Vowel Coding]{Amplitude Modulation and Vowel Coding in the Stellate Microcircuit}\label{sec:Chapter4}
+#+LaTeX: \chapter[AM Coding in CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit}\label{sec:Chapter4}
 
 #+BEGIN_LaTeX
   \ifthenelse{\isundefined{\manuscript}}{\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}}{}
