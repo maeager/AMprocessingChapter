@@ -66,7 +66,7 @@
 
 
 
-* Layout 							   :noexport:	
+* Layout 							   :noexport:
 
  | Section                  |          | Pages | Actual | \%TODO/DONE |
  |--------------------------+----------+-------+--------+-------------|
@@ -582,15 +582,28 @@ section
 
 * Discussion
 
-
+** GLG
 Golgi cells are low-firing monotonic units that influence the general
 excitability of \DS and \TS units using \GABA.  The results in Figure \ref{fig:AM:G} show that the rate response to \AM tones is only dependent on
 the sound level. The temporal response of the Golgi cell model is negligible.
 
+
+** TV
 The rate and temporal response of \TV cells was strongly inhibited by \DS units.
 TV cells are thought to be responsible for delayed inhibition or
 echo-suppression \citep{WickesbergOertel:1990}, but can also be involved in
 tuning the temporal \MTF behaviour in \TS cells.
+
+
+** DS
+\yellownote{
+(Joris and Smith 1998) OC cells recorded from the DAS along with type II, II and IV units in DCN, DAS of cats
+AM RL < tone RL < noise RL 
+AM SI-Level  maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase is linear over SPL
+AM experiments are recorded using long AM stimuli, rate responses should be match to long tone responses as well (more significant for type IV)
+Median maxSI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs ~1000Hz
+}
+
 
 D stellate cells have an onset chopping behaviour to tones, but can follow the
 repetition of amplitude modulated tones. The entrainment to the stimulus
