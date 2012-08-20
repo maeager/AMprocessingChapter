@@ -92,15 +92,18 @@
 
 This chapter presents the amplitude modulated coding behaviour in a
 biophysically-realistic neural network model of the cochlear nucleus. It focuses
-specifically on the microcircuit regulating the output of \TS cells.  \TS cells
-provide a robust spectral representation of auditory information, and enhanced
-coding of temporal information (especially the pitch in complex environments
-\citep{KeilsonRichardsEtAl:1997}).  The model contains three inhibitory
-interneurons, each controlling the rate and temporal response of \TS cells.
-Despite saturation of \TS units on their characteristic frequency, their ability
-to code temporal information is not disabled.  The optimal coding of amplitude
-modulation is still provided across the network, more specifically in lateral
-sidebands around the carrier frequency.
+specifically on the temporal behaviour in response to sinusoidal amplitude
+modulated (AM) stimulus.  The primary output of the \CNSM model are the \TS
+cells, which provide a robust spectral representation of auditory information,
+and enhanced coding of temporal information especially the pitch in complex
+environments \citep{KeilsonRichardsEtAl:1997}.  The model contains three
+inhibitory interneurons, each controlling the rate and temporal response of \TS
+cells.  Despite rate saturation of \ANFs, the input to the \CNSM model cells,
+their ability to code temporal information is not disabled. The effects of
+intrinsic cell properties in the cells of the \CNSM model
+ The optimal coding of
+amplitude modulation is still provided across the network, more specifically in
+lateral sidebands around the carrier frequency.
 
 
 Here we simulate the \AM coding behaviour in a biophysically-realistic neural
@@ -112,6 +115,15 @@ speech sounds \citep{BlackburnSachs:1990,KeilsonRichardsEtAl:1997}.  The coding
 of \AM in neurons is measured using a \MTF, which is calculated using its firing
 rate (\rMTF) or temporal information (\tMTF).
 
+
+\yellownote{Modelling work in CN on AM tones
+
+Manuel C. Eguia a,*, Guadalupe C. Garcia a, Sebastian A. Romano b   J Neurophys Paris 2009
+
+
+
+
+}
 
 
 ** Temporal Coding in the Auditory Pathway
