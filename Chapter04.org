@@ -22,10 +22,6 @@
 #+END_LaTeX
 
 
-## NOINCLUDE
-#
-## NOINCLUDE
-
 ## set global variables for in-code blocks 
 
 * Prelude 							   :noexport:
@@ -38,10 +34,10 @@
     (setq org-export-latex-title-command "")  
     (add-to-list 'org-export-latex-classes '("UoM-draft-org-article"
     "\\documentclass[11pt,a4paper,twoside,openright]{book}
-    \\usepackage{../hg/manuscript/style/uomthesis}
-    \\input{../hg/manuscript/user-defined}
+    \\usepackage{../org-manuscript/style/uomthesis}
+    \\input{../org-manuscript/user-defined}
     \\usepackage[acronym]{glossaries}
-    \\input{../hg/manuscript/misc/glossary} 
+    \\input{../org-manuscript/misc/glossary} 
     \\makeglossaries
     \\graphicspath{{../VowelProcessingChapter/gfx/}} 
     \\pretolerance=150 
@@ -119,9 +115,6 @@ rate (\rMTF) or temporal information (\tMTF).
 \yellownote{Modelling work in CN on AM tones
 
 Manuel C. Eguia a,*, Guadalupe C. Garcia a, Sebastian A. Romano b   J Neurophys Paris 2009
-
-
-
 
 }
 
