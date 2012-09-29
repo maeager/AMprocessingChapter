@@ -11,7 +11,7 @@
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 
 #+BIBLIOGRAPHY: MyBib alphanat
-#+LaTeX_CLASS: UoM-draft-org-article
+#+LaTeX_CLASS: UoM-draft-org-articleq
 
 ## Write text after begin { document } 
 
@@ -112,11 +112,7 @@ of \AM in neurons is measured using a \MTF, which is calculated using its firing
 rate (\rMTF) or temporal information (\tMTF).
 
 
-\yellownote{Modelling work in CN on AM tones
-
-Manuel C. Eguia a,*, Guadalupe C. Garcia a, Sebastian A. Romano b   J Neurophys Paris 2009
-
-}
+\yellownote{Modelling work in CN on AM tones: Manuel C. Eguia  Guadalupe C. Garcia a, Sebastian A. Romano b   J Neurophys Paris 2009 }
 
 
 ** Temporal Coding in the Auditory Pathway
@@ -222,11 +218,10 @@ different \TS chopper models.
 
 ** Simulations
 
-The simulations were performed using the neural simulation package
-[[latex:progname][NEURON]] \citep{CarnevaleHines:2006}, as described in Chapter \ref{chp:Methods}. [[latex:progname][NEURON]]'s Crank-Nicholson
-integration method was used in the simulations with time step, /dt/ = 0.05 ms,
-and total duration 170 ms. Stimuli were repeated 50 times and the spike times of
-all \ANF and \CN units recorded.
+The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
+\citep{CarnevaleHines:2006}, as described in Chapter \ref{chp:Methods}. [[latex:progname][NEURON]]'s Crank-Nicholson integration method was used in the simulations with time step,
+/dt/ = 0.05 ms, and total duration 170 ms. Stimuli were repeated 50 times and
+the spike times of all \ANF and \CN units recorded.
 
 # ** Output and Data Storage
 # \yellownote{What are you doing here}
@@ -514,6 +509,7 @@ section
 ***** Chopper Sustained model: Low Freq (3.9 kHz)
 
 #+LABEL: fig:AM:F0ResponseCS
+#+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
 #+RESULTS: TStellate_CS_F0Response
 [[file:../VowelProcessingChapter/gfx/TStellate_CS_F0Response.png]]
@@ -521,6 +517,7 @@ section
 ***** Chopper Transient 1: Mid Freq (8.2 kHz)
 
 #+LABEL: fig:AM:F0ResponseCT1
+#+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
 #+RESULTS: TStellate_CT1_F0Response
 [[file:../VowelProcessingChapter/gfx/TStellate_CT1_F0Response.png]]
@@ -528,6 +525,7 @@ section
 ***** Chopper Transient 2 model: High Freq (12.9 kHz)
 
 #+LABEL: fig:AM:F0ResponseCT2
+#+ATTR_LaTeX: width=0.9\linewidth
 #+CAPTION: F_0 response of all 6 units at high carrier frequency (12.9 kHz). TS uses CT2 optimised model
 #+RESULTS: TStellate_CT2_F0Response
 [[file:../VowelProcessingChapter/gfx/TStellate_CT2_F0Response.png]]
@@ -584,6 +582,7 @@ section
 #+RESULTS: CS_MTF
 [[file:../VowelProcessingChapter/gfx/CT2_MTF.png]]
 
+\clearpage
 
 * Discussion
 
