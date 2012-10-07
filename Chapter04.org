@@ -11,7 +11,7 @@
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 
 #+BIBLIOGRAPHY: MyBib alphanat
-#+LaTeX_CLASS: UoM-draft-org-articleq
+#+LaTeX_CLASS: UoM-draft-org-article
 
 ## Write text after begin { document } 
 
@@ -448,6 +448,7 @@ to 40) had the most dominant temporal response across the \TS cell population.
 
 
 \clearpage
+
 ** New Data
 
 - The following results were simulated with the newest Zilany \AN model with a
@@ -583,6 +584,7 @@ section
 [[file:../VowelProcessingChapter/gfx/CT2_MTF.png]]
 
 \clearpage
+
 
 * Discussion
 
