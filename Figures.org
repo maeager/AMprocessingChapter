@@ -1118,10 +1118,10 @@ set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
 *** Gnuplot versions - datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/"
 
 #+name: TStellate_MTF
-#+header: :term pdfcairo enhanced color solid font "Helvetica,18" size 7in,5.24in
+#+header: :term postscript eps enhanced size 7.00,5.24 defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 18  
 #+begin_src gnuplot :exports none :results none
-  #:term pngcairo size 700,524 enhanced transparent font 'Helvetica,16' #'Verdana,10'
-  # :term postscript eps enhanced size 7.00,5.24 defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 16  
+  #   :term pngcairo enhanced color solid transparent nocrop font 'Verdana,11' linewidth 1.0 dashlength 1.0 size 700,524
+  # :term pdfcairo enhanced color solid font "Helvetica,18" size 700,524
   # :file ./gfx/CS_MTF.eps  
   reset
   ## Keep the figure clean
@@ -1130,28 +1130,28 @@ set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
   unset key
   unset xlabel
   unset ylabel
-  unset xtics;      set xtics border out format ""
-  unset ytics;      set ytics border out format ""
+  unset xtics;    set xtics border out format ""
+  unset ytics;    set ytics border out format ""
   unset ztics
   unset colorbox
   
   ## Apply labels
-  set label 1 "A  TS" at screen 0.0833, screen 1.0 center font "Helvetica,22" front
-  set label 2 "B  TV" at screen 0.25, screen 1.0 center font "Helvetica,22" front
-  set label 3 "C  DS" at screen 0.4166, screen 1.0 center font "Helvetica,22" front
-  set label 4 "D GLG" at screen 0.5833, screen 1.0 center font "Helvetica,22" front
-  set label 5 "E HSR" at screen 0.75, screen 1.0 center font "Helvetica,22" front
-  set label 6 "F LSR" at screen 0.916, screen 1.0 center font "Helvetica,22" front
-  set label 7 "20 dB" at screen 1.0, screen 0.875 left font "Helvetica,22" front
-  set label 8 "40 dB" at screen 1.0, screen 0.625 left font "Helvetica,22" front
-  set label 9 "60 dB" at screen 1.0, screen 0.375 left font "Helvetica,22" front
-  set label 10 "80 dB" at screen 1.0, screen 0.125 left font "Helvetica,22" front
+  set label 1 "{/Verdana=24 A}   TS" at screen 0.0733, screen 1.0 center font ",18" front
+  set label 2 "{/Verdana=24 B}   TV" at screen 0.24, screen 1.0 center font ",18" front
+  set label 3 "{/Verdana=24 C}   DS" at screen 0.4066, screen 1.0 center font ",18" front
+  set label 4 "{/Verdana=24 D}  GLG" at screen 0.5733, screen 1.0 center font ",18" front
+  set label 5 "{/Verdana=24 E}  HSR" at screen 0.74, screen 1.0 center font ",18" front
+  set label 6 "{/Verdana=24 F}  LSR" at screen 0.906, screen 1.0 center font ",18" front
+  set label 7 "20 dB" at screen 0.980, screen 0.875 left font ",22" front
+  set label 8 "40 dB" at screen 0.980, screen 0.625 left font ",22" front
+  set label 9 "60 dB" at screen 0.980, screen 0.375 left font ",22" front
+  set label 10 "80 dB" at screen 0.980, screen 0.125 left font ",22" front
   
-  set multiplot layout 4,6 scale 1.5,1.65
+  set multiplot layout 4,6 scale 1.6,1.65
   set xrange [50:1200]
   set yrange [0:100]
-  set cbrange [0.1:1] #[*:*]
-  set zrange [0.1:1] #[*:*]
+  set cbrange [0:1] #[6:*] #[0:1]
+  set zrange [0:1] #[6:*] #[0:1]
   set pm3d map
   set palette @IHOT ; #@JET # macro set in $HOME/.gnuplot
   set logscale x 10
@@ -1162,43 +1162,56 @@ set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
   ## 'do' command only valid for gnuplot versions 4.5 or above
   do for [spl = 20:80:20] {
     do for [ii in "0 1 2 3 4 5"] {
-      if (spl == 80) {
-        set xtics border in scale 1,0.5 nomirror norotate  offset character 0, 0, 0
-        set xtics autofreq  norangelimit
-        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3
+      if(spl==80) { set xtics format "%.0f"; }
+# unset xtics;  set xtics border out scale 1,0.5 nomirror norotate  offset character 0, 0, 0 format "%d";
+#           set xtics autofreq #("100" 100, "1000" 1000);
+#           set mxtics 10;
+#        print 'hello'
+#      }
+#        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3
 #        unset xtics; set xtics border out format ""
 #        unset ytics; set ytics border out format ""
-      } else {
-        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3
-      }
+#print "in spl 80"
+#      } else {
+
+        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3, \
+               sprintf("%s%d/rayltest.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:(($3>6)?-1:0)
+
+#
+#      }
     }
   }
   
   unset multiplot
-  #!fixbb 'gfx/Oct-16-12/CS_MTF.eps' 
+  #!fixbb 'gfx/Oct-16-12/CT2_MTF.eps' 
   # && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
   #  !epstopdf 'gfx/Oct-16-12/CS_MTF.eps' 
 #+END_SRC
 
 
-#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CS_MTF.pdf ](subtype="TStellate_CS") :results none :exports none
-
-#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CS_MTF.pdf ](subtype="TStellate_CS"):results none :exports none
-: ./gfx/Oct6-12/CS_MTF.pdf
-
-#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CS_MTF.png ](subtype="TStellate_CS"):results none :exports none
-file:./gfx/Oct6-12/CS_MTF.png
-
-#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CS_MTF.eps ](subtype="TStellate_CS"):results none :exports none
-=./gfx/Oct6-12/CS_MTF.eps
-==./gfx/Oct6-12/CS_MTF.eps
-==./gfx/Oct6-12/CS_MTF.eps
-file:./gfx/Oct6-12/CS_MTF.eps
+#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CS_MTF.png ](subtype="TStellate_CS") :results none :exports none
 
 
 #+call: TStellate_MTF[ :file ./gfx/Oct6-12/CT1_MTF.png ](subtype="TStellate_CT1") :results none :exports none
 
-#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.png :results none :exports none](subtype="TStellate_CT2") 
+
+#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.eps ](subtype="TStellate_CT2") :results none :exports none
+
+#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.pdf ](subtype="TStellate_CT2"):results none :exports none
+: ./gfx/Oct6-12/CT2_MTF.pdf
+
+#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.png ](subtype="TStellate_CT2"):results none :exports none
+: ./gfx/Oct6-12/CT2_MTF.png
+
+#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.eps ](subtype="TStellate_CT2"):results none :exports none
+: ./gfx/Oct6-12/CT2_MTF.eps
+
+
+
+
+
+
+
 
 
 
