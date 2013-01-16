@@ -1,7 +1,7 @@
 #+TITLE: Amplitude Modulation and Vowel Coding in the Stellate Microcircuit
 #+AUTHOR: Michael A Eager
 #+DATE:
-#+OPTIONS: toc:nil H:5 author:nil <:t >:t 
+#+OPTIONS: toc:nil H:5  <:t >:t 
 #+STARTUP: oddeven hideblocks fold align hidestars
 #+LANGUAGE: en_GB
 #+TODO: REFTEX
@@ -26,10 +26,9 @@
 
 * Prelude 							   :noexport:
 
+#+name: my-latex-export
 #+begin_src emacs-lisp results: silent
-    (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %f"
-    "makeglossaries %b" "bibtex %b" "pdflatex -interaction nonstopmode %f"
-    "pdflatex -interaction nonstopmode %f" )) 
+    (setq org-latex-to-pdf-process '("pdfquick  %f" )) 
    ;; (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f"   "makeglossaries %b" "bibtex %b" "xelatex -interaction nonstopmode %f" "xelatex  -interaction nonstopmode %f" )) 
     (setq org-export-latex-title-command "")  
     (add-to-list 'org-export-latex-classes '("UoM-draft-org-article"
@@ -55,11 +54,6 @@
   ("\\subparagraph{%s}"  . "\n\\subparagraph{%s}")))
   (setq org-export-latex-title-command "\\singlespacing{\\tableofcontents\\printglossaries}")  
 #+end_src
-
-#+RESULTS:
-: \singlespacing{\tableofcontents\printglossaries}
-
-
 
 
 * Layout 							   :noexport:
@@ -87,7 +81,7 @@
 * Introduction 
 
 This chapter presents the amplitude modulated coding behaviour in a
-biophysically-realistic neural network model of the cochlear nucleus. It focuses
+biophysically-realistic neural network model, the \CNSM model. It focuses
 specifically on the temporal behaviour in response to sinusoidal amplitude
 modulated (AM) stimulus.  The primary output of the \CNSM model are the \TS
 cells, which provide a robust spectral representation of auditory information,
@@ -127,9 +121,8 @@ rate (\rMTF) or temporal information (\tMTF).
   
 The coding of \AM in neurons is measured using a \MTF, which is calculated using
 its firing rate (\rMTF) or temporal information (\tMTF). The degree of phase
-locking is measured by the synchronisation coefficient or vector strength
-\citep{GoldbergBrownell:1973,GoldbergBrown:1969}.  The \SI is calculated by
-Equation \ref{eq:SI} \cite{JorisSchreinerEtAl:2004}.
+locking is measured by the \SI or vector strength
+\citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.
 
 # #+BEGIN_LaTeX
 # \begin{equation} \label{eq:SI} 
@@ -449,6 +442,7 @@ to 40) had the most dominant temporal response across the \TS cell population.
 
 \clearpage
 
+
 ** New Data
 
 - The following results were simulated with the newest Zilany \AN model with a
@@ -561,6 +555,18 @@ section
 
 \clearpage
 
+
+*** Combined version
+
+
+#+CAPTION:  MTF of the three chopper subtypes units and ANFs at 80 dB (top), 60 dB, 40 dB, and 20 dB SPL (bottom). Colorbar indicates SI values from 0 to 1.
+#+ATTR_LaTeX: width=1.0\linewidth  placement=[p!]
+#+LABEL: fig:AM:CombMTF
+#+RESULTS: Combined_MTF
+[[file:../VowelProcessingChapter/gfx/ChComb_MTF.pdf]]
+
+\clearpage
+
 **** Gnuplot versions
 
 #+LABEL: fig:AM:CSMTFg
@@ -573,14 +579,14 @@ section
 #+LABEL: fig:AM:CT1MTFg
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CT1 parameters
-#+RESULTS: CS_MTF
+#+RESULTS: CT1_MTF
 [[file:../VowelProcessingChapter/gfx/CT1_MTF.png]]
 
 
 #+LABEL: fig:AM:CT2MTFg
 #+ATTR_LaTeX: width=0.95\linewidth
 #+CAPTION:    AM coding in stellate microcircuit: CT2 parameters
-#+RESULTS: CS_MTF
+#+RESULTS: CT2_MTF
 [[file:../VowelProcessingChapter/gfx/CT2_MTF.png]]
 
 \clearpage
