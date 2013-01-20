@@ -2,27 +2,31 @@
 #+AUTHOR: Michael A Eager
 #+DATE:
 #+OPTIONS: toc:nil H:5  <:t >:t 
-#+STARTUP: oddeven hideblocks fold align hidestars
-#+LANGUAGE: en_GB
-#+TODO: REFTEX
-
+#+STARTUP: oddeven inlineimages hideblocks fold align hidestars
+#+SEQ_TODO:    TODO(t) INPROGRESS(i) WAITING(w@) | DONE(d) CANCELED(c@)
+#+TAGS:       Write(w) Update(u) Fix(f) Check(c) noexport(n)
+#+TODO: TODO(t) STARTED(s) | DONE(d) DEFERRED(f) REFTEX
+#+LANGUAGE: en_GB-ise-wo_accents 
+#+LaTeX_CLASS: UoM-draft-org-article
+#  # + LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage]
 #+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/}{../VowelProcessingChapter/gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
+#+LATEX_HEADER:  %\usepackage[notcite]{showkeys} 
+#+BIBLIOGRAPHY: ../MyBib alphanat
 
-#+BIBLIOGRAPHY: MyBib alphanat
-#+LaTeX_CLASS: UoM-draft-org-article
 
-## Write text after begin { document } 
+# # Write text after begin { document } 
 
-#+LaTeX:\setcounter{chapter}{3}\chapter[AM Coding in CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit}\label{sec:Chapter4}
+#+LaTeX:\setcounter{chapter}{3}
+#+LaTeX:\chapter[AM Coding in CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit}\label{sec:Chapter4}
 
 #+BEGIN_LaTeX
   %\ifthenelse{\isundefined{\manuscript}}{\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}}{}
 #+END_LaTeX
 
 
-## set global variables for in-code blocks 
+# # set global variables for in-code blocks 
 
 * Prelude 							   :noexport:
 
@@ -54,6 +58,12 @@
   ("\\subparagraph{%s}"  . "\n\\subparagraph{%s}")))
   (setq org-export-latex-title-command "\\singlespacing{\\tableofcontents\\printglossaries}")  
 #+end_src
+
+#+BEGIN_SRC emacs-lisp :export none :results none silent
+  (load-file "./init.el")
+#+END_SRC
+
+
 
 
 * Layout 							   :noexport:
@@ -189,6 +199,7 @@ multiple studies in \ANFs and chopper units (Figure \ref{fig:AM:AMSummary}).
 outside physiological range
     - Bahmer \& Lagner: Point neurons, hypothetical network
     - New \AN model synchronisation behaviour more accurate
+
 
 
 
@@ -445,8 +456,9 @@ to 40) had the most dominant temporal response across the \TS cell population.
 
 ** New Data
 
-- The following results were simulated with the newest Zilany \AN model with a
+ - The following results were simulated with the newest Zilany \AN model with a
 Cat compression audiogram
+
 - The f_c was simulated at three values corresponding to the \CF of the chopper
 optimisation models
 
@@ -594,26 +606,39 @@ section
 
 * Discussion
 
-** GLG
-Golgi cells are low-firing monotonic units that influence the general
-excitability of \DS and \TS units using \GABA.  The results in Figure \ref{fig:AM:G} show that the rate response to \AM tones is only dependent on
-the sound level. The temporal response of the Golgi cell model is negligible.
+** GLG cells
+
+Golgi cells are low-firing monotonic rate-level units that, in the \CNSM model,
+have little to no temporal response to AM tones.
+The results in Figure \ref{fig:AM:G} show that the rate response to \AM tones is
+only dependent on the sound level. 
+
+The temporal \MTF response of the \GLG cell model
+is negligible.
 
 
-** TV
+They influence the general excitability of \DS and \TS units using \GABAa
+synapses on their distal dendrites. 
+GABAergic distal inhibitory \PSPs were not shown in /in vitro/ studies \citep{FerragamoGoldingEtAl:1998a}, but application of bicuculline significantly increased the number of \APs in \DS and \TS cells.
+This slow shunting inhibition reduces the amount of \ANF excitation reaching the stellate cells' soma and its site of \AP activation.
+At high \SPL, \HSR units are rate-saturated and their temporal \MTF response diminishes with increasing sound level.
+
+ 
+** TV cells
+
 The rate and temporal response of \TV cells was strongly inhibited by \DS units.
 TV cells are thought to be responsible for delayed inhibition or
-echo-suppression \citep{WickesbergOertel:1990}, but can also be involved in
-tuning the temporal \MTF behaviour in \TS cells.
+echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in
+tuning the temporal \MTF behaviour in \TS cells at low sound levels.
 
 
-** DS
-\yellownote{
-(Joris and Smith 1998) OC cells recorded from the DAS along with type II, II and IV units in DCN, DAS of cats
-AM RL < tone RL < noise RL 
-AM SI-Level  maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase is linear over SPL
-AM experiments are recorded using long AM stimuli, rate responses should be match to long tone responses as well (more significant for type IV)
-Median maxSI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs ~1000Hz
+** DS cells
+
+\yellownote{ (Joris and Smith 1998) OC cells recorded from the DAS along with type II, II and IV units in DCN, DAS of cats
+AM RL < tone RL < noise RL. 
+AM SI-Level  maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase is linear over SPL.
+AM experiments are recorded using long AM stimuli, rate responses should be match to long tone responses as well (more significant for type IV).
+Median maxSI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs ~1000Hz.
 }
 
 
@@ -644,12 +669,17 @@ have been investigated but not fully understood
 provide a stronger basis for optimal temporal coding of \AM than an approach
 based solely on \CF.
 
+** TS cells
+
+\yellownote{TODO}
+
 
 * Conclusion
 
-The \CN stellate microcircuit provides controlled and modulated enhancement of
-the output of \TS cells, one of the major outputs of the cochlear nucleus.  This
-paper has demonstrated the need to model detailed neural microcircuits away from
+The \CNSM model provides a more realistic model of \AM coding in the output of \TS cells.  
+# controlled and modulated enhancement of
+# the output of \TS cells, one of the major outputs of the cochlear nucleus.  
+This paper has demonstrated the need to model detailed neural microcircuits away from
 basic receptive fields of individual units.  The model has been used for
 detailed optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so
 that it can be used to investigate detailed physiological properties in the \CN

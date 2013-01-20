@@ -220,7 +220,7 @@
 	    ))
 
 
-(setq org-latex-to-pdf-process '("pdfquick Chapter3")) 
+(setq org-latex-to-pdf-process '("pdfquick %b")) 
 ;; (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode -halt-on-error %f  || exit 0" 
 ;;                                  "bibtex %b" "makeglossaries %b"  "pdflatex -interaction nonstopmode %f" 
 ;;                                  "pdflatex -interaction nonstopmode %f" )) 
