@@ -2,13 +2,13 @@
 #+AUTHOR: Michael A Eager
 #+DATE:
 #+OPTIONS: toc:nil H:5  <:t >:t 
-#+STARTUP: oddeven inlineimages hideblocks fold align hidestars
+#+STARTUP: oddeven hideblocks fold align hidestars
 #+SEQ_TODO:    TODO(t) INPROGRESS(i) WAITING(w@) | DONE(d) CANCELED(c@)
 #+TAGS:       Write(w) Update(u) Fix(f) Check(c) noexport(n)
 #+TODO: TODO(t) STARTED(s) | DONE(d) DEFERRED(f) REFTEX
 #+LANGUAGE: en_GB-ise-wo_accents 
 #+LaTeX_CLASS: UoM-draft-org-article
-#  # + LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage]
+#+LaTeX_CLASS_OPTIONS: [draft,a4paper,11pt,twopage]
 #+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/}{../VowelProcessingChapter/gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
@@ -90,6 +90,12 @@
 
 * Introduction 
 
+Investigating the output responses of neurons in the \CNSM to \AM sounds is
+critical to understanding how temporal information is processed and encoded in
+the auditory nervous system. \AM is a key feature of speech and other
+biologically relevant sounds.
+
+
 This chapter presents the amplitude modulated coding behaviour in a
 biophysically-realistic neural network model, the \CNSM model. It focuses
 specifically on the temporal behaviour in response to sinusoidal amplitude
@@ -101,8 +107,7 @@ inhibitory interneurons, each controlling the rate and temporal response of \TS
 cells.  Despite rate saturation of \ANFs, the input to the \CNSM model cells,
 their ability to code temporal information is not disabled. The effects of
 intrinsic cell properties in the cells of the \CNSM model
- The optimal coding of
-amplitude modulation is still provided across the network, more specifically in
+ The optimal coding of \AM is still provided across the network, more specifically in
 lateral sidebands around the carrier frequency.
 
 
@@ -116,10 +121,16 @@ of \AM in neurons is measured using a \MTF, which is calculated using its firing
 rate (\rMTF) or temporal information (\tMTF).
 
 
-\yellownote{Modelling work in CN on AM tones: Manuel C. Eguia  Guadalupe C. Garcia a, Sebastian A. Romano b   J Neurophys Paris 2009 }
+
 
 
 ** Temporal Coding in the Auditory Pathway
+
+   \citep{FrisinaWaltonEtAl:1994}
+
+  \citep{Frisina:2001}
+
+\citep{Walton:2010} age-related alterations in the neural coding of envelope periodicity 
 
 - Need to expand on why temporal coding is essential
  - voice communication in mammals, birds, frogs etc.
@@ -129,8 +140,8 @@ rate (\rMTF) or temporal information (\tMTF).
     - saturation at high sound level
     - poor \SNR in auditory nerve
   
-The coding of \AM in neurons is measured using a \MTF, which is calculated using
-its firing rate (\rMTF) or temporal information (\tMTF). The degree of phase
+The coding of \AM in auditory neurons is measured using a \MTF, which is calculated using
+its discharge firing rate (\rMTF) or temporal information (\tMTF). The degree of phase
 locking is measured by the \SI or vector strength
 \citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.
 
@@ -200,9 +211,7 @@ outside physiological range
     - Bahmer \& Lagner: Point neurons, hypothetical network
     - New \AN model synchronisation behaviour more accurate
 
-
-
-
+\yellownote{Modelling work in CN on AM tones: Manuel C. Eguia  Guadalupe C. Garcia a, Sebastian A. Romano b   J Neurophys Paris 2009 }
 
 
 
@@ -223,7 +232,8 @@ different \TS chopper models.
 ** Simulations
 
 The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
-\citep{CarnevaleHines:2006}, as described in Chapter \ref{chp:Methods}. [[latex:progname][NEURON]]'s Crank-Nicholson integration method was used in the simulations with time step,
+\citep{CarnevaleHines:2006}, as described in Chapter \ref{chp:Methods}. [[latex:progname][NEURON]]'s
+Crank-Nicholson integration method was used in the simulations with time step,
 /dt/ = 0.05 ms, and total duration 170 ms. Stimuli were repeated 50 times and
 the spike times of all \ANF and \CN units recorded.
 
@@ -262,13 +272,14 @@ combined for each modulation frequency to create the \tMTF.
 
 # *** The Rayleigh Test
 
-The statistical test used for verifying the
-non-uniformity of circular data is the Rayleigh statistic. The Rayleigh statistic is equivalent to a
-Chi-squared test for data in uniform data and is calculated using: $2 n R^2$, where /n/ is the
-number of spikes and /R/ is the vector strength.  The critical values for the
-Rayleigh test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and 13.816
-for \alpha = 0.001 \citep{Mardia:1972,ShannonZengEtAl:1995,MardiaJupp:1999}. 
-The p-values were calculated using the equation:
+The statistical test used for verifying the non-uniformity of circular data is
+the Rayleigh statistic. The Rayleigh statistic is equivalent to a Chi-squared
+test for data in uniform data and is calculated using: $2 n R^2$, where /n/ is
+the number of spikes and /R/ is the vector strength.  The critical values for
+the Rayleigh test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and
+13.816 for \alpha = 0.001
+\citep{Mardia:1972,ShannonZengEtAl:1995,MardiaJupp:1999}.  The p-values were
+calculated using the equation:
 \begin{equation}\label{eq:p}
 \exp(\sqrt{1+4n+4(n^2-R^2)}-(1+2n))
 \end{equation}
@@ -288,7 +299,9 @@ strength and Rayleigh statistic[fn::
 
 ** ISSNIP results
 
-  - Note the responses in the ISSNIP data was simulated with the early Bruce model   and the \TS parameters were just the default values (equivalent to the \ChS model)
+  - Note the responses in the ISSNIP data was simulated with the early Bruce
+    model and the \TS parameters were just the default values (equivalent to the
+    \ChS model)
 
 The figures below show the rate and temporal responses, across the entire
 network, to an \AM tone with carrier frequency equal to the central channel's
@@ -354,9 +367,13 @@ The rate responses of \DS units (Figure \ref{fig:AM:DS}) were wider for 40 and 6
 \SPL stimuli relative to the narrow band \TS units.  For 40 dB \SPL stimuli,
 most \DS units had a band-pass \rMTF.  For higher \SPL, a greater number of
 spikes occured between 100 and 500 Hz for units above \CF (band-pass \rMTF), but
-the rest of the active units remained stable (low-pass \rMTF). This
-``rate-responder'' behaviour is similar in ideal onset units in the \VCN
-(octopus cells) but the cut-off of the \rMTF is much lower. The temporal
+the rest of the active units remained stable (low-pass \rMTF). This  behaviour
+is called ``rate-responder'' due to the firing-rate being dictated to by shortening of the $f_m$ envelope period. 
+This is similar to ideal onset units in the \VCN
+(octopus cells) but the cut-off of the \rMTF is much lower. 
+
+
+The temporal
 responses of \DS units were predominantly band-pass, with higher \SI values than
 \ANFs.  For lower \SPL, the responses were consistent across active units with a
 falling cut-off frequency with falling \CF.  For high \SPL, the \DS units were
@@ -365,8 +382,7 @@ the strongest synchronisation and cut-off frequencies near the upper limit of
 the \AN model.  The \DS units below the central channel had cut-off frequencies
 around 400 Hz, similar to \TS and \TV units.
 
-*Notes*
- - "Rate-responder" \MTF characteristics
+
  - Enhanced low-pass temporal \MTF
    - Near perfect synchronisation
  - Level dependent
@@ -404,7 +420,6 @@ response with little to no temporal information at the carrier frequency units.
  - Moderate synchronisation
     - \DS inhibition phasic
  - Level dependent
-
 
 \clearpage
 *** TS Model Results: T Stellate Cell Responses to Sinusoidal Amplitude Modulation
@@ -627,7 +642,7 @@ At high \SPL, \HSR units are rate-saturated and their temporal \MTF response dim
  
 ** TV cells
 
-The rate and temporal response of \TV cells to \AM stimuli was strongly inhibited by \DS units.
+The rate and temporal response of \TV cells was strongly inhibited by \DS units.
 TV cells are thought to be responsible for delayed inhibition or
 echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in
 tuning the temporal behaviour in \TS cells at low sound levels.
@@ -697,7 +712,7 @@ based solely on \CF.
 The \CNSM model provides a more realistic model of \AM coding in the output of \TS cells.  
 # controlled and modulated enhancement of
 # the output of \TS cells, one of the major outputs of the cochlear nucleus.  
-This chapter has demonstrated the need to model detailed neural microcircuits away from
+This chapter  has demonstrated the need to model detailed neural microcircuits away from
 basic receptive fields of individual units.  The model has been used for
 detailed optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so
 that it can be used to investigate detailed physiological properties in the \CN
