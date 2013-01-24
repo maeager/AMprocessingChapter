@@ -405,6 +405,7 @@ response with little to no temporal information at the carrier frequency units.
     - \DS inhibition phasic
  - Level dependent
 
+
 \clearpage
 *** TS Model Results: T Stellate Cell Responses to Sinusoidal Amplitude Modulation
 
@@ -626,10 +627,27 @@ At high \SPL, \HSR units are rate-saturated and their temporal \MTF response dim
  
 ** TV cells
 
-The rate and temporal response of \TV cells was strongly inhibited by \DS units.
+The rate and temporal response of \TV cells to \AM stimuli was strongly inhibited by \DS units.
 TV cells are thought to be responsible for delayed inhibition or
 echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in
-tuning the temporal \MTF behaviour in \TS cells at low sound levels.
+tuning the temporal behaviour in \TS cells at low sound levels.
+
+In general, the role of \TV cells in temporal processing is incomplete.
+\TV cells' temporal response properties are complex and non-linear 
+\citep{SpirouDavisEtAl:1999,JorisSmith:1998}. 
+
+# The second hypothesis is that the inhibitory projection from
+# DCN to VCN produces monaural echo suppression (Wickes-
+# berg and Oertel 1990). This hypothesis is based on the finding
+# that vertical cells supply a delayed, frequency specific input to
+# the VCN. Two-click data (Wickesberg 1996) provide partial
+# physiological support for this idea, but only 19% of VCN cells
+# showed the expected increase in response to the second click
+# after lidocaine injections in DCN. In general, the role of type
+# II units in temporal processing is hard to interpret because their
+# temporal properties are complex and nonlinear (Joris and
+# Smith 1998).
+
 
 
 ** DS cells
@@ -679,7 +697,7 @@ based solely on \CF.
 The \CNSM model provides a more realistic model of \AM coding in the output of \TS cells.  
 # controlled and modulated enhancement of
 # the output of \TS cells, one of the major outputs of the cochlear nucleus.  
-This paper has demonstrated the need to model detailed neural microcircuits away from
+This chapter has demonstrated the need to model detailed neural microcircuits away from
 basic receptive fields of individual units.  The model has been used for
 detailed optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so
 that it can be used to investigate detailed physiological properties in the \CN
