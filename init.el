@@ -130,41 +130,33 @@
 (setq  org-export-latex-final-hook nil)
 (add-hook 'org-export-latex-final-hook
 	  (lambda ()
+	    (setq case-fold-search nil)
 	    (goto-char (point-min))
 	    (search-forward "\\begin{document}")
 	    (push-mark)
+
 	    ;; Force hard space before references
-;	    (replace-regexp "\\( \\|\n\\)\\\\ref"
-;			    "~\\\\ref")
 	    (while (re-search-forward "\\( \\|\n\\)\\\\ref" nil t)
 	      (replace-match "~\\\\ref" nil nil))
+
 	    ;; Force space before citation
 	    (goto-char (mark))
-	    ;(replace-regexp "\\( \\|\n\\)\\\\cite"
-;			    "\\\\ \\\\cite")
 	    (while (re-search-forward "\\( \\|\n\\)\\\\cite" nil t)
 	      (replace-match "\\\\ \\\\cite" nil nil))
 
 	    ;; add shortened section titles
 	    (goto-char (mark))
-	    ;(replace-regexp "\\\\section{\\(.*\\):"
-;			    "\\\\section[\\1]{\\1:")
 	    (while (re-search-forward "\\\\section{\\(.*\\):" nil t)
 	      (replace-match "\\\\section[\\1]{\\1:" nil nil))
 
-
-	    (goto-char (mark))
 	    ;; Correct for citations immediately after an item
-	    ;(replace-regexp "item[~\\\\]"
-;			    "item ")
+	    (goto-char (mark))
 	    (while (re-search-forward "item[~\\\\]" nil t)
 	      (replace-match "item " nil nil))
 
 	    ;; Force space between double acronyms or acronyms and slashs
 	    (goto-char (mark))
-	    ;(replace-regexp "\\([A-Zu][A-Zsm]\\) \\([\\\\A-Z]\\)"
-;		    "\\1\\\\ \\2")
-	    (while (re-search-forward  "\\([A-Zu][A-Zsm]\\) \\([\\\\A-Z]\\)" nil t)
+	    (while (re-search-forward  "\\([A-Z][A-Z]\\) \\([\\\\A-Z]\\)" nil t)
 	      (replace-match "\\1\\\\ \\2" nil nil))
 
 	    ;; Acronyms or Capitals at the end of a sentence cause poor spacing.
@@ -172,38 +164,29 @@
 	    ;; (goto-char (mark))
 	    ;; (replace-regexp "\\([A-Z][A-Zs]\\)\\.\\( \\|\n\\)"
 	    ;;                 "\\1\\\\@.  \\2")
+
 	    ;; Force space after acronym '\um'
 	    (goto-char (mark))
-	    ;(replace-regexp "\\(\\\\um\\)\\( \\|\n\\)"
-;			    "\\1\\\\ \\2")
 	    (while (re-search-forward "\\(\\\\um\\)\\( \\|\n\\)" nil t)
 	      (replace-match "\\1\\\\ \\2" nil nil))
 
 	    ;; Force a space between numbers followed by text or acronym
 	    (goto-char (mark))
-	    ;(replace-regexp "\\([0-9]\\) \\([\\\\A-Za-z]\\)"
-;			    "\\1\\\\ \\2")
 	    (while (re-search-forward "\\([0-9]\\) \\([\\\\A-Za-z]\\)" nil t)
 	      (replace-match "\\1\\\\ \\2" nil nil))
 
 	    ;; Force a space between numbers followed by text or acronym
 	    (goto-char (mark))
-	    ;(replace-regexp "i\\.e\\. "
-;			    "i.e.\\\\ ")
 	    (while (re-search-forward "i\\.e\\. " nil t)
 	      (replace-match "i.e.\\\\ " nil nil))
 
 	    ;; Force  floating tables and figures to be at the top
 	    (goto-char (mark))
-	    ;(replace-regexp "htb"
-	;		    "t!")
 	    (while (re-search-forward "htb" nil t)
 	      (replace-match "t!" nil nil))
 
 	    ;; Correct org-babel source block formatted outputs
 	    (goto-char (mark))
-	    ;(replace-regexp "\\\\texttt{\\\\$\\(.*\\)\\\\$}"
-;			    "$\\1$")
 	    (while (re-search-forward "\\\\texttt{\\\\$\\(.*\\)\\\\$}" nil t)
 	      (replace-match "$\\1$" nil nil))
 
@@ -212,10 +195,10 @@
 					;                  (goto-char (mark))
 					;                  (replace-regexp "\\\\~\\{\\}"
 					;                                  "~")
-	    ;; double check \{ ... \}
-	    (goto-char (mark))
-	    (while (re-search-forward "\\\\{\\(.*\\)\\\\}" nil t)
-	      (replace-match "{\\1}" nil nil))
+	    ;; double check for bad \{ ... \} 
+;	    (goto-char (mark))
+;	    (while (re-search-forward "\\\\{\\(.*\\)\\\\}" nil t)
+;	      (replace-match "{\\1}" nil nil))
 
 	    ))
 
