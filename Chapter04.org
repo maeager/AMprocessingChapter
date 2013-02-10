@@ -257,19 +257,17 @@ the spike times of all \ANF and \CN units recorded.
 ** Rate and Temporal Analysis in Amplitude Modulation
 
 The rate measure (\rMTF) was calculated from the mean firing rate in the \PSTH,
-between 20 ms and the end of the stimulus.
-Temporal information was measured using the \SI (also called the vector strength) relative to
-the modulation frequency of the stimuli.  
-\SI and Rayleigh
-coefficient were also calculated to verify the \SI values using a fast Fourier transform of the
-period histogram.
+between 20 ms and the end of the stimulus.  Temporal information was measured
+using the \SI (also called the vector strength) relative to the modulation
+frequency of the stimuli.  \SI and Rayleigh test were also calculated to
+verify the \SI values using a fast Fourier transform of the period histogram.
 # \SI values below 0.1 are considered insignificant.
 
 The temporal measure used to analyse the spike output of an individual neuron
 for one \AM stimulus is called the synchronisation index or vector strength
 \citep{GoldbergBrown:1969}.  The synchronisation index (SI) was calculated 20 ms
-after the onset of the stimulus \citep{JorisSchreinerEtAl:2004}, using
-Equation \ref{eq:SI}:
+after the onset of the stimulus, using Equation
+\ref{eq:SI}:
 
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SI} 
@@ -278,7 +276,7 @@ Equation \ref{eq:SI}:
 #+END_LaTeX
 
 \noindent where $x_i = \cos \theta_i$, $x_i = \sin \theta_i$, and $N$ is the
-number of spike times.  Each spike is treated as a vector of unit length and
+number of spike times \citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is treated as a vector of unit length and
 with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
 the stimulus period, $1/f_m$.  Perfect synchronisation will give \SI = 1,
 whereas values below 0.1 are considered insignificant.  The \SI values are
@@ -286,17 +284,24 @@ combined for each modulation frequency to create the \tMTF.
 
 # *** The Rayleigh Test
 
-The statistical test used to verify the non-uniformity of circular data is
-the Rayleigh statistic. The Rayleigh statistic is equivalent to a Chi-squared
-test in uniform data and is calculated using $2 n R^2$, where /n/ is
-the number of spikes and /R/ is the vector strength.  The critical values for
-the Rayleigh test are 5.991 for \alpha = 0.05, 9.21 for \alpha = 0.01, and
-13.816 for \alpha = 0.001
-\citep{Mardia:1972,ShannonZengEtAl:1995,MardiaJupp:1999}.  The p-values were
-calculated using the equation:
+The statistical test used to verify the non-uniformity of circular data is the
+Rayleigh test. The Rayleigh test is equivalent to a Chi-squared test in uniform
+data. In neuroscience the Rayleigh test was originally calculated using $2 N
+(\mathsf{SI})^2$ \citep{Mardia:1972}.  The critical p-values for this Rayleigh
+test were 5.991 for \alpha = 0.05 and 13.816 for \alpha = 0.001
+\citep{ShannonZengEtAl:1995,MardiaJupp:1999}.  The preferred method for
+computing the p-value for the Rayleigh test is using a z-statistic
+\citep{Zar:1999}:
+#+BEGIN_LaTeX
+  \begin{equation}\label{eq:SI}
+ z = R^2 / N
+  \end{equation}
+#+END_LaTeX
+/noindent where is $R = N\times\mathsf{SI}$. The p-values were calculated using the
+approximation in \citet[p. 617]{Zar:1999} :
 \begin{equation}\label{eq:p}
-\exp(\sqrt{1+4n+4(n^2-R^2)}-(1+2n))
-\end{equation}.
+\exp(\sqrt{1+4N+4(N^2-R^2)}-(1+2N)).
+\end{equation}
 
 # (Further analysis of
 # the critical values see W. Rhode's analysis on the vector
@@ -308,7 +313,7 @@ calculated using the equation:
 # \citep{ChangEtAl:}
 
 
-* Results 
+* Results of Amplitude Modulation 
 
 ** f_0 Response
 
@@ -355,6 +360,7 @@ The peak SI in the map was 0.777 by unit 84 (CF 20.7 kHz) at 90 dB
 \clearpage
 
 
+** Responses to Changes in Modulation Frequency
 # ** ISSNIP results
 
 #  - Note the responses in the ISSNIP data was simulated with the early Bruce
@@ -363,14 +369,16 @@ The peak SI in the map was 0.777 by unit 84 (CF 20.7 kHz) at 90 dB
 
 The figures below show the rate and temporal responses, across the entire
 network, to an \AM tone with carrier frequency 8.91 kHz .  Modulation frequency
-ranged from 50 to 1200 Hz in 50 Hz steps.  Each figure shows the mean firing rate (rMTF) on the left
-and the synchronisation index (tMTF) on the right. 
-The SI values were masked in white if the Rayleigh coefficient were not above 13.681 (\alpha < 0.001).  
+ranged from 50 to 1200 Hz in 50 Hz steps.  Each figure shows the mean firing
+rate (rMTF) on the left and the synchronisation index (tMTF) on the right.  The
+SI values were masked in white if the Rayleigh coefficient were not above 13.681
+(\alpha < 0.001).
 
 # The sound level of each stimulus
 # was set to 40 dB \SPL for the top row and 60 dB \SPL for the bottom row.
 
-*** ANF Model Results: ANF Responses to changes in modulation frequency 
+
+*** ANF Model Results
 
 Figure \ref{fig:AM:HSRMTF} shows the rate and temporal \MTF maps of \HSR \ANFs
 to \AM tones with $f_c=8.91$ kHz.  \HSR fibres saturate to pure \CF tones at 40
@@ -384,7 +392,8 @@ greater than the unit closest to f_c (unit 65, CF 8.9 kHz).
 
 Temporal information in \HSR at each of the corresponding stimulus intensities
 (Figures \ref{fig:AM:HSRMTF}B, D and F) is strongest near the edges of
-excitation and provides little to no information at units with CF's near the f_c frequency.
+excitation and provides little to no information at units with CF's near the f_c
+frequency.
 
 
 # saturation is broadest at high f_m
@@ -438,13 +447,15 @@ units 77 (CF 15.95 kHz) and 78 (CF 16.67 kHz) both had a mean SI of 0.75.
 
 
 #+name: mean_vsSPIKES_onCF
-#+BEGIN_SRC sh :export none :results none
-  grep -e '^[[:digit:]]*[[:space:]]*65' ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat | \
-  awk 'BEGIN{count=0;total=0;} {total+=$4; count+=1} END {printf("%0.3g",total/count)}'
+#+header: :exports none  :results silent 
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat  
+  BEGIN{count=0;total=0;} 
+  {if ($2 == 65){total+=$4; count+=1}} 
+  END{printf("%0.3g",total/count)}
 #+END_SRC
 
-
-*** Golgi cell model responses to  changes in modulation frequency
+\clearpage
+*** Golgi cell model 
 
 
 #+BEGIN_LaTeX
@@ -463,47 +474,38 @@ units 77 (CF 15.95 kHz) and 78 (CF 16.67 kHz) both had a mean SI of 0.75.
    \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:G} shows the rate and temporal \MTF across the whole network to
-AM tone centred at 8.9 kHz. The GLG cell model's r\MTFs were typically low-pass  mimicking the rate behaviour of \LSR, its primary source of excitation.
-The Golgi cell units had very low rates for 40 and 60
-dB \SPL \AM tones which were limited to a narrow range around the central
-frequency.    
+Figure \ref{fig:AM:G} shows the rate and temporal \MTF across the whole network
+to AM tone centred at 8.9 kHz. The GLG cell model's r\MTFs were typically
+low-pass mimicking the rate behaviour of \LSR, its primary source of excitation.
+The Golgi cell units had very low rates for 40 and 60 dB \SPL \AM tones which
+were limited to a narrow range around the central frequency.
 
 The temporal \MTFs of Golgi units was significantly diminished relative to \LSR
 fibres. The Golgi smoothing filter used in the GLG cell model contributes to the
 reduction of temporal information.  The peak temporal responses of the GLG cell
 model occurred at low f_m with a rapid drop off in SI around 350 Hz.  The on-CF
-unit had a flat low-pass tMTF before its Rayleigh
-coefficient dropped below the threshold. Its mean SI was 0.571, 0.376, 0.295, 0.218
-at stimulus intensities 20, 40, 60, and 80 dB SPL. 
-  At the highest intensity, 80
-dB \SPL in Figure \ref{fig:AM:G}B, units furthest from the carrier frequency had
-greater temporal information (max SI 0.715, unit 77 CF 15.27 kHz), however with
-firing rates near threshold their effects on other neurons in the \CNSM model are
-predominantly rate-based.
+unit had a flat low-pass tMTF before its Rayleigh test dropped below the
+threshold. Its mean SI from 50 to 1200 Hz (excluding values when the Rayleigh
+test was below threshold) was 0.571, 0.376, 0.295, 0.218 at stimulus
+intensities 20, 40, 60, and 80 dB SPL, respectively.  At the highest intensity,
+80 dB \SPL in Figure \ref{fig:AM:G}B, units furthest from the carrier frequency
+had greater temporal information (max SI 0.715, unit 77 CF 15.27 kHz), however
+with firing rates near threshold their effects on other neurons in the \CNSM
+model are predominantly rate-based.
 
 # 40dB SPL  unit 77 15.26 kHz 0.948
 
 # the on CF unit had a mean SI response of 0.218 
 
 #+name: mean_Gvs_eightydB  
-#+BEGIN_SRC sh :export none :results raw replace
+#+BEGIN_SRC sh :exports none :results raw replace
 grep -e '^[[:digit:]]* 65' ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}' 
 #+END_SRC
 
-#+RESULTS: mean_Gvs_eightydB
-
-
-
-
-
-
-
-
-
 
 \clearpage
-*** DS Model Results: D Stellate Cell Responses to Sinusoidal Amplitude Modulation
+
+*** DS cell model 
 
 #+BEGIN_LaTeX
   \begin{figure}[tb] 
@@ -546,8 +548,9 @@ cut-off frequencies around 400 Hz, similar to \TS and \TV units.
 #   - Wide-band onset inhibitor
 #   - Golgi input suppresses saturated \AN input and provides a sustained a-phasic input of \GABA inhibition
 
+
 \clearpage
-*** TV Model Results: Tuberculoventral Cell Responses to Sinusoidal Amplitude Modulation
+*** TV cell model 
 
 #+BEGIN_LaTeX
   \begin{figure}[tb] 
@@ -580,8 +583,9 @@ response with little to no temporal information at the carrier frequency units.
 #     - \DS inhibition phasic
 #  - Level dependent
 
+
 \clearpage
-*** TS Model Results: T Stellate Cell Responses to Sinusoidal Amplitude Modulation
+*** TS cell model: Sustained Chopper
 
 \yellownote{ this section was simulated with default \TS parameters, see new data for optimised Chopper parameters}
   
@@ -631,11 +635,10 @@ to 40) had the most dominant temporal response across the \TS cell population.
 
 \clearpage
 
-
 ** New Data :noexport:
 
 # - The following results were simulated with the newest Zilany \AN model with a
-#Cat compression audiogram
+# Cat compression audiogram
 
 #- The f_c was simulated at three values corresponding to the \CF of the chopper
 #optimisation models
@@ -785,40 +788,49 @@ section
 
 * Discussion
 
-The results demonstrate the capacity to simulate \AM coding over the whole \CN
+The results in this chapter demonstrate the capacity to simulate \AM coding over the whole \CN
 stellate network.  In doing so, this work shows the success of the
 \CNSM model in reproducing responses to complex stimuli.
 
 
-
 ** GLG cells
 
+\GLG cells' influence in the \CNSM model is through \GABA-ergic synapses with
+\DS and \TS cells on their distal dendrites.  GABAergic distal inhibitory \PSPs
+have not been shown in /in vitro/ studies \citep{FerragamoGoldingEtAl:1998a},
+but application of bicuculline significantly increased the number of \APs in \DS
+and \TS cells.  This slow shunting inhibition reduces the amount of \ANF
+excitation reaching the stellate cells' soma and its site of \AP activation.  At
+high \SPL, \HSR fibres are rate-saturated and their temporal \MTF response
+diminishes with increasing sound level.
+
 Golgi cells are low-firing monotonic rate-level units that, in the \CNSM model,
-have little to no temporal response to AM tones.
-The results in Figure \ref{fig:AM:G} show that the rate response to \AM tones is
-only dependent on the sound level. 
+have little to no temporal response to AM tones.  The results in Figure
+\ref{fig:AM:G} show that response of the \GLG cell model to \AM tones is only
+dependent on the sound level and that the temporal response is negligible.  The
+high temporal information from individual \LSR \ANFs, the main excitatory input
+of the \GLG cell model, would suggest Golgi cells would pass some of this
+information on.  Convergence of fibres with different \CFs, hence different
+delays, reduces the likelihood of coincident inputs. This mechanism is unlikely
+to cause a severe reduction in temporal information, with the example being \DS
+cells with a wider \CF convergence of \ANFs.  Intrinsic mechanisms in the cell
+membrane play a significant role in limiting temporal information.  The envelope
+of synaptic input is drowned out by the synaptic-dendritic smoothing function of
+the model.  The low-pass filter limits the post-synaptic neuron's ability to
+phase-lock to the modulating frequency, especially at high f_m.
 
-The temporal \MTF response of the \GLG cell model
-is negligible.
-
-
-\GLG cells influence the general excitability of \DS and \TS units using \GABAa
-synapses on their distal dendrites. 
-GABAergic distal inhibitory \PSPs have not been shown in /in vitro/ studies \citep{FerragamoGoldingEtAl:1998a}, but application of bicuculline significantly increased the number of \APs in \DS and \TS cells.
-This slow shunting inhibition reduces the amount of \ANF excitation reaching the stellate cells' soma and its site of \AP activation.
-At high \SPL, \HSR units are rate-saturated and their temporal \MTF response diminishes with increasing sound level.
 
  
 ** TV cells
 
 The rate and temporal response of \TV cells was strongly inhibited by \DS units.
 TV cells are thought to be responsible for delayed inhibition or
-echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in
-tuning the temporal behaviour in \TS cells at low sound levels.
+echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be
+involved in tuning the temporal behaviour in \TS cells at low sound levels.
 
-In general, knowledge of the role of \TV cells in temporal processing is incomplete.
-\TV cells' temporal response properties are complex and non-linear 
-\citep{SpirouDavisEtAl:1999,JorisSmith:1998}. 
+In general, knowledge of the role of \TV cells in temporal processing is
+incomplete.  \TV cells' temporal response properties are complex and non-linear
+\citep{SpirouDavisEtAl:1999,JorisSmith:1998}.
 
 # The second hypothesis is that the inhibitory projection from
 # DCN to VCN produces monaural echo suppression (Wickes-
