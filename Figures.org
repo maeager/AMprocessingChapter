@@ -277,18 +277,6 @@ data from TStellate simulations
 
 #+call: ratetemporalB[ :file ./40/ratetemporal-4.png ](spl="40/",INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-4.png ](spl="40/",INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./40/ratetemporal-4.png]]
-
-#+call: ratetemporalB[ :file ./60/ratetemporal-4.png ](spl="60/",FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
-
-#+RESULTS: ratetemporalB[ :file ./60/ratetemporal-4.png ](spl="60/",FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./60/ratetemporal-4.png]]
-
-#+call: ratetemporalB[ :file ./80/ratetemporal-5.png ](spl="80/",FRATE=10,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
-
-#+RESULTS: ratetemporalB[ :file ./80/ratetemporal-5.png ](spl="80/",FRATE=10,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./80/ratetemporal-5.png]]
 
 
 **** 3 by 2
@@ -298,12 +286,10 @@ data from TStellate simulations
 #+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
 [[file:./gfx/ratetemporal-4.eps]]
 
-#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./gfx/ratetemporal-4.eps]]
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](FRATE=100,INDEX=5,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](FRATE=100,INDEX=5,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
 [[file:./gfx/ratetemporal-5.eps]]
 
 
@@ -332,6 +318,9 @@ from TStellate2_CS
 **** 3 by 2
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-3.eps]]
 
 
 
@@ -362,6 +351,9 @@ from TStellate2_CS
 **** 3 by 2
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-2.eps]]
 
 #+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=10,FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
 [[file:./gfx/ratetemporal-2.eps]]
@@ -436,16 +428,23 @@ from TStellate2_CS
 [[file:./80/ratetemporal-0.png]]
 
 **** 4 by 2 ratetemporal
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-0.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./gfx/ratetemporal-0.eps]]
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0.pdf ](FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./gfx/ratetemporal-0.pdf]]
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-0-ChS.eps]]
 
-#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0.eps ](FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./gfx/ratetemporal-0.eps]]
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-0-ChT1.eps]]
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-0-ChT2.eps]]
+
+
 
 
 
