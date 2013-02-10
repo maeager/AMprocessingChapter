@@ -18,6 +18,7 @@ do for [level in "40 60"] {
 #+END_SRC
 
 
+
 #+name: ratetemporal
 #+header: :term pngcairo size 700,524 enhanced font 'Verdana,10' 
 #+BEGIN_SRC gnuplot :export none 
@@ -148,7 +149,7 @@ do for [level in "40 60"] {
   splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
   print "vs "
   unset ylabel;set cbrange [0:1];set palette rgbformulae 7,5,15 
-  splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($5>5.991?$4:NaN)
+  splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4:NaN) #($5>5.991?$4:NaN)
   }
   unset multiplot
 #+END_SRC
@@ -195,7 +196,7 @@ do for [level in "40 60"] {
    set colorbox noborder; } else { unset xlabel;unset ylabel;unset colorbox}
   #  if (cell=="3") {  } else {unset colorbox}
     set cbrange [0:1];set palette rgbformulae 7,5,15 
-    splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($5>5.991?$4:NaN)
+    splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN) #($5>5.991?$4:NaN)
     }
     unset multiplot
 #+END_SRC
@@ -248,7 +249,14 @@ do for [level in "40 60"] {
   unset multiplot
 #+END_SRC
 
+#+name: prepare_vsSPIKES_responsearea
+#+BEGIN_SRC sh
+ cd /media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/
+ /media/data/Work/cnstellate/scripts/second_level_si_rate.sh
+ cd /media/data/Work/cnstellate/TStellate2_CT1/F0Response/
+ /media/data/Work/cnstellate/scripts/second_level_si_rate.sh
 
+#+END_SRC
 
 
 
