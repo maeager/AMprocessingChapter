@@ -9,7 +9,7 @@
 #+LANGUAGE: en_GB-ise-wo_accents 
 #+LaTeX_CLASS: UoM-draft-org-article
 #+LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage]
-#+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/}{../VowelProcessingChapter/gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
+#+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/gfx/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 #+LATEX_HEADER:  %\usepackage[notcite]{showkeys} 
@@ -389,7 +389,7 @@ the HSR and LSR cell types in the \CNSM model. The V-like f_0 response map of th
 \HSR fibres (Figure \ref{fig:fzero}A) shows the strong non-linear temporal
 behaviour at each frequency channel surrounding the carrier frequency.
 # at high
-#intensities when the carrier frequency is centred on a unit's CF.  
+# intensities when the carrier frequency is centred on a unit's CF.  
 For the unit on CF (8.91 kHz), the peak SI was 0.775 at 15 dB SPL then fell
 below 0.1 and then below the Rayleigh test's for statistical significance (p $ <
 0.05$) when the unit reached maximum firing rate at 40 dB SPL.  Adjacent network
@@ -1027,6 +1027,7 @@ optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so that it can
 be used to investigate detailed physiological properties in the \CN stellate
 network.
 
+\yellownote{TODO expand on these points}
  - Transition from temporal to rate coding in auditory pathway
  - Stellate microcircuit provides controlled and enhanced output of \TS cells
  - \AM representation in lateral sidebands essential
