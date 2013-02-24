@@ -282,32 +282,34 @@ total duration 170 ms. Stimuli were repeated 50 times and the spike times of all
 
 ** Rate and Temporal Analysis in Amplitude Modulation
 
-The rate measure (\rMTF) was calculated from the mean firing rate in the \PSTH,
-between 20 ms and the end of the stimulus.  Temporal information was measured
-using the \SI (also called the vector strength) relative to the modulation
-frequency of the stimuli.  \SI and Rayleigh test were also calculated to
-verify the \SI values using a fast Fourier transform of the period histogram.
-# \SI values below 0.1 are considered insignificant.
+The rate measure (\rMTF) was calculated from the mean firing rate in the neuron,
+between 20 ms and the end of the stimulus. In the AN,  the firing rate saturates
+\yellownote{TODO rate analysis}
+
 
 The temporal measure used to analyse the spike output of an individual neuron
-for one \AM stimulus is called the synchronisation index or vector strength
-\citep{GoldbergBrown:1969}.  The \SI values are combined for each modulation
-frequency to create the \tMTF.  The SI measure was calculated 20 ms after the
-onset of the stimulus, using Equation \ref{eq:SI}:
+for one \AM stimulus is called the \SI (also called the vector strength)
+\citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
+\SI measures temporal information, i.e.\space phase-locking, relative to the
+modulation frequency of the stimuli. The \SI values are combined for each
+modulation frequency to create the \tMTF.  The SI measure was calculated 20 ms
+after the onset of the stimulus, using Equation \ref{eq:SI}:
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SI} 
   \mathsf{SI} = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
   \end{equation}
 #+END_LaTeX
-\noindent where $x_i = \cos \theta_i$, $x_i = \sin \theta_i$, and $N$ is the number of spike
-times \citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is
-treated as a vector of unit length and with phase $\theta_i$ between 0 and $2\pi$
-measured as the spike time modulo of the stimulus period, $1/f_m$.  Perfect
-synchronisation will give \SI = 1 occurs when all spikes lock to the same
-phase. An SI measure of zero occurs when spikes have a uniform probability phase
-distribution.  Bi-phasic or multi-phasic responses (i.e.\space phase-locking to
-harmonics of the fundamental) degrade the SI value but the temporal information
-pertaining to f_0 is still retained for higher auditory centres.
+\noindent where $x_i = \cos \theta_i$, $y_i = \sin \theta_i$, and $N$ is the number of spikes
+\citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is treated as
+a vector of unit length and with phase $\theta_i$ between 0 and $2\pi$ measured as the
+spike time modulo of the stimulus period, $1/f_m$.  Perfect synchronisation will
+give \SI = 1 occurs when all spikes lock to the same phase. An SI measure of
+zero occurs when spikes have a uniform probability phase distribution.
+Bi-phasic or multi-phasic responses (i.e.\space phase-locking to harmonics of
+the fundamental) degrade the SI value but the temporal information pertaining to
+f_0 is still retained for higher auditory centres. Further measures of temporal
+information, i.e.\space phase-locking to any frequency, is performed using a
+fast Fourier transform.
 
 # *** The Rayleigh Test
 
@@ -331,15 +333,16 @@ approximation in \citet[p. 617]{Zar:1999}:
 p = \exp\left(\sqrt{1+4N+4(N^2-R^2)}-(1+2N)\right).
 \end{equation} 
 #+END_LaTeX
-For \SI values below 0.1, a high spike count is required to
-obtain a statistically significant result.
+For \SI values below 0.1, a high spike count is required to obtain a
+statistically significant result.  \SI and Rayleigh tests were also calculated
+using a fast Fourier transform of the period histogram to verify the procedure.
+
 # (Further analysis of
 # the critical values see W. Rhode's analysis on the vector
 # strength and Rayleigh statistic[fn::  [[http://www.neurophys.wisc.edu/comp/docs/not011/not011.html]].] )
 
 #  A more recent study looking at another \SI verification statistic has been
 #  published (need to look into this).
-
 # \citep{ChangEtAl:}
 
 
@@ -954,15 +957,6 @@ phase-lock to the modulating frequency, especially at high f_m.
 
 ** DS cells
 
-\yellownote{ (Joris and Smith 1998) OC cells recorded from the DAS along with
-type II, II and IV units in DCN, DAS of cats AM RL < tone RL < noise RL.  AM
-SI-Level maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase
-is linear over SPL.  AM experiments are recorded using long AM stimuli, rate
-responses should be match to long tone responses as well (more significant for
-type IV).  Median max SI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs
-~1000Hz.  }
-
-
 
 D stellate cells have an onset chopping behaviour to tones, but can follow the
 repetition of amplitude modulated tones. The entrainment to the stimulus
@@ -972,6 +966,14 @@ diminished by the strong GABAergic inhibition of Golgi cells; however, the
 majority of active \DS units showed strong synchronisation, which suggests
 synchronous tuning in \TV and \TS units throughout the \CN.
 
+
+\yellownote{TODO:  (Joris and Smith 1998) OC cells recorded from the DAS along with
+type II, II and IV units in DCN, DAS of cats AM RL < tone RL < noise RL.  AM
+SI-Level maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase
+is linear over SPL.  AM experiments are recorded using long AM stimuli, rate
+responses should be match to long tone responses as well (more significant for
+type IV).  Median max SI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs
+~1000Hz.  }
 
  
 ** TV cells
@@ -984,24 +986,8 @@ In general, knowledge of the role of \TV cells in temporal processing is
 incomplete.  \TV cells' temporal response properties are complex and non-linear
 \citep{SpirouDavisEtAl:1999,JorisSmith:1998}.
 
-# The second hypothesis is that the inhibitory projection from
-# DCN to VCN produces monaural echo suppression (Wickes-
-# berg and Oertel 1990). This hypothesis is based on the finding
-# that vertical cells supply a delayed, frequency specific input to
-# the VCN. Two-click data (Wickesberg 1996) provide partial
-# physiological support for this idea, but only 19% of VCN cells
-# showed the expected increase in response to the second click
-# after lidocaine injections in DCN. In general, the role of type
-# II units in temporal processing is hard to interpret because their
-# temporal properties are complex and nonlinear (Joris and
-# Smith 1998).
-
-
-
-
-
-
-
+\yellownote{The current result show the TV cells with enhanced temporal encoding
+across CFs and across intensities relative to ANFs.  NOTE-- these results don't seem right }
 
 
 
@@ -1023,7 +1009,9 @@ have been investigated but not fully understood
 \citep{WiegrebeMeddis:2004,BahmerLangner:2006a}. 
 
 
-# \yellownote{TODO}
+ \yellownote{TODO -- the results are from optimised parameters that do not
+ explicitly fit in our idea of a chopper neuron.  More work needs to be done on
+ the TS cell model in Ch3 before this goes ahead.}
 
 
 * Conclusion
