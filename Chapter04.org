@@ -1,6 +1,14 @@
 #+TITLE: Amplitude Modulation and Vowel Coding in the Stellate Microcircuit
 #+AUTHOR: Michael A Eager
 #+DATE:
+#+OPTIONS: toc:nil H:5  <:t >:t 
+#+STARTUP: oddeven hideblocks fold align hidestars
+#+SEQ_TODO:    TODO(t) INPROGRESS(i) WAITING(w@) | DONE(d) CANCELED(c@)
+#+TAGS:       Write(w) Update(u) Fix(f) Check(c) noexport(n)
+#+TODO: TODO(t) STARTED(s) | DONE(d) DEFERRED(f) REFTEX
+#+LANGUAGE: en_GB-ise-wo_accents 
+#+LaTeX_CLASS: UoM-draft-org-article
+#+LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage]
 #+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/}{../VowelProcessingChapter/gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
@@ -109,6 +117,22 @@ between the \AN and higher auditory centres, so modelling and numerical analysis
 of its processes are important for developing the necessary insight.
 
 
+Figure \ref{fig:AM:def} shows the response of an AN model filterbank 
+ 
+The single Individual AN fibres can encode temporal information of simple tones up to 5 kHz. 
+
+For reviews of neural encoding of sound-envelope information in the \AN and \CN see
+\citet{FrisinaWaltonEtAl:1994,JorisSchreinerEtAl:2004}.  
+
+
+
+#+LABEL: fig:AM:def
+#+ATTR_LaTeX: width=\linewidth
+#+CAPTION: [Amplitude modulation and its response in the auditory nerve]{A. Sinusoidal amplitude modulated stimulus with carrier frequency 2 kHz and modulation frequency 100 Hz. The period of the envelope is 10 ms. B. Theoretical spectrum of AM stimulus. C. Post-stimulus time histogram of all HSR ANF units to a 60 dB SPL AM stimulus (\citet{ZilanyCarney:2010} AN model, 100 frequency channels from 0.2 to 40 kHz, 20 fibres per channel, stimulus duration 150 ms, onset delay 20 ms).  D. Power spectrum of PSTH for all HSR units and the HSR unit with a CF closest to the carrier frequency   (unit 33, CF 1.979 kHz). The modulation frequency harmonics are prominent in the power spectrum of all HSR units, especially the first (100 Hz).}
+  [[file:../VowelProcessingChapter/gfx/AMfig.pdf]]
+
+
+
 This chapter presents the \AM coding behaviour of the \CNSM model. It focuses
 specifically on the temporal behaviour in response to sinusoidal \AM stimuli.
 The primary output of the \CNSM model are the \TS cells, which provide a robust
@@ -142,7 +166,7 @@ the carrier frequency.
   
 The coding of \AM in auditory neurons is measured using a \MTF, which is
 calculated using its discharge firing rate (\rMTF) or temporal information
-(\tMTF). The degree of phase locking is measured by the \SI or vector strength
+(\tMTF). The degree of phase locking is measured by the \SI (also called vector strength) 
 \citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.  \SI
 is a dimensionless measure of phase locking for a particular frequency, where
 the magnitude of synchronisation at that frequency is divided by the baseline
@@ -161,7 +185,7 @@ synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
 # whereas values below 0.1 are considered insignificant.  The SI values are
 # combined for each modulation frequency to create the \tMTF.  Statistical
 # significance of synchronization is usually quantified with the Rayleigh test
-# \cite{BuunenRhode:1978,MardiaJupp:1999}. Vector strength and Rayleigh
+# \citep{BuunenRhode:1978,MardiaJupp:1999}. Vector strength and Rayleigh
 # coefficient, calculated to verify the statistical significance of
 # synchronisation, can also be obtained from the Fourier spectrum of the \PSTH or
 # period histogram.
@@ -170,21 +194,28 @@ synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
 # either technique.  The rate measure (\rMTF) is calculated from the mean firing
 # rate in the \PSTH, between 20 ms and the end of the stimulus.
 
-#+LABEL: fig:AM:def
-#+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Amplitude modulation and its response in a single auditory nerve fibre]{Amplitude modulated waveform, spectrum and temporal modulation transfer function (tMTF) with low and band-pass functions typical TS cells. BMF: best modulation frequency.  Image reprinted from \citet{JorisSchreinerEtAl:2004}.}
- [[file:../figures/JorisAM_Fig1.png]]
 
-- Variation in sound level
+ - Loss of f_0 response in ANF is partially due to saturation of at the ribbon synapse (IHC-AN) and  partially to encoding higher harmonics or the carrier frequency
+
+
+
+
+** Variation in sound level
+
+
+At low to moderate 
   - poor in \AN (note measurements for f_m at \CF in most studies)
   - enhanced in T stellate cells at high \SPL
 
 #+LABEL: fig:AM:RG94_AN
 #+ATTR_LaTeX: width=0.8\textwidth
 #+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a single \HSR \ANF. Figure reproduced from \citet{RhodeGreenberg:1994}. }
-[[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
+  [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
-- Variation in modulation frequency
+** Variation in modulation frequency
+
+Figure \ref{fig:AM:AMSummary}
+
   - definition of \MTF or \tMTF
   - Low-pass to band-pass with high peak in vector strength.
   - Reduced cut-off due to membrane characteristics rather than network effects.
@@ -195,11 +226,12 @@ multiple studies in \ANFs and chopper units (Figure \ref{fig:AM:AMSummary}).
 #+BEGIN_LaTeX
   \begin{figure}[htb] 
   \centering
-  {\hfill\includegraphics[width=0.45\linewidth,keepaspectratio]{../figures/JorisAM_Fig4A.png}\hfill%
-  \includegraphics[width=0.45\linewidth,keepaspectratio]{../figures/JorisAM_Fig4B.png}\hfill}
-  \caption{Simplified temporal responses of ANFs and T stellate cells. T stellate
-    cells have enhanced synchronisation at high SPL (A) and a band-pass tMTF with
-    peaks greater than ANFs (B). Figure reproduced from
+  {\hfill\includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4A.png}\hfill%
+  \includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4B.png}\hfill}
+  \caption{Simplified temporal responses of ANFs and T stellate cells with respect
+    to variations in intensity and modulation frequency. TS cells have
+    enhanced synchronisation at high SPL (A) and a band-pass tMTF with peaks
+    greater than ANFs (B). Figure reproduced from
     \citet{JorisSchreinerEtAl:2004}.}  \label{fig:AM:AMSummary}
   \end{figure}
 #+END_LaTeX
@@ -225,8 +257,8 @@ C. Garcia a, Sebastian A. Romano b J Neurophys Paris 2009 }
 
 ** Stimulus
 
-The stimulus generation followed Rhode and Greenberg's 
-encoding of amplitude modulation in cats \citep{RhodeGreenberg:1994}.  \AM signals were generated by
+The stimulus generation followed Rhode and Greenberg's encoding of amplitude
+modulation in cats \citep{RhodeGreenberg:1994}.  \AM signals were generated by
 modulating a carrier signal of specified frequency, amplitude, and phase by a
 sinusoidal modulator with amplitude and phase equal to that of the carrier
 (100\% modulation).  Modulation frequency, f_m, ranged from 50 to 800 Hz and was
@@ -237,41 +269,45 @@ different \TS chopper models.
 ** Simulations
 
 The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
-\citep{CarnevaleHines:2006}, as described in Chapter \ref{sec:MethodsChapter}. [[latex:progname][NEURON]]'s
-Crank-Nicholson integration method was used in the simulations with time step,
-/dt/ = 0.05 ms, stimulus duration 150 ms and total duration 170 ms. Stimuli were repeated 50 times and
-the spike times of all \ANF and \CN units recorded.
+\citep{CarnevaleHines:2006}, as described in Chapter
+\ref{sec:MethodsChapter}. [[latex:progname][NEURON]]'s Crank-Nicholson integration method was used
+in the simulations with time step, /dt/ = 0.05 ms, stimulus duration 150 ms and
+total duration 170 ms. Stimuli were repeated 50 times and the spike times of all
+\ANF and \CN units recorded.
 
 # ** Output and Data Storage
 # \yellownote{What are you doing here}
 
 ** Rate and Temporal Analysis in Amplitude Modulation
 
-The rate measure (\rMTF) was calculated from the mean firing rate in the \PSTH,
-between 20 ms and the end of the stimulus.  Temporal information was measured
-using the \SI (also called the vector strength) relative to the modulation
-frequency of the stimuli.  \SI and Rayleigh test were also calculated to
-verify the \SI values using a fast Fourier transform of the period histogram.
-# \SI values below 0.1 are considered insignificant.
+The rate measure (\rMTF) was calculated from the mean firing rate in the neuron,
+between 20 ms and the end of the stimulus. In the AN,  the firing rate saturates
+\yellownote{TODO rate analysis}
+
 
 The temporal measure used to analyse the spike output of an individual neuron
-for one \AM stimulus is called the synchronisation index or vector strength
-\citep{GoldbergBrown:1969}.  The synchronisation index (SI) was calculated 20 ms
-after the onset of the stimulus, using Equation
-\ref{eq:SI}:
-
+for one \AM stimulus is called the \SI (also called the vector strength)
+\citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
+\SI measures temporal information, i.e.\space phase-locking, relative to the
+modulation frequency of the stimuli. The \SI values are combined for each
+modulation frequency to create the \tMTF.  The SI measure was calculated 20 ms
+after the onset of the stimulus, using Equation \ref{eq:SI}:
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SI} 
   \mathsf{SI} = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
   \end{equation}
 #+END_LaTeX
-
-\noindent where $x_i = \cos \theta_i$, $x_i = \sin \theta_i$, and $N$ is the
-number of spike times \citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is treated as a vector of unit length and
-with phase $\theta_i$ between 0 and $2\pi$ measured as the spike time modulo of
-the stimulus period, $1/f_m$.  Perfect synchronisation will give \SI = 1,
-whereas values below 0.1 are considered insignificant.  The \SI values are
-combined for each modulation frequency to create the \tMTF.
+\noindent where $x_i = \cos \theta_i$, $y_i = \sin \theta_i$, and $N$ is the number of spikes
+\citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is treated as
+a vector of unit length and with phase $\theta_i$ between 0 and $2\pi$ measured as the
+spike time modulo of the stimulus period, $1/f_m$.  Perfect synchronisation will
+give \SI = 1 occurs when all spikes lock to the same phase. An SI measure of
+zero occurs when spikes have a uniform probability phase distribution.
+Bi-phasic or multi-phasic responses (i.e.\space phase-locking to harmonics of
+the fundamental) degrade the SI value but the temporal information pertaining to
+f_0 is still retained for higher auditory centres. Further measures of temporal
+information, i.e.\space phase-locking to any frequency, is performed using a
+fast Fourier transform.
 
 # *** The Rayleigh Test
 
@@ -290,9 +326,14 @@ computing the p-value for the Rayleigh test is using a z-statistic
 #+END_LaTeX
 \noindent where is $R = N\times\mathsf{SI}$. The p-values were calculated using the
 approximation in \citet[p. 617]{Zar:1999}:
+#+BEGIN_LaTeX
 \begin{equation}\label{eq:SIp}
 p = \exp\left(\sqrt{1+4N+4(N^2-R^2)}-(1+2N)\right).
-\end{equation}
+\end{equation} 
+#+END_LaTeX
+For \SI values below 0.1, a high spike count is required to obtain a
+statistically significant result.  \SI and Rayleigh tests were also calculated
+using a fast Fourier transform of the period histogram to verify the procedure.
 
 # (Further analysis of
 # the critical values see W. Rhode's analysis on the vector
@@ -300,7 +341,6 @@ p = \exp\left(\sqrt{1+4N+4(N^2-R^2)}-(1+2N)\right).
 
 #  A more recent study looking at another \SI verification statistic has been
 #  published (need to look into this).
-
 # \citep{ChangEtAl:}
 
 
@@ -347,7 +387,7 @@ the HSR and LSR cell types in the \CNSM model. The V-like f_0 response map of th
 \HSR fibres (Figure \ref{fig:fzero}A) shows the strong non-linear temporal
 behaviour at each frequency channel surrounding the carrier frequency.
 # at high
-#intensities when the carrier frequency is centred on a unit's CF.  
+# intensities when the carrier frequency is centred on a unit's CF.  
 For the unit on CF (8.91 kHz), the peak SI was 0.775 at 15 dB SPL then fell
 below 0.1 and then below the Rayleigh test's for statistical significance (p $ <
 0.05$) when the unit reached maximum firing rate at 40 dB SPL.  Adjacent network
@@ -386,7 +426,8 @@ elevated temporal responses over the whole map (Mean 0.704722, Min 0.366536, Max
 0.973461).  }
 
 
-\yellownote{Link f-nought response to next section.  Note f-nought fm was 150 Hz, explore responses at different fm. }
+\yellownote{Link f-nought response to next section.  Note f-nought fm was 150
+Hz, explore responses at different fm. }
 
 
 \clearpage
@@ -911,40 +952,8 @@ the model.  The low-pass filter limits the post-synaptic neuron's ability to
 phase-lock to the modulating frequency, especially at high f_m.
 
 
- 
-** TV cells
-
-The rate and temporal response of \TV cells was strongly inhibited by \DS units.
-TV cells are thought to be responsible for delayed inhibition or
-echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be
-involved in tuning the temporal behaviour in \TS cells at low sound levels.
-
-In general, knowledge of the role of \TV cells in temporal processing is
-incomplete.  \TV cells' temporal response properties are complex and non-linear
-\citep{SpirouDavisEtAl:1999,JorisSmith:1998}.
-
-# The second hypothesis is that the inhibitory projection from
-# DCN to VCN produces monaural echo suppression (Wickes-
-# berg and Oertel 1990). This hypothesis is based on the finding
-# that vertical cells supply a delayed, frequency specific input to
-# the VCN. Two-click data (Wickesberg 1996) provide partial
-# physiological support for this idea, but only 19% of VCN cells
-# showed the expected increase in response to the second click
-# after lidocaine injections in DCN. In general, the role of type
-# II units in temporal processing is hard to interpret because their
-# temporal properties are complex and nonlinear (Joris and
-# Smith 1998).
-
-
 
 ** DS cells
-
-\yellownote{ (Joris and Smith 1998) OC cells recorded from the DAS along with type II, II and IV units in DCN, DAS of cats
-AM RL < tone RL < noise RL. 
-AM SI-Level  maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase is linear over SPL.
-AM experiments are recorded using long AM stimuli, rate responses should be match to long tone responses as well (more significant for type IV).
-Median maxSI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs ~1000Hz.
-}
 
 
 D stellate cells have an onset chopping behaviour to tones, but can follow the
@@ -954,6 +963,31 @@ temporal information at the channel with \CF=$\fc$ (Figure \ref{fig:AM:DS}) was
 diminished by the strong GABAergic inhibition of Golgi cells; however, the
 majority of active \DS units showed strong synchronisation, which suggests
 synchronous tuning in \TV and \TS units throughout the \CN.
+
+
+\yellownote{TODO:  (Joris and Smith 1998) OC cells recorded from the DAS along with
+type II, II and IV units in DCN, DAS of cats AM RL < tone RL < noise RL.  AM
+SI-Level maintains above 0.8 up to 60dB then slopes down to 0.6 at 80 dB, phase
+is linear over SPL.  AM experiments are recorded using long AM stimuli, rate
+responses should be match to long tone responses as well (more significant for
+type IV).  Median max SI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs
+~1000Hz.  }
+
+ 
+** TV cells
+
+The rate and temporal response of \TV cells was strongly inhibited by \DS units.
+TV cells are thought to be responsible for delayed inhibition or
+echo-suppression \citep{WickesbergOertel:1990} in \VCN units, but can also be
+involved in tuning the temporal behaviour in \TS cells at low sound levels.
+In general, knowledge of the role of \TV cells in temporal processing is
+incomplete.  \TV cells' temporal response properties are complex and non-linear
+\citep{SpirouDavisEtAl:1999,JorisSmith:1998}.
+
+\yellownote{The current result show the TV cells with enhanced temporal encoding
+across CFs and across intensities relative to ANFs.  NOTE-- these results don't seem right }
+
+
 
 ** TS cells
 
@@ -973,7 +1007,9 @@ have been investigated but not fully understood
 \citep{WiegrebeMeddis:2004,BahmerLangner:2006a}. 
 
 
-# \yellownote{TODO}
+ \yellownote{TODO -- the results are from optimised parameters that do not
+ explicitly fit in our idea of a chopper neuron.  More work needs to be done on
+ the TS cell model in Ch3 before this goes ahead.}
 
 
 * Conclusion
@@ -981,15 +1017,15 @@ have been investigated but not fully understood
 The \CNSM model provides a more realistic model of \AM coding in the output of \TS cells.  
 # controlled and modulated enhancement of
 # the output of \TS cells, one of the major outputs of the cochlear nucleus.  
-A whole-network approach may
-provide a stronger basis for optimal temporal coding of \AM than an approach
-based solely on \CF.
-This chapter  has demonstrated the need to model detailed neural microcircuits away from
-basic receptive fields of individual units.  The model has been used for
-detailed optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so
-that it can be used to investigate detailed physiological properties in the \CN
-stellate network.
+A whole-network approach may provide a stronger basis for optimal temporal
+coding of \AM than an approach based solely on \CF.  This chapter has
+demonstrated the need to model detailed neural microcircuits away from basic
+receptive fields of individual units.  The model has been used for detailed
+optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so that it can
+be used to investigate detailed physiological properties in the \CN stellate
+network.
 
+\yellownote{TODO expand on these points}
  - Transition from temporal to rate coding in auditory pathway
  - Stellate microcircuit provides controlled and enhanced output of \TS cells
  - \AM representation in lateral sidebands essential
@@ -1020,7 +1056,7 @@ Figure \ref{fig:Fzerorate} shows the average rate of units to increasing stimulu
     %{\hfill{ Rate (sp/s)\hfill Temporal}}\\
     \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/fresponse-rate.pdf}}\\
     \caption{The average firing rate response of all units in the CNSM model to AM
-      tones of increasing intensity ($\fc = 8.9 kHz$ and $\fm = 150 Hz$). }
+      tones of increasing intensity ($\fc = 8.9$ kHz and $\fm = 150$ Hz). }
   \label{fig:Fzerorate}
   \end{figure}
 #+END_LaTeX
