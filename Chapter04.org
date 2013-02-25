@@ -1,14 +1,6 @@
 #+TITLE: Amplitude Modulation and Vowel Coding in the Stellate Microcircuit
 #+AUTHOR: Michael A Eager
 #+DATE:
-#+OPTIONS: toc:nil H:5  <:t >:t 
-#+STARTUP: oddeven hideblocks fold align hidestars
-#+SEQ_TODO:    TODO(t) INPROGRESS(i) WAITING(w@) | DONE(d) CANCELED(c@)
-#+TAGS:       Write(w) Update(u) Fix(f) Check(c) noexport(n)
-#+TODO: TODO(t) STARTED(s) | DONE(d) DEFERRED(f) REFTEX
-#+LANGUAGE: en_GB-ise-wo_accents 
-#+LaTeX_CLASS: UoM-draft-org-article
-#+LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage]
 #+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/}{../VowelProcessingChapter/gfx/}{../SimpleResponsesChapter/gfx/}{../figures/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
