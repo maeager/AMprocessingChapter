@@ -10,7 +10,6 @@
 ;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 ;; (setq reftex-plug-into-auctex t)
 ;; (setq reftex-cite-format 'natbib)
-;; (setq reftex-default-bibliography (quote ("~/Work/thesis/MyBib.bib")))
 
 ;; flyspell mode for spell checking everywhere
 ;; (add-hook 'org-mode-hook 'turn-off-flyspell 'append)
@@ -130,7 +129,7 @@
 (setq  org-export-latex-final-hook nil)
 (add-hook 'org-export-latex-final-hook
 	  (lambda ()
-	    (setq case-fold-search nil)
+;;	    (setq case-fold-search nil)
 	    (goto-char (point-min))
 	    (search-forward "\\begin{document}")
 	    (push-mark)
@@ -195,7 +194,7 @@
 					;                  (goto-char (mark))
 					;                  (replace-regexp "\\\\~\\{\\}"
 					;                                  "~")
-	    ;; double check for bad \{ ... \} 
+	    ;; double check for bad org-latex export \{ ... \} 
 ;	    (goto-char (mark))
 ;	    (while (re-search-forward "\\\\{\\(.*\\)\\\\}" nil t)
 ;	      (replace-match "{\\1}" nil nil))
