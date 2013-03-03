@@ -116,13 +116,21 @@ and encoded in the auditory nervous system. The \CN is a major processing stage
 between the \AN and higher auditory centres, so modelling and numerical analysis
 of its processes are important for developing the necessary insight.
 
-\yellownote{TODO Fix this intro paragraph}
-Figure \ref{fig:AM:def} shows the general properties of an AM tone and the response of an AN model filterbank. 
-The single Individual AN fibres may encode temporal information of simple tones up to 5 kHz. 
-For reviews of neural encoding of sound-envelope information in the \AN and \CN see
-\citet{FrisinaWaltonEtAl:1994,JorisSchreinerEtAl:2004}.  
-
-
+Figure \ref{fig:AM:def} shows the general
+properties of an AM tone and the response of an AN model filterbank.  The
+stimulus in Figure \ref{fig:AM:def}A is a 100\% modulated sinusoidal \AM tone,
+with carrier frequency (\fc) 2 kHz and modulation frequency (\fm) of 100 Hz.
+The general formula for a sinusoidal \AM tone with variable modulation height is
+\begin{equation}\label{eq:AMformula}
+s(t) = [1 + m \sin(2\pi{}f_{m}t)] \sin (2\pi{}f_{c}t).
+\end{equation} 
+\noindent When transformed to the frequency-domain, the frequency
+components of an AM tone are a dominant spike at \fc and two components
+\fc $\pm$ \fm with half the height of the component at \fc (Figure
+\ref{fig:AM:def}B).  Individual AN fibres may encode temporal information of
+simple tones up to 5 kHz.  For reviews of neural encoding of sound-envelope
+information in the \AN and \CN see
+\citet{FrisinaWaltonEtAl:1994,JorisSchreinerEtAl:2004}.
 
 #+LABEL: fig:AM:def
 #+ATTR_LaTeX: width=\linewidth
@@ -143,24 +151,29 @@ ability to code temporal information is not disabled.
 # The effects of intrinsic cell properties in the cells of the \CNSM model 
 The optimal coding of \AM is
 still provided across the network, more specifically in lateral sidebands around
-the carrier frequency.
+the edges of the response area .
 
 
-\yellownote{Fix the linking sentence}
 
-
-The basic AM parameters modulation depth, variation in \fc and phase , sound
-pressure level (SPL) and  fm, influence synchronisation and average rate, then describe the response
-phase.
-
+\yellownote{linking sentence doesn't feel right.} 
+In this chapter I will introduce the
+measures used to assess the neural output to AM stimuli and the current
+knowledge of responses in the \AN and neurons of the \CNSM model to AM.  The
+basic AM parameters modulation depth, and variation in \fc are not included in
+this study.  The main focus of this chapter is investigating the responses of
+the \CNSM model to variation in sound pressure level (SPL) and \fm using
+measures of envelope synchronisation and average rate.
 
 
 ** Rate and Temporal Analysis in Amplitude Modulation
 
-The rate measure (\rMTF) was calculated from the mean firing rate in the neuron,
-between 20 ms and the end of the stimulus. In the AN,  the firing rate saturates
+The rate measure (\rMTF) was calculated from the mean firing rate in the neuron.
+Caution must be made to a avoid onset adaptation effects in auditory neurons.
+Recordings are performed using long stimuli so that the units are in a
+steady-state.  between 20 ms and the end of the stimulus.
 
-\yellownote{TODO rate analysis -finish paragraph}
+# In the AN,  the firing rate saturates
+# \yellownote{TODO rate analysis -finish paragraph}
 
 The temporal measure used to analyse the spike output of an individual neuron
 for one \AM stimulus is called the \SI (also called the vector strength)
@@ -384,7 +397,7 @@ firing rate.
 In \LSR \ANFs, Figure \ref{fig:fzero}B, the f_0 response slides from its peak
 temporal response at excitation threshold to a moderate temporal response at
 high intensity.  Across frequency channels at high intensity, all active units
-provide high ($>$ 0.8 SI) to moderate ($0.5--0.6$ SI) temporal information that
+provide high ($>$ 0.8 SI) to moderate ($0.5 - 0.6$ SI) temporal information that
 is lacking in the HSR units.
 
    
