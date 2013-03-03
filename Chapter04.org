@@ -130,7 +130,7 @@ components of an AM tone are a dominant spike at \fc and two components
 \ref{fig:AM:def}B).  Individual AN fibres may encode temporal information of
 simple tones up to 5 kHz.  For reviews of neural encoding of sound-envelope
 information in the \AN and \CN see
-\citet{FrisinaWaltonEtAl:1994,JorisSchreinerEtAl:2004}.
+\citet{FrisinaWaltonEtAl:1994} and \citet{JorisSchreinerEtAl:2004}.
 
 #+LABEL: fig:AM:def
 #+ATTR_LaTeX: width=\linewidth
@@ -141,17 +141,16 @@ information in the \AN and \CN see
 
 This chapter presents the \AM coding behaviour of the \CNSM model. It focuses
 specifically on the temporal behaviour in response to sinusoidal \AM stimuli.
-The primary output of the \CNSM model are the \TS cells, which provide a robust
+The primary outputs of the \CNSM model are the \TS cells, which provide a robust
 spectral representation of auditory information and enhanced coding of temporal
 information, especially the pitch in complex environments
 \citep{KeilsonRichardsEtAl:1997}.  The model contains three inhibitory
 interneurons, each controlling the rate and temporal response of \TS cells.
-Despite rate saturation of \ANFs -- the input to the \CNSM model cells -- their
-ability to code temporal information is not disabled.
+Despite rate saturation of \ANFs\space -- the input to the \CNSM model cells --
+their ability to code temporal information is not disabled.
 # The effects of intrinsic cell properties in the cells of the \CNSM model 
-The optimal coding of \AM is
-still provided across the network, more specifically in lateral sidebands around
-the edges of the response area .
+The optimal coding of \AM is still provided across the network, more
+specifically in lateral sidebands around the edges of the response area.
 
 
 
@@ -174,30 +173,31 @@ the edges of the response area .
 
 
 #  \yellownote{linking sentence doesn't feel right.} 
-In this chapter I will introduce the
-measures used to assess the neural output to AM stimuli and the current
-knowledge of responses in the \AN and neurons of the \CNSM model to AM.  The
-basic AM parameters modulation depth, and variation in \fc are not included in
-this study.  The main focus of this chapter is investigating the responses of
-the \CNSM model to variation in sound pressure level (SPL) and \fm using
-measures of envelope synchronisation and average rate.
+This chapter introduces the measures used to assess the neural output
+to AM stimuli and the current knowledge of responses in the \AN and neurons of
+the \CNSM model to AM.  
+# The analysis study does  not include AM parameters modulation depth, and variationin \fc are not included in this study.  
+The analysis
+investigates the responses of the \CNSM model to variation in sound pressure
+level (SPL) and \fm using measures of envelope synchronisation and average rate.
 
 
 ** Rate and Temporal Analysis in Amplitude Modulation
 
-The rate measure (\rMTF) was calculated from the mean firing rate in the neuron.
-Caution must be made to a avoid onset adaptation effects in auditory neurons.
-Recordings are performed using long stimuli so that the units are in a
-steady-state.  between 20 ms and the end of the stimulus.
+The rate \MTF measure was calculated from the mean firing rate in the neuron.
+Caution is required to a avoid onset adaptation effects in auditory neurons.
+Recordings were performed using long stimuli so that the units were in a
+steady-state.  
+# between 20 ms and the end of the stimulus.
 
 # In the AN,  the firing rate saturates
 # \yellownote{TODO rate analysis -finish paragraph}
 
-The temporal measure used to analyse the spike output of an individual neuron
-for one \AM stimulus is called the \SI (also called the vector strength)
+The temporal \MTF measure used to analyse the spike output of an individual neuron
+for one \AM stimulus is called the \SI (also known as the vector strength)
 \citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
 \SI measures temporal information, i.e.\space phase-locking, relative to the
-modulation frequency of the stimuli. The \SI values are combined for each
+modulation frequency of the stimuli. In this analysis, the \SI values were combined for each
 modulation frequency to create the \tMTF.  The SI measure was calculated 20 ms
 after the onset of the stimulus, using Equation \ref{eq:SI}:
 #+BEGIN_LaTeX
@@ -270,19 +270,21 @@ using a fast Fourier transform of the period histogram to verify the procedure.
 #     - saturation at high sound level
 #     - poor \SNR in auditory nerve
   
-The coding of \AM in auditory neurons is measured using a \MTF, which is
+The coding of \AM in auditory neurons is measured using an \MTF, which is
 calculated using its discharge firing rate (\rMTF) or temporal information
 (\tMTF). Firing rate is an efficient way of indicating a specific quality or
-stimulus feature, as shown in other in sensory pathways.  Rate coding in the
+stimulus feature, as shown in other sensory pathways.  Rate coding in the
 individual \AN fibres and spectral coding across all ANFs give a poor representation
 of modulated signals \citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
-The \CN begins the transformation 
 
-The degree of phase locking is measured by the \SI (also called vector strength)
-\citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.  \SI
-is a dimensionless measure of phase locking for a particular frequency, where
-the magnitude of synchronisation at that frequency is divided by the baseline
-synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
+# The \CN begins the transformation 
+
+# The degree of phase locking is measured by the \SI
+# \citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.  
+# \SI
+# is a dimensionless measure of phase locking for a particular frequency, where
+# the magnitude of synchronisation at that frequency is divided by the baseline
+# synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
 
 
 
@@ -341,14 +343,14 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
 
 ** Stimulus
 
-The stimulus generation followed Rhode and Greenberg's encoding of amplitude
-modulation in cats \citep{RhodeGreenberg:1994}.  \AM signals were generated by
-modulating a carrier signal of specified frequency, amplitude, and phase by a
-sinusoidal modulator with amplitude and phase equal to that of the carrier
-(100\% modulation).  Modulation frequency, f_m, ranged from 50 to 800 Hz and was
-stepped up by 50 Hz. The carrier frequency was set to the central frequency
-channel of the \CN model (5.82 kHz) or to the characteristic frequency of the
-different \TS chopper models.
+The stimulus generation followed Rhode and Greenberg's encoding of \AM in cats
+\citep{RhodeGreenberg:1994}.  \AM signals were generated by modulating a carrier
+signal of specified frequency, amplitude, and phase by a sinusoidal modulator
+with amplitude and phase equal to that of the carrier (100\% modulation).
+Modulation frequency, f_m, ranged from 50 to 800 Hz and was stepped up by 50
+Hz. The carrier frequency was set to the central frequency channel of the \CN
+model (8.9 kHz) or to the characteristic frequency of the different \TS chopper
+models.
 
 ** Simulations
 
@@ -361,13 +363,11 @@ total duration 170 ms. Stimuli were repeated 50 times and the spike times of all
 
 ** CNSM model
 
-Table~\ref{tab:AMModelSummary} shows the summary of the model used in this
+Table \ref{tab:AMModelSummary} shows the summary of the model used in this
 study.  The Nordlie approach to reproducible neural network simulations
 \citep{NordlieGewaltigEtAl:2009} is followed.  The parameters of the \CNSM model
-were optimised in Section \ref{sec:Chapter3} to fit experimentally observe
-behaviour of each of the cell types in the model.  %optimisation of the
-parameters % in the CN stellate model is the subject of the doctoral research of
-% Michael Eager.
+were optimised in Section \ref{sec:Chapter3} to fit the experimentally observed
+behaviour of each of the cell types in the model.  
 
 
 #+LATEX: \input{NordlieTemplate.tex}
@@ -384,13 +384,13 @@ response.  The f_0 response illustrates the effects of synchrony to the stimulus
 envelope (\fm) with respect to the stimulus sound level, typically measured with
 \fc at a neuron's \CF. The stimulus paradigm is similar to experimental methods,
 however the \CNSM model allows the inspection of a whole network of units with
-different CF's.  The AM stimulus was presented to the AN and \CNSM model, with
+different CFs.  The AM stimulus was presented to the AN and \CNSM model, with
 duration of 150 ms and repeated 50 times.  Spiking outputs 20 ms after the
 stimulus onset were used to measure firing rate and \SI.
 
 # See Figures.org  fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
 #+ATTR_LaTeX: width=\columnwidth 
-#+CAPTION: [The f0 response in the CNSM model]{The $f_0$ response map of each cell in the CNSM model to AM tones different stimulus intensities. Color bar shows the synchronisation index from 0 to 1, with white representing areas with Rayleigh test not statistically significant (p $ > 0.05$). The $f_0$ stimulus was an AM tone with $f_\mathsf{c} = 8.9$ kHz, $f_\mathsf{m} = 150$ Hz, duration 150 ms, 20 ms delay , and 2 ms on-off ramp. Each column represents a single unit's $f_0$ response to the AM stimulus.  Each row represents the frequency channel CF vs. SI curve of a single presentation of the stimulus to the CNSM model.}
+#+CAPTION: [The f0 response in the CNSM model]{The $f_0$ response map of each cell in the CNSM model to AM tones of different stimulus intensities. The colour bar shows the synchronisation index from 0 to 1, with white representing areas with Rayleigh test not statistically significant (p $>0.05$). The $f_0$ stimulus was an AM tone with $f_\mathsf{c} = 8.9$ kHz, $f_\mathsf{m} = 150$ Hz, duration 150 ms, 20 ms delay, and 2 ms on-off ramp. Each column represents a single unit's $f_0$ response to the AM stimulus.  Each row represents the frequency channel CF vs. SI curve of a single presentation of the stimulus to the CNSM model.}
 #+LABEL: fig:fzero
 [[../VowelProcessingChapter/gfx/fresponse-vs.pdf]]
 
@@ -398,9 +398,9 @@ stimulus onset were used to measure firing rate and \SI.
 
 \HSR \ANFs have a non-linear f_0 response, with \SI peaking around 0.6 at
 intensities 20-30 dB above threshold then reducing to below 0.2 for intensities
-60 dB above rate threshold \citep{JorisYin:1992}.  Loss of f_0 response in ANF is
-partially due to saturation of at the inner hair cell to auditory nerve synapse
-and partially to encoding higher harmonics or the carrier frequency rather an
+60 dB above rate threshold \citep{JorisYin:1992}.  Loss of f_0 response in \ANFs is
+typically due to saturation at the inner hair cell to auditory nerve synapse
+or the encoding of higher harmonics rather than
 the envelope.  The \citet{ZilanyBruceEtAl:2009} AN model was designed to
 replicate \AM responses and the f_0 response.  Figures \ref{fig:fzero}A and B
 show the f_0 response map of the HSR and LSR cell types in the \CNSM model. The
@@ -409,45 +409,43 @@ strong non-linear temporal behaviour at each frequency channel surrounding the
 carrier frequency.
 # at high
 # intensities when the carrier frequency is centred on a unit's CF.  
-For the unit on CF (8.91 kHz), the peak SI was 0.775 at 15 dB SPL then fell
-below 0.1 and then below the Rayleigh test's for statistical significance (p $ <
-0.05$) when the unit reached maximum firing rate at 40 dB SPL.  Adjacent network
-channels followed a similar behaviour with an adjustment in rise and fall of SI
-based on its excitation from the cochlea filter.  These results are similar to
-the model results presented in \citet{ZilanyBruceEtAl:2009}.  The peak SI in the
-map was 0.777 by unit 84 (CF 20.7 kHz) at 90 dB at approximately 50\% of maximum
-firing rate.
-In \LSR \ANFs, Figure \ref{fig:fzero}B, the f_0 response slides from its peak
-temporal response at excitation threshold to a moderate temporal response at
-high intensity.  Across frequency channels at high intensity, all active units
-provide high ($>$ 0.8 SI) to moderate ($0.5 - 0.6$ SI) temporal information that
-is lacking in the HSR units.
+For the unit on-CF (8.91 kHz), the peak SI was 0.775 at 15 dB SPL and then
+subsequently fell below the Rayleigh test for statistical significance (p
+$<0.05$) when the unit reached maximum firing rate at 40 dB SPL.  Adjacent
+network channels showed similar behaviour with an adjustment in rise and
+fall of SI based on excitation from the cochlea filter.  These results are
+similar to the model results presented in \citet{ZilanyBruceEtAl:2009}.  The
+peak SI in the map was 0.777 by unit 84 (CF 20.7 kHz) at 90 dB at approximately
+50\% of maximum firing rate.  In \LSR \ANFs, Figure \ref{fig:fzero}B, the f_0
+response slides from its peak temporal response at excitation threshold to a
+moderate temporal response at high intensity.  Across frequency channels at high
+intensity, all active units provide high ($>$ 0.8 SI) to moderate ($0.5 - 0.6$
+SI) temporal information that is lacking in the HSR units.
 
    
 The f_0 response of cells in the \CN reflect the ANF input responses, the
 intra-nuclei synaptic interactions within and across frequency channels, and the
 intrinsic properties of each of the cell types.  
-Figure \ref{fig:fzero}C shows the f_0 response map of TS cell models TS cells
-receive inputs from all the other cell-types in the \CNSM model and I shall
-return to discuss this figure after I have discussed the other cells' f_0
-reponses.
+Figure \ref{fig:fzero}C shows the f_0 response map of TS cell models. TS cells
+receive inputs from all the other cell types in the \CNSM model.
+# and I shallreturn to discuss this figure after I have discussed the other cells' f_0 reponses.
 
-Figure \ref{fig:fzero}D shows the DS cell f_0 response map had a higher rate
+Figure \ref{fig:fzero}D shows the \DS cell f_0 response map had a higher rate
 threshold and enhanced the temporal information on-CF at high intensities
-relative to HSR and LSR units.  \OnC units recorded from the dorsal acoustic
-stria in cats have shown high SI maintained above 0.8 up to 60dB then slopes
+relative to HSR and LSR units.  \Gls{OnC} units recorded from the dorsal acoustic
+stria in cats have shown high SI maintained above 0.8 up to 60 dB SPL then slopes
 down to 0.6 at 80 dB SPL \citep{JorisSmith:1998}.  Maximum phase response for
 the \DS cell model (results not shown) was linear over SPL (similar to
 experimental results).
 
 The f_0 response of TV cells (Figure \ref{fig:fzero}E) shows an enhanced V-shape
-map similar to HSR units.  High SI values (close to 1) near rate threshold
+map similar to HSR units.  High SI values (close to 1) near the rate threshold
 boundary occur where HSR units are at their peak in Figure \ref{fig:fzero}A.  TV
-cells receive strong inhibition from DS cell, but DS cell input inactive in this
+cells receive strong inhibition from DS cells, but DS cells were inactive in this
 area. This implicates intrinsic mechanisms in the \TV cell model and an
 integration of ANF inputs within the dynamic range that contribute to this
 enhancement.
-#(Type-I classic \RM model)
+# (Type-I classic \RM model)
 # contribute to a high input resistance at \RMP.  The lower leak potential
 # (\Eleak) in the \TV cell model also increases the difference between \RMP and
 # \AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
@@ -456,13 +454,13 @@ In the centre
 of the \TV f_0 response map (units with CF near \fc at high stimulus
 intensities), \SI values deteriorate to below 0.3. Here HSR inputs to the TV
 cell model are not temporally significant but the combination of \LSR excitation
-and \DS cell inhibition with high temporal precision enhance the \TV cells to a
+and \DS cell inhibition with high temporal precision enhances the \TV cells to a
 weak, temporally significant output.
 
 \GLG cells' f_0 response is moderate to weak over the extent of its response area
 (Figure \ref{fig:fzero}F).  \GLG cells receive a majority of their inputs from
-\LSR fibres that have high temporal information throughput across response area
-in Figure \ref{fig:fzero}B). The diminished temporal information is a result of
+\LSR fibres that have high temporal information throughput across the response area
+(Figure \ref{fig:fzero}B). The diminished temporal information is a result of
 the smoothing kernel in the \GLG neural model.
 
 
@@ -473,11 +471,7 @@ sharp rise in \SI at rate threshold then falls to a stable level above 0.5 \SI
 at 50 dB SPL, then to 0.4 \SI above 80 dB SPL.  This behaviour reproduces the
 characteristic \TS cell response summarised in Figure \ref{fig:AM:AMSummary}.
 
-
-
-
-\yellownote{Link f-nought response to next section.  Note f-nought fm was 150
-Hz, explore responses at different fm. }
+# \yellownote{Link f-nought response to next section.  Note f-nought fm was 150 Hz, explore responses at different fm. }
 
 
 \clearpage
@@ -491,11 +485,10 @@ Hz, explore responses at different fm. }
 #    \ChS model)
 
 The figures below show the rate and temporal responses, across the entire
-network, to an \AM tone with carrier frequency 8.91 kHz .  Modulation frequency
+network, to an \AM tone with carrier frequency 8.91 kHz.  Modulation frequency
 ranged from 50 to 1200 Hz in 50 Hz steps.  Each figure shows the mean firing
 rate (rMTF) on the left and the synchronisation index (tMTF) on the right.  The
-SI values were masked in white if the Rayleigh coefficient were not above 13.681
-(\alpha < 0.001).
+# SI values were masked in white if the Rayleigh coefficient were not above 13.681 (p < 0.05).
 
 # The sound level of each stimulus
 # was set to 40 dB \SPL for the top row and 60 dB \SPL for the bottom row.
