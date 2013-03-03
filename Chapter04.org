@@ -13,7 +13,7 @@
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 #+LATEX_HEADER:  %\usepackage[notcite]{showkeys} 
-#+BIBLIOGRAPHY: ../MyBib alphanat
+#+BIBLIOGRAPHY: ../org-manuscript/bib/MyBib alphanat
 
 
 # # Write text after begin { document } 
@@ -117,9 +117,9 @@ between the \AN and higher auditory centres, so modelling and numerical analysis
 of its processes are important for developing the necessary insight.
 
 \yellownote{TODO Fix this intro paragraph}
+
 Figure \ref{fig:AM:def} shows the response of an AN model filterbank 
 The single Individual AN fibres may encode temporal information of simple tones up to 5 kHz. 
-
 
 For reviews of neural encoding of sound-envelope information in the \AN and \CN see
 \citet{FrisinaWaltonEtAl:1994,JorisSchreinerEtAl:2004}.  
@@ -128,7 +128,7 @@ For reviews of neural encoding of sound-envelope information in the \AN and \CN 
 
 #+LABEL: fig:AM:def
 #+ATTR_LaTeX: width=\linewidth
-#+CAPTION: [Amplitude modulation and its response in the auditory nerve]{A. Sinusoidal amplitude modulated stimulus with carrier frequency 2 kHz and modulation frequency 100 Hz. The period of the envelope is 10 ms. B. Theoretical spectrum of AM stimulus. C. Post-stimulus time histogram of all HSR ANF units to a 60 dB SPL AM stimulus (\citet{ZilanyCarney:2010} AN model, 100 frequency channels from 0.2 to 40 kHz, 20 fibres per channel, stimulus duration 150 ms, onset delay 20 ms).  D. Power spectrum of PSTH for all HSR units and the HSR unit with a CF closest to the carrier frequency   (unit 33, CF 1.979 kHz). The modulation frequency harmonics are prominent in the power spectrum of all HSR units, especially the first (100 Hz).}
+#+CAPTION: [Amplitude modulation and its response in the auditory nerve]{A. Sinusoidal amplitude modulated stimulus with carrier frequency 2 kHz and modulation frequency 100 Hz. The period of the envelope is 10 ms. B. Theoretical spectrum of AM stimulus. C. Post-stimulus time histogram of all HSR ANF units to a 60 dB SPL AM stimulus (\citet{ZilanyCarney:2010} AN model, 100 frequency channels from 0.2 to 40 kHz, 20 fibres per channel, stimulus duration 150 ms, onset delay 20 ms).  D. Power spectrum of PSTH for all HSR units and the HSR unit with a CF closest to the carrier frequency   (unit 33, CF 1.979 kHz). The modulation frequency harmonics are prominent in the power spectrum of all HSR units, especially the first (100 Hz) which is also the modulation frequency.}
   [[file:../VowelProcessingChapter/gfx/AMfig.pdf]]
 
 
@@ -218,14 +218,21 @@ At low to moderate
 
 ** Variation in modulation frequency
 
-Figure \ref{fig:AM:AMSummary}
+#+LABEL: fig:AM:RG94_Choppers
+#+ATTR_LaTeX: width=0.8\textwidth
+#+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a single \HSR \ANF. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  [[file:../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png]]
+
+\yellownote{refer to Figure \ref{fig:AM:RG94_Choppers}}
+
+Figure \ref{fig:AM:AMSummary}B shows the simplified temporal \MTF responses from
+multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
 
   - definition of \MTF or \tMTF
   - Low-pass to band-pass with high peak in vector strength.
   - Reduced cut-off due to membrane characteristics rather than network effects.
 
-- \citet{JorisSchreinerEtAl:2004} showed the simplified temporal responses from
-multiple studies in \ANFs and chopper units (Figure \ref{fig:AM:AMSummary}).
+-   (Figure \ref{fig:AM:AMSummary}).
 
 #+BEGIN_LaTeX
   \begin{figure}[htb] 
@@ -240,8 +247,11 @@ multiple studies in \ANFs and chopper units (Figure \ref{fig:AM:AMSummary}).
   \end{figure}
 #+END_LaTeX
 
+
+
 ** Existing CN Models' response to AM  
 
+\yellownote{TODO paragraph on existing AM models }
   - Inadequate existing \CN models
   - Zilany \AN model
     - accurate synchronisation behaviour
@@ -251,12 +261,7 @@ outside physiological range
     - Bahmer \& Lagner: Point neurons, hypothetical network
     - New \AN model synchronisation behaviour more accurate
 
-
-
-\yellownote{Modelling work in CN on AM tones: Manuel C. Eguia Guadalupe
-C. Garcia a, Sebastian A. Romano b J Neurophys Paris 2009 }
-
-
+# Modelling work in CN on AM tones: Manuel C. Eguia Guadalupe C. Garcia a, Sebastian A. Romano b J Neurophys Paris 2009 
 
 
 * Methods
@@ -281,14 +286,13 @@ in the simulations with time step, /dt/ = 0.05 ms, stimulus duration 150 ms and
 total duration 170 ms. Stimuli were repeated 50 times and the spike times of all
 \ANF and \CN units recorded.
 
-# ** Output and Data Storage
-# \yellownote{What are you doing here}
 
 ** Rate and Temporal Analysis in Amplitude Modulation
 
 The rate measure (\rMTF) was calculated from the mean firing rate in the neuron,
 between 20 ms and the end of the stimulus. In the AN,  the firing rate saturates
-\yellownote{TODO rate analysis}
+
+\yellownote{TODO rate analysis -finish paragraph}
 
 
 The temporal measure used to analyse the spike output of an individual neuron
@@ -351,6 +355,7 @@ using a fast Fourier transform of the period histogram to verify the procedure.
 
 
 * Results of Amplitude Modulation 
+
 
 ** Responses to Changes in Stimulus Intensity
 
@@ -419,13 +424,17 @@ experimental results).
 
 The f_0 response of TV cells (Figure \ref{fig:fzero}E) shows an enhanced V-shape
 map similar to HSR units.  High SI values (close to 1) near rate threshold
-boundary occur where HSR units are at their peak in Figure \ref{fig:fzero}A .
-TV cells receive strong inhibition from DS cell, but DS cell input inactive in
-this area. Intrinsic mechanisms in the \TV cell model (Type-I classic \RM model)
-contribute to a high input resistance at \RMP.  The lower leak potential
-(\Eleak) in the \TV cell model also increases the difference between \RMP and
-\AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
-and enhances the AC component of HSR and LSR excitatory inputs.  In the centre
+boundary occur where HSR units are at their peak in Figure \ref{fig:fzero}A.  TV
+cells receive strong inhibition from DS cell, but DS cell input inactive in this
+area. This implicates intrinsic mechanisms in the \TV cell model and an
+integration of ANF inputs within the dynamic range that contribute to this
+enhancement.
+#(Type-I classic \RM model)
+# contribute to a high input resistance at \RMP.  The lower leak potential
+# (\Eleak) in the \TV cell model also increases the difference between \RMP and
+# \AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
+# and enhances the AC component of HSR and LSR excitatory inputs.
+In the centre
 of the \TV f_0 response map (units with CF near \fc at high stimulus
 intensities), \SI values deteriorate to below 0.3. Here HSR inputs to the TV
 cell model are not temporally significant but the combination of \LSR excitation
@@ -714,19 +723,11 @@ response with little to no temporal information at the carrier frequency units.
 *** TS cell model 
 # : Sustained Chopper
 
-# \yellownote{ this section was simulated with default \TS parameters, see new data for optimised Chopper parameters}
+
   
 #+BEGIN_LaTeX
   \begin{figure}[tb] 
-  \centering %\caption{TS Rate (spks/s) and SI 60 dB}
-  %{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth}tMTF}\\ 
-  %\resizebox{0.95\columnwidth}{!}{\includegraphics{40/ratetemporal-0.eps}}\\ 
-  %\resizebox{0.95\columnwidth}{!}{\includegraphics{60/ratetemporal-0.eps}}
-  %{\hfill{ Rate MTF (sp/s)\hfill Temporal MTF\hfill}}\\ 
-  %\resizebox{\columnwidth}{!}{{\large 80 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/80/ratetemporal-0.png}}}
-  %\resizebox{\columnwidth}{!}{{\large 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-0.png}}}\\ 
-  %\resizebox{\columnwidth}{!}{{\large 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-0.png}}}\\ 
-  %\resizebox{\columnwidth}{!}{{\large 20 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/20/ratetemporal-0.png}}}
+  \centering 
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChS.pdf}}
   \caption{Rate and temporal MTF responses for the ChS TS cell model. Organisation of sub-figures A through F are
       the same as in Figure~\ref{fig:AM:HSRMTF}.}
@@ -763,11 +764,9 @@ to 40) had the most dominant temporal response across the \TS cell population.
 \clearpage
 # *** TS cell model: Transient Chopper 1
 
-# \yellownote{ this section was simulated with default \TS parameters, see new data for optimised Chopper parameters}
-  
 #+BEGIN_LaTeX
   \begin{figure}[tb] 
-  \centering %\caption{TS Rate (spks/s) and SI 60 dB}
+  \centering 
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChT1.pdf}}
   \caption{Rate and temporal MTF responses for the ChT$_1$ TS cell model. Organisation of sub-figures A through F are
       the same as in Figure~\ref{fig:AM:HSRMTF}.}
@@ -781,8 +780,6 @@ Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \
 
 # *** TS cell model: Transient Chopper 2
 
-# \yellownote{ this section was simulated with default \TS parameters, see new data for optimised Chopper parameters}
-  
 #+BEGIN_LaTeX
   \begin{figure}[tb] 
   \centering %\caption{TS Rate (spks/s) and SI 60 dB}
@@ -1004,7 +1001,7 @@ D stellate cells are critical to the \CNSM model's ability to encode temporal
 information at high sound intensity levels.  More specifically they enhance the
 entrainment of the TS cells to complex stimulus envelope through precisely timed
 inhibition
-\citep{RhodeGreenberg:1994,FrisinaSmithEtAl:1990a,PaoliniClareyEtAl:2005,NeedhamPaolini:2006}.
+\citep{JorisSmith:1998,RhodeGreenberg:1994,FrisinaSmithEtAl:1990a,PaoliniClareyEtAl:2005,NeedhamPaolini:2006}.
 The envelope synchronisation in \DS units with a \CF above $\fc$ produced
 band-pass rate \MTFs.  The temporal information at the channel with \CF=$\fc$
 (Figure \ref{fig:AM:DS}) was diminished by the strong GABAergic inhibition of
@@ -1034,36 +1031,48 @@ synapses for the site of activation at the axon hillock.
 
 
 
-\yellownote{ CNSM model in ipsi lateral only.  Further studies on commissural inputs?}
-Labelled \DS cells project widely to the VCN and  DCN; and in some cases to the contralateral CN in the same manner
-\citep{SmithMassieEtAl:2005,ArnottWallaceEtAl:2004}  
-In vivo studies have already shown the effects of commisural inhibition of first spike responses to tones
-\citep{NeedhamPaolini:2007,NeedhamPaolini:2006,NeedhamPaolini:2003}.
+#  CNSM model in ipsi lateral only.  Further studies on commissural inputs? 
+# Labelled \DS cells project widely to the VCN and  DCN; and in some cases to the contralateral CN in the same manner
+# \citep{SmithMassieEtAl:2005,ArnottWallaceEtAl:2004}  
+# In vivo studies have already shown the effects of commisural inhibition of first spike responses to tones
+# \citep{NeedhamPaolini:2007,NeedhamPaolini:2006,NeedhamPaolini:2003}.
 
-\cite{RhodeGreenberg:1994,Rhode:1998}
-\citep{Frisina:2001,FrisinaWaltonEtAl:1993,FrisinaSmithEtAl:1990a}.
+# \cite{RhodeGreenberg:1994,Rhode:1998}
+# \citep{Frisina:2001,FrisinaWaltonEtAl:1993,FrisinaSmithEtAl:1990a}.
 
 
 ** TV cells
 
-The temporal response of \TV cells was strongly enhanced due to a combination of
-intrinsic mechanisms, afferent excitation and inhibition by \DS units.  \TV cells
-are thought to be responsible for delayed inhibition or echo-suppression
-\citep{WickesbergOertel:1990} in \VCN units, but can also be involved in tuning
-the temporal behaviour in \TS cells at low sound levels.  
-
-In general, knowledge of the role of \TV cells in temporal processing is
-incomplete.  \TV cells' temporal response properties in experimental studies
-have been shown to be complex and non-linear
-\citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.  
+The results of the \TV cell model show a general enhancement of temporal
+information to AM tones relative to \ANF inputs.  The strong enhancement may be
+due to a combination of intrinsic mechanisms, afferent excitation and inhibition
+by \DS units.  The f_0 response map of TV cells in Figure \ref{fig:fzero}E showed
+high SI values near boundaries of its response area.  TV cells receive strong
+inhibition from DS cell, but DS cell input inactive in this area. Intrinsic
+mechanisms in the \TV cell model (Type-I classic \RM model) contribute to a high
+input resistance at \RMP.  The lower leak potential (\Eleak) in the \TV cell
+model also increases the difference between \RMP and \AP threshold.  These
+mechanisms remove the DC component of uncorrelated inputs and enhances the AC
+component of HSR and LSR excitatory inputs.
 
 \yellownote{ The maximum firing
 rate of the \TV cell model at high stimulus intensities (on-CF units, AM tone,
 80 dD SPL, $>$ 400 spikes per second) is not consistent with the Type II EIRA
-behaviour of low firing rates in noise and high intensity.
+behaviour of low firing rates in noise and high intensity.}
 
-\yellownote{The current result show the TV cells with enhanced temporal encoding
-across CFs and across intensities relative to ANFs.  NOTE -- these results don't seem right }
+
+\TV cells' temporal response properties in experimental studies have been shown
+to be complex and non-linear
+\citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.  In general, knowledge
+of the role of \TV cells in temporal processing is incomplete.  \TV cells are
+thought to be responsible for delayed inhibition or echo-suppression
+\citep{WickesbergOertel:1990} in \VCN units, but can also be involved in tuning
+the temporal behaviour in \TS cells at low sound levels.
+
+
+
+# \yellownote{The current result show the TV cells with enhanced temporal encoding
+# across CFs and across intensities relative to ANFs.  NOTE -- these results don't seem right }
 
 
 
@@ -1125,7 +1134,7 @@ simulations that vary intrinsic cell parameters or connection parameters in the
 temporal information processing.
 
 #+BEGIN_LaTeX
-  \ifthenelse{\isundefined{\manuscript}}{\newpage\singlespacing\bibliographystyle{plainnat} \bibliography{../MyBib}\newpage \printglossaries\newpage\listoftodos}{}
+\ifthenelse{\isundefined{\manuscript}}{\newpage\singlespacing\bibliographystyle{plainnat} \bibliography{../org-manuscript/bib/MyBib}\newpage \printglossaries\newpage\listoftodos}{}
 #+END_LaTeX
 
 
