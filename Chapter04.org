@@ -19,7 +19,7 @@
 # # Write text after begin { document } 
 
 #+LaTeX:\setcounter{chapter}{3}
-#+LaTeX:\chapter[AM Coding in CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit}\label{sec:Chapter4}
+#+LaTeX:\chapter[AM Coding in the CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit Model}\label{sec:Chapter4}
 
 #+BEGIN_LaTeX
   %\ifthenelse{\isundefined{\manuscript}}{\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}}{}
@@ -155,7 +155,25 @@ the edges of the response area .
 
 
 
-\yellownote{linking sentence doesn't feel right.} 
+# Existing CN neural or netwok models response to AM  
+
+# \yellownote{TODO paragraph on existing AM models }
+
+#   - Inadequate existing \CN models
+#   - Existing models not realistic
+#     - Wiegrebe \& Meddis: Point neurons, strong recurrent connections, operate
+# outside physiological range
+#     - Bahmer \& Lagner: Point neurons, hypothetical network
+#     - New \AN model synchronisation behaviour more accurate
+#   - Zilany \AN model
+#     - accurate synchronisation behaviour
+
+
+# Modelling work in CN on AM tones: Manuel C. Eguia Guadalupe C. Garcia a, Sebastian A. Romano b J Neurophys Paris 2009 
+
+
+
+#  \yellownote{linking sentence doesn't feel right.} 
 In this chapter I will introduce the
 measures used to assess the neural output to AM stimuli and the current
 knowledge of responses in the \AN and neurons of the \CNSM model to AM.  The
@@ -254,7 +272,13 @@ using a fast Fourier transform of the period histogram to verify the procedure.
   
 The coding of \AM in auditory neurons is measured using a \MTF, which is
 calculated using its discharge firing rate (\rMTF) or temporal information
-(\tMTF). The degree of phase locking is measured by the \SI (also called vector strength) 
+(\tMTF). Firing rate is an efficient way of indicating a specific quality or
+stimulus feature, as shown in other in sensory pathways.  Rate coding in the
+individual \AN fibres and spectral coding across all ANFs give a poor representation
+of modulated signals \citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
+The \CN begins the transformation 
+
+The degree of phase locking is measured by the \SI (also called vector strength)
 \citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.  \SI
 is a dimensionless measure of phase locking for a particular frequency, where
 the magnitude of synchronisation at that frequency is divided by the baseline
@@ -269,14 +293,14 @@ synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
 #     - saturation at high sound level
 #     - poor \SNR in auditory nerve
 
-
+\yellownote{TODO}
 At low to moderate 
   - poor in \AN (note measurements for f_m at \CF in most studies)
   - enhanced in T stellate cells at high \SPL
 
 #+LABEL: fig:AM:RG94_AN
 #+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a single \HSR \ANF. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+#+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal MTF response property of a single \HSR \ANF to AM stimuli at 30, 50 and 70 dB SPL. The rMTF of the HSR unit is an all-pass filter and saturates at 230 spikes per second. The tMTF is a low pass filter at 30 dB SPL and strength of synchronisation reduces dramatically with increase in sound intensity.  (SI is the same as Sync. Coeff.)   Figure reproduced from \citet{RhodeGreenberg:1994}. }
   [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 ** Variation in modulation frequency
@@ -294,13 +318,13 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
   - definition of \MTF or \tMTF
   - Low-pass to band-pass with high peak in vector strength.
   - Reduced cut-off due to membrane characteristics rather than network effects.
-
--   (Figure \ref{fig:AM:AMSummary}).
+  - (Figure \ref{fig:AM:AMSummary}).
 
 #+BEGIN_LaTeX
   \begin{figure}[htb] 
   \centering
-  {\hfill\includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4A.png}\hfill%
+  {\hfill%
+  \includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4A.png}\hfill%
   \includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4B.png}\hfill}
   \caption{Simplified temporal responses of ANFs and T stellate cells with respect
     to variations in intensity and modulation frequency. TS cells have
@@ -311,20 +335,6 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
 #+END_LaTeX
 
 
-
-** Existing CN Models' response to AM  
-
-\yellownote{TODO paragraph on existing AM models }
-  - Inadequate existing \CN models
-  - Zilany \AN model
-    - accurate synchronisation behaviour
-  - Existing models not realistic
-    - Wiegrebe \& Meddis: Point neurons, strong recurrent connections, operate
-outside physiological range
-    - Bahmer \& Lagner: Point neurons, hypothetical network
-    - New \AN model synchronisation behaviour more accurate
-
-# Modelling work in CN on AM tones: Manuel C. Eguia Guadalupe C. Garcia a, Sebastian A. Romano b J Neurophys Paris 2009 
 
 
 * Methods
@@ -348,6 +358,19 @@ The simulations were performed using the neural simulation package [[latex:progn
 in the simulations with time step, /dt/ = 0.05 ms, stimulus duration 150 ms and
 total duration 170 ms. Stimuli were repeated 50 times and the spike times of all
 \ANF and \CN units recorded.
+
+** CNSM model
+
+Table~\ref{tab:AMModelSummary} shows the summary of the model used in this
+study.  The Nordlie approach to reproducible neural network simulations
+\citep{NordlieGewaltigEtAl:2009} is followed.  The parameters of the \CNSM model
+were optimised in Section \ref{sec:Chapter3} to fit experimentally observe
+behaviour of each of the cell types in the model.  %optimisation of the
+parameters % in the CN stellate model is the subject of the doctoral research of
+% Michael Eager.
+
+
+#+LATEX: \input{NordlieTemplate.tex}
 
 
 * Results of Amplitude Modulation 
@@ -401,7 +424,6 @@ provide high ($>$ 0.8 SI) to moderate ($0.5 - 0.6$ SI) temporal information that
 is lacking in the HSR units.
 
    
-
 The f_0 response of cells in the \CN reflect the ANF input responses, the
 intra-nuclei synaptic interactions within and across frequency channels, and the
 intrinsic properties of each of the cell types.  
