@@ -1,13 +1,13 @@
 %{%\vspace{2ex}
 %\small\linespread{0.5}
-\begin{table*}[tb]
-    \caption{CN Stellate Microcircuit Network Model Summary}\label{tab:TSModelSummary}
+\begin{table*}[ptb]
+    \caption{CNSM Model Summary for AM tones}\label{tab:AMModelSummary}
 %  \end{table}
 %\noindent%
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{i}{Model Summary}\\\hline
-         \textbf{Populations}          & Six: HSR \& LSR ANFs, Golgi, DS, TV and TS cells \\\hline
-          \textbf{Topology}            & Tono-topicity of the rat AN and CN \\\hline
+         \textbf{Populations}          & HSR \& LSR ANFs, Golgi, DS, TV and three TS cells \\\hline
+          \textbf{Topology}            & Tono-topicity of the cat AN and CN \\\hline
         \textbf{Connectivity}          & ANF$\to${Golgi,DS,TV,TS}, Golgi$\to$DS,TS, DS$\to$TV,TS, and TV$\to$TS  \\\hline
          \textbf{Input model}          & ANF~model: instantaneous-rate Poisson model \cite{ZilanyBruce:2007} \\\hline
 \multirow{4}{*}{\textbf{Neuron model}} & Golgi: instantaneous-rate Poisson model\\
@@ -16,8 +16,8 @@
                                        & T~stellate cell: HH-like single-compartment type I-t R\&M model \cite{RothmanManis:2003b}\\ \hline
        \textbf{Channel models}         & $I_{\textrm{Na}}$, $I_{\textrm{KHT}}$, $I_{\textrm{KLT}}$, $I_{\textrm{KA}}$ and $I_{\textrm{h}}$ \cite{RothmanManis:2003b}\\\hline
         \textbf{Synapse model}         & AMPA (\textit{ExpSyn}), GABA$_{\rm A}$ (\textit{Exp2Syn}), Glycine (\textit{Exp2Syn}) \\\hline
-            \textbf{Input}             & 250 ms amplitude modulated tones ($f_c=5.82$ kHz, $f_m=$50-800 Hz) at 40 and 60 dB SPL \\\hline
-        \textbf{Measurements}          & Spikes recorded over 25 repetitions.  Mean rate and synchronisation index measured from the spike times. \\\hline
+            \textbf{Input}             & Amplitude modulated tones, $f_c=8.91$ Hz ($f_m$ and SPL varied according to stimulus paradigm)\\\hline
+        \textbf{Measurements}          & Spikes recorded over 50 repetitions.  Mean rate and synchronisation index measured from the spike times 20 ms after stimulus onset. \\\hline
 \end{tabularx}
 
 \vspace{1ex}
@@ -76,7 +76,7 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \vspace{1ex}
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{v}{Input\slash Ouput}\\\hline
-\textbf{Input Stimulus} & Pure tone AM stimuli with 250 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay. Carrier frequency 5.82 kHz, modulation frequencies 50-800 Hz, with 50 Hz increments. \\\hline 
+\textbf{Input Stimulus} & AM stimuli with fixed parameters for all paradigms: carrier frequency 8.91 kHz and 100\% modulation depth, 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay. F$_{0}$ response paradigm: modulation frequency 100 Hz, with 5 dB SPL increments from 0 to 90 dB SPL. MTF paradigm:  \\\hline 
     \textbf{Input}      & Stimulus induced Poisson spike trains from GLG units, HSR and LSR ANFs, and natural synaptic input from DS and TV units\\\hline
 %\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}
 %\includegraphics[width=0.8\textwidth,keepaspectratio]{./gfx/Notch-Wl-12.5kHz-0.5.eps}
@@ -88,11 +88,8 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 %\textbf{Measurements}    & PSTH sampled at each click for 2 ms to measure click recovery\\\hline
 %\textbf{Optimisation}    & Parameters for \GLGDS are optimised based on experimental click recovery date from \citet{BackoffPalombiEtAl:1997}. The praxis method is used for optimisation.  \\\hline
 \textbf{Measurements}    &  
-Mean rate and synchronisation index were calculated from each CN unit for each stimuli over 25 repetitions.
-
-Synchronisation index was calculated relative to the modulation frequency
-using the vector strength method \cite{KajikawaHackett:2005}.
-%Intracellular voltage was recorded and special measures were calculated.  Spikes recorded and co-efficient of variation statistic was calculated in 10 ms windows.
+Mean rate and synchronisation index were calculated from each AN and CN unit for each stimuli over 50 repetitions.
+% Synchronisation index was calculated relative to the modulation frequency using the vector strength method \cite{KajikawaHackett:2005}.
 \\\hline
 \end{tabularx}
 \end{table*}
