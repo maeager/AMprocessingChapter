@@ -7,11 +7,13 @@
 
 #+name: prepare_vsSPIKES_responsearea
 #+BEGIN_SRC sh
+ export CNSTELLATEPATH=/media/data/Work/cnstellate/scripts/
+ export PATH=${CNSTELLATEPATH}:${PATH}
 
  cd /media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/
- /media/data/Work/cnstellate/scripts/second_level_si_rate.sh
+ second_level_si_rate.sh &
  cd /media/data/Work/cnstellate/TStellate2_CS/F0Response/
- /media/data/Work/cnstellate/scripts/second_level_si_rate.sh
+ first_level_si_rate.sh &
 
 #+END_SRC
 
