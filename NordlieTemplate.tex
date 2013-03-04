@@ -1,5 +1,5 @@
-%{%\vspace{2ex}
-%\small\linespread{0.5}
+{%\vspace{2ex}
+\small\linespread{0.5}
 \begin{table*}[ptb]
     \caption{CNSM Model Summary for AM tones}\label{tab:AMModelSummary}
 %  \end{table}
@@ -69,8 +69,11 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \raisebox{-4.5ex}{\parbox{0.2\textwidth}{\textbf{Subthreshold dynamics}}}& % \\%&%
 \rule{1em}{0em}\vspace*{-3.5ex}
 \begin{eqnarray*}
- I_{{\rm Na}} (t,V)=\bar{g}_{{\rm Na}} m^{3} h (V-E_{{\rm Na}} )\quad,\quad I_{KA} (t,V)=\bar{g}_{{\rm KA}} a^{4} b c (V-E_{K})\quad,\quad I_{{\rm h}} (t,V)=\bar{g}_{{\rm h}} r (V-E_{{\rm h}} )\\
-    I_{{\rm KHT}}(t,V)=\bar{g}_{{\rm KHT}} ( \frac{n^{2}+p}{2})(V-E_{K})\quad,\quad I_{{\rm KLT}}(t,V)=\bar{g}_{{\rm KLT}} w^{3} z (V-E_{K} )\\
+ I_{{\rm Na}} (t,V)=\bar{g}_{{\rm Na}} m^{3} h (V-E_{{\rm Na}} )\quad,\\
+ I_{KA} (t,V)=\bar{g}_{{\rm KA}} a^{4} b c (V-E_{K})\quad,\\
+ I_{{\rm h}} (t,V)=\bar{g}_{{\rm h}} r (V-E_{{\rm h}} )\\
+    I_{{\rm KHT}}(t,V)=\bar{g}_{{\rm KHT}} ( \frac{n^{2}+p}{2})(V-E_{K})\quad,\\
+ I_{{\rm KLT}}(t,V)=\bar{g}_{{\rm KLT}} w^{3} z (V-E_{K} )\\
 \end{eqnarray*} \vspace*{-5.5ex}\rule{1em}{0em}
 \\\hline
  \textbf{Spiking} & Emit spike when $V(t)\geq -20$ mV  \\\hline
@@ -96,7 +99,7 @@ Mean rate and synchronisation index were calculated from each AN and CN unit for
 \\\hline
 \end{tabularx}
 \end{table*}
-%}
+}
 
 %  \textbf{Assumptions}    & The spread ANF to DS cells (\sANFDSh,\sANFDSl) is arbitrary at this point and will be explored in the next experiment.\\ \hline
 %   \textbf{Function}     & Weighted mean squared error see listing below  \\ \hline
