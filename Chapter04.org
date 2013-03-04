@@ -428,7 +428,7 @@ intra-nuclei synaptic interactions within and across frequency channels, and the
 intrinsic properties of each of the cell types.  
 Figure \ref{fig:fzero}C shows the f_0 response map of TS cell models. TS cells
 receive inputs from all the other cell types in the \CNSM model.
-# and I shallreturn to discuss this figure after I have discussed the other cells' f_0 reponses.
+
 
 Figure \ref{fig:fzero}D shows the \DS cell f_0 response map had a higher rate
 threshold and enhanced the temporal information on-CF at high intensities
@@ -445,7 +445,6 @@ cells receive strong inhibition from DS cells, but DS cells were inactive in thi
 area. This implicates intrinsic mechanisms in the \TV cell model and an
 integration of ANF inputs within the dynamic range that contribute to this
 enhancement.
-# (Type-I classic \RM model)
 # contribute to a high input resistance at \RMP.  The lower leak potential
 # (\Eleak) in the \TV cell model also increases the difference between \RMP and
 # \AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
@@ -478,11 +477,6 @@ characteristic \TS cell response summarised in Figure \ref{fig:AM:AMSummary}.
 
 
 ** Responses to Changes in Modulation Frequency
-# ** ISSNIP results
-
-#  - Note the responses in the ISSNIP data was simulated with the early Bruce
-#    model and the \TS parameters were just the default values (equivalent to the
-#    \ChS model)
 
 The figures below show the rate and temporal responses, across the entire
 network, to an \AM tone with carrier frequency 8.91 kHz.  Modulation frequency
@@ -495,6 +489,26 @@ rate (rMTF) on the left and the synchronisation index (tMTF) on the right.  The
 
 
 *** ANF Model Results
+
+# saturation is broadest at high f_m
+# see Figures.org + call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+# still nee to run fixbb and epstopdf on EPS file
+#+BEGIN_LaTeX
+  \begin{figure}[thb] 
+    \centering
+   % {\hfill{ Rate (sp/s)\hfill Temporal}}\\
+    \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-4.pdf}}\\
+    \caption{Rate and temporal modulation transfer functions (MTF) maps of HSR
+      auditory nerve fibres at 40, 60 and 80 dB SPL to AM tones with carrier
+      frequency 8.91 kHz. Rate (right column) and temporal (left) MTF maps of
+      modulation frequency ($f_\mathsf{m}$) against the CF of the HSR units.  The
+      corresponding temporal MTF maps show their SI with range 0 to 1. The white
+      mask over the tMTF graphs show where the Rayleigh test's p-value was above
+      0.05.  A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.  C. rMTF map at
+      60 dB SPL. D. tMTF map at 80 dB SPL. E. rMTF map at 40 dB SPL. F. tMTF map
+      at 40 dB SPL. }  \label{fig:AM:HSRMTF}
+  \end{figure}
+#+END_LaTeX
 
 Figure \ref{fig:AM:HSRMTF} shows the rate and temporal \MTF maps of \HSR \ANFs
 to \AM tones with $\fc=8.91$ kHz.  \HSR fibres saturate to pure \CF tones at 40
@@ -529,25 +543,6 @@ in units further from the centre CF unit. At 40 dB SPL, the two salient
 information bands begin to merge as the range of excited frequency channels get
 closer to the centre CF.
 
-# saturation is broadest at high f_m
-# see Figures.org + call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
-# still nee to run fixbb and epstopdf on EPS file
-#+BEGIN_LaTeX
-  \begin{figure}[thb] 
-    \centering
-   % {\hfill{ Rate (sp/s)\hfill Temporal}}\\
-    \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-4.pdf}}\\
-    \caption{Rate and temporal modulation transfer functions (MTF) maps of HSR
-      auditory nerve fibres at 40, 60 and 80 dB SPL to AM tones with carrier
-      frequency 8.91 kHz. Rate (right column) and temporal (left) MTF maps of
-      modulation frequency ($f_\mathsf{m}$) against the CF of the HSR units.  The
-      corresponding temporal MTF maps show their SI with range 0 to 1. The white
-      mask over the tMTF graphs show where the Rayleigh test's p-value was above
-      0.05.  A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.  C. rMTF map at
-      60 dB SPL. D. tMTF map at 80 dB SPL. E. rMTF map at 40 dB SPL. F. tMTF map
-      at 40 dB SPL. }  \label{fig:AM:HSRMTF}
-  \end{figure}
-#+END_LaTeX
 
 
 #+BEGIN_LaTeX
