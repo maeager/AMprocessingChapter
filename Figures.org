@@ -179,6 +179,8 @@ where the f_c is fixed at the \CF of the unit.
     unset multiplot
 #+END_SRC
 
+#+RESULTS: fresponse
+
 #+name: fnoughtrate
 #+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
 #+BEGIN_SRC gnuplot :export none 
@@ -228,13 +230,20 @@ where the f_c is fixed at the \CF of the unit.
 #+END_SRC
 
 
+
+** F0 temporal
+
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
 
 #+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
 [[file:./gfx/fresponse-vs.eps]]
 
+** F0 rate
 
 #+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+
+#+RESULTS: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
+[[file:./gfx/fresponse-rate.eps]]
 
 
 
