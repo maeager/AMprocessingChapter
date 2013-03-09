@@ -120,28 +120,28 @@ Figure \ref{fig:AM:def} shows the general
 properties of an AM tone and the response of an AN model filterbank.  The
 stimulus in Figure \ref{fig:AM:def}A is a 100\% modulated sinusoidal \AM tone,
 with carrier frequency (\fc) 2 kHz and modulation frequency (\fm) of 100 Hz.
-The general formula for a sinusoidal \AM tone with variable modulation height is
+The general formula for a sinusoidal \AM tone with variable modulation height /m/ is
 \begin{equation}\label{eq:AMformula}
-s(t) = [1 + m \sin(2\pi{}f_{m}t)] \sin (2\pi{}f_{c}t).
+s(t) = [1 + m \sin(2\pi{}f_{\mathrm{m}}t)] \sin (2\pi{}f_{\mathrm{c}}t).
 \end{equation} 
 \noindent When transformed to the frequency-domain, the frequency
 components of an AM tone are a dominant spike at \fc and two components
 \fc $\pm$ \fm with half the height of the component at \fc (Figure
 \ref{fig:AM:def}B).  Individual AN fibres may encode temporal information of
 simple tones up to 5 kHz.  For reviews of neural encoding of sound-envelope
-information in the \AN and \CN see
+information in the \AN and \CN, see
 \citet{FrisinaWaltonEtAl:1994} and \citet{JorisSchreinerEtAl:2004}.
 
 #+LABEL: fig:AM:def
 #+ATTR_LaTeX: width=\linewidth
-#+CAPTION: [Amplitude modulation and its response in the auditory nerve]{A. Sinusoidal amplitude modulated stimulus with carrier frequency 2 kHz and modulation frequency 100 Hz. The period of the envelope is 10 ms. B. Theoretical spectrum of AM stimulus. C. Post-stimulus time histogram of all HSR ANF units to a 60 dB SPL AM stimulus (\citet{ZilanyCarney:2010} AN model, 100 frequency channels from 0.2 to 40 kHz, 20 fibres per channel, stimulus duration 150 ms, onset delay 20 ms).  D. Power spectrum of PSTH for all HSR units and the HSR unit with a CF closest to the carrier frequency   (unit 33, CF 1.979 kHz). The modulation frequency harmonics are prominent in the power spectrum of all HSR units, especially the first (100 Hz) which is also the modulation frequency.}
+#+CAPTION: [Amplitude modulation and its response in the auditory nerve]{A. Sinusoidal amplitude modulated stimulus with carrier frequency 2 kHz and modulation frequency 100 Hz. The period of the envelope is 10 ms. B. Theoretical spectrum of AM stimulus. C. Post-stimulus time histogram of all HSR ANF units to a 60 dB SPL AM stimulus (\citet{ZilanyCarney:2010} AN model, 100 frequency channels from 0.2 to 40 kHz, 20 fibres per channel, stimulus duration 150 ms, onset delay 20 ms).  D. Power spectrum of PSTH for all HSR units and the HSR unit with a CF closest to the carrier frequency   (unit 33, CF 1.979 kHz). The modulation frequency harmonics are prominent in the power spectrum of all HSR units, especially the first (100 Hz) which is also the fundamental frequency.}
   [[file:../VowelProcessingChapter/gfx/AMfig.pdf]]
 
 
 
 This chapter presents the \AM coding behaviour of the \CNSM model. It focuses
 specifically on the temporal behaviour in response to sinusoidal \AM stimuli.
-The primary outputs of the \CNSM model are the \TS cells, which provide a robust
+The outputs of the \CNSM model are the \TS cells, which provide a robust
 spectral representation of auditory information and enhanced coding of temporal
 information, especially the pitch in complex environments
 \citep{KeilsonRichardsEtAl:1997}.  The model contains three inhibitory
@@ -184,33 +184,36 @@ level (SPL) and \fm using measures of envelope synchronisation and average rate.
 
 ** Rate and Temporal Analysis in Amplitude Modulation
 
-The rate \MTF measure was calculated from the mean firing rate in the neuron.
-Caution is required to a avoid onset adaptation effects in auditory neurons.
+The \MTF is used in auditory neuroscience to measure the output of neurons in
+response to modulated inputs.  The \rMTF measures the output in terms of firing
+rate.  Caution is required to avoid onset adaptation effects in auditory neurons.
 Recordings were performed using long stimuli so that the units were in a
-steady-state.  
+steady-state.  The \rMTF in each neuron was calculated from the average firing
+rate 20 ms after onset to the end of the stimulus.
 # between 20 ms and the end of the stimulus.
 
 # In the AN,  the firing rate saturates
 # \yellownote{TODO rate analysis -finish paragraph}
 
-The temporal \MTF measure used to analyse the spike output of an individual neuron
-for one \AM stimulus is called the \SI (also known as the vector strength)
+The \tMTF measures temporal information in neural outputs at different \fm.  The
+\SI (also known as the vector strength) is used to analyse the spike output of
+an individual neuron for one \AM stimulus
 \citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
-\SI measures temporal information, i.e.\space phase-locking, relative to the
-modulation frequency of the stimuli. In this analysis, the \SI values were combined for each
-modulation frequency to create the \tMTF.  The SI measure was calculated 20 ms
-after the onset of the stimulus, using Equation \ref{eq:SI}:
+\SI measures phase-locking relative to the modulation frequency of the
+stimuli. In this analysis, the \SI values were combined for each modulation
+frequency to create the \tMTF.  The SI measure was calculated 20 ms after the
+onset of the stimulus, using Equation \ref{eq:SI}:
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SI} 
-  \mathsf{SI} = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} x_i \right)^2 + \left(\sum_{i=1}^{i=N} y_i \right)^2 }
+  \mathsf{SI} = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} \cos \theta_i \right)^2 + \left(\sum_{i=1}^{i=N} \sin \theta_i \right)^2 }
   \end{equation}
 #+END_LaTeX
-\noindent where $x_i = \cos \theta_i$, $y_i = \sin \theta_i$, and $N$ is the number of spikes
+\noindent where $N$ is the number of spikes
 \citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is treated as
-a vector of unit length and with phase $\theta_i$ between 0 and $2\pi$ measured as the
-spike time modulo of the stimulus period, $1/f_m$.  Perfect synchronisation will
-give \SI = 1 occurs when all spikes lock to the same phase. An SI measure of
-zero occurs when spikes have a uniform probability phase distribution.
+a vector of unit length with phase $\theta_i$ between 0 and $2\pi$ measured as the
+spike time modulo of the stimulus period, $1/\fm$.  Perfect synchronisation will
+give \SI = 1 and occurs when all spikes lock to the same phase. An SI measure of
+zero occurs when spikes have a uniform phase distribution.
 Bi-phasic or multi-phasic responses (i.e.\space phase-locking to harmonics of
 the fundamental) degrade the SI value but the temporal information pertaining to
 f_0 is still retained for higher auditory centres. Further measures of temporal
