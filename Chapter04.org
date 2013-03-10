@@ -107,29 +107,31 @@
 # To understanding how temporal information is processed and encoded in
 # the auditory central nervous system, we need  . 
 
+\Gls{AM} is the periodic modulation of the sound amplitude of a carrier
+frequency (see Figure \ref{fig:AM:def} \citep{JorisSchreinerEtAl:2004}). It is a
+key feature of speech and other biologically relevant sounds
+\citep{Bregman:1990}. Investigating \AM coding is a useful way of understanding
+how temporal information is processed and encoded in the auditory nervous
+system. The \CN is a major processing stage between the \AN and higher auditory
+centres, so modelling and numerical analysis of its processes are important for
+developing the necessary insight.
 
-\Gls{AM} is the periodic modulation of the sound amplitude of a carrier frequency
-(see Figure \ref{fig:AM:def} \citep{JorisSchreinerEtAl:2004}). It is a key
-feature of speech and other biologically relevant sounds. Investigating \AM
-coding is a useful way of understanding how temporal information is processed
-and encoded in the auditory nervous system. The \CN is a major processing stage
-between the \AN and higher auditory centres, so modelling and numerical analysis
-of its processes are important for developing the necessary insight.
-
-Figure \ref{fig:AM:def} shows the general
-properties of an AM tone and the response of an AN model filterbank.  The
-stimulus in Figure \ref{fig:AM:def}A is a 100\% modulated sinusoidal \AM tone,
-with carrier frequency (\fc) 2 kHz and modulation frequency (\fm) of 100 Hz.
-The general formula for a sinusoidal \AM tone with variable modulation height /m/ is
+Figure \ref{fig:AM:def} shows the general properties of an AM tone and the
+response of an AN model filterbank.  The stimulus in Figure \ref{fig:AM:def}A is
+a 100\% modulated sinusoidal \AM tone, with carrier frequency (\fc) 2 kHz and
+modulation frequency (\fm) of 100 Hz.  The general formula for a sinusoidal \AM
+tone with variable modulation height /m/ is
+#+BEGIN_LaTeX
 \begin{equation}\label{eq:AMformula}
 s(t) = [1 + m \sin(2\pi{}f_{\mathrm{m}}t)] \sin (2\pi{}f_{\mathrm{c}}t).
 \end{equation} 
-\noindent When transformed to the frequency-domain, the frequency
-components of an AM tone are a dominant spike at \fc and two components
-\fc $\pm$ \fm with half the height of the component at \fc (Figure
-\ref{fig:AM:def}B).  Individual AN fibres may encode temporal information of
-simple tones up to 5 kHz.  For reviews of neural encoding of sound-envelope
-information in the \AN and \CN, see
+\noindent 
+#+END_LaTeX
+When transformed to the frequency-domain, the frequency components of an AM tone
+are a dominant spike at \fc and two components \fc $\pm$ \fm with half the height
+of the component at \fc (Figure \ref{fig:AM:def}B).  Individual AN fibres may
+encode temporal information of simple tones up to 5 kHz.  For reviews of neural
+encoding of sound-envelope information in the \AN and \CN, see
 \citet{FrisinaWaltonEtAl:1994} and \citet{JorisSchreinerEtAl:2004}.
 
 #+LABEL: fig:AM:def
@@ -242,7 +244,7 @@ p = \exp\left(\sqrt{1+4N+4(N^2-R^2)-(1+2N)}\right)
 \end{equation} 
 #+END_LaTeX
 \noindent where $R=N\times\mathrm{SI}$ is Rayleigh's vector strength [fn:: The code
-was converted to use in NEURON and GNUplot from the Circular Statistics Matlab
+was converted to use in NEURON and GNUplot from the CircStat Matlab
 Toolbox \citep{Berens:2009}.]  \SI and Rayleigh tests were also calculated using
 a fast Fourier transform of the period histogram to verify the procedure.
 
@@ -270,6 +272,10 @@ a fast Fourier transform of the period histogram to verify the procedure.
 #     - saturation at high sound level
 #     - poor \SNR in auditory nerve
   
+Temporal information is critical for vocal communication the mammalian auditory
+system.  In humans, \AM is essential for distinguishing vowels and for
+segregation of streams of sounds with different fundamental frequencies
+\citep{Bregman:1990}.
 The coding of \AM in auditory neurons is measured using an \MTF, which is
 calculated using its discharge firing rate (\rMTF) or temporal information
 (\tMTF). Firing rate is an efficient way of indicating a specific quality or
