@@ -182,7 +182,7 @@ investigates the responses of the \CNSM model to variation in sound pressure
 level (SPL) and \fm using measures of envelope synchronisation and average rate.
 
 
-** Rate and Temporal Analysis in Amplitude Modulation
+* Rate and Temporal Analysis in Amplitude Modulation
 
 The \MTF is used in auditory neuroscience to measure the output of neurons in
 response to modulated inputs.  The \rMTF measures the output in terms of firing
@@ -195,13 +195,12 @@ rate 20 ms after onset to the end of the stimulus.
 # In the AN,  the firing rate saturates
 # \yellownote{TODO rate analysis -finish paragraph}
 
-The \tMTF measures temporal information in neural outputs at different \fm.  The
-\SI (also known as the vector strength) is used to analyse the spike output of
-an individual neuron for one \AM stimulus
+Temporal information in neural outputs is measured using the 
+\SI (also known as the vector strength) 
 \citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
-\SI measures phase-locking relative to the modulation frequency of the
+\SI measures phase-locking relative to the \fm or envelope of the
 stimuli. In this analysis, the \SI values were combined for each modulation
-frequency to create the \tMTF.  The SI measure was calculated 20 ms after the
+frequency to create the \tMTF.  The \SI measure was calculated 20 ms after the
 onset of the stimulus, using Equation \ref{eq:SI}:
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SI} 
@@ -210,41 +209,42 @@ onset of the stimulus, using Equation \ref{eq:SI}:
 #+END_LaTeX
 \noindent where $N$ is the number of spikes
 \citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike is treated as
-a vector of unit length with phase $\theta_i$ between 0 and $2\pi$ measured as the
-spike time modulo of the stimulus period, $1/\fm$.  Perfect synchronisation will
-give \SI = 1 and occurs when all spikes lock to the same phase. An SI measure of
-zero occurs when spikes have a uniform phase distribution.
-Bi-phasic or multi-phasic responses (i.e.\space phase-locking to harmonics of
-the fundamental) degrade the SI value but the temporal information pertaining to
-f_0 is still retained for higher auditory centres. Further measures of temporal
-information, i.e.\space phase-locking to any frequency, is performed using a
-fast Fourier transform.
+a vector of unit length with phase $\theta_i$ between 0 and $2\pi$ measured as the spike
+time modulo of the stimulus period, $1/\fm$.  Perfect synchronisation will give
+\SI = 1 and occurs when all spikes lock to the same phase. An SI measure of zero
+occurs when spikes have a uniform phase distribution.  Bi-phasic or multi-phasic
+responses (i.e.\space phase-locking to harmonics of the fundamental) degrade the
+SI value but the temporal information pertaining to \fm is still retained for
+higher auditory centres. Further measures of temporal information, i.e.\space
+phase-locking to any frequency, is performed using a fast Fourier transform.
 
 # *** The Rayleigh Test
 
 The statistical test used to verify the non-uniformity of circular data is the
-Rayleigh test. The Rayleigh test is equivalent to a Chi-squared test in uniform
-data. In neuroscience the Rayleigh test was originally calculated using $2 N
-(\mathsf{SI})^2$ \citep{Mardia:1972}.  The critical p-values for this Rayleigh
-test were 5.991 for \alpha = 0.05 and 13.816 for \alpha = 0.001
-\citep{ShannonZengEtAl:1995,MardiaJupp:1999}.  The preferred method for
-computing the p-value for the Rayleigh test is using a z-statistic
-\citep{Zar:1999}:
-#+BEGIN_LaTeX
-  \begin{equation}\label{eq:SIz}
- z = R^2 / N
-  \end{equation}
-#+END_LaTeX
-\noindent where is $R = N\times\mathsf{SI}$. The p-values were calculated using the
-approximation in \citet[p. 617]{Zar:1999}:
+Rayleigh test
+\citep{ShannonZengEtAl:1995,Fisher:1996,Zar:1999,Jammalamadaka:2001}. The null
+hypothesis states that the population of phases is uniformly distributed around
+the circle. This test assumes the distribution is unimodal around a particular
+phase.  \SI and the Rayleigh test are dependent on the number of spikes and the
+resolution of the spike recordings (in simulations this is the integration time
+step) . For \SI values below 0.1, a high spike count is required to obtain a
+statistically significant result.
+# The Rayleigh test is equivalent to a Chi-squared test in uniform
+# data. In neuroscience the Rayleigh test was originally calculated using $2 N
+# (\mathsf{SI})^2$ \citep{Mardia:1972}.  The critical p-values for this Rayleigh
+# test were 5.991 for \alpha = 0.05 and 13.816 for \alpha = 0.001
+# \citep{ShannonZengEtAl:1995,MardiaJupp:1999}.  
+The method for computing the p-value for the Rayleigh test is using the approximation in
+\citet[p. 617]{Zar:1999}:
 #+BEGIN_LaTeX
 \begin{equation}\label{eq:SIp}
-p = \exp\left(\sqrt{1+4N+4(N^2-R^2)}-(1+2N)\right).
+p = \exp\left(\sqrt{1+4N+4(N^2-R^2)-(1+2N)}\right)
 \end{equation} 
 #+END_LaTeX
-For \SI values below 0.1, a high spike count is required to obtain a
-statistically significant result.  \SI and Rayleigh tests were also calculated
-using a fast Fourier transform of the period histogram to verify the procedure.
+\noindent where $R=N\times\mathrm{SI}$ is Rayleigh's vector strength [fn:: The code
+was converted to use in NEURON and GNUplot from the Circular Statistics Matlab
+Toolbox \citep{Berens:2009}.]  \SI and Rayleigh tests were also calculated using
+a fast Fourier transform of the period histogram to verify the procedure.
 
 # (Further analysis of
 # the critical values see W. Rhode's analysis on the vector
@@ -255,10 +255,7 @@ using a fast Fourier transform of the period histogram to verify the procedure.
 # \citep{ChangEtAl:}
 
 
-
-
-
-** Temporal Coding in the Auditory Pathway
+* Temporal Coding in the Auditory Pathway
 
 #   \citep{FrisinaWaltonEtAl:1994}
 #   \citep{Frisina:2001}
