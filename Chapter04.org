@@ -313,18 +313,22 @@ At low to moderate
 
 ** Variation in modulation frequency
 
-#+LABEL: fig:AM:RG94_Choppers
-#+ATTR_LaTeX: width=0.8\textwidth 
-#+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  [[file:../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png]]
+#+LABEL: fig:AM:RG94_MTF
+#+ATTR_LaTeX: width=0.5\textwidth 
+#+CAPTION: [MTF]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  [[file:../VowelProcessingChapter/gfx/RG94_MTF.png]]
 
-\yellownote{refer to Figure \ref{fig:AM:RG94_Choppers}}
+\
+
+
+
+\yellownote{refer to Figure \ref{fig:AM:RG94_MTF}}
 
 Figure \ref{fig:AM:AMSummary}B shows the simplified temporal \MTF responses from
 multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
 
   - definition of \MTF or \tMTF
-  - Low-pass to band-pass with high peak in vector strength.
+  - Low-pass to band-pass with high peak in vector strength. 
   - Reduced cut-off due to membrane characteristics rather than network effects.
   - (Figure \ref{fig:AM:AMSummary}).
 
@@ -455,7 +459,7 @@ Figure \ref{fig:fzero}C shows the f_0 response map of TS cell models. TS cells
 receive inputs from all the other cell types in the \CNSM model.
 
 
-Figure \ref{fig:fzero}D shows the \DS cell f_0 response map had a higher rate
+Figure \ref{fig:fzero}D shows that the \DS cell f_0 response map had a higher rate
 threshold and enhanced the temporal information on-CF at high intensities
 relative to HSR and LSR units.  \Gls{OnC} units recorded from the dorsal acoustic
 stria in cats have shown high SI maintained above 0.8 up to 60 dB SPL then slopes
@@ -474,12 +478,11 @@ enhancement.
 # (\Eleak) in the \TV cell model also increases the difference between \RMP and
 # \AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
 # and enhances the AC component of HSR and LSR excitatory inputs.
-In the centre
-of the \TV f_0 response map (units with CF near \fc at high stimulus
-intensities), \SI values deteriorate to below 0.3. Here HSR inputs to the TV
-cell model are not temporally significant but the combination of \LSR excitation
-and \DS cell inhibition with high temporal precision enhances the \TV cells to a
-weak, temporally significant output.
+In the centre of the \TV f_0 response map (units with CF near \fc at high
+stimulus intensities), \SI values deteriorate to below 0.3. Here HSR inputs to
+the TV cell model are not temporally significant but the combination of \LSR
+excitation and \DS cell inhibition with high temporal precision enhances the \TV
+cells to a weak, temporally significant output.
 
 \GLG cells' f_0 response is moderate to weak over the extent of its response area
 (Figure \ref{fig:fzero}F).  \GLG cells receive a majority of their inputs from
@@ -611,6 +614,17 @@ is observed at 60 and 40 dB SPL stimulus intensities (Figures
   END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
 #+END_SRC
 
+\yellownote{On CF data compared to Rhode and Greenberg}
+
+#+BEGIN_LaTeX
+  \begin{figure}[tph]
+    \centering
+    \includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}\\
+    \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-ANF.pdf}
+    \caption[Temporal response in ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  \label{fig:AM:RG94_ANF}
+  \end{figure}
+#+END_LaTeX
 
 
 
@@ -789,6 +803,26 @@ to 40) had the most dominant temporal response across the \TS cell population.
 #    - \DS : phasic inhibition
 #    - Golgi : slow level dependent
 #    - \TV : delayed echo suppression 
+
+
+#+LABEL: fig:AM:RG94_Choppers
+#+ATTR_LaTeX: width=0.8\textwidth 
+#+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  [[file:../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png]]
+
+#+BEGIN_LaTeX
+  \begin{figure}[tph]
+    \centering
+    \includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}\\
+    \resizebox{\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}%
+\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}}
+    \caption[Temporal response in ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  \label{fig:AM:RG94_ANF}
+  \end{figure}
+#+END_LaTeX
+
+
+\yellownote{Include RhodeGreenberg fig and my onCF data}
 
 
 
