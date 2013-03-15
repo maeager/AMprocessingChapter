@@ -111,9 +111,104 @@ splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-0-ChS.eps]]
+
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none 
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none 
+
+* MTF on CF
+
+#+name: anfmtfoncf
+#+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+    # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+    reset
+    # check input variables 
+    if (INDEX == "") { print "Index ", INDEX} else{ quit }
+    if (FRATE) {print "FRATE ", FRATE; }else { FRATE=1 }
+  
+    set logscale x 10
+    set multiplot layout 1,2 
+    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    
+    set label 1 "{/Helvetica-Bold=28 C}  LSR unit on CF" at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+    set label 2 "{/Helvetica-Bold=28 D}  HSR unit on CF" at screen 0.7, screen 1 font "Helvetica,30" center front
+    set ylabel "SI " font "Helvetica,24"
+    set xlabel "f_m (kHz)" font "Helvetica,24" 
+    set yrange [0:1]
+    set xrange [40:1300]
+ #   if (INDEX< 4){  
+ INDEX=5
+   plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "20" w lp
+ #   }else{
+ INDEX=4;
+    plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "20" w lp
+ #   }
+  
+              # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+    
+    unset multiplot
+#+END_SRC
+
+#+call: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-ANF.eps]]
+
+#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-ANF.eps]]
+
+#+name: mtfoncf
+#+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+    # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+    reset
+    # check input variables 
+    if (INDEX == "") { print "Index ", INDEX} else{ quit }
+    if (FRATE) {print "FRATE ", FRATE; }else { FRATE=1 }
+  
+    set logscale x 10
+    set multiplot layout 1,2 
+    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    
+    set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+    set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
+    set xlabel "f_m (kHz)" font "Helvetica,24" 
+    set xrange [40:1300]
+    set yrange [*:*]
+    set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
+
+   plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "20" w lp
+
+   set yrange [0:1]
+   set ylabel "SI " font "Helvetica,24"
+ 
+   plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "20" w lp
+   # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+    
+    unset multiplot
+#+END_SRC
+
+#+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-0-ChS.eps]]
 
 
 ** F_0 Response: Variation in Level
