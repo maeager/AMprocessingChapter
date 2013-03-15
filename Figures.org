@@ -1,0 +1,2098 @@
+#+PROPERTY: session *gnuplot*
+#+PROPERTY: results file
+
+
+* Chapter 4  Figures 
+
+
+#+name: prepare_vsSPIKES_responsearea
+#+BEGIN_SRC sh
+ export CNSTELLATEPATH=/media/data/Work/cnstellate/scripts/
+ export PATH=${CNSTELLATEPATH}:${PATH}
+
+ cd /media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/
+ second_level_si_rate.sh &
+ cd /media/data/Work/cnstellate/TStellate2_CS/F0Response/
+ first_level_si_rate.sh &
+
+#+END_SRC
+
+
+#+name: ratetemporalC
+#+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+  # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+  # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+  reset
+  # check input variables 
+   if (INDEX == "") { print "Index ", INDEX} else{ quit }
+  if (FRATE) {print "FRATE ", FRATE; }else { FRATE=1 }
+  if (THRESH) {print "THRESH ", THRESH} else {THRESH=40}
+  unset xlabel
+  set ylabel "CF (kHz)" font "Helvetica,16"
+  set pm3d map
+  set logscale x 10
+  set colorbox noborder 
+  set multiplot layout 3,2 
+  set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+  unset key
+  set logscale y 10
+  set zrange [0:*]
+  set cbrange [0:*]
+
+  
+  set yrange [0.973:40] #2.805:27.017] #[40:90]
+  
+  set label 1 "{/Helvetica-Bold=28 A}    80 dB SPL" at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  set label 2 "{/Helvetica-Bold=28 B}" at screen 0.6, screen 0.975 font "Helvetica,30" center front
+  set label 3 "{/Helvetica-Bold=28 C}    60 dB SPL" at screen 0.1, screen 0.633 font "Helvetica,30" left front
+  set label 4 "{/Helvetica-Bold=28 D}" at screen 0.6, screen 0.633 font "Helvetica,30" center front
+  set label 5 "{/Helvetica-Bold=28 E}    40 dB SPL" at screen 0.1, screen 0.3 font "Helvetica,30" left front
+  set label 6 "{/Helvetica-Bold=28 F}" at screen 0.6, screen 0.3 font ",30" center front
+ # set label 5 "E  40 dB SPL" at screen 0.1, screen 0.3 font ",30" center front
+ # set label 6 "F" at screen 0.6, screen 0.3 font ",30" center front
+
+  # set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
+  # set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
+  # set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
+  # set label 10 "20 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
+
+
+# with lines lc rgb "#007700"
+
+  set contour;
+  set cntrparam levels discrete THRESH
+  unset clabel #set clabel "1"
+
+  do for [spl in "80 60 40"] {
+  print "SPL ", spl
+
+  set ylabel "CF (kHz)" font "Helvetica,24"
+ if (spl =="40") {  set xlabel "f_m (kHz)" font "Helvetica,24" } else {unset xlabel}
+  set zrange [0:*];set cbrange [0:*];set palette rgbformulae 22,13,-31
+  splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
+  print "vs "
+  unset ylabel;set cbrange [0:1];set palette rgbformulae 7,5,15 
+  if (INDEX >=4){
+splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($5>5.991?$4:NaN)
+} else{
+splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4:NaN)
+}
+
+  }
+  unset multiplot
+#+END_SRC
+
+
+
+   
+*** fig:AM:ANMTF
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+
+
+*** fig:AM:G
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+*** fig:AM:DS
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+
+*** fig:AM:TV
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-1.eps ](THRESH=10,FRATE=25,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+*** fig:AM:TS
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-0-ChS.eps]]
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none 
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none 
+
+* MTF on CF
+
+#+name: anfmtfoncf
+#+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+    # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+    reset
+    # check input variables 
+    if (INDEX == "") { print "Index ", INDEX} else{ quit }
+    if (FRATE) {print "FRATE ", FRATE; }else { FRATE=1 }
+  
+    set logscale x 10
+    set multiplot layout 1,2 
+    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    
+    set label 1 "{/Helvetica-Bold=28 C}  LSR unit on CF" at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+    set label 2 "{/Helvetica-Bold=28 D}  HSR unit on CF" at screen 0.7, screen 1 font "Helvetica,30" center front
+    set ylabel "SI " font "Helvetica,24"
+    set xlabel "f_m (kHz)" font "Helvetica,24" 
+    set yrange [0:1]
+    set xrange [40:1300]
+ #   if (INDEX< 4){  
+ INDEX=5
+   plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "20" w lp
+ #   }else{
+ INDEX=4;
+    plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "20" w lp
+ #   }
+  
+              # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+    
+    unset multiplot
+#+END_SRC
+
+#+call: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-ANF.eps]]
+
+#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-ANF.eps]]
+
+#+name: mtfoncf
+#+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+    # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+    reset
+    # check input variables 
+    if (INDEX == "") { print "Index ", INDEX} else{ quit }
+    if (FRATE) {print "FRATE ", FRATE; }else { FRATE=1 }
+  
+    set logscale x 10
+    set multiplot layout 1,2 
+    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    
+    set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+    set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
+    set xlabel "f_m (kHz)" font "Helvetica,24" 
+    set xrange [40:1300]
+    set yrange [*:*]
+    set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
+
+   plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "20" w lp
+
+   set yrange [0:1]
+   set ylabel "SI " font "Helvetica,24"
+ 
+   plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "80" w lp, \
+         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "60" w lp, \
+         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "40" w lp, \
+         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "20" w lp
+   # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+    
+    unset multiplot
+#+END_SRC
+
+#+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-0-ChS.eps]]
+
+
+** F_0 Response: Variation in Level
+
+- The f_0 response is the behaviour characterised in
+\citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
+where the f_c is fixed at the \CF of the unit.
+
+
+
+#+name: fresponse
+#+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+    # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+    reset
+    # check input variables 
+    unset xlabel
+    set ylabel "CF (kHz)" font "Helvetica,16"
+    set pm3d map
+    set logscale x 10
+    set multiplot layout 3,2
+    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    unset key
+  
+    set zrange [0:1]
+    set cbrange [0:1]
+  
+    
+    set xrange [2:40] #2.805:27.017] #[40:90]
+    
+    set label 1 "{/Helvetica-Bold=28 A}   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+    set label 2 "{/Helvetica-Bold=28 B}   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
+    set label 3 "{/Helvetica-Bold=28 C}   TS (ChS)" at screen 0.1, screen 0.633 font "Helvetica,30" left front
+    set label 4 "{/Helvetica-Bold=28 D}   DS (OnC)" at screen 0.6, screen 0.633 font "Helvetica,30" left front
+    set label 5 "{/Helvetica-Bold=28 E}   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
+    set label 6 "{/Helvetica-Bold=28 F}   GLG     " at screen 0.6, screen 0.3 font "Helvetica,30" left front
+  
+  #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
+  #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
+  #  set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
+    set yrange [0:90]
+    set cblabel "SI" font "Helvetica,24" #rotate by 0
+    set cbrange [0:1];set palette rgbformulae 7,5,15 
+    unset xlabel;unset colorbox
+    set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+
+    splot  datapath.'/vsSPIKES.4.dat' u ($3/1000):1:($5>5.991?$4:NaN) #($7<0.05?$4:NaN) #
+    unset ylabel;
+    splot  datapath.'/vsSPIKES.5.dat' u ($3/1000):1:($5>5.991?$4:NaN) #($7<0.05?$4:NaN) #
+
+    do for [cell in "0 2 1 3"] {
+  
+   if (cell=="1") {  
+   set xlabel "CF (kHz)" font "Helvetica,24";  
+   set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+   set colorbox noborder; } else { unset xlabel;unset ylabel;unset colorbox}
+   if (cell=="0"){ set ylabel " Intensity (dB SPL)" font "Helvetica,24";}
+   if (cell=="3"){set xlabel "CF (kHz)" font "Helvetica,24";unset ylabel; unset colorbox}
+
+    splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN) #
+    }
+    unset multiplot
+#+END_SRC
+
+#+RESULTS: fresponse
+
+#+name: fnoughtrate
+#+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+#+BEGIN_SRC gnuplot :export none 
+  # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+  # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+  reset
+  # check input variables 
+  unset xlabel
+  set ylabel "CF (kHz)" font "Helvetica,16"
+  set pm3d map
+  set logscale x 10
+  set multiplot layout 3,2
+  set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+  unset key
+
+  set zrange [0:*]
+  set cbrange [0:*]
+  
+  set palette rgbformulae 22,13,-31
+  
+  
+  set xrange [2:40] #2.805:27.017] #[40:90]
+  
+  set label 1 "A   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  set label 2 "B   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
+  set label 3 "C   TS (ChS)" at screen 0.1, screen 0.633 font "Helvetica,30" left front
+  set label 4 "D   DS (OnC)" at screen 0.6, screen 0.633 font "Helvetica,30" left front
+  set label 5 "E   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
+  set label 6 "F   GLG     " at screen 0.6, screen 0.3 font "Helvetica,30" left front
+
+#  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
+#  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
+#  set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
+
+  #set cblabel "Rate" font "Helvetica,16"
+  do for [cell in "4 5 0 2 1 3"] {
+
+  if (cell=="1") {  
+   set cblabel "Firing Rate (sp/s)" font "Helvetica,16" 
+   set xlabel "CF (kHz)" font "Helvetica,24";  
+   set ylabel "Sound Level (dB SPL)" font "Helvetica,24" } else { unset xlabel;unset ylabel}
+  #if (cell=="3") {   set colorbox noborder } else {unset colorbox}
+  if (cell=="0") {FRATE=FRATE/4}
+  splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
+  }
+  unset multiplot
+#+END_SRC
+
+
+
+** F0 temporal
+
+#+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+
+#+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
+[[file:./gfx/fresponse-vs.eps]]
+
+** F0 rate
+
+#+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+
+#+RESULTS: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
+[[file:./gfx/fresponse-rate.eps]]
+
+
+
+* Older stuff :noexport:
+
+
+** ISSNIP    :noexport:
+
+#+name localdatapath
+#+BEGIN_SRC gnuplot :export none
+localpath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/"
+do for [level in "40 60"] {
+ do for [celltype in "0 1 2 3"] {
+   fname = "./".level."./ratetemporal-".celltype.".png"
+   ratetemporal(filename=fname,INDEX=celltype,SPL=level,datapath=localpath)
+ }
+}
+#+END_SRC
+
+
+#+name: ratetemporal
+#+header: :term pngcairo size 700,524 enhanced font 'Verdana,10'
+#+BEGIN_SRC gnuplot :export none
+  reset
+  if (INDEX == "" || SPL == "") { unset output; quit}
+  set xlabel "f_m (Hz)" font "Helvetica,16" set ylabel "Channel Position" font "Helvetica,16"
+  set pm3d map
+  #set logscale x 10
+  set colorbox noborder set multiplot layout 1,2 set xtics out ( "100" 100, "" 200, "300" 300, "" 400, "500" 500, "" 600, "700" 700, "" 800) unset key
+  #set logscale y 10
+  set cbrange [0:400]
+  #set palette model RGB
+  #set palette defined
+  #set palette defined (0 "blue", 150 "white", 300 "red")
+  set palette rgbformulae 22,13,-31
+
+  splot [50:800][0:99] datapath.spl.'response_area.'.INDEX.'.dat' u 1:2:($4*5)
+  #unset palette
+  unset ylabel unset logscale y set cbrange [0:1]
+  #set palette model HSV rgbformulae 3,2,2
+  #set palette model XYZ rgbformulae 7,5,15
+  #set palette defined ( 0 0 0 0, 1 1 1 1 )
+  set palette rgbformulae 7,5,15
+  splot [50:800][0:99] datapath.spl.'vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3
+  unset multiplot
+#+END_SRC
+
+#+name: ratetemporalB
+#+header: :term pngcairo size 700,324 enhanced font 'Verdana,10' 
+#+BEGIN_SRC gnuplot :export none 
+        reset
+        # check input variables 
+        if (spl == "") { unset output; quit}else {print spl}
+        if (INDEX == "") { print "Index ", INDEX} else{ quit }
+        if (FRATE) {print "FRATE", FRATE; }else { FRATE=1 }
+        set xlabel "f_m (kHz)" font "Helvetica,16" 
+        set ylabel "CF (kHz)" font "Helvetica,16"
+        set pm3d map
+        set logscale x 10
+        set colorbox noborder 
+        set multiplot layout 1,2
+        set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+        unset key
+        set logscale y 10
+        set zrange [0:*]
+        set cbrange [0:*]
+        #set palette model RGB
+        #set palette defined
+        #set palette defined (0 "blue", 150 "white", 300 "red")
+        set palette rgbformulae 22,13,-31
+        set yrange [0.973:40] #2.805:27.017] #[40:90]
+        set label 1 "20 dB SPL" at graph 600, graph 4 # tc rgb "#FFFFFF 
+        splot [50:1200] datapath.spl.'response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
+    # unset logscale y;
+    # set yrange [20:99]
+    #    splot [50:1200] datapath.spl.'response_area-'.INDEX.'.dat' u 1:2:($4*FRATE)
+    
+    
+        #unset palette
+        unset ylabel 
+    #    set ylabel "Channel Position" font "Helvetica,16"
+     #   set yrange [20:99]#*:*] #40:90]
+     #   unset logscale y 
+        set cbrange [0:1]
+    
+        #set palette model HSV rgbformulae 3,2,2
+        #set palette model XYZ rgbformulae 7,5,15
+        #set palette defined ( 0 0 0 0, 1 1 1 1 )
+    
+        set palette rgbformulae 7,5,15 
+        splot [50:1200] datapath.spl.'vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($5>5.991?$4:NaN)
+ # ($5>13.816?$4:NaN) 
+        unset multiplot
+#+END_SRC
+
+
+   
+*** fig:AM:ANMTF
+
+#+call: ratetemporal[ :file ./20/ratetemporal-4.png ](spl="20/",INDEX=4,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./40/ratetemporal-4.png ](spl="40/",INDEX=4,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./60/ratetemporal-4.png ](spl="60/",INDEX=4,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporal[ :file ./80/ratetemporal-4.png ](spl="80/",INDEX=4,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+
+
+data from TStellate simulations
+
+#+call: ratetemporalB[ :file ./20/ratetemporal-4.png ](spl="20/",INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalB[ :file ./40/ratetemporal-4.png ](spl="40/",INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalB[ :file ./60/ratetemporal-4.png ](spl="60/",FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+call: ratetemporalB[ :file ./80/ratetemporal-5.png ](spl="80/",FRATE=10,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+
+
+*** fig:AM:G
+
+#+call: ratetemporal[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./60/ratetemporal-3.png ](spl="60/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+
+from TStellate2_CS
+#+call: ratetemporalB[ :file ./20/ratetemporal-3.png ](spl="20/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
+
+#+RESULTS: ratetemporalB[ :file ./20/ratetemporal-3.png ](spl="20/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
+[[file:./20/ratetemporal-3.png]]
+
+#+call: ratetemporalB[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
+
+#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
+[[file:./40/ratetemporal-3.png]]
+
+#+call: ratetemporalB[ :file ./60/ratetemporal-3.png ](spl="60/",FRATE=100,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+call: ratetemporalB[ :file ./80/ratetemporal-3.png ](spl="80/",FRATE=100,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+
+
+
+*** fig:AM:DS
+
+#+call: ratetemporal[ :file ./40/ratetemporal-2.png ](spl="40/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./60/ratetemporal-2.png ](spl="60/",INDEX=2,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+
+from TStellate2_CS
+
+#+call: ratetemporalB[ :file ./40/ratetemporal-2.png ](spl="40/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
+
+#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-2.png ](spl="40/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none
+[[file:./40/ratetemporal-2.png]]
+
+#+call: ratetemporalB[ :file ./60/ratetemporal-2.png ](spl="60/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./60/ratetemporal-2.png ](spl="60/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none 
+[[file:./60/ratetemporal-2.png]]
+
+#+call: ratetemporalB[ :file ./80/ratetemporal-2.png ](spl="80/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./80/ratetemporal-2.png ](spl="80/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none 
+[[file:./80/ratetemporal-2.png]]
+
+
+
+
+*** fig:AM:TV
+
+#+call: ratetemporal[ :file ./40/ratetemporal-1.png ](spl="40/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./60/ratetemporal-1.png ](spl="60/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+
+from TStellate2_CS
+
+#+call: ratetemporalB[ :file ./20/ratetemporal-2.png ](spl="20/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./20/ratetemporal-2.png ](spl="20/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./20/ratetemporal-2.png]]
+
+#+call: ratetemporalB[ :file ./40/ratetemporal-2.png ](spl="40/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalB[ :file ./60/ratetemporal-2.png ](spl="60/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalB[ :file ./80/ratetemporal-2.png ](spl="80/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+
+
+
+*** fig:AM:TS
+
+**** old ratetemporal
+#+call: ratetemporal[ :file ./40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none 
+
+**** from TStellate2 CS
+
+#+call: ratetemporalB[ :file ./20/ratetemporal-0.png ](spl="20/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./20/ratetemporal-0.png ](spl="20/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./20/ratetemporal-0.png]]
+
+#+call: ratetemporalB[ :file ./40/ratetemporal-0.png ](spl="40/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-0.png ](spl="40/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./40/ratetemporal-0.png]]
+
+#+call: ratetemporalB[ :file ./60/ratetemporal-0.png ](spl="60/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./60/ratetemporal-0.png ](spl="60/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./60/ratetemporal-0.png]]
+
+
+#+call: ratetemporalB[ :file ./80/ratetemporal-0.png ](spl="80/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalB[ :file ./80/ratetemporal-0.png ](spl="80/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./80/ratetemporal-0.png]]
+
+
+** On CF f_0
+
+#+NAME: F0_OnCF
+#+begin_src octave :exports none :results file
+
+  datapath="~/Work/cnstellate/TStellate2_CS/F0Response/";
+  ii = 0 ;
+  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+  significant = ray > 13.816;
+  z0 = significant .* vs; subplot(2,2,3);
+  surf([0:99],[0:5:70],vs',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2);
+  set(gca,"XLabel", "Network Channel", "Font","Helvetica","FontSize",18);
+  set(gca,"YLabel", "Sound Level (dB SPL)", "Font","Helvetica","FontSize",18,);
+  subplot(2,2,4);
+  surf([0:99],[0:5:70],(z0 + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2);
+  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+   # ## Set CLim on both axes
+   # ax = findobj(gcf,'Type','axes');
+   # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
+   # print -dpng "gfx/F0_Rayexample.png"
+   ans = "../VowelProcessingChapter/gfx/F0_Rayexample.png"
+#+end_src
+
+
+#+NAME: F0_Rayexample
+#+begin_src octave :exports none :results file
+
+  # datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+  # # vs = /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/vsSPIKES.4.dat;
+  # # ray = /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/rayltest.4.dat;
+  #   vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  #   ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+  #   maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+  #  significant = ray > 13.816;
+  #  z0 = significant .* vs;
+  #  cmap1 = hot(); cmap2=jet();
+  #  cmap=[cmap1(64:-1:1,:);];# cmap2]; # inverse of hot and jet combined
+  #  colormap(cmap);
+  #  subplot(2,2,1);
+  #  surf([0:99],[0:5:70],ray');
+  #  set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+  #  subplot(1,2,2);
+  #  surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong'); view(2);
+  #  set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
+  ii = 4 ;
+  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+  significant = ray > 13.816;
+  z0 = significant .* vs; subplot(2,2,3);
+  surf([0:99],[0:5:70],vs',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2);
+  set(gca,"XLabel", "Network Channel", "Font","Helvetica","FontSize",18);
+  set(gca,"YLabel", "Sound Level (dB SPL)", "Font","Helvetica","FontSize",18,);
+  subplot(2,2,4);
+  surf([0:99],[0:5:70],(z0 + max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)");
+   # ## Set CLim on both axes
+   # ax = findobj(gcf,'Type','axes');
+   # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
+   print -dpng "gfx/F0_Rayexample.png"
+   ans = "../VowelProcessingChapter/gfx/F0_Rayexample.png"
+#+end_src
+
+
+#+name: F0_Rayexample2
+#+begin_src octave :exports none :results file
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+  #datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
+  ii = 4
+  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  ray =  load([datapath "rayltest." num2str(ii) ".dat"]);
+  maskray1 = (13.816- 9.210) *  (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+    significant = ray > 13.816; z0 = significant .* vs; cmap1 = hot();
+    cmap2=jet(); cmap=[cmap1(64:-1:1,:);];# cmap2];
+  # inverse of hot and jet combined
+  colormap(cmap);
+  subplot(2,2,1); surf([0:99],[0:5:70],ray');
+    set(gca,"ZLabel","Rayleigh Test", "XLabel", "Network Channel", "YLabel", \
+        "Sound Level (dB SPL)", "Font","Helvetica","FontSize",18);
+  subplot(1,2,2);
+    surf([0:99],[0:5:70],maskray1',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+    view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB
+    SPL)" "Font","Helvetica","FontSize",18);
+
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/F0Response/";
+  ii = 4
+  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+  maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+  significant = ray > 13.816; z0 = significant .* vs;
+  subplot(2,2,3);
+  surf([0:99],[0:5:70],(vs +max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)" "Font","Helvetica","FontSize",18);
+  subplot(2,2,4);
+  surf([0:99],[0:5:70],(z0 +max(ray(:)))',"EdgeColor",'none','LineStyle','none','FaceLighting','phong');
+  view(2); set(gca,"XLabel", "Network Channel", "YLabel", "Sound Level (dB SPL)" "Font","Helvetica","FontSize",18);
+   # ## Set CLim on both axes
+   # ax = findobj(gcf,'Type','axes');
+   # set(ax,'CLim', [min(ray(:)) max(ray(:)+z0(:))])
+   print -dpng "gfx/F0_Rayexample2.png"
+  ans = "./gfx/F0_Rayexample2.png"
+#+end_src
+
+*** Auditory Nerve units
+
+#+name: AN_psth
+#+begin_src gnuplot :exports none :file ./gfx/AN_psth.png :term pngcairo size 700,524 enhanced font 'Verdana,10'
+      reset
+  #    load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
+
+      # set term pngcairo size 350,262 enhanced font 'Verdana,10'
+      # set output "gfx/AN_f0.png"
+
+      # Margins for each row resp. column
+  #    TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+  ##    BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
+  #    LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
+  #    RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
+
+    #  set tics scale 0.5
+    #  set ytics 1
+      # Placement of the a,b,c,d labels in the graphs
+      POS = "at graph 0.92,0.9 font ',16' "
+  #    unset key
+      # x- and ytics for each row resp. column
+  #    NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
+  #              unset xlabel"
+  #    XTICS = "set xtics 100,100,800;\
+  #              set xlabel 'Mod Freq (Hz)'"
+  #    NOYTICS = "set format y ''; unset ylabel"
+  #    YTICS = "set format y '%.0f'; set ylabel 'Channel No.'"
+      unset key
+      set multiplot layout 2, 2
+      # set pm3d map
+      # set palette @JET
+      # set zrange [0:1]
+      # set cbrange [0:1]
+      # --- GRAPH a
+      # @NOXTICS; @YTICS
+      # @TMARGIN; @LMARGIN
+       set label 1 'A' @POS
+      # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+      set xtics nomirror out set border 3 set boxwidth 1.0 relative set style
+      fill transparent solid 0.8 set ylabel "Spikes" unset xlabel plot
+      [-0.5:10.5] "<awk '/^50/ {print $2,$3}'
+      /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/periodhist.0.dat"
+      using 1:2 w boxes lc 'black'
+
+
+
+      # # --- GRAPH b
+      #  @NOXTICS; @NOYTICS
+    #    @TMARGIN; @RMARGIN
+    set ylabel "Channel No." font "Helvetica,14"
+    set xlabel "Fm (Hz)" font  "Helvetica,14"
+    set label 1 'B' @POS textcolor rgb #FFFFFF
+    set pm3d map
+    set  logscale x 10
+    splot [50:800]  \
+          "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/ratetemporal.0.dat" \
+          matrix using ($1*50):2:3 unset pm3d unset logscale x
+
+      #  # --- GRAPH c
+      #  @XTICS; @YTICS
+      #  @BMARGIN; @LMARGIN
+      set label 1 'C' @POS
+      #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+      set ylabel "Spikes"
+      set xlabel "Time (ms)"
+      plot [0:270] "<awk '/^50/ {print $2,$3}' \
+           /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/psth.0.dat" \
+           using 1:2 w boxes lc 'black'
+
+      #  # --- GRAPH d
+      #  @XTICS; @NOYTICS
+      #  @BMARGIN; @RMARGIN
+
+    set ylabel "Channel No." font "Helvetica,14"
+    set xlabel "Fm (Hz)" font "Helvetica,14"
+    set label 1 'D' @POS textcolor rgb #FFFFFF
+    set pm3d map
+    set  logscale x 10
+    splot [50:800] \
+          "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" \
+          matrix using ($1*50):2:3
+    unset pm3d
+    unset logscale x
+
+      #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
+
+    # plot '< tail -1| head -50 /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat'  using
+     unset multiplot
+
+    #  plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.5.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 w l'
+    #  plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.4.dat| xargs awk '/^50\t/ {print $2}' "  w l
+
+    # set multiplot 2,2
+    # set xtics nomirror out
+    # set boxwidth 1.0 relative
+    # set style fill transparent solid 0.8
+    # set ylabel "Spikes"
+    # set xlabel "Time (ms)"
+
+    # plot [-0.5:10.5] "<awk '/^50/ {print $2,$3}' /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/periodhist.0.dat" using 1:2  w boxes lc 'black'
+
+  #  plot [0:270] "<awk '/^50/ {print $2,$3}' /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/100/psth.0.dat" using 1:2  w boxes lc 'black'
+
+
+    # plot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/250/rateplace.1.dat" using 1:3 w l
+#+end_src
+
+#+name: AN_F0
+#+begin_src gnuplot :exports none :file ./gfx/AN_f0.png :term pngcairo size 700,524 enhanced font 'Verdana,10'
+    reset load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
+
+    # set term pngcairo size 350,262 enhanced font 'Verdana,10'
+    # set output "gfx/AN_f0.png"
+
+    # Margins for each row resp. column
+    TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+    BMARGIN =  "set tmargin at screen 0.55; set bmargin at screen 0.20"
+    LMARGIN = "set  lmargin at screen 0.15; set rmargin at screen 0.55"
+    RMARGIN = "set lmargin  at screen 0.55; set rmargin at screen 0.95"
+
+  #  set tics scale 0.5
+  #  set ytics 1
+    # Placement of the a,b,c,d labels in the graphs
+    POS = "at graph 0.92,0.9 font ',16' " unset key
+    # x- and ytics for each row resp. column
+    NOXTICS = "set xtics ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); unset xlabel"
+    XTICS = "set xtics 100,100,800; set xlabel  'Mod Freq (Hz)'"
+    NOYTICS = "set format y ''; unset ylabel"
+    YTICS =  "set format y '%.0f'; set ylabel 'Channel No.'"
+
+    # set multiplot layout 2,1
+    # set pm3d map
+    # set palette @JET
+    # set zrange [0:1]
+    # set cbrange [0:1]
+    # # --- GRAPH a
+    # @NOXTICS; @YTICS
+    # @TMARGIN; @LMARGIN
+    # set label 1 'A' @POS
+    # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+
+    # # # --- GRAPH b
+    # # @NOXTICS; @NOYTICS
+    # # @TMARGIN; @RMARGIN
+    # # set label 1 'B' @POS
+    # # splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
+
+    #  # --- GRAPH c
+    #  @XTICS; @YTICS
+    #  @BMARGIN; @LMARGIN
+    #  set label 1 'C' @POS
+    #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+
+    #  # --- GRAPH d
+    #  @XTICS; @NOYTICS
+    #  @BMARGIN; @RMARGIN
+    #  set label 1 'd' @POS
+    #  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.5.dat" matrix using ($1*50):2:3
+
+  # plot '< tail -1| head -50 /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat'  using
+  #  set multiplot 3,1
+
+  #  plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.5.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 w l
+  #  plot "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.4.dat| xargs awk '/^50\t/ {print $2}' "  w l
+
+
+    # "ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (50*$1)
+
+    set multiplot layout 2,1
+    set size 0.89,0.3
+    set origin 0,0.7
+    set border 2
+    set ytics nomirror out set logscale x 10 set xrange [40:1500] set xtics nomirror
+    out
+  #  unset xtics
+    unset xlabel
+    set ylabel "Firing Rate (sp/s)" font "Helvetica,14"
+    plot "< ls -rt  /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat |  xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l
+
+    set border 11
+    set size 1,0.7
+    set origin 0,0
+    set ytics nomirror out
+    set y2tics nomirror out
+    set xtics nomirror out
+    set  yrange [0:1]
+    set logscale x 10
+    set logscale y2 10
+    set xrange [40:1500]
+    set  xlabel "Modulation Frequency (Hz)" font "Helvetica,14"
+    set y2label "Rayleigh  Test" font "Helvetica,14"
+    set ylabel "Vector Strength" font "Helvetica,14"
+    set key on inside top right
+
+    set arrow 1 from 300,13 to 1400,13 nohead
+    set arrow 1 from 300,5 to 1400,5  nohead
+
+    plot "< ls -rt  /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):1 t "VS" w l lw 4 axes  x1y1, \
+         "< ls -rt  /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/vsSPIKES.0.dat| xargs awk '/^50\t/ {print $2, $3}' " u (($0+1)*50):2 t "RayleighTest " w l  axes x1y2
+    #
+  # "< ls -rt /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/*/rateplace.0.dat | xargs awk '/^50\t/ {print $3}'" u (($0+1)*50):(10*$1) t "Rate" w l axes x1y2
+
+    unset multiplot
+#+END_SRC
+
+
+
+*** Cochlear Nucleus units
+
+**** Chopper Sustained model: Low Freq (3.9 kHz)
+
+#+name:TStellate_CS_F0Response
+#+begin_src octave :exports none :results file
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/"
+  for ii = 0:5
+    vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+    ray =load([datapath "rayltest." num2str(ii) ".dat"]);
+    significant = ray > 5.991;
+    z0 = significant .* vs;
+    subplot(3,2,ii+1);
+    imagesc([0:99],0:5:70,z0', [0 1]);
+    axis("xy");
+  end
+
+  # xlim([30 60]);
+  set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel", " Level (dB SPL)" );
+  print -dpng "gfx/TStellate_CS_F0Response.png"
+  ans = "gfx/TStellate_CS_F0Response.png"
+#+end_src
+
+#+LABEL: fig:AM:F0ResponseCS
+#+CAPTION: F_0 response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
+[[file:../VowelProcessingChapter/gfx/TStellate_CS_F0Response.png]]
+
+**** Chopper Transient 1: Mid Freq (8.2 kHz)
+
+#+name: TStellate_CT1_F0Response
+#+begin_src octave :exports none  :results file
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/F0Response/"
+  for ii = 0:5
+    vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+    ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+    significant = ray > 5.991;
+    z0 =significant .* vs;
+    subplot(3,2,ii+1);
+    imagesc([0:99],0:5:70,z0', [0 1]);
+    axis("xy")
+  end
+
+  # xlim([30 60]);
+  set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel", " Level (dB SPL)" )
+
+  print -dpng "gfx/TStellate_CT1_F0Response.png"
+  ans = "gfx/TStellate_CT1_F0Response.png"
+#+end_src
+
+**** Chopper Transient 2 model: High Freq (12.9 kHz)
+
+#+name: TStellate_CT2_F0Response
+#+begin_src octave :exports none :results file
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/F0Response/"
+  for ii = 0:5
+  vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+  significant = ray > 5.991;
+  z0 =significant .* vs;
+  subplot(3,2,ii+1)
+  imagesc([0:99],0:5:70,z0', [0 1]);axis("xy");
+  shading interp;
+  end
+
+  # xlim([30 60]);
+   set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel", " Level (dB SPL)" )
+   print -dpng "gfx/TStellate_CT2_F0Response.png"
+  ans = "gfx/TStellate_CT2_F0Response.png"
+#+end_src
+
+
+
+
+\clearpage
+
+
+** Modulation Transfer Function
+
+*** MTF example
+# +name: MTF_example
+#+begin_src octave :session :exports none :results file
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
+  addpath('~/octave/freezeColors/');    # grab freezeColors
+   spl = 60;
+   ii = 4;
+  colormap('hot'); cmap = colormap();
+   vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+   ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+   maskray1 = (13.816- 9.210) * (ray > 13.816) + (9.210-5.991) * (ray > 9.210) + 5.991*(ray > 5.991);
+   maskray = (13.816) * (ray > 13.816);
+
+  ii=5;
+   vsP = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+   rayP = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+   maskrayP = (13.816-5.991) * (rayP > 13.816) + 5.991*(rayP > 5.991);
+   significant = ray > 13.816; # 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+   significantP = rayP > 5.991;
+  # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+   z0 = significant .* vs;
+  z1 = significantP .* vsP;
+
+  ## Plot 1
+  colormap('jet');
+  subplot(2,4,1);
+  surf(50:50:1200,1:100,vs,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log","xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+  view(2);
+   colorbar ("SouthOutside");
+  text (200, 110, "R","fontname","Helvetica","fontsize",16);
+  text (10, 50, "HSR","fontname","Helvetica","fontsize",16);
+  freezeColors;
+
+  ## Plot 2
+  subplot(2,4,2)
+  colormap(cmap(64:-1:1,:));
+  surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+
+  # contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+  # surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"TickDir","out","XTick",[50 100:100:1200], \
+      "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+      "xlim", [50   1200],"ylim",[0   100]);
+  view(2);
+  colorbar ("SouthOutside");
+  text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16);
+  freezeColors;
+
+  ## Plot 3
+  subplot(2,4,3);
+  colormap(cmap(64:-1:1,:));
+  surf(50:50:1200,1:100,maskray1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  "xlim", [50   1200],"ylim",[0   100]);
+  view(2);
+  colorbar ("SouthOutside");
+  text (120, 110, "Mask","fontname","Helvetica","fontsize",16);
+
+  freezeColors;
+
+  ## Plot 4
+  subplot(2,4,4)
+  colormap('jet');
+  surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  "xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+  view(2);
+  colorbar ("SouthOutside")
+  text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+
+  # subplot(2,4,5)
+
+  # surf(50:50:1200,1:100,vsP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  # set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  # "xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+  # view(2);
+  # # colorbar ("SouthOutside")
+  # # text (200, 110, "R","fontname","Helvetica","fontsize",16)
+  # text (10, 50, "LSR","fontname","Helvetica","fontsize",16);
+
+  # subplot(2,4,6)
+  # surf(50:50:1200,1:100,rayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  # # contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+  # # surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  # set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  # "xlim", [50   1200],"ylim",[0   100]);
+  # view(2);
+  # #colorbar ("SouthOutside")
+  # #text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16)
+
+  # subplot(2,4,7);
+  # surf(50:50:1200,1:100,maskrayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  # set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  # "xlim", [50   1200],"ylim",[0   100]);
+  # view(2);
+  # #text (120, 110, "Mask","fontname","Helvetica","fontsize",16)
+
+  # subplot(2,4,8)
+  # surf(50:50:1200,1:100,z1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  # set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  # "xlim", [50   1200],"ylim",[0  100],"zlim", [0   1],"clim",[0  1]);
+  # view(2);
+  # #colorbar ("SouthOutside")
+
+  # #text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+
+  %axis("xy")
+  # set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+   print -dpng "gfx/MTF_example.png"
+   ans = "gfx/MTF_example.png"
+#+end_src
+
+*** MTF example2
+# +name: MTF_example2
+#+begin_src gnuplot :exports none :file ./gfx/MTF_example2.png :term pngcairo size 700,524 enhanced font 'Verdana,10'
+# :file ./gfx/MTF_example.eps :term postscript eps size 3.5,2.62 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  reset
+  load "/media/data/Work/cnstellate/ResponsesNoComp/default.gnu"
+
+  #  set terminal postscript eps size 3.5,2.62 enhanced defaultplex \
+  #     leveldefault mono \
+  #     solid dashlength 1.0 linewidth 2.0 butt noclip \
+  #     palfuncparam 2000,0.003 \
+  #     "Helvetica" 18
+  # set output  "gfx/MTF_example.eps"
+
+  # set term pngcairo
+  # set output "gfx/MTF_example.png"
+  # datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/"
+  # spl = 60
+  # ii = 4
+
+  # vs = "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat"
+  # ray = "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/rayltest.4.dat"
+   maskray1(r) = (13.816- 9.210) * (r > 13.816) + (9.210-5.991) * (r > 9.210) + 5.991*(r > 5.991)
+  # maskray(ray) = (13.816) * (ray > 13.816);
+
+   significant(r) = r > 5.991 ? r : 0
+  # 5.991 # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+  # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+  # z0 = significant .* vs;
+
+  set multiplot layout 1,4
+  ## Plot 1
+  set pm3d map
+  set palette @JET
+  set xrange [50:800]
+  set logscale x 10
+  set yrange [0:99]
+  set zrange [0:1]
+  set cbrange [0:1]
+  set xtics nomirror out
+  set ytics nomirror out
+  set label 1 "R" at 200, 110 font "Helvetica,16"
+  set label 2 "HSR" at 10, 50 font "Helvetica,16"
+  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+  #splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
+
+  unset label 1
+  unset label 2
+  set palette @IHOT
+  set label 1 "Rayleigh Test" at 50, 110 ,font "Helvetica,16"
+  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/rayltest.4.dat" matrix using ($1*50):2:3
+  #splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/rayltest.0.dat" matrix using ($1*50):2:3
+
+
+  set label 1 "Mask" at 50, 110  font "Helvetica,16"
+  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/rayltest.4.dat" matrix using ($1*50):2:(maskray1($3))
+  #splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/rayltest.0.dat" matrix using ($1*50):2:(maskray1($3))
+
+
+  set label 1 "R .* Mask" at 100, 110 font "Helvetica,16"
+  set palette @JET
+  splot "/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:(significant($3))
+  #splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:(significant($3))
+
+#+end_src
+
+*** MTF atCF gnuplot
+
+#+name: MTF_atCF_gnu
+#+begin_src gnuplot :exports none :file ./gfx/MTF_atCF.png :term pngcairo size 350,262 enhanced font 'Verdana,10'
+  #.eps :term post eps size 3.5,2.62 enh color solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+    reset
+    load "/media/data/Work/cnstellate/ResponsesNoComp/default.gnu"
+
+    # set terminal postscript eps size 3.5,2.62 enhanced defaultplex \
+    #    leveldefault mono \
+    #    solid dashlength 1.0 linewidth 2.0 butt noclip \
+    #    palfuncparam 2000,0.003 \
+    #    "Helvetica" 18
+    # set output  "gfx/MTF_example.eps"
+    # set term pngcairo
+    # set output "gfx/MTF_atCF.png"
+
+     set multiplot layout 2,1
+       set xlabel 'f_m (Hz)'
+
+       set ylabel 'R'
+       plot [*:*][0:1] "< ls -tr /media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/*/vsSPIKES.0.dat | xargs awk '/^50\t/ {print $2}' " using ($0*50):1
+       set pm3d map
+       set palette @JET
+       set ylabel 'Channel No.'
+       splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+
+#+end_src
+
+*** MTF at CF
+
+#+name: MTF_atCF
+#+begin_src octave :exports none :results file
+ datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/F0Response/";
+ ii = 4
+ vs = load([datapath "vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath "rayltest." num2str(ii) ".dat"]);
+ significant = ray > 5.991;
+ z0 = significant .* vs;
+ subplot(3,2,ii+1)
+ imagesc([0:99],0:5:70,z0', [0 1]);
+ axis("xy")
+
+# xlim([30 60]);
+ set( get(gcf,'children')(2),"xlabel" ," Channel No.", "ylabel",  " Level (dB SPL)" )
+
+ vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ maskray1 = (13.816-5.991) * (ray > 13.816) + 5.991*(ray > 5.991);
+ maskray = (13.816) * (ray > 13.816);
+
+ ii=5;
+ vsP = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+ rayP = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+ maskrayP = (13.816-5.991) * (rayP > 13.816) + 5.991*(rayP > 5.991);
+ significant = ray > 13.816; # 5.991; # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+ significantP = rayP > 5.991;
+# see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+ z0 = significant .* vs;
+z1 = significantP .* vsP;
+ subplot(2,4,1);
+% imagesc(z0, [0 1]);
+
+surf(50:50:1200,1:100,vs,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log","xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+ colorbar ("SouthOutside");
+text (200, 110, "R","fontname","Helvetica","fontsize",16);
+text (10, 50, "HSR","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,2);
+surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+
+# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+# surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+colorbar ("SouthOutside");
+text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,3);
+surf(50:50:1200,1:100,maskray1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+colorbar ("SouthOutside");
+text (120, 110, "Mask","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,4)
+surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+colorbar ("SouthOutside")
+text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+
+subplot(2,4,5)
+
+surf(50:50:1200,1:100,vsP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100],"zlim",[0   1],"clim",[0   1]);
+view(2);
+# colorbar ("SouthOutside")
+# text (200, 110, "R","fontname","Helvetica","fontsize",16)
+text (10, 50, "LSR","fontname","Helvetica","fontsize",16);
+
+subplot(2,4,6)
+surf(50:50:1200,1:100,rayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+# contourf(50:50:1200,1:100,rayP,[5.991 13.816])
+
+# surf(50:50:1200,1:100,ray,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+#colorbar ("SouthOutside")
+#text (50, 110, "Rayleigh Test","fontname","Helvetica","fontsize",16)
+
+subplot(2,4,7);
+surf(50:50:1200,1:100,maskrayP,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0   100]);
+view(2);
+#text (120, 110, "Mask","fontname","Helvetica","fontsize",16)
+
+subplot(2,4,8)
+surf(50:50:1200,1:100,z1,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+set(gca,"TickDir","out","XTick",[50 100:100:1200], "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+"xlim", [50   1200],"ylim",[0  100],"zlim", [0   1],"clim",[0  1]);
+view(2);
+#colorbar ("SouthOutside")
+
+#text (100, 110, "R .* Mask","fontname","Helvetica","fontsize",16)
+
+%axis("xy")
+set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+ print -dpng "gfx/MTF_atCF.png"
+ ans = "gfx/MTF_atCF.png"
+#+end_src
+
+*** MTF example3
+
+# +name MTF_example3
+#+begin_src gnuplot :exports none :file ./gfx/MTF_example3.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+  # :file ./gfx/MTF_example3.eps :term post eps size 7.00,5.24 enh color solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12#
+  reset
+  load '/media/data/cnstellate/ResponsesNoComp/default.gnu'
+
+  # set term pngcairo size 350,262 enhanced font 'Verdana,10'
+  # set output "gfx/MTF_example.png"
+
+  # Margins for each row resp. column
+  TMARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+  R2MARGIN = "set tmargin at screen 0.90; set bmargin at screen 0.55"
+
+  BMARGIN = "set tmargin at screen 0.55; set bmargin at screen 0.20"
+  LMARGIN = "set lmargin at screen 0.15; set rmargin at screen 0.55"
+  RMARGIN = "set lmargin at screen 0.55; set rmargin at screen 0.95"
+
+  set autoscale
+  set zrange [0:1]
+  set cbrange [0:1]
+  set tics scale 0.5
+  set logscale x 10
+  unset colorbox
+  # Placement of the a,b,c,d labels in the graphs
+  POS = "at graph 0.92,0.9 font 'Helvetica,18' front "
+  unset key
+
+  # x- and ytics for each row resp. column
+  NOXTICS = "set xtics out ('' 100,'' 200,'' 300,'' 400,'' 500,'' 600,'' 700,'' 800); \
+            unset xlabel"
+  XTICS = "set xtics border out ('100' 100,'' 200,'300' 300,'' 400,'' 500,'' 600,'' 700,'800' 800);\
+            set xlabel 'f_m (Hz)'"
+  NOYTICS = "unset ytics; unset ylabel"
+  YTICS = "set ytics border out 0,20,100; set ylabel 'Channel No.'"
+
+  set multiplot layout 2,2 rowsfirst
+  set pm3d map
+  set palette @JET
+  # --- GRAPH a
+  @NOXTICS; @YTICS
+  @TMARGIN; @LMARGIN
+  set label 1 'a' @POS
+  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.4.dat" matrix using ($1*50):2:3
+
+  # --- GRAPH b
+  @NOXTICS; @NOYTICS
+  @TMARGIN; @RMARGIN
+  set label 1 'b' @POS
+  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.1.dat" matrix using ($1*50):2:3
+
+  # --- GRAPH c
+  @XTICS; @YTICS
+  @BMARGIN; @LMARGIN
+  set label 1 'c' @POS
+  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.0.dat" matrix using ($1*50):2:3
+  set colorbox
+  set cbtics ('0' 0,'0.2' 0.2,'0.4' 0.4,'0.6' 0.6,'0.8' 0.8,'1.0' 1)
+  # --- GRAPH d
+  @XTICS; @NOYTICS
+  @BMARGIN; @RMARGIN
+  set label 1 'd' @POS
+  splot "/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/60/vsSPIKES.2.dat" matrix using ($1*50):2:3
+
+  unset multiplot
+#+END_SRC
+
+*** Octave versions
+
+#+name: TStellate_CS_MTF
+#+begin_src octave :exports none :results file
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
+  ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
+
+  for spl = 20:20:80
+  for ii = 0:5
+   vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+  % vs = load ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]);
+  % ray = load([datapath num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
+
+   significant = ray > 5.991;
+  # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+  # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+
+  # Mask significant VS values
+   z0 = significant .* vs;
+
+  # subplot(4,6,((spl/20)-1)*6 + (ii+1));
+  axes(ha(((spl/20)-1)*6 + (ii+1)));
+
+  surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"TickDir","out","XTick",[50 100:100:1200], \
+  "XTickLabel",{},"YTick",[0:25:100], "YTickLabel",{},"XScale","log", \
+  "xlim", [50 1200],"ylim",[0 100],"zlim",[0 1],"clim",[0 1]);
+  view(2);
+
+  %axis("xy")
+  end; end;
+
+  set(ha([1:7 12 13 18:24]),"TickDir","out");
+
+  set(ha(19),"xlabel"," Modulation Frequency (Hz) ","fontname","Helvetica","fontsize",20)
+  set(ha(22),"ylabel"," Channel No. ","fontname","Helvetica","fontsize",20)
+
+
+  # set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+  print -dpng "gfx/TStellate_CS_MTF.png"
+  ans = "gfx/TStellate_CS_MTF.png"
+#+end_src
+
+#+RESULTS: TStellate_CS_MTF
+
+# + CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_m$ (3.9 kHz) and CS optimised parameters for the TS model.
+# + ATTR_LaTeX: width=0.9\linewidth
+# + LABEL: fig:AM:CSMTFc
+[[file:../VowelProcessingChapter/gfx/TStellate_CS_MTF.png]]
+
+
+
+#+name: TStellate_CT1_MTF
+#+begin_src octave :exports none :results file
+
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/";
+  ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
+  for spl = 20:20:80  for ii = 0:5
+
+  vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+  % vs = load ([datapath num2str(spl) "/vsPSTH." num2str(ii) ".dat"]);
+  % ray = load([datapath num2str(spl) "/rayltestPSTH." num2str(ii) ".dat"]);
+
+  significant = ray > 5.991;
+  # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+  # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+
+   z0 = significant .* vs;
+
+  # subplot(4,6,((spl/20)-1)*6 + (ii+1));
+  axes(ha(((spl/20)-1)*6 + (ii+1)));
+
+  surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"TickDir","out","XTick",[50 100:100:1200], \
+  "XTickLabel",{},"YTick",[0:20:100], "YTickLabel",{},"XScale","log", \
+  "xlim", [50 1200],"ylim",[40 90],"zlim",[0 1],"clim",[0 1]);
+  view(2);
+
+  %axis("xy")
+  end; end;
+
+  set(ha([1:7 12 13 18:24]),"TickDir","out");
+
+  set(ha(19),"xlabel"," Modulation Frequency (Hz) ","fontname","Helvetica","fontsize",20)
+  set(ha(22),"ylabel"," Channel No. ","fontname","Helvetica","fontsize",20)
+
+
+  # set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
+
+   print -dpng "gfx/TStellate_CT1_MTF.png"
+  ans = "gfx/TStellate_CT1_MTF.png"
+#+end_src
+
+#+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq f_m and CT1 model.
+#+ATTR_LaTeX: width=0.9\linewidth
+# + LABEL: fig:AM:CT1MTF
+[[file:../VowelProcessingChapter/gfx/TStellate_CT1_MTF.png]]
+
+
+#+name: TStellate_CT2_MTF
+#+begin_src octave :exports none :results file
+
+  datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/";
+
+  ha = tight_subplot(4,6,[.01 .01],[0.01 0.01],[0.01 .01])
+  for spl = 20:20:80
+    for ii = 0:5
+
+  vs = load ([datapath num2str(spl) "/vsSPIKES." num2str(ii) ".dat"]);
+  ray = load([datapath num2str(spl) "/rayltest." num2str(ii) ".dat"]);
+
+   significant = ray > 5.991;
+  # for alpha = 0.05, for alpha=0.01 use rayleigh test > 13.816
+  # see http://www.neurophys.wisc.edu/comp/docs/not011/not011.html
+
+  z0 = significant .* vs;
+
+  # subplot(4,6,((spl/20)-1)*6 + (ii+1));
+  axes(ha(((spl/20)-1)*6 + (ii+1)));
+
+  surf(50:50:1200,1:100,z0,"EdgeColor",'none','LineStyle','none','FaceLighting','phong')
+  set(gca,"XTickLabel",{},"YTick",[50:10:100], "YTickLabel",{},"XScale","log", \
+  "xlim", [50 1200],"ylim",[0 100],"zlim",[0 1],"clim",[0 1]); view(2);
+
+
+  %axis("xy")
+  end; end;
+
+  set(ha([1:7 12 13 18:24]),"TickDir","out");
+
+  set(ha(19),"xlabel"," Modulation Frequency (Hz) ","fontname","Helvetica","fontsize",20)
+  set(ha(22),"ylabel"," Channel No. ","fontname","Helvetica","fontsize",20)
+
+   print -r300 -depsc2 "gfx/TStellate_CT2_MTF.eps"
+  ans = "gfx/TStellate_CT2_MTF.png"
+#+end_src
+
+#+CAPTION:  MTF of the 6 units at 20 db SPL (top), 40 dB, 60 dB, and 80 dB (bottom). High freq f_m and CT2 model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:AM:CT2MTF
+[[file:../VowelProcessingChapter/gfx/TStellate_CT2_MTF.png]]
+
+
+*** Gnuplot versions
+
+#+name CS_MTF
+#+begin_src gnuplot :exports none :file ./gfx/CS_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+  # :file ./gfx/CS_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 16
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders
+      unset key
+      unset xlabel
+      unset ylabel
+      unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
+
+    ## Apply labels
+    set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front
+    set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front
+    set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front
+    set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front
+    set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front
+    set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front
+    set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front
+    set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front
+
+      set multiplot layout 4,6 scale 1.5,1.65
+      set yrange [0:100]
+      set cbrange [0:1]
+      set zrange [0:1]
+      set pm3d map
+      set palette @JET # macro set in $HOME/.gnuplot
+      set logscale x 10
+
+    datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CS/ModulationTransferFunction/";
+
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+      do for [spl = 20:80:20] {
+        do for [ii = 0:5] {
+         splot      sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using      (($1+1)*50):2:3
+        }
+      }
+
+    unset multiplot
+  #!fixbb 'gfx/CS_MTF.eps' && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
+#+END_SRC
+
+
+#+name CT1_MTF
+#+begin_src gnuplot :exports none :file ./gfx/CT1_MTF.png  :term pngcairo size 700,524 transparent enhanced font 'Verdana,10'
+  # :file ./gfx/CT1_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 18
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders unset key unset xlabel unset ylabel unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
+    unset key
+    ## Apply labels
+    set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front
+    set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front
+    set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front
+    set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front
+    set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front
+    set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front
+    set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front
+    set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front
+    set xtics out
+    set multiplot layout 4,6 scale 1.3,1.45
+
+
+    set yrange [0:100]
+    set cbrange [0:1]
+
+    set zrange [0:1]
+    set pm3d map
+    set palette @JET # macro
+    #set in $HOME/.gnuplot
+    unset key
+    set logscale x 10
+    set xrange [50:1200]
+
+    datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT1/ModulationTransferFunction/";
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+    do for [spl = 20:80:20] {
+    do for [ii = 0:5] {
+    splot      sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using      (($1+1)*50):2:3 }
+    }
+
+    unset multiplot
+  #  !fixbb 'gfx/CT1_MTF.eps' && convert -density 300 './gfx/CT1_MTF.eps' './gfx/CT1_MTF.png'
+#+END_SRC
+
+#+RESULTS:
+[[file:./gfx/CT1_MTF.png]]
+
+
+#+name CT2_MTF
+#+begin_src gnuplot :exports none :file ./gfx/CT2_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+  # :file ./gfx/CT2_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders unset key unset xlabel unset ylabel unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
+
+    ## Apply labels
+    set label 1 "TS" at screen 0.0833, screen 1.1 center font "Helvetica,22" front
+    set label 2 "TV" at screen 0.25, screen 1.1 center font "Helvetica,22" front
+    set label 3 "DS" at screen 0.4166, screen 1.1 center font "Helvetica,22" front
+    set label 4 "GLG" at screen 0.5833, screen 1.1 center font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.1 center font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.1 center font "Helvetica,22" front
+    set label 7 "20 dB" at screen 1.1, screen 0.875 left font "Helvetica,22" front
+    set label 8 "40 dB" at screen 1.1, screen 0.625 left font "Helvetica,22" front
+    set label 9 "60 dB" at screen 1.1, screen 0.375 left font "Helvetica,22" front
+    set label 10 "80 dB" at screen 1.1, screen 0.125 left font "Helvetica,22" front
+
+
+    set yrange [40:100]
+    set cbrange [0:1]
+    set zrange [0:1]
+    set pm3d map
+    set palette @JET # macro set in $HOME/.gnuplot
+    set logscale x 10
+    unset xtics
+    unset key
+    datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/TStellate_CT2/ModulationTransferFunction/";
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+    set multiplot layout 4,5 scale 1.5,1.7
+    do for [spl = 80:20:-20] { do for [ii = 0:5] {
+if (spl==20){
+set xtics out nomirror
+set xrange [50:1200]
+}
+if (spl==20 && ii==3){
+unset xtics
+}
+
+if(spl==20 && ii==5){
+set colorbox
+set cbtics out nomirror ("0" 0,"1" 1)
+}
+      if (ii==0 || ii==2 ||   ii>=4) {
+       splot sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using (($1+1)*50):2:3
+      }
+if (ii==3) {
+plot ''
+}
+    }}
+      unset multiplot
+  #  !fixbb 'gfx/CT2_MTF.eps' && convert -density 300 './gfx/CT2_MTF.eps' './gfx/CT2_MTF.png'
+#+END_SRC
+
+#+RESULTS:
+[[file:./gfx/CT2_MTF.png]]
+
+
+** December 2012
+
+** ISSNIP testing
+
+
+
+#+name: ratetemporal2
+#+header: :term pngcairo size 700,524 enhanced font 'Verdana,10'
+#+BEGIN_SRC gnuplot :export file
+
+  reset
+  if (INDEX == "" || SPL == "") { unset output; quit}
+
+rootpath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/"
+  datapath=rootpath."TStellate2_CS/ModulationTransferFunction/";
+  set xlabel "f_m (Hz)" font "Helvetica,16"
+  set ylabel "Channel Position" font "Helvetica,16"
+  set pm3d map
+  set ylabel "Channel Position" font "Helvetica,16"
+  set ytics in nomirror ("10" 9 ,"20" 19 ,"30" 29 ,"40" 39 ,"50" 49 ,"60" 59 ,"70" 69 ,"80" 79 ,"90" 89 ,"100" 99)
+  #set logscale x 10
+  set colorbox noborder
+set multiplot layout 1,2
+set xtics out #( "100" 100, "" 200, "300" 300, "" 400, "500" 500, "" 600, "700" 700, "" 800)
+  unset key
+  set cblabel "Rate (spikes/sec)"
+  #set logscale y 10
+  set cbrange [0:*]
+  #set palette model RGB
+  #set palette defined
+  #set palette defined (0 "blue", 150 "white", 300 "red")
+  set palette rgbformulae 22,13,-31
+
+if (INDEX == "4" || INDEX == "5"){
+  splot [50:1200][0:99] datapath.spl.'/response_area-'.INDEX.'.dat' u 1:2:($4*50)
+} else {
+  splot [50:1200][0:99] datapath.spl.'/response_area-'.INDEX.'.dat' u 1:0:($3)
+}
+  #unset palette
+
+  unset ylabel
+  unset logscale y
+  set cbrange [0:1]
+  #set palette model HSV rgbformulae 3,2,2
+  #set palette model XYZ rgbformulae 7,5,15
+  #set palette defined ( 0 0 0 0, 1 1 1 1 )
+  set cbrange [0:1]
+  set cblabel "Vector Strength"
+  set palette rgbformulae 7,5,15
+  splot [50:1200][0:99] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' matrix u ($1*50+50):2:3
+  unset multiplot
+#+END_SRC
+
+#+name ratetemporal_group
+#+BEGIN_SRC gnuplot :export none
+  rootpath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/"
+  localpath=rootpath."TStellate2_CS/ModulationTransferFunction/";
+
+  do for [level in "40 60 80"] {
+   do for [celltype in "0 1 2 3 4"] {
+     fname = gfxpath."/".level."./ratetemporal-".celltype.".png"
+     ratetemporal2(filename=fname,INDEX=celltype,SPL=level,datapath=localpath)
+   }
+  }
+#+END_SRC
+
+
+#+call: ratetemporal_group(gfxpath='./gfx/Dec') :results none :export none
+
+
+*** fig:AM:ANMTF
+
+#+call: ratetemporal2[ :file ./gfx/Dec/60/ratetemporal-4.png ](spl="60",INDEX=4) :results none :export none
+#+call: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-4.png ](spl="80",INDEX=4) :results file :export none
+
+#+RESULTS: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-4.png ](spl="80",INDEX=4):results file :export none
+[[file:./gfx/Dec/80/ratetemporal-4.png]]
+
+
+
+*** fig:AM:G
+
+#+call: ratetemporal[ :file ./gfx/Dec/40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./gfx/Dec/60/ratetemporal-3.png ](spl="60/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./gfx/Dec/80/ratetemporal-3.png ](spl="80/",INDEX=3,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+
+*** fig:AM:DS
+
+#+call: ratetemporal2[ :file ./gfx/Dec/40/ratetemporal-2.png ](spl="40/",INDEX=2) :results none :export none
+#+call: ratetemporal2[ :file ./gfx/Dec/60/ratetemporal-2.png ](spl="60/",INDEX=2) :results none :export none
+#+call: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-2.png ](spl="80/",INDEX=2) :results file :export none
+
+#+RESULTS: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-2.png ](spl="80/",INDEX=2):results file :export none
+[[file:./gfx/Dec/80/ratetemporal-2.png]]
+
+#+RESULTS: ratetemporal[ :file ./gfx/Dec/80/ratetemporal-2.png ](spl="80/",INDEX=2):results file :export none
+[[file:./gfx/Dec/80/ratetemporal-2.png]]
+
+*** fig:AM:TV
+
+#+call: ratetemporal[ :file ./gfx/Dec/40/ratetemporal-1.png ](spl="40/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./gfx/Dec/60/ratetemporal-1.png ](spl="60/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./gfx/Dec/80/ratetemporal-1.png ](spl="80/",INDEX=1,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+
+*** fig:AM:TS
+
+#+call: ratetemporal[ :file ./gfx/Dec/40/ratetemporal-0.png ](spl="40/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./gfx/Dec/60/ratetemporal-0.png ](spl="60/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporal[ :file ./gfx/Dec/80/ratetemporal-0.png ](spl="80/",INDEX=0,datapath="/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/") :results none :export none
+
+
+
+** Grouping plots
+
+*** Combined chopper MTF
+
+#+name ChComb_MTF
+#+begin_src gnuplot :exports none :file ./gfx/ChComb_MTF.eps  :term postscript eps size 7.00,5.24 enhanced defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 12
+  #
+# :file ./gfx/ChComb_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
+    reset
+    ## Keep the figure clean
+      set border 0 # no borders unset key unset xlabel unset ylabel unset xtics
+      unset ytics
+      unset ztics
+      unset colorbox
+
+    ## Apply labels
+    set label 1 "ChS" at screen 0.0833, screen 1.01 center #font "Helvetica,22" front
+    set label 2 "ChT_{1}" at screen 0.25, screen 1.01 center #font "Helvetica,22" front
+    set label 3 "ChT_{2}" at screen 0.4166, screen 1.01 center #font "Helvetica,22" front
+    set label 4 "" at screen 0.5833, screen 1.01 center #font "Helvetica,22" front
+    set label 5 "HSR" at screen 0.75, screen 1.01 center #font "Helvetica,22" front
+    set label 6 "LSR" at screen 0.916, screen 1.0 center #font "Helvetica,22" front
+    set label 7 "80 dB" at screen 1.05, screen 0.875 left #font "Helvetica,22" front
+    set label 8 "60 dB" at screen 1.05, screen 0.625 left #font "Helvetica,22" front
+    set label 9 "40 dB" at screen 1.05, screen 0.375 left #font "Helvetica,22" front
+    set label 10 "20 dB" at screen 1.05, screen 0.125 left #font "Helvetica,22" front
+  set label 11 "Modulation Frequency (Hz)" at screen 0.5, screen -0.05 center #font "Helvetica,28" front
+  set label 12 "Channel Position " at screen -0.05, screen 0.5 center rotate by 90 #font "Helvetica,28" front
+
+    set yrange [40:90]
+    set cbrange [0:1]
+    set zrange [0:1]
+    set pm3d map
+    set palette @JET # macro set in $HOME/.gnuplot
+    set logscale x 10
+    unset xtics
+    unset key
+#    rootpath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-03-Feb-2012/"
+    rootpath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/"
+
+    datapath=rootpath."TStellate2_CS/ModulationTransferFunction/";
+    CSdatapath=rootpath."TStellate2_CS/ModulationTransferFunction/";
+    CTOnedatapath=rootpath."TStellate2_CT1/ModulationTransferFunction/";
+    CTTwodatapath=rootpath."TStellate2_CT2/ModulationTransferFunction/";
+
+    ## 'do' command only valid for gnuplot versions 4.5 or above
+    set multiplot layout 4,6 scale 1.5,1.3
+    do for [spl = 80:20:-20] { do for [ii = 0:5] {
+
+if (ii==0){
+ set ytics out nomirror
+} else {
+ unset ytics
+}
+
+
+if (spl==20){
+set xtics out nomirror
+set xrange [50:1200]
+}
+if(spl==20 && ii==5){
+set colorbox
+set cblabel "SI"
+set cbtics out nomirror ("0" 0,"1" 1)
+}
+if (ii==0){ splot sprintf("%s%d/vsSPIKES.%d.dat",CSdatapath,spl,0) matrix using (($1+1)*50):2:3 }
+if (ii==1){ splot sprintf("%s%d/vsSPIKES.%d.dat",CTOnedatapath,spl,0) matrix using (($1+1)*50):2:3 }
+if (ii==2){ splot sprintf("%s%d/vsSPIKES.%d.dat",CTTwodatapath,spl,0) matrix using (($1+1)*50):2:3 }
+
+if (ii >=4){
+      splot sprintf("%s%d/vsSPIKES.%d.dat",datapath,spl,ii) matrix using (($1+1)*50):2:3
+}
+if (spl==20 && ii==3){
+unset xtics
+}
+
+ if (ii==3) {
+ plot ''
+ }
+
+    }}
+      unset multiplot
+ #!fixbb 'gfx/ChComb_MTF.eps' && fixeps 'gfx/ChComb_MTF.eps' &&  epstopdf './gfx/ChComb_MTF.eps'
+   #!fixbb 'gfx/ChComb_MTF.eps' && fixbb 'gfx/ChComb_MTF.eps' &&  epstopdf './gfx/ChComb_MTF.eps' && convert -density 300 './gfx/ChComb_MTF.eps' './gfx/ChComb_MTF.png'
+#+END_SRC
+
+#+RESULTS:
+[[file:./gfx/ChComb_MTF.eps]]
+
+
+
+
+*** Make the first level vsSPIKES and response-area
+
+#+BEGIN_SRC sh
+ResponsesScriptsPath=${HOME}/Work/cnstellate/scripts
+cd  /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/TStellate2_CS/ModulationTransferFunction/
+
+for i in 20 40 60 80;do
+   (cd $i; \
+   ${ResponsesScriptsPath}/response_area.sh; \
+   ${ResponsesScriptsPath}/vsspikes.sh; \
+   nice octave -f -q --no-gui --eval "tic;addpath('"$ResponsesScriptsPath"');make_an_response_area(200,40000);toc;" \
+   )
+done
+#+END_SRC
+
+
+Gather the ANF rate info only
+
+#+BEGIN_SRC sh
+ResponsesScriptsPath=$HOME/Work/thesis/VowelProcessingChapter/scripts
+cd  /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/TStellate2_CT2/ModulationTransferFunction/
+
+for i in 20 40 60 80;do
+   (cd $i; \
+   nice octave -f -q --no-gui --eval "tic;addpath('"$ResponsesScriptsPath"');make_an_response_area(200,40000);toc;" \
+   )
+done
+#+END_SRC
+
+#+BEGIN_SRC sh
+ResponsesScriptsPath=$HOME/Work/thesis/VowelProcessingChapter/scripts
+cd  /media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/TStellate2_CT2/ModulationTransferFunction/
+
+for i in 20 40 60 80;do
+   (cd $i; \
+   nice octave -f -q --no-gui --eval "tic;addpath('"$ResponsesScriptsPath"');make_an_vsSPIKES(200,40000);toc;" \
+   )
+done
+#+END_SRC
+
+
+
+
+*** Gnuplot versions - datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/"
+
+#+name: TStellate_MTF
+#+header: :term postscript eps enhanced size 7.00,5.24 defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 18
+#+begin_src gnuplot :exports none :results none
+  #   :term pngcairo enhanced color solid transparent nocrop font 'Verdana,11' linewidth 1.0 dashlength 1.0 size 700,524
+  # :term pdfcairo enhanced color solid font "Helvetica,18" size 700,524
+  # :file ./gfx/CS_MTF.eps
+  reset
+  ## Keep the figure clean
+  load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
+  set border 0 # no borders
+  unset key
+  unset xlabel
+  unset ylabel
+  unset xtics;    set xtics border out format ""
+  unset ytics;    set ytics border out format ""
+  unset ztics
+  unset colorbox
+
+  ## Apply labels
+  set label 1 "{/Verdana=24 A}   TS" at screen 0.0733, screen 1.0 center font ",18" front
+  set label 2 "{/Verdana=24 B}   TV" at screen 0.24, screen 1.0 center font ",18" front
+  set label 3 "{/Verdana=24 C}   DS" at screen 0.4066, screen 1.0 center font ",18" front
+  set label 4 "{/Verdana=24 D}  GLG" at screen 0.5733, screen 1.0 center font ",18" front
+  set label 5 "{/Verdana=24 E}  HSR" at screen 0.74, screen 1.0 center font ",18" front
+  set label 6 "{/Verdana=24 F}  LSR" at screen 0.906, screen 1.0 center font ",18" front
+  set label 7 "20 dB" at screen 0.980, screen 0.875 left font ",22" front
+  set label 8 "40 dB" at screen 0.980, screen 0.625 left font ",22" front
+  set label 9 "60 dB" at screen 0.980, screen 0.375 left font ",22" front
+  set label 10 "80 dB" at screen 0.980, screen 0.125 left font ",22" front
+
+  set multiplot layout 4,6 scale 1.6,1.65
+  set xrange [50:1200]
+  set yrange [0:100]
+  set cbrange [0:1] #[6:*] #[0:1]
+  set zrange [0:1] #[6:*] #[0:1]
+  set pm3d map
+  set palette @IHOT ; #@JET # macro set in $HOME/.gnuplot
+  set logscale x 10
+  #subtype = "TStellate_CS"
+
+  datapath=sprintf("/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/%s/ModulationTransferFunction/",subtype);
+
+  ## 'do' command only valid for gnuplot versions 4.5 or above
+  do for [spl = 20:80:20] {
+    do for [ii in "0 1 2 3 4 5"] {
+      if(spl==80) { set xtics format "%.0f"; }
+# unset xtics;  set xtics border out scale 1,0.5 nomirror norotate  offset character 0, 0, 0 format "%d";
+#           set xtics autofreq #("100" 100, "1000" 1000);
+#           set mxtics 10;
+#        print 'hello'
+#      }
+#        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3
+#        unset xtics; set xtics border out format ""
+#        unset ytics; set ytics border out format ""
+#print "in spl 80"
+#      } else {
+
+        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3, \
+               sprintf("%s%d/rayltest.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:(($3>6)?-1:0)
+
+#
+#      }
+    }
+  }
+
+  unset multiplot
+  #!fixbb 'gfx/Oct-16-12/CT2_MTF.eps'
+  # && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
+  #  !epstopdf 'gfx/Oct-16-12/CS_MTF.eps'
+#+END_SRC
+
+
+#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CS_MTF.png ](subtype="TStellate_CS") :results none :exports none
+
+
+#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CT1_MTF.png ](subtype="TStellate_CT1") :results none :exports none
+
+
+#+call: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.eps ](subtype="TStellate_CT2") :results none :exports none
+
+#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.pdf ](subtype="TStellate_CT2"):results none :exports none
+file:./gfx/Oct6-12/CT2_MTF.pdf
+
+#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.png ](subtype="TStellate_CT2"):results none :exports none
+: ./gfx/Oct6-12/CT2_MTF.png
+
+#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.eps ](subtype="TStellate_CT2"):results none :exports none
+: ./gfx/Oct6-12/CT2_MTF.eps
+
+
+
+
+*** Gnuplot Rate-area version
+
+# datapath="/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate/"
+
+#+name: TStellate_rMTF
+#+header:  :term postscript eps enhanced size 7.00,5.24 defaultplex  leveldefault color  solid dashlength 1.0 linewidth 2.0 butt noclip palfuncparam 2000,0.003 "Helvetica" 18
+#+begin_src gnuplot :exports none :results none
+  # :term pngcairo enhanced color solid transparent nocrop font 'Verdana,11' linewidth 1.0 dashlength 1.0 size 700,524
+  #
+  # :term pdfcairo enhanced color solid font "Helvetica,18" size 700,524
+  # :file ./gfx/CS_MTF.eps
+  reset
+  ## Keep the figure clean
+  load '/media/data/Work/cnstellate/ResponsesNoComp/default.gnu'
+  set border 0 # no borders
+  unset key
+  unset xlabel
+  unset ylabel
+  unset xtics;    set xtics border out format ""
+  unset ytics;    set ytics border out format ""
+  unset ztics
+  unset colorbox
+
+  ## Apply labels
+  set label 1 " TS " at screen 0.0733, screen 1.0 center font ",18" front
+  set label 2 " TV " at screen 0.24, screen 1.0 center font ",18" front
+  set label 3 " DS " at screen 0.4066, screen 1.0 center font ",18" front
+  set label 4 " GLG" at screen 0.5733, screen 1.0 center font ",18" front
+  set label 5 " HSR" at screen 0.74, screen 1.0 center font ",18" front
+  set label 6 " LSR" at screen 0.906, screen 1.0 center font ",18" front
+  set label 7 "80 dB" at screen 0.980, screen 0.875 left font ",22" front
+  set label 8 "60 dB" at screen 0.980, screen 0.625 left font ",22" front
+  set label 9 "40 dB" at screen 0.980, screen 0.375 left font ",22" front
+  set label 10 "20 dB" at screen 0.980, screen 0.125 left font ",22" front
+
+  set multiplot layout 4,6 scale 1.6,1.65
+  set xrange [50:1200]
+  set yrange [2000:40000] #[0:100]
+  set cbrange [*:*] #[6:*] #[0:1]
+  set zrange [2:600] #[6:*] #[0:1]
+  set pm3d map
+  set palette @JET # macro set in $HOME/.gnuplot
+  set logscale x 10
+  set logscale y 10
+  #subtype = "TStellate_CS"
+
+  datapath=sprintf("/media/c4bb64a6-7c5f-4dc1-9965-b0f4c1117b36/Work-archive/cnstellate-2.58/%s/ModulationTransferFunction/",subtype);
+
+  ## 'do' command only valid for gnuplot versions 4.5 or above
+  do for [spl = 80:20:-20] {
+  do for [ii in "0 1 2 3 4 5"] {
+  if(spl==80) { set xtics format "%.0f"; }
+  # unset xtics;  set xtics border out scale 1,0.5 nomirror norotate  offset character 0, 0, 0 format "%d";
+  #           set xtics autofreq #("100" 100, "1000" 1000);
+  #           set mxtics 10;
+  #        print 'hello'
+  #      }
+  #        splot  sprintf("%s%d/vsSPIKES.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3
+  #        unset xtics; set xtics border out format ""
+  #        unset ytics; set ytics border out format ""
+  #print "in spl 80"
+  #      } else {
+  #  splot [50:800][0:99] datapath.spl.'response_area.'.INDEX.'.dat' u 1:2:($4*5)
+
+  if (ii==5 && spl == 20){
+  set colorbox
+  set cblabel "Rate (sp/s)"
+  set cbtics out nomirror # ("0" 0,"1" 1)
+  }
+
+  if (ii < 4 ){
+  splot  datapath.spl.'/response_area-'.ii.'.dat' u 1:2:($3*25)
+  } else {
+  splot  datapath.spl.'/response_area-'.ii.'.dat' u 1:3:($4*50)
+  }
+  #        splot  sprintf("%s%d/response_area.%s.dat",datapath,spl,ii) matrix using  (($1+1)*50):2:3
+  #
+  #      }
+  }
+  }
+
+  unset multiplot
+  !fixbb 'gfx/Oct-16-12/CT2_MTF.eps'
+  # && convert -density 300 './gfx/CS_MTF.eps' './gfx/CS_MTF.png'
+  #  !epstopdf 'gfx/Oct-16-12/CS_MTF.eps'
+#+END_SRC
+
+#+RESULTS: TStellate_rMTF
+
+
+
+#+call: TStellate_rMTF[ :file ./gfx/Dec/CS_rMTF.eps ](subtype="TStellate2_CS") :results file :exports none
+
+#+RESULTS: TStellate_rMTF[ :file ./gfx/Dec/CS_rMTF.eps ](subtype="TStellate2_CS"):results file :exports none
+[[file:./gfx/Dec/CS_rMTF.eps]]
+
+
+
+#+call: TStellate_rMTF[ :file ./gfx/Dec/CT1_rMTF.png ](subtype="TStellate2_CT1") :results file :exports none
+
+#+RESULTS: TStellate_rMTF[ :file ./gfx/Dec/CT1_rMTF.png ](subtype="TStellate2_CT1"):results file :exports none
+[[file:./gfx/Dec/CT1_rMTF.png]]
+
+#+call: TStellate_rMTF[ :file ./gfx/Dec/CT2_rMTF.png ](subtype="TStellate2_CT2") :results file :exports none

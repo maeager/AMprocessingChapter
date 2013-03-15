@@ -1,0 +1,22 @@
+
+
+* Chapter 4 Appendix
+
+
+** Rate f0 response 
+
+Figure \ref{fig:Fzerorate} shows the average rate of units to increasing stimulus intensity (the rate aspect of f_0 response results shown in Figure \ref{fig:fzero}). 
+#+BEGIN_LaTeX
+  \begin{figure}[thb] 
+    \centering
+    %{\hfill{ Rate (sp/s)\hfill Temporal}}\\
+    \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/fresponse-rate.pdf}}\\
+    \caption{The average firing rate response of all units in the CNSM model to AM
+      tones of increasing intensity ($\fc = 8.9$ kHz and $\fm = 150$ Hz). }
+  \label{fig:Fzerorate}
+  \end{figure}
+#+END_LaTeX
+
+
+* Chapter 4 Source Code
+
