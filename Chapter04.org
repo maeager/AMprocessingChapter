@@ -380,7 +380,7 @@ were optimised in Section \ref{sec:Chapter3} to fit the experimentally observed
 behaviour of each of the cell types in the model.  
 
 
-#+LATEX: \input{../VowelProcessingChapter/gfx/NordlieTemplate.tex}
+#+LATEX: \input{../VowelProcessingChapter/NordlieTemplate.tex}
 
 
 * Results of Amplitude Modulation 
