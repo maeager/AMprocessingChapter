@@ -145,7 +145,7 @@
 (setq  org-export-latex-final-hook nil)
 (add-hook 'org-export-latex-final-hook
 	  (lambda ()
-;;	    (setq case-fold-search nil)
+	    (setq case-fold-search nil)
 	    (goto-char (point-min))
 	    (search-forward "\\begin{document}")
 	    (push-mark)
@@ -171,8 +171,18 @@
 
 	    ;; Force space between double acronyms or acronyms and slashs
 	    (goto-char (mark))
-	    (while (re-search-forward  "\\([A-Z][A-Z]\\) \\([\\\\A-Z]\\)" nil t)
-	      (replace-match "\\1\\\\ \\2" nil nil))
+	    ;(replace-regexp "\\([A-Zu][A-Zsm]\\) \\([\\\\A-Z]\\)"
+;		    "\\1\\\\ \\2")
+;	    (while (re-search-forward  "\\([A-Zu][A-Zsm]\\) \\([\\\\A-Z]\\)" nil t)
+;	      (replace-match "\\1\\\\ \\2" nil nil))
+
+	    ;; Force \@ between acronyms and period.
+	    (goto-char (mark))
+	    ;(replace-regexp "\\([A-Zu][A-Zsm]\\) \\([\\\\A-Z]\\)"
+;		    "\\1\\\\ \\2")
+	    (while (re-search-forward  "\\([A-Z][A-Z]\\)[\\.] " nil t)
+	      (replace-match "\\1\\\\@. " nil nil))
+
 
 	    ;; Acronyms or Capitals at the end of a sentence cause poor spacing.
 	    ;; White space reproduced for occurance preceeding \item
@@ -210,10 +220,10 @@
 					;                  (goto-char (mark))
 					;                  (replace-regexp "\\\\~\\{\\}"
 					;                                  "~")
-	    ;; double check for bad org-latex export \{ ... \} 
-;	    (goto-char (mark))
-;	    (while (re-search-forward "\\\\{\\(.*\\)\\\\}" nil t)
-;	      (replace-match "{\\1}" nil nil))
+	    ;; double check \{ ... \}
+	    (goto-char (mark))
+	    (while (re-search-forward "\\\\{\\(.*\\)\\\\}" nil t)
+	      (replace-match "{\\1}" nil nil))
 
 	    ))
 
@@ -253,7 +263,7 @@
 (setq org-entities-user 
       '("ref" "~\\ref" nil "" "" "" ""))
 (setq org-entities-user 
-      '("space" "\\ " nil " " " " " " " ")) 
+      '("space" "\\" nil " " " " " " " ")) 
 
 
 (setq org-export-latex-title-command
