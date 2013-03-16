@@ -206,7 +206,7 @@ frequency to create the \tMTF.  The \SI measure was calculated 20 ms after the
 onset of the stimulus, using Equation \ref{eq:SI}:
 #+BEGIN_LaTeX
   \begin{equation}\label{eq:SI} 
-  \mathsf{SI} = \frac{1}{N} \cdot \sqrt{\left(\sum_{i=1}^{i=N} \cos \theta_i \right)^2 + \left(\sum_{i=1}^{i=N} \sin \theta_i \right)^2 }
+  \mathsf{SI} = \frac{1}{N} \sqrt{\left(\sum_{i=1}^{i=N} \cos \theta_i \right)^2 + \left(\sum_{i=1}^{i=N} \sin \theta_i \right)^2 }
   \end{equation}
 #+END_LaTeX
 \noindent where $N$ is the number of spikes
@@ -232,18 +232,19 @@ resolution of the spike recordings (in simulations this is the integration time
 step) . For \SI values below 0.1, a high spike count is required to obtain a
 statistically significant result.
 # The Rayleigh test is equivalent to a Chi-squared test in uniform
-# data. In neuroscience the Rayleigh test was originally calculated using $2 N
-# (\mathsf{SI})^2$ \citep{Mardia:1972}.  The critical p-values for this Rayleigh
+# data. In neuroscience the Rayleigh test was originally calculated using 
+#  $2N(\mathsf{SI})^2$ \citep{Mardia:1972}.  
+# The critical p-values for this Rayleigh
 # test were 5.991 for \alpha = 0.05 and 13.816 for \alpha = 0.001
 # \citep{ShannonZengEtAl:1995,MardiaJupp:1999}.  
-The method for computing the p-value for the Rayleigh test is using the approximation in
-\citet[p. 617]{Zar:1999}:
+The method for computing the p-value for the Rayleigh test is using the
+approximation in \citet[p. 617]{Zar:1999}:
 #+BEGIN_LaTeX
 \begin{equation}\label{eq:SIp}
 p = \exp\left(\sqrt{1+4N+4(N^2-R^2)-(1+2N)}\right)
 \end{equation} 
 #+END_LaTeX
-\noindent where $R=N\times\mathrm{SI}$ is Rayleigh's vector strength [fn:: The code
+\noindent where $R=N\times\mathrm{SI}$ is Rayleigh's vector strength [fn::The code
 was converted to use in NEURON and GNUplot from the CircStat Matlab
 Toolbox \citep{Berens:2009}.]  \SI and Rayleigh tests were also calculated using
 a fast Fourier transform of the period histogram to verify the procedure.
@@ -275,13 +276,13 @@ a fast Fourier transform of the period histogram to verify the procedure.
 Temporal information is critical for vocal communication the mammalian auditory
 system.  In humans, \AM is essential for distinguishing vowels and for
 segregation of streams of sounds with different fundamental frequencies
-\citep{Bregman:1990}.
-The coding of \AM in auditory neurons is measured using an \MTF, which is
-calculated using its discharge firing rate (\rMTF) or temporal information
-(\tMTF). Firing rate is an efficient way of indicating a specific quality or
-stimulus feature, as shown in other sensory pathways.  Rate coding in the
-individual \AN fibres and spectral coding across all ANFs give a poor representation
-of modulated signals \citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
+\citep{Bregman:1990}.  The coding of \AM in auditory neurons is measured using
+an \MTF, which is calculated using its discharge firing rate (\rMTF) or temporal
+information (\tMTF). Firing rate is an efficient way of indicating a specific
+quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
+the individual \AN fibres and spectral coding across all ANFs give a poor
+representation of modulated signals
+\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
 
 # The \CN begins the transformation 
 
@@ -301,8 +302,7 @@ of modulated signals \citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
 #     - saturation at high sound level
 #     - poor \SNR in auditory nerve
 
-\yellownote{TODO}
-At low to moderate 
+\yellownote{TODO} At low to moderate
   - poor in \AN (note measurements for f_m at \CF in most studies)
   - enhanced in T stellate cells at high \SPL
 
@@ -316,9 +316,9 @@ At low to moderate
 #+LABEL: fig:AM:RG94_MTF
 #+ATTR_LaTeX: width=0.5\textwidth 
 #+CAPTION: [MTF]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  [[file:../VowelProcessingChapter/gfx/RG94_MTF.png]]
+  [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
 
-\
+
 
 
 
@@ -358,9 +358,9 @@ The stimulus generation followed Rhode and Greenberg's encoding of \AM in cats
 signal of specified frequency, amplitude, and phase by a sinusoidal modulator
 with amplitude and phase equal to that of the carrier (100\% modulation).
 Modulation frequency, f_m, ranged from 50 to 800 Hz and was stepped up by 50
-Hz. The carrier frequency was set to the central frequency channel of the \CN
-model (8.9 kHz) or to the characteristic frequency of the different \TS chopper
-models.
+Hz. The carrier frequency was selected from each of the characteristic frequencies
+of the exemplar \TS cell models (3.8, 8.91 or 12.3 kHz) in Chapter
+\ref{sec:Chapter3}.
 
 ** Simulations
 
@@ -811,14 +811,15 @@ to 40) had the most dominant temporal response across the \TS cell population.
   [[file:../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png]]
 
 #+BEGIN_LaTeX
-  \begin{figure}[tph]
-    \centering
-    \includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}\\
-    \resizebox{\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}%
-\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}}
-    \caption[Temporal response in ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  \label{fig:AM:RG94_ANF}
-  \end{figure}
+    \begin{figure}[tph]
+      \centering
+      \includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}\\
+      \resizebox{\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}\hfill%
+  % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf} 
+    }
+      \caption[Temporal response in ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
+    \label{fig:AM:RG94_ANF}
+    \end{figure}
 #+END_LaTeX
 
 
@@ -841,7 +842,7 @@ to 40) had the most dominant temporal response across the \TS cell population.
 
 Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \TS cell.
 # The rate response of the \ChTone model is non-saturating 
-\yellownote{ More text describing CT 1 AM responses. }
+\yellownote{More text describing CT 1 AM responses.}
 
 # *** TS cell model: Transient Chopper 2
 
@@ -857,7 +858,7 @@ Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \
 
 Figure \ref{fig:AM:CTtwo} shows the final \MTF response of the \ChTtwo \TS cell.
 
-\yellownote{ More text describing CT 2 AM responses. }
+\yellownote{More text describing CT 2 AM responses.}
 
 \clearpage
 
