@@ -295,7 +295,7 @@ representation of modulated signals
 
 
 
-** Variation in sound level
+** Variation in Sound Level
 
 #  - eg. Spectral/Rate Coding poor representation of modulated signals
 #     - mean rate of spikes
@@ -311,11 +311,11 @@ representation of modulated signals
 #+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal MTF response property of a single \HSR \ANF to AM stimuli at 30, 50 and 70 dB SPL. The rMTF of the HSR unit is an all-pass filter and saturates at 230 spikes per second. The tMTF is a low pass filter at 30 dB SPL and strength of synchronisation reduces dramatically with increase in sound intensity.  (SI is the same as Sync. Coeff.)   Figure reproduced from \citet{RhodeGreenberg:1994}. }
   [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
-** Variation in modulation frequency
+** Variation in Modulation Frequency
 
 #+LABEL: fig:AM:RG94_MTF
 #+ATTR_LaTeX: width=0.5\textwidth 
-#+CAPTION: [MTF]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+#+CAPTION: [Modulation transfer function]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
   [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
 
 
@@ -338,7 +338,7 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
   {\hfill%
   \includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4A.png}\hfill%
   \includegraphics[width=0.45\linewidth,keepaspectratio]{../VowelProcessingChapter/gfx/JorisAM_Fig4B.png}\hfill}
-  \caption{Simplified temporal responses of ANFs and T stellate cells with respect
+  \caption[Simplified temporal responses of ANFs and T stellate cells]{Simplified temporal responses of ANFs and T stellate cells with respect
     to variations in intensity and modulation frequency. TS cells have
     enhanced synchronisation at high SPL (A) and a band-pass tMTF with peaks
     greater than ANFs (B). Figure reproduced from
@@ -526,15 +526,15 @@ rate (rMTF) on the left and the synchronisation index (tMTF) on the right.  The
     \centering
    % {\hfill{ Rate (sp/s)\hfill Temporal}}\\
     \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-4.pdf}}\\
-    \caption{Rate and temporal modulation transfer functions (MTF) maps of HSR
-      auditory nerve fibres at 40, 60 and 80 dB SPL to AM tones with carrier
-      frequency 8.91 kHz. Rate (right column) and temporal (left) MTF maps of
-      modulation frequency ($f_\mathsf{m}$) against the CF of the HSR units.  The
-      corresponding temporal MTF maps show their SI with range 0 to 1. The white
-      mask over the tMTF graphs show where the Rayleigh test's p-value was above
-      0.05.  A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.  C. rMTF map at
-      60 dB SPL. D. tMTF map at 80 dB SPL. E. rMTF map at 40 dB SPL. F. tMTF map
-      at 40 dB SPL. }  \label{fig:AM:HSRMTF}
+    \caption[Rate and temporal MTF maps of HSR ANFs]{Rate and temporal modulation
+      transfer functions (MTF) maps of HSR ANFs at 40, 60 and 80 dB SPL to AM
+      tones with carrier frequency 8.91 kHz. Rate (right column) and temporal
+      (left) MTF maps of modulation frequency ($f_\mathsf{m}$) against the CF of
+      the HSR units.  The corresponding temporal MTF maps show their SI with range
+      0 to 1. The white mask over the tMTF graphs show where the Rayleigh test's
+      p-value was above 0.05.  A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 80 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL. }  \label{fig:AM:HSRMTF}
   \end{figure}
 #+END_LaTeX
 
@@ -580,8 +580,9 @@ closer to the centre CF.
     \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-5.pdf}}\\
     \caption[LSR fibre modulation transfer functions]{Rate and temporal modulation
       transfer functions (MTF) of LSR ANFs at 40, 60 and 80 dB SPL to AM tones
-      with carrier frequency 8.9 kHz. Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}.  }  \label{fig:AM:LSRMTF}
+      with carrier frequency 8.9 kHz. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 80 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL.  }  \label{fig:AM:LSRMTF}
   \end{figure}
 #+END_LaTeX
 
@@ -614,15 +615,17 @@ is observed at 60 and 40 dB SPL stimulus intensities (Figures
   END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
 #+END_SRC
 
-\yellownote{On CF data compared to Rhode and Greenberg}
+\yellownote{On CF data compared to Rhode and Greenberg - expand paragraph}
+Figure \ref{fig:AM:RG94ANF} shows the \MTF response of the \HSR unit on-CF compared with similar experimental data from \citet{RhodeGreenberg:1994}.
 
 #+BEGIN_LaTeX
-  \begin{figure}[tph]
+  \begin{figure}[t!]
     \centering
+    \resizebox{0.9\texwidth}{!}{%
     \includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}\\
-    \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-ANF.pdf}
-    \caption[Temporal response in ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  \label{fig:AM:RG94_ANF}
+    \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-ANF.pdf}}
+    \caption[Temporal response in ANFs on CF]{Rate and temporal response property of HSR units with the carrier frequency on or nearest to its CF. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  \label{fig:AM:RG94ANF}
   \end{figure}
 #+END_LaTeX
 
@@ -642,10 +645,11 @@ is observed at 60 and 40 dB SPL stimulus intensities (Figures
    %  \resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-3.png}}}\\ 
    %  \resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-3.png}}}
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-3.pdf}}
-  \caption{Golgi cell rate (rMTF, left column) and temporal (tMTF, right column)
+  \caption[Golgi cell rate and temporal MTF responses for three stimulus sound levels]{Golgi cell rate (rMTF, left column) and temporal (tMTF, right column)
     responses for AM stimulus sound levels at 40, 60 and 80 dB
-    SPL. Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}. }\label{fig:AM:G}
+    SPL. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL. }\label{fig:AM:G}
    \end{figure}
 #+END_LaTeX
 
@@ -691,9 +695,10 @@ grep -e '^[[:digit:]]* 65' ~/Work/cnstellate/TStellate2_CS/ModulationTransferFun
   %\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-2.png}}}\\ 
   %\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-2.png}}}
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-2.pdf}}
-  \caption{DS cell rate (rMTF) and temporal (tMTF) responses for stimulus sound
-    levels 40 dB SPL (top row) and 60 dB SPL (bottom row). Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}.}\label{fig:AM:DS}
+  \caption{Rate and temporal MTF responses for DS cells at three stimulus sound
+    levels. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL.}\label{fig:AM:DS}
   \end{figure}
 #+END_LaTeX
 
@@ -742,9 +747,11 @@ cut-off frequencies around 400 Hz, similar to \TS and \TV units.
   \begin{figure}[tb] 
   \centering 
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-1.pdf}}
-  \caption{Rate (rMTF) and temporal (tMTF) responses for three stimulus sound
-  levels of the TV cell model. Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}.}\label{fig:AM:TV}
+  \caption[Rate and temporal MTF response maps for three stimulus sound
+  levels of the TV cell model]{Rate (rMTF) and temporal (tMTF) responses for three stimulus sound
+  levels of the TV cell model. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL.}\label{fig:AM:TV}
   \end{figure}
 #+END_LaTeX
 
@@ -768,14 +775,14 @@ response with little to no temporal information at the carrier frequency units.
 *** TS cell model 
 # : Sustained Chopper
 
-
   
 #+BEGIN_LaTeX
   \begin{figure}[tb] 
   \centering 
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChS.pdf}}
-  \caption{Rate and temporal MTF responses for the ChS TS cell model. Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}.}
+  \caption[Rate and temporal MTF responses for the ChS TS cell model]{Rate and temporal MTF responses for the ChS TS cell model. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL.}
   \label{fig:AM:TS}
   \end{figure}
 #+END_LaTeX
@@ -805,26 +812,22 @@ to 40) had the most dominant temporal response across the \TS cell population.
 #    - \TV : delayed echo suppression 
 
 
-#+LABEL: fig:AM:RG94_Choppers
-#+ATTR_LaTeX: width=0.8\textwidth 
-#+CAPTION: [Temporal response in \ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  [[file:../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png]]
-
 #+BEGIN_LaTeX
     \begin{figure}[tph]
       \centering
+      \resizebox{0.9\textwidth}{!}{%
       \includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}\\
-      \resizebox{\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}\hfill%
+      \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}\hfill%
   % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf} 
     }
-      \caption[Temporal response in ANFs]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
-    \label{fig:AM:RG94_ANF}
+      \caption[Temporal response in Choppers on CF]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
+    \label{fig:AM:RG94Chopper}
     \end{figure}
 #+END_LaTeX
 
 
 \yellownote{Include RhodeGreenberg fig and my onCF data}
-
+Figure \ref{fig:AM:RG94Chopper} 
 
 
 \clearpage
@@ -834,8 +837,9 @@ to 40) had the most dominant temporal response across the \TS cell population.
   \begin{figure}[tb] 
   \centering 
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChT1.pdf}}
-  \caption{Rate and temporal MTF responses for the ChT$_1$ TS cell model. Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}.}
+  \caption[Rate and temporal MTF responses for the ChT$_1$ TS cell model]{Rate and temporal MTF responses for the ChT$_1$ TS cell model. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL.}
   \label{fig:AM:CTone}
   \end{figure}
 #+END_LaTeX
@@ -850,8 +854,9 @@ Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \
   \begin{figure}[tb] 
   \centering %\caption{TS Rate (spks/s) and SI 60 dB}
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChT2.pdf}}
-  \caption{Rate and temporal MTF responses for the ChT$_2$ TS cell model. Organisation of sub-figures A through F are
-      the same as in Figure~\ref{fig:AM:HSRMTF}.}
+  \caption[Rate and temporal MTF responses for the ChT$_2$ TS cell model]{Rate and temporal MTF responses for the ChT$_2$ TS cell model. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+      C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
+      SPL. F. tMTF map at 40 dB SPL.}
   \label{fig:AM:CTtwo}
   \end{figure}
 #+END_LaTeX
