@@ -616,15 +616,15 @@ is observed at 60 and 40 dB SPL stimulus intensities (Figures
 #+END_SRC
 
 \yellownote{On CF data compared to Rhode and Greenberg - expand paragraph}
-Figure \ref{fig:AM:RG94ANF} shows the \MTF response of the \HSR unit on-CF compared with similar experimental data from \citet{RhodeGreenberg:1994}.
+Figure \ref{fig:AM:RG94ANF} shows the \MTF response of the \HSR unit on-CF
+compared with similar experimental data from \citet{RhodeGreenberg:1994}.
 
 #+BEGIN_LaTeX
   \begin{figure}[t!]
     \centering
-    \resizebox{0.9\texwidth}{!}{%
-    \includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}\\
-    \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-ANF.pdf}}
-    \caption[Temporal response in ANFs on CF]{Rate and temporal response property of HSR units with the carrier frequency on or nearest to its CF. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\
+    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-ANF.pdf}}
+    \caption[Temporal response in ANFs on CF]{Rate and temporal response property of HSR units with the carrier frequency on or nearest to its CF. Figure reproduced from \citet{RhodeGreenberg:1994}.}
   \label{fig:AM:RG94ANF}
   \end{figure}
 #+END_LaTeX
@@ -655,7 +655,7 @@ Figure \ref{fig:AM:RG94ANF} shows the \MTF response of the \HSR unit on-CF compa
 
 Figure \ref{fig:AM:G} shows the rate and temporal \MTF across the whole network
 to AM tone centred at 8.9 kHz. The GLG cell model's r\MTFs were typically
-low-pass mimicking the rate behaviour of \LSR, its primary source of excitation.
+low-pass mimicking the rate behaviour of \LSR fibres, its primary source of excitation.
 The Golgi cell units had very low rates for 40 and 60 dB \SPL \AM tones which
 were limited to a narrow range around the central frequency.
 
@@ -678,7 +678,7 @@ model are predominantly rate-based.
 
 #+name: mean_Gvs_eightydB  
 #+BEGIN_SRC sh :exports none :results raw replace
-grep -e '^[[:digit:]]* 65' ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}' 
+   grep -e '^[[:digit:]]* 65' ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}' 
 #+END_SRC
 
 
@@ -1128,7 +1128,7 @@ component of HSR and LSR excitatory inputs.
 
 \yellownote{ The maximum firing
 rate of the \TV cell model at high stimulus intensities (on-CF units, AM tone,
-80 dD SPL, $>$ 400 spikes per second) is not consistent with the Type II EIRA
+80 dB SPL, $>$ 400 spikes per second) is not consistent with the Type II EIRA
 behaviour of low firing rates in noise and high intensity.}
 
 
