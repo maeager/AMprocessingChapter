@@ -180,8 +180,8 @@
 	    (goto-char (mark))
 	    ;(replace-regexp "\\([A-Zu][A-Zsm]\\) \\([\\\\A-Z]\\)"
 ;		    "\\1\\\\ \\2")
-	    (while (re-search-forward  "\\([A-Z][A-Z]\\)[\\.] " nil t)
-	      (replace-match "\\1\\\\@. " nil nil))
+;	    (while (re-search-forward  "\\([A-Z][A-Z]\\)[\\.] " nil t)
+;	      (replace-match "\\1\\\\@. " nil nil))
 
 
 	    ;; Acronyms or Capitals at the end of a sentence cause poor spacing.
