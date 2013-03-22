@@ -1179,9 +1179,8 @@ A whole-network approach may provide a stronger basis for optimal temporal
 coding of \AM than an approach based solely on \CF.  This chapter has
 demonstrated the need to model detailed neural microcircuits away from basic
 receptive fields of individual units.  The model has been used for detailed
-optimisation \citep{EagerGraydenEtAl:2006,EagerGraydenEtAl:2007a} so that it can
-be used to investigate detailed physiological properties in the \CN stellate
-network.
+optimisation so that it can be used to investigate detailed physiological
+properties in \TS cells and the \CNSM network.
 
 \yellownote{TODO two more paragraphs - expand on these points}
  - Transition from temporal to rate coding in auditory pathway
