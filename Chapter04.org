@@ -8,7 +8,7 @@
 #+TODO: TODO(t) STARTED(s) | DONE(d) DEFERRED(f) REFTEX
 #+LANGUAGE: en_GB-ise-wo_accents 
 #+LaTeX_CLASS: UoM-draft-org-article
-#+LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage]
+#+LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage,openright]
 #+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/gfx/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
@@ -308,12 +308,12 @@ representation of modulated signals
 
 #+LABEL: fig:AM:RG94_AN
 #+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal MTF response property of a single \HSR \ANF to AM stimuli at 30, 50 and 70 dB SPL. The rMTF of the HSR unit is an all-pass filter and saturates at 230 spikes per second. The tMTF is a low pass filter at 30 dB SPL and strength of synchronisation reduces dramatically with increase in sound intensity.  (SI is the same as Sync. Coeff.)   Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
+#+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal MTF response property of a single HSR~ANF to AM stimuli at 30, 50 and 70 dB SPL. The rMTF of the HSR unit is an all-pass filter and saturates at 230 spikes per second. The tMTF is a low pass filter at 30 dB SPL and strength of synchronisation reduces dramatically with increase in sound intensity.  (SI is the same as Sync. Coeff.)   Figure reproduced from \citet{RhodeGreenberg:1994}. }
+ [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 ** Variation in Modulation Frequency
 
-#+LABEL: fig:AM:RG94_MTF
+#+LABEL: fig:AM:RG94MTF
 #+ATTR_LaTeX: width=0.5\textwidth 
 #+CAPTION: [Modulation transfer function]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
   [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
@@ -322,7 +322,7 @@ representation of modulated signals
 
 
 
-\yellownote{refer to Figure \ref{fig:AM:RG94_MTF}}
+\yellownote{refer to Figure \ref{fig:AM:RG94MTF}}
 
 Figure \ref{fig:AM:AMSummary}B shows the simplified temporal \MTF responses from
 multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
@@ -420,7 +420,7 @@ from 0 to 90 dB SPL.  Each row in the f_0 response maps represent the temporal
 response of units in adjacent frequency channels to a single presentation of the
 stimulus to the \CNSM model at a fixed intensity. 
 
-\HSR \ANFs have a non-linear f_0 response, with \SI peaking around 0.6 at
+\HSR\space \ANFs have a non-linear f_0 response, with \SI peaking around 0.6 at
 intensities 20-30 dB above threshold then reducing to below 0.2 for intensities
 60 dB above rate threshold \citep{JorisYin:1992}.  Loss of f_0 response in \ANFs is
 typically due to saturation at the inner hair cell to auditory nerve synapse
@@ -442,7 +442,7 @@ similar to the model results presented by \citet{ZilanyBruceEtAl:2009}.  The
 peak SI in the map was 0.777 by unit 84 (CF 20.7 kHz) at 90 dB at approximately
 50\% of maximum firing rate.  
 
-In \LSR \ANFs, Figure \ref{fig:fzero}B, the f_0 response map maintains moderate
+In \LSR\space \ANFs, Figure \ref{fig:fzero}B, the f_0 response map maintains moderate
 temporal information throughout the response area.  The f_0 response of the
 on-CF unit has its peak temporal response at rate threshold then slowly reduces
 to a moderate temporal response at high intensity.  Across frequency channels
@@ -538,7 +538,7 @@ rate (rMTF) on the left and the synchronisation index (tMTF) on the right.  The
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:HSRMTF} shows the rate and temporal \MTF maps of \HSR \ANFs
+Figure \ref{fig:AM:HSRMTF} shows the rate and temporal \MTF maps of \HSR\space \ANFs
 to \AM tones with $\fc=8.91$ kHz.  \HSR fibres saturate to pure \CF tones at 40
 dB SPL, whereas their response to AM tones are dependent on the carrier and
 modulating frequencies.  Figures \ref{fig:AM:HSRMTF}A, C and E show the average
@@ -592,7 +592,7 @@ unit was typically low-pass but did fluctuate at modulation frequencies above
 400 Hz for each stimulus intensity.
 
 Figures \ref{fig:AM:LSRMTF}B, D and F show LSR fibres in the AN model were
-better at encoding temporal information than \HSR \ANFs. This has been observed
+better at encoding temporal information than \HSR\space \ANFs. This has been observed
 in cat ANFs \citep{JorisYin:1992}.  The low-pass \tMTF is typical of \ANFs and
 can be seen at each stimulus intensity, particularly in units above the \fc. The
 f_m cut-off frequency for LSR units was beyond the 1.2 kHz range used in this
@@ -695,7 +695,8 @@ model are predominantly rate-based.
   %\resizebox{\columnwidth}{!}{{\Huge 40 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/40/ratetemporal-2.png}}}\\ 
   %\resizebox{\columnwidth}{!}{{\Huge 60 dB}\raisebox{-0.5\height}{\includegraphics{../VowelProcessingChapter/60/ratetemporal-2.png}}}
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-2.pdf}}
-  \caption{Rate and temporal MTF responses for DS cells at three stimulus sound
+  \caption[Rate and temporal MTF responses for DS cells at three stimulus sound
+    levels]{Rate and temporal MTF responses for DS cells at three stimulus sound
     levels. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
       C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
       SPL. F. tMTF map at 40 dB SPL.}\label{fig:AM:DS}
@@ -817,9 +818,8 @@ to 40) had the most dominant temporal response across the \TS cell population.
       \centering
       \resizebox{0.9\textwidth}{!}{%
       \includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}\\
-      \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}\hfill%
-  % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf} 
-    }
+      \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}%\hfill%
+     % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf} 
       \caption[Temporal response in Choppers on CF]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
     \label{fig:AM:RG94Chopper}
     \end{figure}
@@ -828,7 +828,6 @@ to 40) had the most dominant temporal response across the \TS cell population.
 
 \yellownote{Include RhodeGreenberg fig and my onCF data}
 Figure \ref{fig:AM:RG94Chopper} 
-
 
 \clearpage
 # *** TS cell model: Transient Chopper 1
@@ -908,7 +907,7 @@ vector strength plots using a mask.
 **** TODO Auditory Nerve units
 
 #+ATTR_LaTeX: width=0.9\linewidth
-#+CAPTION: PDTH response in auditory nerve fibres
+#+CAPTION: PSTH response in \ANFs
 #+LABEL: fig:AM:ANpsth
 #+RESULTS: AN_psth
 [[file:../VowelProcessingChapter/gfx/AN_psth.png]]
@@ -1039,7 +1038,7 @@ output in the HSR and LSR units.
 # \citep{JorisLouageEtAl:2006,JorisSchreinerEtAl:2004}.
 
 
-** GLG cells
+** Golgi cells
 
 \GLG cells' influence in the \CNSM model is through \GABA-ergic synapses with
 \DS and \TS cells on their distal dendrites.  GABAergic distal inhibitory \PSPs
@@ -1054,7 +1053,7 @@ Golgi cells are low-firing monotonic rate-level units that, in the \CNSM model,
 have little to no temporal response to AM tones.  The results in Figure
 \ref{fig:AM:G} show that response of the \GLG cell model to \AM tones is only
 dependent on the sound level and that the temporal response is negligible.  The
-high temporal information from individual \LSR \ANFs, the main excitatory input
+high temporal information from individual \LSR\space \ANFs, the main excitatory input
 of the \GLG cell model, would suggest Golgi cells would pass some of this
 information on.  Convergence of fibres with different \CFs, hence different
 delays, reduces the likelihood of coincident inputs. This mechanism is unlikely
@@ -1066,9 +1065,9 @@ the model.  The low-pass filter limits the post-synaptic neuron's ability to
 phase-lock to the modulating frequency, especially at high f_m.
 
 
-** DS cells
+** D stellate cells
 
-D stellate cells are critical to the \CNSM model's ability to encode temporal
+DS cells are critical to the \CNSM model's ability to encode temporal
 information at high sound intensity levels.  More specifically they enhance the
 entrainment of the TS cells to complex stimulus envelope through precisely timed
 inhibition
@@ -1112,7 +1111,7 @@ synapses for the site of activation at the axon hillock.
 # \citep{Frisina:2001,FrisinaWaltonEtAl:1993,FrisinaSmithEtAl:1990a}.
 
 
-** TV cells
+** Tuberculoventral cells
 
 The results of the \TV cell model show a general enhancement of temporal
 information to AM tones relative to \ANF inputs.  The strong enhancement may be
@@ -1120,7 +1119,7 @@ due to a combination of intrinsic mechanisms, afferent excitation and inhibition
 by \DS units.  The f_0 response map of TV cells in Figure \ref{fig:fzero}E showed
 high SI values near boundaries of its response area.  TV cells receive strong
 inhibition from DS cell, but DS cell input inactive in this area. Intrinsic
-mechanisms in the \TV cell model (Type-I classic \RM model) contribute to a high
+mechanisms in the \TV cell model (Type I classic \RM model) contribute to a high
 input resistance at \RMP.  The lower leak potential (\Eleak) in the \TV cell
 model also increases the difference between \RMP and \AP threshold.  These
 mechanisms remove the DC component of uncorrelated inputs and enhances the AC
@@ -1147,7 +1146,7 @@ the temporal behaviour in \TS cells at low sound levels.
 
 
 
-** TS cells
+** T stellate cells
 
 The inhomogeneous population of \TS cells are classified into different
 subgroups, namely sustained or transient choppers.  Intrinsic membrane
@@ -1180,7 +1179,7 @@ coding of \AM than an approach based solely on \CF.  This chapter has
 demonstrated the need to model detailed neural microcircuits away from basic
 receptive fields of individual units.  The model has been used for detailed
 optimisation so that it can be used to investigate detailed physiological
-properties in \TS cells and the \CNSM network.
+properties in \TS cells and the \CN stellate microcircuit.
 
 \yellownote{TODO two more paragraphs - expand on these points}
  - Transition from temporal to rate coding in auditory pathway
