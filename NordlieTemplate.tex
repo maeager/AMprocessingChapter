@@ -1,6 +1,6 @@
 {%\vspace{2ex}
 \small\linespread{0.5}
-\begin{table*}[ptb]
+\begin{table}[ptb]
     \caption{CNSM Model Summary for AM tones}\label{tab:AMModelSummary}
 %  \end{table}
 %\noindent%
@@ -32,13 +32,13 @@
      TV       &  Type I-classic RM model  & $N_{\text{TV}}= 1$ per freq.\ channel\\\hline
      TS       & Type I-transient RM model & $N_{\text{TS}}= 1$ per freq.\ channel\\\hline
 \end{tabularx}
-\end{table*}
+\end{table}
 \vspace{1ex}
-\begin{table*}[ptb]
-  \caption{CNSM Model Summary for AM tones -- continued}%\label{tab:AMModelSummary}
-
+\begin{table}[ptb]
+\centering
+  \caption*{CNSM Model Summary for AM tones -- continued}
 % - C ------------------------------------------------------------------------------
-%\noindent%
+\noindent%
 \begin{tabularx}{\textwidth}{|l|l|l|X|}\hline
 \hdr{4}{iii}{Connectivity}\\\hline
  \textbf{Name}   & \textbf{Source} & \textbf{Target} & \textbf{Pattern} \\\hline
@@ -78,7 +78,10 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \\\hline
  \textbf{Spiking} & Emit spike when $V(t)\geq -20$ mV  \\\hline
 \end{tabularx}
-
+\end{table}
+\vspace{1ex}
+\begin{table}[ptb]
+  {CNSM Model Summary for AM tones -- continued}\\ 
 \vspace{1ex}
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{v}{Input\slash Ouput}\\\hline
@@ -98,7 +101,7 @@ Mean rate and synchronisation index were calculated from each AN and CN unit for
 % Synchronisation index was calculated relative to the modulation frequency using the vector strength method \citep{KajikawaHackett:2005}.
 \\\hline
 \end{tabularx}
-\end{table*}
+\end{table}
 }
 
 %  \textbf{Assumptions}    & The spread ANF to DS cells (\sANFDSh,\sANFDSl) is arbitrary at this point and will be explored in the next experiment.\\ \hline
