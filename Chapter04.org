@@ -816,9 +816,8 @@ to 40) had the most dominant temporal response across the \TS cell population.
 #+BEGIN_LaTeX
     \begin{figure}[tph]
       \centering
-      \resizebox{0.9\textwidth}{!}{%
-      \includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}\\
-      \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}%\hfill%
+      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}}\\
+      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}\\
      % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf} 
       \caption[Temporal response in Choppers on CF]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
     \label{fig:AM:RG94Chopper}
