@@ -19,7 +19,7 @@
 # # Write text after begin { document } 
 
 #+LaTeX:\setcounter{chapter}{3}
-#+LaTeX:\chapter[AM Coding in the CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit Model}\label{sec:Chapter4}
+#+LaTeX:\chapter[AM Coding in the CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit Model}\label{sec:AMChapter}
 
 #+BEGIN_LaTeX
   %\ifthenelse{\isundefined{\manuscript}}{\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}}{}
@@ -360,7 +360,7 @@ with amplitude and phase equal to that of the carrier (100\% modulation).
 Modulation frequency, f_m, ranged from 50 to 800 Hz and was stepped up by 50
 Hz. The carrier frequency was selected from each of the characteristic frequencies
 of the exemplar \TS cell models (3.8, 8.91 or 12.3 kHz) in Chapter
-\ref{sec:Chapter3}.
+\ref{sec:ModelChapter}.
 
 ** Simulations
 
@@ -376,7 +376,7 @@ total duration 170 ms. Stimuli were repeated 50 times and the spike times of all
 Table \ref{tab:AMModelSummary} shows the summary of the model used in this
 study.  The Nordlie approach to reproducible neural network simulations
 \citep{NordlieGewaltigEtAl:2009} is followed.  The parameters of the \CNSM model
-were optimised in Section \ref{sec:Chapter3} to fit the experimentally observed
+were optimised in Section \ref{sec:ModelChapter} to fit the experimentally observed
 behaviour of each of the cell types in the model.  
 
 
