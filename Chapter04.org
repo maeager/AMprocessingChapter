@@ -16,8 +16,9 @@
 #+BIBLIOGRAPHY: ../org-manuscript/bib/MyBib alphanat
 
 
-# # Write text after begin { document } 
 
+
+#+LaTeX:\glsresetall[main,acronym]
 #+LaTeX:\setcounter{chapter}{3}
 #+LaTeX:\chapter[AM Coding in the CNSM Model]{Amplitude Modulation Coding in the Stellate Microcircuit Model}\label{sec:AMChapter}
 
@@ -111,28 +112,39 @@
 frequency (see Figure \ref{fig:AM:def} \citep{JorisSchreinerEtAl:2004}). It is a
 key feature of speech and other biologically relevant sounds
 \citep{Bregman:1990}. Investigating \AM coding is a useful way of understanding
-how temporal information is processed and encoded in the auditory nervous
+how temporal information is processed and encoded in the auditory 
 system. The \CN is a major processing stage between the \AN and higher auditory
 centres, so modelling and numerical analysis of its processes are important for
-developing the necessary insight.
+developing the necessary insight. 
 
+\glsunset{fc,fm}
 Figure \ref{fig:AM:def} shows the general properties of an AM tone and the
-response of an AN model filterbank.  The stimulus in Figure \ref{fig:AM:def}A is
-a 100\% modulated sinusoidal \AM tone, with carrier frequency (\fc) 2 kHz and
-modulation frequency (\fm) of 100 Hz.  The general formula for a sinusoidal \AM
-tone with variable modulation height /m/ is
+response of an AN model filterbank.  The general formula for a sinusoidal \AM
+tone is
 #+BEGIN_LaTeX
 \begin{equation}\label{eq:AMformula}
-s(t) = [1 + m \sin(2\pi{}f_{\mathrm{m}}t)] \sin (2\pi{}f_{\mathrm{c}}t).
+s(t) = [1 + m \sin(2\pi{}f_{\mathrm{m}}t)] \sin (2\pi{}f_{\mathrm{c}}t)
 \end{equation} 
 \noindent 
-#+END_LaTeX
-When transformed to the frequency-domain, the frequency components of an AM tone
-are a dominant spike at \fc and two components \fc $\pm$ \fm with half the height
-of the component at \fc (Figure \ref{fig:AM:def}B).  Individual AN fibres may
-encode temporal information of simple tones up to 5 kHz.  For reviews of neural
-encoding of sound-envelope information in the \AN and \CN, see
-\citet{FrisinaWaltonEtAl:1994} and \citet{JorisSchreinerEtAl:2004}.
+#+END_LaTeX 
+where /m/ is the modulation height /m/.  A portion of an \AM stimulus is shown
+in Figure \ref{fig:AM:def}A, which is a 100\% modulated sinusoidal \AM tone
+(/m/=1), with carrier frequency (\fc) 2 kHz and modulation frequency (\fm) of
+100 Hz.  When transformed to the frequency-domain, the frequency components of
+an \AM tone are a dominant spike at \fc and two components \fc $\pm$ \fm with
+half the height of the component at \fc (Figure \ref{fig:AM:def}B).  The
+\citet{ZilanyCarney:2010} AN model was processed using an AM tone (150 ms 65 dB
+SPL) with 100 frequency channels from 200 Hz to 40 kHz (centre frequencies
+determined by the cat Greenwood function, see Section \ref{sec:Methods:ANFs})
+and 20 \HSR fibres per frequency channel.  Figure \ref{fig:AM:def}C shows a
+portion of the spike time histogram of 2000 \HSR \ANFs to a 150 ms AM stimulus
+as shown in Figure \ref{fig:AM:def}A.  A fast-fourier transform was applied to
+the all-unit histogram (excluding the first 20 ms) and a spike time histogram of
+the unit with CF closest to \fc. The peaks in the all-unit fast-fourier
+transform (arrows in Figure \ref{fig:AM:def}D) are the \fm (100 Hz) and its
+harmonics.  The frequency components of HSR fibres with CF closest to \fc
+(dotted line in Figure \ref{fig:AM:def}D) show synchronisation to \fc, typical
+of low CF ANFs.
 
 #+LABEL: fig:AM:def
 #+ATTR_LaTeX: width=\linewidth
@@ -283,6 +295,14 @@ quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
 the individual \AN fibres and spectral coding across all ANFs give a poor
 representation of modulated signals
 \citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
+Individual \ANFs can
+encode temporal information of simple tones up to 5 kHz and \AM tones up to 2 kHz.
+  
+\yellownote{FIXME}
+For reviews of neural
+encoding of sound-envelope information in the \AN and \CN, see
+\citet{FrisinaWaltonEtAl:1994} and \citet{JorisSchreinerEtAl:2004}.
+
 
 # The \CN begins the transformation 
 
