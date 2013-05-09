@@ -60,19 +60,26 @@
 
 # with lines lc rgb "#007700"
 
-  set contour;
-  set cntrparam levels discrete THRESH
+  #set contour;
+  #set cntrparam levels discrete THRESH
   unset clabel #set clabel "1"
 
   do for [spl in "80 60 40"] {
   print "SPL ", spl
-
+  set colorbox noborder
   set ylabel "CF (kHz)" font "Helvetica,24"
- if (spl =="40") {  set xlabel "f_m (kHz)" font "Helvetica,24" } else {unset xlabel}
+  if (spl == "80"){ set cblabel "Firing Rate (sp/s)" font "Helvetica,16" } else {unset cblabel}
+
+ if (spl =="40") { set xlabel "f_m (kHz)" font "Helvetica,24" } else {unset xlabel}
   set zrange [0:*];set cbrange [0:*];set palette rgbformulae 22,13,-31
   splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
   print "vs "
   unset ylabel;set cbrange [0:1];set palette rgbformulae 7,5,15 
+  if (spl =="80"){
+     set cblabel "SI" font "Helvetica,16" 
+  } else {unset cblabel}
+  if (spl == "60"){ unset colorbox }
+  if (spl == "40"){ unset colorbox }
   if (INDEX >=4){
 splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($5>5.991?$4:NaN)
 } else{
@@ -88,31 +95,47 @@ splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4
    
 *** fig:AM:ANMTF
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-4.eps]]
+
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-5.eps]]
 
 
 
 *** fig:AM:G
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-3.eps]]
 
 *** fig:AM:DS
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-2.eps]]
 
 
 *** fig:AM:TV
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-1.eps ](THRESH=10,FRATE=25,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-1.eps ](THRESH=10,FRATE=25,INDEX=1,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-1.eps ](THRESH=10,FRATE=25,INDEX=1,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/ratetemporal-1.eps]]
 
 *** fig:AM:TS
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
 [[file:./gfx/ratetemporal-0-ChS.eps]]
+
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none 
 
@@ -159,13 +182,12 @@ splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4
     unset multiplot
 #+END_SRC
 
-#+call: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
 
-#+RESULTS: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+#+RESULTS: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
 [[file:./gfx/mtfonCF-ANF.eps]]
 
-#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
-[[file:./gfx/mtfonCF-ANF.eps]]
+
 
 #+name: mtfoncf
 #+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
@@ -205,7 +227,10 @@ splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4
     unset multiplot
 #+END_SRC
 
-#+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+#+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none 
+
+#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
+[[file:./gfx/mtfonCF-0-ChS.eps]]
 
 #+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none 
 [[file:./gfx/mtfonCF-0-ChS.eps]]
@@ -231,7 +256,7 @@ where the f_c is fixed at the \CF of the unit.
     set pm3d map
     set logscale x 10
     set multiplot layout 3,2
-    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    set xtics nomirror out ("2" 2, "" 3, "" 4, "5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20, "30" 30, "40" 40)
     unset key
   
     set zrange [0:1]
@@ -242,10 +267,10 @@ where the f_c is fixed at the \CF of the unit.
     
     set label 1 "{/Helvetica-Bold=28 A}   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
     set label 2 "{/Helvetica-Bold=28 B}   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
-    set label 3 "{/Helvetica-Bold=28 C}   TS (ChS)" at screen 0.1, screen 0.633 font "Helvetica,30" left front
+    set label 3 "{/Helvetica-Bold=28 C}   TS (ChS)" at screen 0.6, screen 0.3 font "Helvetica,30" left front
     set label 4 "{/Helvetica-Bold=28 D}   DS (OnC)" at screen 0.6, screen 0.633 font "Helvetica,30" left front
     set label 5 "{/Helvetica-Bold=28 E}   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
-    set label 6 "{/Helvetica-Bold=28 F}   GLG     " at screen 0.6, screen 0.3 font "Helvetica,30" left front
+    set label 6 "{/Helvetica-Bold=28 F}   GLG     " at screen 0.1, screen 0.633 font "Helvetica,30" left front
   
   #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
   #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
@@ -255,21 +280,25 @@ where the f_c is fixed at the \CF of the unit.
     set cbrange [0:1];set palette rgbformulae 7,5,15 
     unset xlabel;unset colorbox
     set ylabel " Intensity (dB SPL)" font "Helvetica,24";
-
+    set colorbox noborder
     splot  datapath.'/vsSPIKES.4.dat' u ($3/1000):1:($5>5.991?$4:NaN) #($7<0.05?$4:NaN) #
     unset ylabel;
+    unset colorbox
     splot  datapath.'/vsSPIKES.5.dat' u ($3/1000):1:($5>5.991?$4:NaN) #($7<0.05?$4:NaN) #
 
-    do for [cell in "0 2 1 3"] {
-  
+    do for [cell in "3 2 1 0"] {
+unset xlabel;unset ylabel;
    if (cell=="1") {  
-   set xlabel "CF (kHz)" font "Helvetica,24";  
-   set ylabel " Intensity (dB SPL)" font "Helvetica,24";
-   set colorbox noborder; } else { unset xlabel;unset ylabel;unset colorbox}
-   if (cell=="0"){ set ylabel " Intensity (dB SPL)" font "Helvetica,24";}
-   if (cell=="3"){set xlabel "CF (kHz)" font "Helvetica,24";unset ylabel; unset colorbox}
-
-    splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN) #
+      set xlabel "CF (kHz)" font "Helvetica,24";  
+      set ylabel " Intensity (dB SPL)" font "Helvetica,24"; 
+   } 
+if (cell=="0"){ 
+      set xlabel "CF (kHz)" font "Helvetica,24";  
+   } 
+if (cell=="3"){
+      set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+   } 
+    splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN) 
     }
     unset multiplot
 #+END_SRC
@@ -279,49 +308,51 @@ where the f_c is fixed at the \CF of the unit.
 #+name: fnoughtrate
 #+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
 #+BEGIN_SRC gnuplot :export none 
-  # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
-  # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
-  reset
-  # check input variables 
-  unset xlabel
-  set ylabel "CF (kHz)" font "Helvetica,16"
-  set pm3d map
-  set logscale x 10
-  set multiplot layout 3,2
-  set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
-  unset key
-
-  set zrange [0:*]
-  set cbrange [0:*]
+    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+    # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10' 
+    reset
+    # check input variables 
+    unset xlabel
+    set ylabel "CF (kHz)" font "Helvetica,16"
+    set pm3d map
+    set logscale x 10
+    set multiplot layout 3,2
+    # set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+    set xtics nomirror out ("2" 2, "" 3, "" 4, "5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20, "30" 30, "40" 40)
+    unset key
   
-  set palette rgbformulae 22,13,-31
+    set zrange [0:*]
+    set cbrange [0:*]
+    
+    set palette rgbformulae 22,13,-31
+    
+    
+    set xrange [2:40] #2.805:27.017] #[40:90]
+    
+    set label 1 "A   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+    set label 2 "B   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
+    set label 3 "C   TS (ChS)" at screen 0.1, screen 0.633 font "Helvetica,30" left front
+    set label 4 "D   DS (OnC)" at screen 0.6, screen 0.633 font "Helvetica,30" left front
+    set label 5 "E   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
+    set label 6 "F   GLG     " at screen 0.6, screen 0.3 font "Helvetica,30" left front
   
+  #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
+  #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
+  #  set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
   
-  set xrange [2:40] #2.805:27.017] #[40:90]
+    #set cblabel "Rate" font "Helvetica,16"
+    do for [cell in "4 5 0 2 1 3"] {
   
-  set label 1 "A   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
-  set label 2 "B   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
-  set label 3 "C   TS (ChS)" at screen 0.1, screen 0.633 font "Helvetica,30" left front
-  set label 4 "D   DS (OnC)" at screen 0.6, screen 0.633 font "Helvetica,30" left front
-  set label 5 "E   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
-  set label 6 "F   GLG     " at screen 0.6, screen 0.3 font "Helvetica,30" left front
-
-#  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
-#  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
-#  set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
-
-  #set cblabel "Rate" font "Helvetica,16"
-  do for [cell in "4 5 0 2 1 3"] {
-
-  if (cell=="1") {  
-   set cblabel "Firing Rate (sp/s)" font "Helvetica,16" 
-   set xlabel "CF (kHz)" font "Helvetica,24";  
-   set ylabel "Sound Level (dB SPL)" font "Helvetica,24" } else { unset xlabel;unset ylabel}
-  #if (cell=="3") {   set colorbox noborder } else {unset colorbox}
-  if (cell=="0") {FRATE=FRATE/4}
-  splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
-  }
-  unset multiplot
+    if (cell=="1") {  
+     set cblabel "Firing Rate (sp/s)" font "Helvetica,16" 
+     set xlabel "CF (kHz)" font "Helvetica,24";  
+     set ylabel "Sound Level (dB SPL)" font "Helvetica,24" 
+    } else { unset xlabel;unset ylabel}
+    #if (cell=="3") {   set colorbox noborder } else {unset colorbox}
+    if (cell=="0") {FRATE=FRATE/4}
+    splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
+    }
+    unset multiplot
 #+END_SRC
 
 
@@ -329,13 +360,20 @@ where the f_c is fixed at the \CF of the unit.
 ** F0 temporal
 
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+#+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+
+#+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
+[[file:./gfx/fresponse-vs.eps]]
 
 #+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
 [[file:./gfx/fresponse-vs.eps]]
 
 ** F0 rate
 
-#+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+#+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
+
+#+RESULTS: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
+[[file:./gfx/fresponse-rate.eps]]
 
 #+RESULTS: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none 
 [[file:./gfx/fresponse-rate.eps]]
