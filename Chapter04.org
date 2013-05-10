@@ -269,7 +269,7 @@ a fast Fourier transform of the period histogram to verify the procedure.
 # \citep{ChangEtAl:}
 
 
-* AM Coding in the Auditory Pathway
+* Amplitude Modulation Coding in the Auditory Pathway
 
 #   \citep{FrisinaWaltonEtAl:1994}
 #   \citep{Frisina:2001}
@@ -287,11 +287,12 @@ a fast Fourier transform of the period histogram to verify the procedure.
 Temporal information is critical for vocal communication in the mammalian auditory
 system.  In humans, \AM is essential for distinguishing vowels and for
 segregation of streams of sounds with different fundamental frequencies
-\citep{Bregman:1990}.  The coding of \AM in auditory neurons is measured using
+\citep{Bregman:1990}.  The temporal coding of \AM in auditory neurons is measured using
+the synchronisation coefficient or  
 an \MTF, which is calculated using its discharge firing rate (\rMTF) or temporal
 information (\tMTF). Firing rate is an efficient way of indicating a specific
 quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
-the individual \AN fibres and spectral coding across all ANFs give a poor
+the individual \AN fibres and spectral coding across all \ANFs give a poor
 representation of modulated signals
 \citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
 Individual \ANFs can
@@ -325,10 +326,9 @@ encoding of sound-envelope information in the \AN and \CN, see
   - poor in \AN (note measurements for \fm at \CF in most studies)
   - enhanced in T stellate cells at high \SPL
 
-#+LABEL: fig:AM:RG94_AN
-#+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal MTF response property of a single HSR~ANF to AM stimuli at 30, 50 and 70 dB SPL. The rMTF of the HSR unit is an all-pass filter and saturates at 230 spikes per second. The tMTF is a low pass filter at 30 dB SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
- [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
+
+
+
 
 ** Variation in Modulation Frequency
 
@@ -337,11 +337,13 @@ encoding of sound-envelope information in the \AN and \CN, see
 #+CAPTION: [Modulation transfer function]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
   [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
 
+#+LABEL: fig:AM:RG94_AN
+#+ATTR_LaTeX: width=0.8\textwidth
+#+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal MTF response property of a single HSR~ANF to AM stimuli at 30, 50 and 70 dB SPL. The rMTF of the HSR unit is an all-pass filter and saturates at 230 spikes per second. The tMTF is a low pass filter at 30 dB SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
+ [[file:../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 
-
-
-\yellownote{refer to Figure \ref{fig:AM:RG94MTF}}
+\yellownote{TODO refer to Figure \ref{fig:AM:RG94MTF}}
 
 Figure \ref{fig:AM:AMSummary}B shows the simplified temporal \MTF responses from
 multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
@@ -377,8 +379,8 @@ The stimulus generation followed Rhode and Greenberg's encoding of \AM in cats
 signal of specified frequency, amplitude, and phase by a sinusoidal modulator
 with amplitude and phase equal to that of the carrier (100\% modulation).
 Modulation frequency, \fm, ranged from 50 to 800 Hz and was stepped up by 50
-Hz. The carrier frequency, \fc, was selected from each of the characteristic frequencies
-of the exemplar \TS cell models (3.8, 8.91 or 12.3 kHz) in Chapter
+Hz. The carrier frequency, \fc, was selected from each of the characteristic
+frequencies of the exemplar \TS cell models (3.8, 8.91 or 12.3 kHz) in Chapter
 \ref{sec:ModelChapter}.
 
 ** Simulations
@@ -386,17 +388,17 @@ of the exemplar \TS cell models (3.8, 8.91 or 12.3 kHz) in Chapter
 The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
 \citep{CarnevaleHines:2006}, as described in Chapter
 \ref{sec:MethodsChapter}. [[latex:progname][NEURON]]'s Crank-Nicholson integration method was used
-in the simulations with time step 0.05 ms, stimulus duration 150 ms and
-total duration 170  ms. Stimuli were repeated 50 times and the spike times of all
-\ANF and \CN units recorded.
+in the simulations with time step 0.05 ms, stimulus duration 150 ms and total
+duration 170 ms. Stimuli were repeated 50 times and the spike times of all \ANF
+and \CN units recorded.
 
 ** CNSM model
 
 Table \ref{tab:AMModelSummary} shows the summary of the model used in this
 study.  The Nordlie approach to reproducible neural network simulations
 \citep{NordlieGewaltigEtAl:2009} is followed.  The parameters of the \CNSM model
-were optimised in Section \ref{sec:ModelChapter} to fit the experimentally observed
-behaviour of each of the cell types in the model.  
+were optimised in Section \ref{sec:ModelChapter} to fit the experimentally
+observed behaviour of each of the cell types in the model.
 
 #+LATEX: \input{../VowelProcessingChapter/NordlieTemplate.tex}
 
@@ -414,15 +416,15 @@ paradigm is similar to experimental methods; however, the \CNSM model allows the
 inspection of a whole network of units with different CFs.  The fixed modulation
 frequency in this study, 150 Hz, is within the range of human speech fundamental
 frequencies (women 150-300 Hz, men 75-150 Hz).  The carrier frequency is not in
-the human speech range (most speech is between 200 - 3400 Hz with other relevant information
- up to 8 kHz) but is in the human audibility range (64 Hz to
-23 kHz) \citep{Bregman:1990}.  This study uses the cat \AN model which has an
-audibility range up-to 64 kHz \citep{SimmonsPopperEtAl:2002,FayPopper:1994}. The
-carrier frequency of 8.9 kHz was chosen to avoid harmonics of \fm interfering
-with the lateral side-bands of the stimulus and the range of \DS cell inputs.
-The AM stimulus was presented to the AN and \CNSM model with duration of 150 ms
-and repeated 50 times.  Spiking outputs 20 ms after the stimulus onset were used
-to measure firing rate and \SI.
+the human speech range (most speech is between 200 - 3400 Hz with other relevant
+information up to 8 kHz) but is in the human audibility range (64 Hz to 23 kHz)
+\citep{Bregman:1990}.  This study uses the cat \AN model which has an audibility
+range up-to 64 kHz \citep{SimmonsPopperEtAl:2002,FayPopper:1994}. The carrier
+frequency of 8.9 kHz was chosen to avoid harmonics of \fm interfering with the
+lateral side-bands of the stimulus and the range of \DS cell inputs.  The AM
+stimulus was presented to the AN and \CNSM model with duration of 150 ms and
+repeated 50 times.  Spiking outputs 20 ms after the stimulus onset were used to
+measure firing rate and \SI.
 
 # See Figures.org  fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none 
 #+ATTR_LaTeX: width=\columnwidth 
@@ -469,29 +471,30 @@ information that is lacking in the \HSR units in this area.  The \fz response of
 cells in the \CN are dependant on and are limited by the ANF input responses.
 Dependencies on intra-nuclei synaptic interactions within isofrequency
 microcircuits and across frequency channels, and the intrinsic properties of
-each of the cell types are best understood across responses from the whole network.
+each of the cell types are best understood across responses from the whole
+network.
 
-\GLG cells receive a majority of their inputs from
-\LSR fibres that have high temporal information throughput across the response area
-(Figure \ref{fig:fzero}B). Figure \ref{fig:fzero}F shows the
-\GLG cells' \fz responses are moderate to weak over the extent of the response area.
-The diminished temporal information is a result of
-the smoothing kernel in the \GLG neural model.
+\GLG cells receive a majority of their inputs from \LSR fibres that have high
+temporal information throughput across the response area (Figure
+\ref{fig:fzero}B). Figure \ref{fig:fzero}F shows the \GLG cells' \fz responses
+are moderate to weak over the extent of the response area.  The diminished
+temporal information is a result of the smoothing kernel in the \GLG neural
+model.
 
 
-Figure \ref{fig:fzero}D shows that the \DS cell \fz response map had a higher rate
-threshold and enhanced the temporal information on-CF at high intensities
-relative to HSR and LSR units.  \Gls{OnC} units recorded from the dorsal acoustic
-stria in cats have shown high SI maintained above 0.8 up to 60 dB SPL then slopes
-down to 0.6 at 80 dB SPL \citep{JorisSmith:1998}.  Maximum phase response for
-the \DS cell model (results not shown) was linear over SPL (similar to
-experimental results).
+Figure \ref{fig:fzero}D shows that the \DS cell \fz response map had a higher
+rate threshold and enhanced the temporal information on-CF at high intensities
+relative to HSR and LSR units.  \Gls{OnC} units recorded from the dorsal
+acoustic stria in cats have shown high SI maintained above 0.8 up to 60 dB SPL
+then slopes down to 0.6 at 80 dB SPL \citep{JorisSmith:1998}.  Maximum phase
+response for the \DS cell model (results not shown) was linear over SPL (similar
+to experimental results).
 
 The \fz response of TV cells (Figure \ref{fig:fzero}E) shows an enhanced V-shape
 map similar to HSR units.  High SI values (close to 1) near the rate threshold
 boundary occur where HSR units are at their peak in Figure \ref{fig:fzero}A.  TV
-cells receive strong inhibition from DS cells, but DS cells were inactive in this
-area. This implicates intrinsic mechanisms in the \TV cell model and an
+cells receive strong inhibition from DS cells, but DS cells were inactive in
+this area. This implicates intrinsic mechanisms in the \TV cell model and an
 integration of ANF inputs within the dynamic range that contribute to this
 enhancement.
 # contribute to a high input resistance at \RMP.  The lower leak potential
@@ -506,13 +509,13 @@ cells to encode temporally relevant information to cells in the microcircuit.
 
 
 Figure \ref{fig:fzero}F shows the \fz response map of TS cell models. TS cells
-receive inputs from all the other cell types in the \CNSM model.
-The TS cell \fz response map  has the same V-shape as
-the HSR response map with elevated temporal responses over the whole map (mean
-0.70, min 0.366, max 0.973).  The \fz response of the unit with CF at \fc has a
-sharp rise in \SI at rate threshold then falls to a stable level above 0.5 \SI
-at 50 dB SPL, then to 0.4 \SI above 80 dB SPL.  This behaviour reproduces the
-characteristic \TS cell response summarised in Figure \ref{fig:AM:AMSummary}.
+receive inputs from all the other cell types in the \CNSM model.  The TS cell
+\fz response map has the same V-shape as the HSR response map with elevated
+temporal responses over the whole map (mean 0.70, min 0.366, max 0.973).  The
+\fz response of the unit with CF at \fc has a sharp rise in \SI at rate
+threshold then falls to a stable level above 0.5 \SI at 50 dB SPL, then to 0.4
+\SI above 80 dB SPL.  This behaviour reproduces the characteristic \TS cell
+response summarised in Figure \ref{fig:AM:AMSummary}.
 
  \yellownote{DG  Link f-nought responses to experimental data.  Not sure if sufficient comparison to experimental data has been made here. }
 
@@ -554,28 +557,28 @@ rate (\rMTF) on the left and the synchronisation index (\tMTF) on the right.
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:HSRMTF} shows the rate and temporal \MTF maps of \HSR\space \ANFs
-to \AM tones with $\fc=8.91$ kHz.  \HSR fibres saturate to pure \CF tones at 40
-dB SPL, whereas their response to AM tones are dependent on the carrier and
-modulating frequencies.  Figures \ref{fig:AM:HSRMTF}A, C and E show the average
-rate response to AM tones of varying \fm at stimulus intensities 80, 60 and 40 dB
-SPL, respectively. The spread of excitation is consistent across \fm at each
-intensity.  For HSR units with CF's above \fc, rate increases with \fm and peaks
-around 600 Hz.  The rate peak occurs in unit 75 (CF 14 kHz) with rate 30\%
-greater than the unit closest to \fc (unit 65, CF 8.9 kHz).
+Figure \ref{fig:AM:HSRMTF} shows the rate and temporal \MTF maps of \HSR\space
+\ANFs to \AM tones with $\fc=8.91$ kHz.  \HSR fibres saturate to pure \CF tones
+at 40 dB SPL, whereas their response to AM tones are dependent on the carrier
+and modulating frequencies.  Figures \ref{fig:AM:HSRMTF}A, C and E show the
+average rate response to AM tones of varying \fm at stimulus intensities 80, 60
+and 40 dB SPL, respectively. The spread of excitation is consistent across \fm
+at each intensity.  For HSR units with CF's above \fc, rate increases with \fm
+and peaks around 600 Hz.  The rate peak occurs in unit 75 (CF 14 kHz) with rate
+30\% greater than the unit closest to \fc (unit 65, CF 8.9 kHz).
 
 Temporal information in \HSR at each of the corresponding stimulus intensities
 (Figures \ref{fig:AM:HSRMTF}B, D and F) is strongest near the edges of
 excitation with a low-pass \tMTF extending beyond 1.2 kHz (the maximum range \fm
-is this study).  At 80 dB SPL (Figure \ref{fig:AM:HSRMTF}B), units with CFs 15.26
-kHz to 18.2 kHz had mean SI of 0.75 with a peak 0.814.  Moving toward \fc, the
-\HSR units lose low modulation frequency information to become band-pass \tMTF
-filters until 11.7 kHz where the salient temporal information ceases.  Units
-between 11.7 kHz and 8.18 kHz (two frequency channels below the centre unit)
-show a rapid deterioration of temporal information despite being at the centre
-of the stimulus' energy.  Below the centre channel, band-pass \tMTF responses
-increase in mean and peak values further away from the centre with the apex at
-unit 54 (CF 5.43 kHz, mean SI of 0.697, max SI 0.785).
+is this study).  At 80 dB SPL (Figure \ref{fig:AM:HSRMTF}B), units with CFs
+15.26 kHz to 18.2 kHz had mean SI of 0.75 with a peak 0.814.  Moving toward \fc,
+the \HSR units lose low modulation frequency information to become band-pass
+\tMTF filters until 11.7 kHz where the salient temporal information ceases.
+Units between 11.7 kHz and 8.18 kHz (two frequency channels below the centre
+unit) show a rapid deterioration of temporal information despite being at the
+centre of the stimulus' energy.  Below the centre channel, band-pass \tMTF
+responses increase in mean and peak values further away from the centre with the
+apex at unit 54 (CF 5.43 kHz, mean SI of 0.697, max SI 0.785).
 
 The \tMTF response observed at 60 dB SPL (Figure \ref{fig:AM:HSRMTF}D) looks
 similar to the 80 db SPL response with a reduced number of frequency channels
@@ -608,20 +611,20 @@ unit was typically low-pass but did fluctuate at modulation frequencies above
 400 Hz for each stimulus intensity.
 
 Figures \ref{fig:AM:LSRMTF}B, D and F show LSR fibres in the AN model were
-better at encoding temporal information than \HSR\space \ANFs. This has been observed
-in cat ANFs \citep{JorisYin:1992}.  The low-pass \tMTF is typical of \ANFs and
-can be seen at each stimulus intensity, particularly in units above the \fc. The
-\fm cut-off frequency for LSR units was beyond the 1.2 kHz range used in this
-study.  At 80 dB SPL (Figure \ref{fig:AM:LSRMTF}B), \LSR units had higher mean
-and peak SI values than HSR units (mean 0.74, max 0.937) above \fc and the
-low-pass \tMTF response was maintained.  For the on-CF unit (unit 65, CF 8.91
-kHz), its mean SI 0.415 with a peak of 0.673 was the lowest of all salient
+better at encoding temporal information than \HSR\space \ANFs. This has been
+observed in cat ANFs \citep{JorisYin:1992}.  The low-pass \tMTF is typical of
+\ANFs and can be seen at each stimulus intensity, particularly in units above
+the \fc. The \fm cut-off frequency for LSR units was beyond the 1.2 kHz range
+used in this study.  At 80 dB SPL (Figure \ref{fig:AM:LSRMTF}B), \LSR units had
+higher mean and peak SI values than HSR units (mean 0.74, max 0.937) above \fc
+and the low-pass \tMTF response was maintained.  For the on-CF unit (unit 65, CF
+8.91 kHz), its mean SI 0.415 with a peak of 0.673 was the lowest of all salient
 temporal response channels.  Below \fc, an unusual temporal response at high \fm
 may relate to the rate fluctuations in Figure \ref{fig:AM:LSRMTF}A or a
 reduction in the \fm cut-off frequency. The high gain, low-pass \tMTF responses
 is observed at 60 and 40 dB SPL stimulus intensities (Figures
-\ref{fig:AM:LSRMTF}D and F).
-\yellownote{DG  - should the above paragraph be in the discussion}
+\ref{fig:AM:LSRMTF}D and F).  \yellownote{DG - should the above paragraph be in
+the discussion}
 
 #+name: mean_vsSPIKES_onCF
 #+header: :exports none  :results silent 
