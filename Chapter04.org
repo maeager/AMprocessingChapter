@@ -287,16 +287,19 @@ a fast Fourier transform of the period histogram to verify the procedure.
 Temporal information is critical for vocal communication in the mammalian auditory
 system.  In humans, \AM is essential for distinguishing vowels and for
 segregation of streams of sounds with different fundamental frequencies
-\citep{Bregman:1990}.  The temporal coding of \AM in auditory neurons is measured using
-the synchronisation coefficient or  
-an \MTF, which is calculated using its discharge firing rate (\rMTF) or temporal
-information (\tMTF). Firing rate is an efficient way of indicating a specific
+\citep{Bregman:1990}.  
+Firing rate is an efficient way of indicating a specific
 quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
-the individual \AN fibres and spectral coding across all \ANFs give a poor
+the individual \ANFs and spectral coding across all \ANFs give a poor
 representation of modulated signals
-\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
-Individual \ANFs can
-encode temporal information of simple tones up to 5 kHz and \AM tones up to 2 kHz.
+\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}
+The temporal coding of \AM in auditory neurons is using fine timing of spikes locked to the stimulus envelope.
+Individual \ANFs can encode temporal information of simple tones up to 5 kHz and \AM tones up to 2 kHz.
+This temporal information is measured using the synchronisation coefficient or \SI. 
+
+
+When trying to understand the performance AM responses in auditory units, different properties of AM signals are varied.
+Variation in sound level and \fm are common properties of AM that are studied.
   
 \yellownote{FIXME}
 For reviews of neural
