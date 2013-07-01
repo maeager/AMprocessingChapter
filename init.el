@@ -24,14 +24,14 @@
 (setq vc-handled-backends nil)           ; reduce save time
 
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-(load "/usr/local/share/emacs/site-lisp/gnuplot.el" nil t t)
-(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot-mode" t)
-(add-to-list 'auto-mode-alist '("\\.gnu\\'" . gnuplot-mode))
-(add-to-list 'auto-mode-alist '("\\.gpi\\'" . gnuplot-mode))
-(add-to-list 'auto-mode-alist '("\\.gp\\'" . gnuplot-mode))
-(global-set-key [(f9)] 'gnuplot-make-buffer)
+;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+;;(load "/usr/local/share/emacs/site-lisp/gnuplot.el" nil t t)
+;;(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
+;;(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot-mode" t)
+;;(add-to-list 'auto-mode-alist '("\\.gnu\\'" . gnuplot-mode))
+;;(add-to-list 'auto-mode-alist '("\\.gpi\\'" . gnuplot-mode))
+;;(add-to-list 'auto-mode-alist '("\\.gp\\'" . gnuplot-mode))
+;;(global-set-key [(f9)] 'gnuplot-make-buffer)
 
 
 

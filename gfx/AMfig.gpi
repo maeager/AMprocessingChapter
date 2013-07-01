@@ -31,6 +31,7 @@ unset ytics
 set xrange [0:2.5]
 set label 1 "{/Helvetica-Bold=32 B}" at screen 0.5, screen 0.98
 
+## Must have gnuplot greater than version 4.7
 $spectrum << EOD
 1.9 0.5
 2.0 1.0
