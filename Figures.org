@@ -30,7 +30,7 @@
   if (THRESH) {print "THRESH ", THRESH} else {THRESH=40}
   unset xlabel
   set ylabel "CF (kHz)" font "Helvetica,16"
-  set pm3d map
+  set pm3d map # interpolate 0,0
   set logscale x 10
   set colorbox noborder
   set multiplot layout 3,2
@@ -144,6 +144,7 @@ splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4
 
 #+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/"):results none :export none
 [[file:./gfx/ratetemporal-0-ChT2.eps]]
+
 
 * MTF on CF
 
@@ -325,7 +326,7 @@ where the f_c is fixed at the \CF of the unit.
     # check input variables
     unset xlabel
     set ylabel "CF (kHz)" font "Helvetica,16"
-    set pm3d map
+    set pm3d map  # interpolate 0,0
     set logscale x 10
     set multiplot layout 3,2
     set xtics nomirror out ("2" 2, "" 3, "" 4, "5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20, "30" 30, "40" 40)
@@ -386,7 +387,7 @@ if (cell=="3"){
     # check input variables
     unset xlabel
     set ylabel "CF (kHz)" font "Helvetica,16"
-    set pm3d map
+    set pm3d map  # interpolate 0,0
     set logscale x 10
     set multiplot layout 3,2
     # set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
@@ -475,7 +476,7 @@ do for [level in "40 60"] {
   reset
   if (INDEX == "" || SPL == "") { unset output; quit}
   set xlabel "f_m (Hz)" font "Helvetica,16" set ylabel "Channel Position" font "Helvetica,16"
-  set pm3d map
+  set pm3d map  # interpolate 0,0
   #set logscale x 10
   set colorbox noborder set multiplot layout 1,2 set xtics out ( "100" 100, "" 200, "300" 300, "" 400, "500" 500, "" 600, "700" 700, "" 800) unset key
   #set logscale y 10
@@ -506,7 +507,7 @@ do for [level in "40 60"] {
         if (FRATE) {print "FRATE", FRATE; }else { FRATE=1 }
         set xlabel "f_m (kHz)" font "Helvetica,16"
         set ylabel "CF (kHz)" font "Helvetica,16"
-        set pm3d map
+        set pm3d map  # interpolate 0,0
         set logscale x 10
         set colorbox noborder
         set multiplot layout 1,2
