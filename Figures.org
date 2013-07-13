@@ -35,7 +35,7 @@
 #+name: ratetemporalC
 #+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
 #+BEGIN_SRC gnuplot :export none
-  
+
     reset
     # check input variables
     #if (INDEX == "" ) { print "Index ", INDEX} else{ quit }
@@ -53,7 +53,7 @@
     set zrange [0:*]
     set cbrange [0:*]
     set yrange [0.973:40] #2.805:27.017] #[40:90]
-  
+
     set label 1 "{/Helvetica-Bold=28 A}    80 dB SPL" at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
     set label 2 "{/Helvetica-Bold=28 B}" at screen 0.6, screen 0.975 font "Helvetica,30" center front
     set label 3 "{/Helvetica-Bold=28 C}    60 dB SPL" at screen 0.1, screen 0.633 font "Helvetica,30" left front
@@ -62,25 +62,25 @@
     set label 6 "{/Helvetica-Bold=28 F}" at screen 0.6, screen 0.3 font ",30" center front
     # set label 5 "E  40 dB SPL" at screen 0.1, screen 0.3 font ",30" center front
     # set label 6 "F" at screen 0.6, screen 0.3 font ",30" center front
-  
+
     # set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
     # set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
     # set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
     # set label 10 "20 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
-  
-  
+
+
     # with lines lc rgb "#007700"
-  
+
     #set contour;
     #set cntrparam levels discrete THRESH
     unset clabel #set clabel "1"
-  
+
     do for [spl in "80 60 40"] {
     print "SPL ", spl
     set colorbox noborder
     set ylabel "CF (kHz)" font "Helvetica,24"
     if (spl == "80"){ set cblabel "Firing Rate (sp/s)" font "Helvetica,16" } else {unset cblabel}
-  
+
    if (spl =="40") { set xlabel "f_m (kHz)" font "Helvetica,24" } else {unset xlabel}
     set zrange [0:*];set cbrange [0:*];set palette rgbformulae 22,13,-31
     splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
@@ -96,7 +96,7 @@
   } else{
   splot [50:1200] datapath.spl.'/vsSPIKES.'.INDEX.'.dat' u 1:($3/1000):($7<0.05?$4:NaN)
   }
-  
+
     }
     unset multiplot
 #+END_SRC
@@ -108,21 +108,27 @@
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
 
+
+
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
+
+
 
 
 #+name:  ratetemporal-4.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-4.gpi :export none
-  
+
   THRESH=60;
   FRATE=100;
-  INDEX=4;   
+  INDEX=4;
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-4.eps'
-  
+
   <<CSdatapath>>
   <<ratetemporalC>>
 #+END_SRC
+
+
 
 #+name:  ratetemporal-5.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-5.gpi :export none
@@ -136,9 +142,13 @@
 
 
 
+
+
 *** fig:AM:G
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
+
+
 
 
 
@@ -157,6 +167,8 @@
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-2.eps ](THRESH=5,FRATE=25,INDEX=2,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
+
+
 #+name:  ratetemporal-2.gpi
 #+BEGIN_SRC gnuplot :tangle ./gfx/ratetemporal-2.gpi :export none
  THRESH=5;FRATE=25;INDEX=2;
@@ -172,10 +184,12 @@
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-1.eps ](THRESH=10,FRATE=25,INDEX=1,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
+
+
 #+name:  ratetemporal-1.gpi
 #+BEGIN_SRC gnuplot :noweb yes  :tangle ./gfx/ratetemporal-1.gpi :export none
 
-  ## SIZE=7,7.86 
+  ## SIZE=7,7.86
   ## FONTSIZE=18
   THRESH=10;FRATE=25;INDEX=1;
   <<CSdatapath>>
@@ -195,11 +209,14 @@
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
 
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="/media/data/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
+
+
+
 
 #+name:  ratetemporal-0-ChS.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChS.gpi :export none
-  
+
   THRESH=3
   FRATE=10
   INDEX=0
@@ -255,9 +272,11 @@
 
 
 
+
+
 #+name: mtfoncf
 #+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
-#+BEGIN_SRC gnuplot :export none :tangle ./gfx/mtfonCF.gpi 
+#+BEGIN_SRC gnuplot :export none :tangle ./gfx/mtfonCF.gpi
 
     # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
     # + header: :term pngcairo size 700,1200 enhanced font 'Verdana,10'
@@ -302,6 +321,8 @@
 #+call: mtfoncf[:file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
 
+
+
 #+name: mtfonCF-0-ChS.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChS.gpi  :results none :export none
 
@@ -312,11 +333,13 @@
   set output './gfx/mtfonCF-0-ChS.eps'
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
   dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
-  <<mtfoncf>>  
+  <<mtfoncf>>
 #+end_src
 
 
 #+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
+
+
 
 #+name: mtfonCF-0-ChT1.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChT1.gpi  :results none :export none
@@ -328,14 +351,13 @@
  set output './gfx/mtfonCF-0-ChT1.eps'
  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
  dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- <<mtfoncf>>  
+ <<mtfoncf>>
 #+end_src
 
 
 #+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChT2.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: mtfoncf[ :file ./gfx/mtfonCF-0-ChT2.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/"):results none :export none
-[[file:./gfx/mtfonCF-0-ChT2.eps]]
+
 
 #+name: mtfonCF-0-ChT2.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChT2.gpi  :results none :export none
@@ -343,11 +365,10 @@
  FRATE=100;
  INDEX=0;
  <<datapath>>
- datapath="~/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
  set output './gfx/mtfonCF-0-ChT2.eps'
  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
  dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- <<mtfoncf>>  
+ <<mtfoncf>>
 #+end_src
 
 
@@ -400,23 +421,19 @@
 
 #+call: mtfonoffcf[ :file ./gfx/mtfonoffCFChT2-4.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: mtfonoffcf[ :file ./gfx/mtfonoffCFChT2-4.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/"):results none :export none
-[[file:./gfx/mtfonoffCFChT2-4.eps]]
 
 
-#+RESULTS: mtfonoffcf[ :file ./gfx/mtfonoffCF-4.eps ](THRESH=20,FRATE=100,INDEX=4,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./gfx/mtfonoffCF-4.eps]]
+
+
 
 
 #+call: mtfonoffcf[ :file ./gfx/mtfonoffCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: mtfonoffcf[ :file ./gfx/mtfonoffCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./gfx/mtfonoffCF-0-ChS.eps]]
+
 
 #+call: mtfonoffcf[ :file ./gfx/mtfonoffCF-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: mtfonoffcf[ :file ./gfx/mtfonoffCF-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none
-[[file:./gfx/mtfonoffCF-0-ChT1.eps]]
+
 
 
 ** F_0 Response: Variation in Level
@@ -486,7 +503,6 @@ if (cell=="3"){
     unset multiplot
 #+END_SRC
 
-#+RESULTS: fresponse
 
 #+name: fnoughtrate
 #+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
@@ -547,29 +563,30 @@ if (cell=="3"){
 #+begin_src gnuplot :noweb yes :tangle ./gfx/fresponse-vs.gpi  :results none :export none
  FRATE=100;
  <<datapath>>
- datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"
  set output './gfx/mtfonCF-0-ChS.eps'
  postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
  dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- <<fresponse>>  
+ <<fresponse>>
 #+end_src
 
 
 
-#+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none
-#+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none
+#+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/F0Response/") :results none :export none
 
-#+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none
-[[file:./gfx/fresponse-vs.eps]]
 
-#+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="/media/data/Work/cnstellate/TStellate2_CS/F0Response/"):results none :export none
-[[file:./gfx/fresponse-vs.eps]]
+
+#+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/F0Response/") :results none :export none
+
+
+
+
+
+
 
 
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/F0Response/") :results none :export none
 
-#+RESULTS: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/F0Response/"):results none :export none
-[[file:./gfx/fresponse-vs.eps]]
+
 
 
 ** F0 rate
@@ -578,8 +595,7 @@ if (cell=="3"){
 
 #+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/F0Response/") :results none :export none
 
-#+RESULTS: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/F0Response/"):results none :export none
-[[file:./gfx/fresponse-rate.eps]]
+
 
 
 
@@ -703,13 +719,11 @@ data from TStellate simulations
 from TStellate2_CS
 #+call: ratetemporalB[ :file ./20/ratetemporal-3.png ](spl="20/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./20/ratetemporal-3.png ](spl="20/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./20/ratetemporal-3.png]]
+
 
 #+call: ratetemporalB[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-3.png ](spl="40/",INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./40/ratetemporal-3.png]]
+
 
 #+call: ratetemporalB[ :file ./60/ratetemporal-3.png ](spl="60/",FRATE=100,INDEX=3,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
@@ -727,18 +741,15 @@ from TStellate2_CS
 
 #+call: ratetemporalB[ :file ./40/ratetemporal-2.png ](spl="40/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-2.png ](spl="40/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none
-[[file:./40/ratetemporal-2.png]]
+
 
 #+call: ratetemporalB[ :file ./60/ratetemporal-2.png ](spl="60/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./60/ratetemporal-2.png ](spl="60/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none
-[[file:./60/ratetemporal-2.png]]
+
 
 #+call: ratetemporalB[ :file ./80/ratetemporal-2.png ](spl="80/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./80/ratetemporal-2.png ](spl="80/",FRATE=100,INDEX=2,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none
-[[file:./80/ratetemporal-2.png]]
+
 
 
 
@@ -752,8 +763,7 @@ from TStellate2_CS
 
 #+call: ratetemporalB[ :file ./20/ratetemporal-2.png ](spl="20/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./20/ratetemporal-2.png ](spl="20/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./20/ratetemporal-2.png]]
+
 
 #+call: ratetemporalB[ :file ./40/ratetemporal-2.png ](spl="40/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 #+call: ratetemporalB[ :file ./60/ratetemporal-2.png ](spl="60/",FRATE=100,INDEX=1,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
@@ -772,24 +782,19 @@ from TStellate2_CS
 
 #+call: ratetemporalB[ :file ./20/ratetemporal-0.png ](spl="20/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./20/ratetemporal-0.png ](spl="20/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./20/ratetemporal-0.png]]
+
 
 #+call: ratetemporalB[ :file ./40/ratetemporal-0.png ](spl="40/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./40/ratetemporal-0.png ](spl="40/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./40/ratetemporal-0.png]]
+
 
 #+call: ratetemporalB[ :file ./60/ratetemporal-0.png ](spl="60/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./60/ratetemporal-0.png ](spl="60/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./60/ratetemporal-0.png]]
+
 
 
 #+call: ratetemporalB[ :file ./80/ratetemporal-0.png ](spl="80/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+RESULTS: ratetemporalB[ :file ./80/ratetemporal-0.png ](spl="80/",FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"):results none :export none
-[[file:./80/ratetemporal-0.png]]
 
 
 ** On CF f_0
@@ -1826,9 +1831,6 @@ set( get(gcf,'children')(6)),"xlabel"," Mod Freq ","ylabel"," Channel No. ", )
   #  !fixbb 'gfx/CT1_MTF.eps' && convert -density 300 './gfx/CT1_MTF.eps' './gfx/CT1_MTF.png'
 #+END_SRC
 
-#+RESULTS:
-[[file:./gfx/CT1_MTF.png]]
-
 
 #+name CT2_MTF
 #+begin_src gnuplot :exports none :file ./gfx/CT2_MTF.png  :term pngcairo size 700,524 enhanced font 'Verdana,10'
@@ -1887,9 +1889,6 @@ plot ''
       unset multiplot
   #  !fixbb 'gfx/CT2_MTF.eps' && convert -density 300 './gfx/CT2_MTF.eps' './gfx/CT2_MTF.png'
 #+END_SRC
-
-#+RESULTS:
-[[file:./gfx/CT2_MTF.png]]
 
 
 ** ISSNIP testing
@@ -1964,10 +1963,6 @@ if (INDEX == "4" || INDEX == "5"){
 #+call: ratetemporal2[ :file ./gfx/Dec/60/ratetemporal-4.png ](spl="60",INDEX=4) :results none :export none
 #+call: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-4.png ](spl="80",INDEX=4) :results file :export none
 
-#+RESULTS: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-4.png ](spl="80",INDEX=4):results file :export none
-[[file:./gfx/Dec/80/ratetemporal-4.png]]
-
-
 
 *** fig:AM:G
 
@@ -1981,11 +1976,9 @@ if (INDEX == "4" || INDEX == "5"){
 #+call: ratetemporal2[ :file ./gfx/Dec/60/ratetemporal-2.png ](spl="60/",INDEX=2) :results none :export none
 #+call: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-2.png ](spl="80/",INDEX=2) :results file :export none
 
-#+RESULTS: ratetemporal2[ :file ./gfx/Dec/80/ratetemporal-2.png ](spl="80/",INDEX=2):results file :export none
-[[file:./gfx/Dec/80/ratetemporal-2.png]]
 
-#+RESULTS: ratetemporal[ :file ./gfx/Dec/80/ratetemporal-2.png ](spl="80/",INDEX=2):results file :export none
-[[file:./gfx/Dec/80/ratetemporal-2.png]]
+
+
 
 *** fig:AM:TV
 
@@ -2087,8 +2080,7 @@ unset xtics
    #!fixbb 'gfx/ChComb_MTF.eps' && fixbb 'gfx/ChComb_MTF.eps' &&  epstopdf './gfx/ChComb_MTF.eps' && convert -density 300 './gfx/ChComb_MTF.eps' './gfx/ChComb_MTF.png'
 #+END_SRC
 
-#+RESULTS:
-[[file:./gfx/ChComb_MTF.eps]]
+
 
 
 
@@ -2218,17 +2210,6 @@ done
 
 #+call: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.eps ](subtype="TStellate_CT2") :results none :exports none
 
-#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.pdf ](subtype="TStellate_CT2"):results none :exports none
-file:./gfx/Oct6-12/CT2_MTF.pdf
-
-#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.png ](subtype="TStellate_CT2"):results none :exports none
-: ./gfx/Oct6-12/CT2_MTF.png
-
-#+RESULTS: TStellate_MTF[ :file ./gfx/Oct6-12/CT2_MTF.eps ](subtype="TStellate_CT2"):results none :exports none
-: ./gfx/Oct6-12/CT2_MTF.eps
-
-
-
 
 *** Gnuplot Rate-area version
 
@@ -2317,20 +2298,8 @@ file:./gfx/Oct6-12/CT2_MTF.pdf
   #  !epstopdf 'gfx/Oct-16-12/CS_MTF.eps'
 #+END_SRC
 
-#+RESULTS: TStellate_rMTF
-
-
-
 #+call: TStellate_rMTF[ :file ./gfx/Dec/CS_rMTF.eps ](subtype="TStellate2_CS") :results file :exports none
 
-#+RESULTS: TStellate_rMTF[ :file ./gfx/Dec/CS_rMTF.eps ](subtype="TStellate2_CS"):results file :exports none
-[[file:./gfx/Dec/CS_rMTF.eps]]
-
-
-
 #+call: TStellate_rMTF[ :file ./gfx/Dec/CT1_rMTF.png ](subtype="TStellate2_CT1") :results file :exports none
-
-#+RESULTS: TStellate_rMTF[ :file ./gfx/Dec/CT1_rMTF.png ](subtype="TStellate2_CT1"):results file :exports none
-[[file:./gfx/Dec/CT1_rMTF.png]]
 
 #+call: TStellate_rMTF[ :file ./gfx/Dec/CT2_rMTF.png ](subtype="TStellate2_CT2") :results file :exports none
