@@ -26,7 +26,6 @@
   %\ifthenelse{\isundefined{\manuscript}}{\small{\textbf{Draft Version}: \input{../VowelResponsesChapter/.hg/cache/tags}}}{}
 #+END_LaTeX
 
-
 # # set global variables for in-code blocks
 
 * Prelude                                                          :noexport:
@@ -197,13 +196,27 @@ The analysis measures of \AM encoding are introduced in the next section.
 
 * Rate and Temporal Analysis in Amplitude \protect{Modulation}
 
-The \MTF is used in auditory neuroscience to measure the output of neurons in
+ The auditory pathway transforms a high-fidelity,
+metabolically intensive, temporal-place encoding of \AM signals in the \AN into
+a more efficient rate-place encoding in the \IC, the thalamus and the cortex \cite{JorisSchreinerEtAl:2004}.
+Temporal coding of \AM relies on the precise timing of spikes relative to the waveform of the stimulus, otherwise called phase locking.
+Rate coding of \AM signals 
+
+\Gls{MTF} is used in auditory neuroscience to measure the output of neurons in
 response to modulated inputs.  The \rMTF measures the output in terms of firing
-rate.  Caution is required to avoid onset adaptation effects in auditory neurons.
-Recordings were performed using long stimuli so that the units were in a
+rate. Temporal  
+#+LABEL: fig:AM:RG94MTF
+#+ATTR_LaTeX: width=0.5\textwidth
+#+CAPTION: [Temporal modulation transfer function]{Temporal modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
+  [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
+
+
+ To avoid onset adaptation effects in auditory neurons, 
+simulations or recordings prefer long stimuli so that the units were in a
 steady-state.  The \rMTF in each neuron was calculated from the average firing
 rate from 20 ms after onset to the end of the stimulus.
 # between 20 ms and the end of the stimulus.
+
 
 Temporal information in neural outputs is measured using the
 \SI (also known as the vector strength)
@@ -266,7 +279,6 @@ a fast Fourier transform of the period histogram to verify the procedure.
 #  published (need to look into this).
 # \citep{ChangEtAl:}
 
-
 * Amplitude Modulation Coding in the Auditory Pathway
 
 #   \citep{FrisinaWaltonEtAl:1994}
@@ -290,16 +302,17 @@ segregation of streams of sounds with different fundamental frequencies
 quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
 the individual \ANFs and spectral coding across all \ANFs give a poor
 representation of modulated signals
-\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004} The temporal coding
+\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}. The temporal coding
 of \AM in auditory neurons is using fine timing of spikes locked to the stimulus
 envelope.  Individual \ANFs can encode temporal information of simple tones up
 to 5 kHz and \AM tones up to 2 kHz.  This temporal information is measured using
 the synchronisation coefficient or \SI.
 
 
+
 When trying to understand the performance \AM responses in auditory units,
-different properties of \AM signals are varied.  Variation in sound level and \fm
-are common properties of \AM that are studied.
+different properties of \AM signals are varied.  Variation in sound level and
+\fm are common properties of \AM that are studied.
 
 \yellownote{FIXME}
 For reviews of neural encoding of sound-envelope information
@@ -336,10 +349,6 @@ At low to moderate
 
 ** Variation in Modulation Frequency
 
-#+LABEL: fig:AM:RG94MTF
-#+ATTR_LaTeX: width=0.5\textwidth
-#+CAPTION: [Modulation transfer function]{Modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
-  [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
 
 #+LABEL: fig:AM:RG94_AN
 #+ATTR_LaTeX: width=0.8\textwidth
@@ -370,7 +379,6 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
     \citet{JorisSchreinerEtAl:2004}.}  \label{fig:AM:AMSummary}
   \end{figure}
 #+END_LaTeX
-
 
 
 
@@ -1054,7 +1062,6 @@ section
 \clearpage
 
 
-
 * Discussion
 
 The results in this chapter demonstrate the capacity to simulate \AM coding over
@@ -1198,7 +1205,6 @@ have been investigated but not fully understood
  \yellownote{TODO -- the results are from optimised parameters that do not
  explicitly fit in our idea of a chopper neuron.  More work needs to be done on
  the TS cell model in Ch3 before this goes ahead.}
-
 
 * Conclusion
 

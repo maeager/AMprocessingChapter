@@ -10,11 +10,11 @@
 #+END_SRC
 #+name: CTonedatapath
 #+BEGIN_SRC gnuplot :exports none
-  datapath="~/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
+  datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
 #+END_SRC
 #+name: CTtwodatapath
 #+BEGIN_SRC gnuplot :exports none
-  datapath="~/Work/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
+  datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
 #+END_SRC
 
 
@@ -107,13 +107,7 @@
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-4.eps ](THRESH=60,FRATE=100,INDEX=4,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
-
-
-
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-5.eps ](THRESH=1,FRATE=100,INDEX=5,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
-
-
-
 
 #+name:  ratetemporal-4.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-4.gpi :export none
@@ -123,7 +117,6 @@
   INDEX=4;
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-4.eps'
-
   <<CSdatapath>>
   <<ratetemporalC>>
 #+END_SRC
@@ -132,11 +125,13 @@
 
 #+name:  ratetemporal-5.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-5.gpi :export none
-  THRESH=60;FRATE=100;INDEX=4;
-  <<CSdatapath>>
+  THRESH=60;
+  FRATE=100;
+  INDEX=4;
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
   dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-4.eps'
+  <<CSdatapath>>
   <<ratetemporalC>>
 #+END_SRC
 
@@ -149,16 +144,15 @@
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-3.eps ](THRESH=10,FRATE=25,INDEX=3,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
 
-
-
-
 #+name:  ratetemporal-3.gpi
 #+BEGIN_SRC gnuplot :noweb yes  :tangle ./gfx/ratetemporal-3.gpi :export none
-  THRESH=10;FRATE=25;INDEX=3;
-  <<CSdatapath>>
+  THRESH=10
+  FRATE=25
+  INDEX=3
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
   dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-3.eps'
+  <<CSdatapath>>
   <<ratetemporalC>>
 #+END_SRC
 
@@ -171,12 +165,15 @@
 
 #+name:  ratetemporal-2.gpi
 #+BEGIN_SRC gnuplot :tangle ./gfx/ratetemporal-2.gpi :export none
- THRESH=5;FRATE=25;INDEX=2;
- <<CSdatapath>>
- set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
- dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- set output './gfx/ratetemporal-2.eps'
- <<ratetemporalC>>
+
+  THRESH=5
+  FRATE=25
+  INDEX=2
+  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  set output './gfx/ratetemporal-2.eps'
+
+  <<CTtwodatapath>>
+  <<ratetemporalC>>
 #+END_SRC
 
 
@@ -191,11 +188,12 @@
 
   ## SIZE=7,7.86
   ## FONTSIZE=18
-  THRESH=10;FRATE=25;INDEX=1;
-  <<CSdatapath>>
-  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
-  dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  THRESH=10
+  FRATE=25
+  INDEX=1
+  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-1.eps'
+  <<CSdatapath>>
   <<ratetemporalC>>
 #+END_SRC
 
@@ -206,7 +204,10 @@
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
-#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="/media/data/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
+#+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
+
+#+RESULTS: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/"):results none :export none
+[[file:./gfx/ratetemporal-0-ChT1.eps]]
 
 
 #+call: ratetemporalC[ :file ./gfx/ratetemporal-0-ChT2.eps ](THRESH=4,FRATE=10,INDEX=0,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
@@ -218,13 +219,39 @@
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChS.gpi :export none
 
   THRESH=3
-  FRATE=10
+  FRATE=25
   INDEX=0
   set output './gfx/ratetemporal-0-ChS.eps'
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CSdatapath>>
   <<ratetemporalC>>
 #+END_SRC
+
+#+name:  ratetemporal-0-ChS.gpi
+#+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChT1.gpi :export none
+
+  THRESH=3
+  FRATE=25
+  INDEX=0
+  set output './gfx/ratetemporal-0-ChT1.eps'
+  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CTonedatapath>>
+  <<ratetemporalC>>
+#+END_SRC
+
+#+name:  ratetemporal-0-ChT1.gpi
+#+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChT1.gpi :export none
+
+  THRESH=3
+  FRATE=25
+  INDEX=0
+  set output './gfx/ratetemporal-0-ChT1.eps'
+  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CTtwodatapath>>
+  <<ratetemporalC>>
+#+END_SRC
+
+#+RESULTS: ratetemporal-0-ChS.gpi
 
 
 * MTF on CF
@@ -278,45 +305,47 @@
 #+header: :term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
 #+BEGIN_SRC gnuplot :export none :tangle ./gfx/mtfonCF.gpi
 
-    # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
-    # + header: :term pngcairo size 700,1200 enhanced font 'Verdana,10'
-    reset
-    # check input variables
-   if (INDEX == "") { print "Index ", INDEX} else{ quit }
-   if (FRATE) {print "FRATE ", FRATE; } else { FRATE=1 }
+  # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
+  # + header: :term pngcairo size 700,1200 enhanced font 'Verdana,10'
+  reset
+  # check input variables
+  # if (INDEX == "") { print "Index ", INDEX} else{ quit }
+  # if (FRATE) {print "FRATE ", FRATE; } else { FRATE=1 }
 
-    set logscale x 10
-    set multiplot layout 1,2
-    set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
+  set logscale x 10
+  set multiplot layout 1,2
+  set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
 
-    set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
-    set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
-    set xlabel "f_m (kHz)" font "Helvetica,24"
-    set xrange [40:1300]
-    set yrange [*:*]
-    set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
+  set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
+  set xlabel "f_m (kHz)" font "Helvetica,24"
+  set xrange [40:1300]
+  set yrange [*:*]
+  set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
 
-   plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "80" w lp, \
-         '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "60" w lp, \
-         '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "40" w lp, \
-         '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "20" w lp
+  plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "80" w lp, \
+        '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "60" w lp, \
+        '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "40" w lp, \
+        '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "20" w lp
 
-   set yrange [0:1]
-   set ylabel "SI " font "Helvetica,24"
+  set yrange [0:1]
+  set ylabel "SI " font "Helvetica,24"
 
-   plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "80" w lp, \
-         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "60" w lp, \
-         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "40" w lp, \
-         '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "20" w lp
-   # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+  plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "80" w lp, \
+        '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "60" w lp, \
+        '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "40" w lp, \
+        '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "20" w lp
+  # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
 
-    unset multiplot
+  unset multiplot
 #+END_SRC
 
 #+name: datapath
 #+BEGIN_SRC gnuplot :export none
-  datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/"
+  datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/"
 #+END_SRC
+
+#+RESULTS: datapath
 
 #+call: mtfoncf[:file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
@@ -329,12 +358,15 @@
   THRESH=20
   FRATE=100
   INDEX=0
-  <<datapath>>
   set output './gfx/mtfonCF-0-ChS.eps'
-  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
-  dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CSdatapath>>
   <<mtfoncf>>
 #+end_src
+
+#+RESULTS: mtfonCF-0-ChS.gpi
+
+
 
 
 #+call: mtfoncf[ :file ./gfx/mtfonCF-0-ChT1.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/") :results none :export none
@@ -343,15 +375,14 @@
 
 #+name: mtfonCF-0-ChT1.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChT1.gpi  :results none :export none
- THRESH=20;
- FRATE=100;
- INDEX=0;
- <<datapath>>
- datapath="~/Work/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
- set output './gfx/mtfonCF-0-ChT1.eps'
- set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
- dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- <<mtfoncf>>
+  THRESH=20;
+  FRATE=100;
+  INDEX=0;
+  set output './gfx/mtfonCF-0-ChT1.eps'
+  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
+  dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CTonedatapath>>
+  <<mtfoncf>>
 #+end_src
 
 
@@ -361,14 +392,13 @@
 
 #+name: mtfonCF-0-ChT2.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChT2.gpi  :results none :export none
- THRESH=20;
- FRATE=100;
- INDEX=0;
- <<datapath>>
- set output './gfx/mtfonCF-0-ChT2.eps'
- set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
- dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- <<mtfoncf>>
+  THRESH=20;
+  FRATE=100;
+  INDEX=0;
+  set output './gfx/mtfonCF-0-ChT2.eps'
+  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CTtwodatapath>>
+  <<mtfoncf>>
 #+end_src
 
 
