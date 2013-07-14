@@ -186,20 +186,23 @@ specifically in lateral sidebands around the edges of the response area.
 
 # The analysis study does not include AM parameters modulation
 # depth, and variationin \fc are not included in this study.
-The analysis in this chapter
-investigates the responses of the \CNSM model to variation in sound pressure
-level (SPL) and \fm using measures of envelope synchronisation and average rate.
-The analysis measures of \AM encoding are introduced in the next section.
+The analysis in this chapter investigates the responses of the \CNSM model to
+variation in sound level and modulation frequency, \fm, using measures of
+envelope synchronisation and average rate.  The analysis measures of \AM
+encoding are introduced in the next section.
 # Measures used to assess the neural output
 # to AM stimuli and the current knowledge of responses in the \AN and neurons of
 # the \CNSM model to AM.
 
 * Rate and Temporal Analysis in Amplitude \protect{Modulation}
 
- The auditory pathway transforms a high-fidelity,
-metabolically intensive, temporal-place encoding of \AM signals in the \AN into
-a more efficient rate-place encoding in the \IC, the thalamus and the cortex \cite{JorisSchreinerEtAl:2004}.
-Temporal coding of \AM relies on the precise timing of spikes relative to the waveform of the stimulus, otherwise called phase locking.
+The auditory pathway transforms a high-fidelity, metabolically intensive,
+temporal-place encoding of \AM signals in the \AN into a more efficient
+rate-place encoding in the \IC, the thalamus and the cortex
+\citep{JorisSchreinerEtAl:2004}.  Temporal coding of \AM relies on the precise
+timing of spikes relative to the envelope of the stimulus, otherwise called
+phase locking.
+
 Rate coding of \AM signals 
 
 \Gls{MTF} is used in auditory neuroscience to measure the output of neurons in
@@ -209,8 +212,6 @@ rate. Temporal
 #+ATTR_LaTeX: width=0.5\textwidth
 #+CAPTION: [Temporal modulation transfer function]{Temporal modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
   [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
-
-
 
 
 Temporal information in neural outputs is measured using the
@@ -696,12 +697,73 @@ investigated further.
 **** Source block                                                  :noexport:
 
 #+name: mean_vsSPIKES_onCF
-#+header: :exports none  :results silent
-#+BEGIN_SRC awk :in-file ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat  
   BEGIN{count=0;total=0;max=0; min=""}
-  {if ($2 == 50){if ($4>max){max=$4};total+=$4; count+=1}}
+  {if ($2 == 65){if ($4>max){max=$4};total+=$4; count+=1}}
   END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
 #+END_SRC
+
+# + BEGIN_SRC sh :noweb yes
+#  awk '<<mean_vsSPIKES_onCF>>' ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
+# + END_SRC
+
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+| 0.008 | 0.0276 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0297 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0297 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0308 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0308 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+| 0.00794 | 0.0242 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+| 0.156 | 0.343 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+| 0.208 | 0.553 | 24 |
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+| 0.208 | 0.553 | 24 |
+
+
+#+RESULTS: mean_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat 
+| 0.252 | 0.539 | 24 |
+
+
+
+
+call_mean_vsSPIKES_onCF()[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat ]
+
+#+RESULTS: mean_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat 
+| 0.252 | 0.539 | 24 |
+
+
+#+name: mean_ANFvs
+#+BEGIN_SRC sh :exports none :results raw replace  :var datapath=~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2 :var SPL=60 :var CELL=4
+  vsfile=${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.${CELL}.dat
+ echo $vsfile 
+  grep -e '\s65\s' $vsfile | awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
+#+END_SRC
+
+
+call_mean_ANFvs()
+
+#+RESULTS: mean_ANFvs()
+: nil
+
 
 
 *** Golgi cell model
@@ -744,10 +806,28 @@ model are predominantly rate-based.
 \clearpage
 
 **** Source block :noexport:
-#+name: mean_Gvs_eightydB
-#+BEGIN_SRC sh :exports none :results raw replace
-   grep -e '^[[:digit:]]* 65' ~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
+#+name: mean_Gvs
+#+BEGIN_SRC sh :exports none :results raw replace :var datapath=~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2 :var SPL=60 :var CELL=4
+  grep -e '\s65\s' ${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
 #+END_SRC
+
+#+RESULTS: mean_ANFvs
+
+call_mean_ANFvs()
+
+#+RESULTS: mean_ANFvs(datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2",SPL=60,CELL=4)
+: nil
+
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
+| 0.312 | 0.615 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.3.dat ]()[ :results raw replace ]
+| 0.138 | 0.333 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]()[ :results raw replace ]
+| 0.224 | 0.511 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.3.dat ]()[ :results raw replace ]
+| 0.173 | 0.492 | 24 |
+
 
 
 
@@ -802,6 +882,19 @@ cut-off frequencies around 400 Hz, similar to \TS and \TV units.
 # type IV).  Median max \SI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs
 # ~1000Hz.
 
+**** Source blocks  :noexport:
+
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.2.dat ]()[ :results raw replace ]
+| 0.723 | 1 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.2.dat ]()[ :results raw replace ]
+| 0.439 | 0.814 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.2.dat ]()[ :results raw replace ]
+| 0.396 | 0.682 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.2.dat ]()[ :results raw replace ]
+| 0.432 | 0.656 | 24 |
+
+
 
 \clearpage
 *** TV cell model
@@ -834,10 +927,23 @@ response with little to no temporal information at the carrier frequency units.
 #     - \DS inhibition phasic
 #  - Level dependent
 
-
 \clearpage
-*** TS cell model
-# : Sustained Chopper
+
+**** Source blocks :noexport:
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.1.dat ]()[ :results raw replace ]
+| 0.466 | 0.878 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.1.dat ]()[ :results raw replace ]
+| 0.144 | 0.374 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.1.dat ]()[ :results raw replace ]
+| 0.0876 | 0.228 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.1.dat ]()[ :results raw replace ]
+| 0.145 | 0.309 | 24 |
+
+
+
+
+*** TS cell model: Sustained Chopper
 
 
 #+BEGIN_LaTeX
@@ -911,7 +1017,20 @@ on and off \CF.
 
 
 \clearpage
-# *** TS cell model: Transient Chopper 1
+
+**** Source blocks :noexport:
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.498 | 0.911 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.19 | 0.606 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.207 | 0.602 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.451 | 0.8 | 24 |
+
+
+*** TS cell model: Transient Chopper 1
 
 #+BEGIN_LaTeX
   \begin{figure}[tb]
@@ -928,7 +1047,20 @@ Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \
 # The rate response of the \ChTone model is non-saturating
 \yellownote{More text describing CT 1 AM responses.}
 
-# *** TS cell model: Transient Chopper 2
+**** Source blocks :noexport:
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.569 | 0.936 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.171 | 0.608 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/60/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.127 | 0.49 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/80/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.118 | 0.256 | 24 |
+
+
+
+*** TS cell model: Transient Chopper 2
 
 #+BEGIN_LaTeX
   \begin{figure}[tb]
@@ -946,6 +1078,17 @@ Figure \ref{fig:AM:CTtwo} shows the final \MTF response of the \ChTtwo \TS cell.
 \yellownote{More text describing CT 2 AM responses.}
 
 \clearpage
+
+**** Source blocks :noexport:
+
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.466 | 0.878 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.144 | 0.374 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.0876 | 0.228 | 24 |
+call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.0.dat ]()[ :results raw replace ]
+| 0.145 | 0.309 | 24 |
 
 
 ** New Data                                                        :noexport:
@@ -1145,7 +1288,6 @@ of synaptic input is drowned out by the synaptic-dendritic smoothing function of
 the model.  The low-pass filter limits the post-synaptic neuron's ability to
 phase-lock to the modulating frequency, especially at high \fm.
 
-
 ** D stellate cells
 
 \DS cells are critical to the \CNSM model's ability to encode temporal
@@ -1219,7 +1361,6 @@ of the role of \TV cells in temporal processing is incomplete.  \TV cells are
 thought to be responsible for delayed inhibition or echo-suppression
 \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in tuning
 the temporal behaviour in \TS cells at low sound levels.
-
 
 ** T stellate cells
 
