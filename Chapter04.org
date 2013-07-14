@@ -211,11 +211,6 @@ rate. Temporal
   [[file:../VowelProcessingChapter/gfx/RG94-MTF.png]]
 
 
- To avoid onset adaptation effects in auditory neurons, 
-simulations or recordings prefer long stimuli so that the units were in a
-steady-state.  The \rMTF in each neuron was calculated from the average firing
-rate from 20 ms after onset to the end of the stimulus.
-# between 20 ms and the end of the stimulus.
 
 
 Temporal information in neural outputs is measured using the
@@ -333,7 +328,17 @@ in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
 
 ** Variation in Sound Level
 
-#  - eg. Spectral/Rate Coding poor representation of modulated signals
+#  - eg. Spectral/
+Rate coding in \HSR and\LSR \ANFs gives a poor representation of modulated signals 
+
+
+\cite{KhannaTeich:1989,Moller:1972,Frisina:1983,Frisina:1984,FrisinaSmithEtAl:1990,
+
+JorisYin:1992,FrisinaKarcichEtAl:1996,
+
+CasparyPalombiEtAl:2002,BackoffShadduckEtAl:1999,
+
+MillmanGreenEtAl:2003,CarlyonShamma:2003}
 #     - mean rate of spikes
 #     - saturation at high sound level
 #     - poor \SNR in auditory nerve
@@ -347,7 +352,8 @@ At low to moderate
 
 
 
-** Variation in Modulation Frequency
+Variation in modulation frequency of \AM signals is characterised by the \MTF.
+
 
 
 #+LABEL: fig:AM:RG94_AN
@@ -395,7 +401,9 @@ Hz. The carrier frequency, \fc, was selected from each of the characteristic
 frequencies of the exemplar \TS cell models (3.8, 8.91 or 12.3 kHz) in Chapter
 \ref{sec:ModelChapter}.
 
-** Simulations
+
+
+** Simulations and Analysis
 
 The simulations were performed using the neural simulation package [[latex:progname][NEURON]]
 \citep{CarnevaleHines:2006}, as described in Chapter
@@ -403,6 +411,14 @@ The simulations were performed using the neural simulation package [[latex:progn
 in the simulations with time step 0.05 ms, stimulus duration 150 ms and total
 duration 170 ms. Stimuli were repeated 50 times and the spike times of all \ANF
 and \CN units recorded.
+
+To avoid onset adaptation effects in auditory neurons, simulations or recordings
+prefer long stimuli so that the units' responses were in a steady-state.  Rate
+analysis in each neuron was calculated from the average firing rate from 20 ms
+after onset to the end of the stimulus. Temporal analysis used the same post
+stimulus spikes in the calculation of \SI and the Rayleigh statistics.
+# between 20 ms and the end of the stimulus.
+
 
 ** CNSM model
 
@@ -638,19 +654,40 @@ reduction in the \fm cut-off frequency. The high gain, low-pass \tMTF responses
 is observed at 60 and 40 dB \SPL stimulus intensities (Figures
 \ref{fig:AM:LSRMTF}D and F).
 
-\yellownote{DG - should the above paragraph be in the discussion}
+# \yellownote{DG - should the above paragraph be in the discussion}
 
-\yellownote{On CF data compared to Rhode and Greenberg - expand paragraph}
-Figure \ref{fig:AM:RG94ANF} shows the \MTF response of the \HSR unit on-\CF
-compared with similar experimental data from \citet{RhodeGreenberg:1994}.
-
+# \yellownote{On CF data compared to Rhode and Greenberg - expand paragraph}
+Figures \ref{fig:AM:RG94ANF}A and B shows the on-\CF rate and temporal \MTF
+responses of a \HSR \ANF experimental data \citep{RhodeGreenberg:1994}.  All
+stimulus levels but the lowest (20 dB SPL) showed saturated rate responses in
+the on-CF rMTF response of the \HSR \ANF (Figure \ref{fig:AM:RG94ANF}C).  The
+sensitivity to \fm at 20 dB SPL shows the typical rate-following characteristic
+by phase-locking to each cycle and following the increase in the number of
+cycles.  Temporal information was also more substantial at 20 dB for the \HSR
+on-CF tMTF response (Figure \ref{fig:AM:RG94ANF}D).  As shown in Figure
+\ref{fig:AM:HSRMTF}, the on-CF tMTF response becomes insignificant with
+increasing sound level.  \LSR \ANF model's rate responses increased with sound
+level but were insensitive to changes in \fm with flat rMTF responses (Figure
+\ref{fig:AM:RG94ANF}E).  The on-CF tMTF responses of simulated \LSR \ANFs were
+low-pass and linearly decreased with increasing sound levels but still
+maintained moderate temporal information (Figure \ref{fig:AM:RG94ANF}F).  The
+irregular errors in HSR and LSR responses at high SPL and high \fm need to be
+investigated further.
 #+BEGIN_LaTeX
   \begin{figure}[t!]
     \centering
+    {\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}}\\
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\
-    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-ANF.pdf}}
-    \caption[Temporal response in ANFs on CF]{Rate and temporal response property of HSR units with the carrier frequency on or nearest to its CF. Figure reproduced from \citet{RhodeGreenberg:1994}.}
-  \label{fig:AM:RG94ANF}
+    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/rtmtfonCF-ANF.pdf}}
+    \caption[Temporal response in ANFs on CF]{Rate and temporal response property
+      of HSR units with the carrier frequency on or nearest to its CF. A and B
+      (reproduced from \citet{RhodeGreenberg:1994}) show the experimental rMTF and
+      tMTF responses of a \HSR \ANF at 30, 50 and 70 dB SPL. C. Simulated on-CF
+      rMTF response of \HSR unit 65 (CF 8.95 kHz) in the \CNSM model at 20, 40, 60
+      and 80 dB SPL.  C. Simulated on-CF tMTF response of \HSR unit
+      65. C. Simulated on-CF rMTF response of \LSR unit 65 (CF 8.95
+      kHz). C. Simulated on-CF tMTF response of \LSR unit 65. }
+    \label{fig:AM:RG94ANF}
   \end{figure}
 #+END_LaTeX
 
