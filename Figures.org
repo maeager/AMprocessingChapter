@@ -128,13 +128,12 @@
 
 #+name:  ratetemporal-5.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-5.gpi :export none
-  THRESH=60;
+  THRESH=2;
   FRATE=100;
-  INDEX=4;
-  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
-  dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
-  set output './gfx/ratetemporal-4.eps'
-  <<CSdatapath>>
+  INDEX=5;
+  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  set output './gfx/ratetemporal-5.eps'
+  <<CTtwodatapath>>
   <<ratetemporalC>>
 #+END_SRC
 
