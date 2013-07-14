@@ -194,20 +194,27 @@ encoding are introduced in the next section.
 # to AM stimuli and the current knowledge of responses in the \AN and neurons of
 # the \CNSM model to AM.
 
-* Rate and Temporal Analysis in Amplitude \protect{Modulation}
+
+** Rate and Temporal Measures of Amplitude \protect{Modulation}
 
 The auditory pathway transforms a high-fidelity, metabolically intensive,
 temporal-place encoding of \AM signals in the \AN into a more efficient
-rate-place encoding in the \IC, the thalamus and the cortex
+rate-place encoding in the \IC and higher centres
 \citep{JorisSchreinerEtAl:2004}.  Temporal coding of \AM relies on the precise
 timing of spikes relative to the envelope of the stimulus, otherwise called
 phase locking.
 
-Rate coding of \AM signals 
+Rate coding of \AM signals can take the form of 
+ pure rate-place (where neurons encode the stimulus spectrum in their receptive field)
+ rate-responder (also called  where neurons fire in each cycle and as the cycle gets shorter the rate increases up to a certain limit - this is common in low CF units in the AN and CN, and onset units in the PVCN. 
+ feature-based rate coding, especially \BMF
 
 \Gls{MTF} is used in auditory neuroscience to measure the output of neurons in
 response to modulated inputs.  The \rMTF measures the output in terms of firing
-rate. Temporal  
+rate. 
+
+Temporal  
+
 #+LABEL: fig:AM:RG94MTF
 #+ATTR_LaTeX: width=0.5\textwidth
 #+CAPTION: [Temporal modulation transfer function]{Temporal modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. }
@@ -275,7 +282,7 @@ a fast Fourier transform of the period histogram to verify the procedure.
 #  published (need to look into this).
 # \citep{ChangEtAl:}
 
-* Amplitude Modulation Coding in the Auditory Pathway
+** Amplitude Modulation Coding in the Auditory Pathway
 
 #   \citep{FrisinaWaltonEtAl:1994}
 #   \citep{Frisina:2001}
@@ -305,10 +312,10 @@ to 5 kHz and \AM tones up to 2 kHz.  This temporal information is measured using
 the synchronisation coefficient or \SI.
 
 
-
 When trying to understand the performance \AM responses in auditory units,
 different properties of \AM signals are varied.  Variation in sound level and
 \fm are common properties of \AM that are studied.
+
 
 \yellownote{FIXME}
 For reviews of neural encoding of sound-envelope information
@@ -327,19 +334,21 @@ in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
 
 
 
-** Variation in Sound Level
+[Variation \AM coding to sound level important for loud conversational speech and speech in noise environments]
 
 #  - eg. Spectral/
-Rate coding in \HSR and\LSR \ANFs gives a poor representation of modulated signals 
+Rate coding in \HSR \ANFs give poor representation 
+ a poor representation of modulated signals 
 
+AM coding in CN - enhanced relative to ANF
+\citep{KhannaTeich:1989,Moller:1972,Frisina:1983,Frisina:1984,FrisinaSmithEtAl:1990}
 
-\cite{KhannaTeich:1989,Moller:1972,Frisina:1983,Frisina:1984,FrisinaSmithEtAl:1990,
+\citep{JorisYin:1992,FrisinaKarcichEtAl:1996}
 
-JorisYin:1992,FrisinaKarcichEtAl:1996,
+Effects of GABA and Gly on AM in CN units 
+\citep{CasparyPalombiEtAl:2002,BackoffShadduckEtAl:1999}
 
-CasparyPalombiEtAl:2002,BackoffShadduckEtAl:1999,
-
-MillmanGreenEtAl:2003,CarlyonShamma:2003}
+\citep{MillmanGreenEtAl:2003,CarlyonShamma:2003}
 #     - mean rate of spikes
 #     - saturation at high sound level
 #     - poor \SNR in auditory nerve
@@ -367,8 +376,8 @@ Variation in modulation frequency of \AM signals is characterised by the \MTF.
 
 Figure \ref{fig:AM:AMSummary}B shows the simplified temporal \MTF responses from
 multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
+\ANFs typically have a 
 
-  - definition of \MTF or \tMTF
   - Low-pass to band-pass with high peak in vector strength.
   - Reduced cut-off due to membrane characteristics rather than network effects.
   - (Figure \ref{fig:AM:AMSummary}).
@@ -382,10 +391,11 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
   \caption[Schematic temporal responses of ANFs and T stellate cells]{Schematic temporal responses of ANFs and T stellate cells with respect
     to variations in intensity and modulation frequency. TS cells have
     enhanced synchronisation at high SPL (A) and a band-pass tMTF with peaks
-    greater than ANFs (B). Figure reproduced from
+    greater than ANFs (B). Figures reproduced from
     \citet{JorisSchreinerEtAl:2004}.}  \label{fig:AM:AMSummary}
   \end{figure}
 #+END_LaTeX
+
 
 
 
@@ -555,8 +565,8 @@ response summarised in Figure \ref{fig:AM:AMSummary}.
 
 ** Responses to Changes in Modulation Frequency
 
-The figures below show the rate and temporal responses, across the entire
-network, to an \AM tone with carrier frequency 8.91 kHz.  Modulation frequency
+The figures in this section show the rate and temporal response maps, across the entire
+network, of \CNSM to an \AM tone with carrier frequency 8.91 kHz.  Modulation frequency
 ranged from 50 to 1200 Hz in 50 Hz steps.  Each figure shows the mean firing
 rate (\rMTF) on the left and the synchronisation index (\tMTF) on the right.
  The \SI values were masked in white if the Rayleigh coefficient was not statistically significant (p $< 0.05$).
@@ -600,7 +610,7 @@ and peaks around 600 Hz.  The rate peak occurs in unit 75 (CF 14 kHz) with rate
 Temporal information in \HSR at each of the corresponding stimulus intensities
 (Figures \ref{fig:AM:HSRMTF}B, D and F) is strongest near the edges of
 excitation with a low-pass \tMTF extending beyond 1.2 kHz (the maximum range \fm
-is this study).  At 80 dB \SPL (Figure \ref{fig:AM:HSRMTF}B), units with CFs
+is this study).  At 80 dB \SPL (Figure \ref{fig:AM:HSRMTF}B), units with \CFs
 15.26 kHz to 18.2 kHz had mean \SI of 0.75 with a peak 0.814.  Moving toward \fc,
 the \HSR units lose low modulation frequency information to become band-pass
 \tMTF filters until 11.7 kHz where the salient temporal information ceases.
@@ -616,9 +626,9 @@ reflecting the reduced rate excitation range in Figure \ref{fig:AM:HSRMTF}C. The
 dominant frequency channels below (unit 59, CF 6.27 kHz, mean \SI 0.666 , max \SI
 0.805) and above (unit 75, CF 13.97 kHz, mean \SI 0.741, max \SI 0.787 ) are at
 the border of rate threshold; showing a gradual increase of temporal information
-in units further from the centre CF unit. At 40 dB SPL, the two salient
+in units further from the centre \CF unit. At 40 dB SPL, the two salient
 information bands begin to merge as the range of excited frequency channels get
-closer to the centre CF.
+closer to the centre \CF.
 
 
 
@@ -642,12 +652,12 @@ unit was typically low-pass but did fluctuate at modulation frequencies above
 
 Figures \ref{fig:AM:LSRMTF}B, D and F show \LSR fibres in the AN model were
 better at encoding temporal information than \HSR\space \ANFs. This has been
-observed in cat ANFs \citep{JorisYin:1992}.  The low-pass \tMTF is typical of
+observed in cat \ANFs \citep{JorisYin:1992}.  The low-pass \tMTF is typical of
 \ANFs and can be seen at each stimulus intensity, particularly in units above
 the \fc. The \fm cut-off frequency for \LSR units was beyond the 1.2 kHz range
 used in this study.  At 80 dB \SPL (Figure \ref{fig:AM:LSRMTF}B), \LSR units had
 higher mean and peak \SI values than \HSR units (mean 0.74, max 0.937) above \fc
-and the low-pass \tMTF response was maintained.  For the on-CF unit (unit 65, \CF
+and the low-pass \tMTF response was maintained.  For the on-\CF unit (unit 65, \CF
 8.91 kHz), its mean \SI 0.415 with a peak of 0.673 was the lowest of all salient
 temporal response channels.  Below \fc, an unusual temporal response at high \fm
 may relate to the rate fluctuations in Figure \ref{fig:AM:LSRMTF}A or a
@@ -659,26 +669,27 @@ is observed at 60 and 40 dB \SPL stimulus intensities (Figures
 
 # \yellownote{On CF data compared to Rhode and Greenberg - expand paragraph}
 Figures \ref{fig:AM:RG94ANF}A and B shows the on-\CF rate and temporal \MTF
-responses of a \HSR \ANF experimental data \citep{RhodeGreenberg:1994}.  All
+responses of a \HSR\space \ANF experimental data \citep{RhodeGreenberg:1994}.  All
 stimulus levels but the lowest (20 dB SPL) showed saturated rate responses in
-the on-CF rMTF response of the \HSR \ANF (Figure \ref{fig:AM:RG94ANF}C).  The
+the on-CF rMTF response of the \HSR\space \ANF (Figure \ref{fig:AM:RG94ANF}C).  The
 sensitivity to \fm at 20 dB SPL shows the typical rate-following characteristic
 by phase-locking to each cycle and following the increase in the number of
 cycles.  Temporal information was also more substantial at 20 dB for the \HSR
 on-CF tMTF response (Figure \ref{fig:AM:RG94ANF}D).  As shown in Figure
 \ref{fig:AM:HSRMTF}, the on-CF tMTF response becomes insignificant with
-increasing sound level.  \LSR \ANF model's rate responses increased with sound
+increasing sound level.  \LSR\space \ANF model's rate responses increased with sound
 level but were insensitive to changes in \fm with flat rMTF responses (Figure
 \ref{fig:AM:RG94ANF}E).  The on-CF tMTF responses of simulated \LSR \ANFs were
 low-pass and linearly decreased with increasing sound levels but still
 maintained moderate temporal information (Figure \ref{fig:AM:RG94ANF}F).  The
-irregular errors in HSR and LSR responses at high SPL and high \fm need to be
+irregular errors in \HSR and \LSR\space \ANF responses at high \SPL and high \fm need to be
 investigated further.
+
 #+BEGIN_LaTeX
   \begin{figure}[t!]
     \centering
-    {\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}}\\
-    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\
+    {\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\ 
+    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\ \vspace{0.4ex}
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/rtmtfonCF-ANF.pdf}}
     \caption[Temporal response in ANFs on CF]{Rate and temporal response property
       of HSR units with the carrier frequency on or nearest to its CF. A and B
@@ -694,60 +705,75 @@ investigated further.
 
 \clearpage
 
-**** Source block                                                  :noexport:
+**** Source blocks 						   :noexport:
 
-#+name: mean_vsSPIKES_onCF
+#+name: mean_ANF_vsSPIKES_onCF
 #+header: :exports none  :results raw replace
 #+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat  
   BEGIN{count=0;total=0;max=0; min=""}
-  {if ($2 == 65){if ($4>max){max=$4};total+=$4; count+=1}}
+  {if ($2 == 65){if ($5>5.99){if ($4>max){max=$4};total+=$4; count+=1}}}
   END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
 #+END_SRC
+
+#+name: mean_Gvs
+#+BEGIN_SRC sh :exports none :results raw replace :var datapath=~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2 :var SPL=60 :var CELL=4
+  grep -e '\s65\s' ${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
+#+END_SRC
+
+#+name: mean_vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat  
+  BEGIN{count=0;total=0;max=0; min=""}
+  {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4};total+=$4; count+=1}}}
+  END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
+#+END_SRC
+
+
 
 # + BEGIN_SRC sh :noweb yes
 #  awk '<<mean_vsSPIKES_onCF>>' ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
 # + END_SRC
 
 
-call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+call_mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
 | 0.008 | 0.0276 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
 | 0.00822 | 0.0297 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
 | 0.00822 | 0.0297 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
 | 0.00822 | 0.0308 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
 | 0.00822 | 0.0308 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
 | 0.00794 | 0.0242 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
 | 0.156 | 0.343 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
 | 0.208 | 0.553 | 24 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
 | 0.208 | 0.553 | 24 |
 
 
-#+RESULTS: mean_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat 
+#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat 
 | 0.252 | 0.539 | 24 |
 
 
 
 
-call_mean_vsSPIKES_onCF()[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat ]
+call_mean_ANF_vsSPIKES_onCF()[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat ]
 
-#+RESULTS: mean_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat 
+#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat 
 | 0.252 | 0.539 | 24 |
 
 
@@ -805,18 +831,7 @@ model are predominantly rate-based.
 
 \clearpage
 
-**** Source block :noexport:
-#+name: mean_Gvs
-#+BEGIN_SRC sh :exports none :results raw replace :var datapath=~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2 :var SPL=60 :var CELL=4
-  grep -e '\s65\s' ${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
-#+END_SRC
-
-#+RESULTS: mean_ANFvs
-
-call_mean_ANFvs()
-
-#+RESULTS: mean_ANFvs(datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2",SPL=60,CELL=4)
-: nil
+**** Source block calls :noexport:
 
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
@@ -853,7 +868,7 @@ The rate responses of \DS units (Figure \ref{fig:AM:DS}) were wider for 40 and
 most \DS units had a band-pass \rMTF.  For higher \SPL, a greater number of
 spikes occured between 100 and 500 Hz for units above \CF (band-pass \rMTF), but
 the rest of the active units remained stable (low-pass \rMTF). This behaviour is
-called ``rate-responder'' due to the firing-rate being dictated to by shortening
+called "rate-responder" due to the linear increase in firing-rate being dictated to by shortening
 of the \fm envelope period.  This is similar to ideal onset units in the \VCN
 (octopus cells) but the cut-off of the \rMTF is much lower.
 \yellownote{Need reference to rate-responder quote}
@@ -882,7 +897,7 @@ cut-off frequencies around 400 Hz, similar to \TS and \TV units.
 # type IV).  Median max \SI = 0.93 (n=12), 3dB cutoff CFs>10kHz comparable to ANFs
 # ~1000Hz.
 
-**** Source blocks  :noexport:
+**** Source block calls 					   :noexport:
 
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.2.dat ]()[ :results raw replace ]
@@ -929,7 +944,7 @@ response with little to no temporal information at the carrier frequency units.
 
 \clearpage
 
-**** Source blocks :noexport:
+**** Source block calls 					   :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.1.dat ]()[ :results raw replace ]
 | 0.466 | 0.878 | 24 |
@@ -1018,7 +1033,7 @@ on and off \CF.
 
 \clearpage
 
-**** Source blocks :noexport:
+**** Source block calls 					   :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.498 | 0.911 | 24 |
@@ -1047,7 +1062,7 @@ Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \
 # The rate response of the \ChTone model is non-saturating
 \yellownote{More text describing CT 1 AM responses.}
 
-**** Source blocks :noexport:
+**** Source block calls 					   :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.569 | 0.936 | 24 |
@@ -1066,7 +1081,7 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
   \begin{figure}[tb]
   \centering %\caption{TS Rate (spks/s) and SI 60 dB}
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChT2.pdf}}
-  \caption[Rate and temporal MTF responses for the ChT$_2$ TS cell model]{Rate and temporal MTF responses for the ChT$_2$ TS cell model. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
+  \caption[Rate and temporal MTF responses for the ChT$_2$ TS cell model]{Rate and temporal MTF responses for the \ChTtwo TS cell model. A. rMTF map at 80 dB SPL. B. tMTF map at 80 dB SPL.
       C. rMTF map at 60 dB SPL. D. tMTF map at 60 dB SPL. E. rMTF map at 40 dB
       SPL. F. tMTF map at 40 dB SPL.}
   \label{fig:AM:CTtwo}
@@ -1079,7 +1094,7 @@ Figure \ref{fig:AM:CTtwo} shows the final \MTF response of the \ChTtwo \TS cell.
 
 \clearpage
 
-**** Source blocks :noexport:
+**** Source block calls 					   :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.466 | 0.878 | 24 |
