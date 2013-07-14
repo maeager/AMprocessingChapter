@@ -122,6 +122,7 @@
   set output './gfx/ratetemporal-4.eps'
   <<CSdatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-4.eps'
 #+END_SRC
 
 
@@ -135,6 +136,7 @@
   set output './gfx/ratetemporal-5.eps'
   <<CTtwodatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-5.eps'
 #+END_SRC
 
 
@@ -156,6 +158,8 @@
   set output './gfx/ratetemporal-3.eps'
   <<CTtwodatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-3.eps'
+
 #+END_SRC
 
 
@@ -175,6 +179,8 @@
   set output './gfx/ratetemporal-2.eps'
   <<CTtwodatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-2.eps'
+
 #+END_SRC
 
 #+RESULTS: ratetemporal-2.gpi
@@ -196,6 +202,8 @@
   set output './gfx/ratetemporal-1.eps'
   <<CTtwodatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-1.eps'
+
 #+END_SRC
 
 #+RESULTS: ratetemporal-1.gpi
@@ -228,6 +236,8 @@
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CSdatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-0-ChS.eps'
+
 #+END_SRC
 
 #+name:  ratetemporal-0-ChS.gpi
@@ -240,6 +250,7 @@
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTonedatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-0-ChT1.eps'
 #+END_SRC
 
 #+name:  ratetemporal-0-ChT1.gpi
@@ -252,6 +263,8 @@
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
   <<ratetemporalC>>
+  !fixbb './gfx/ratetemporal-0-ChT2.eps'
+
 #+END_SRC
 
 #+RESULTS: ratetemporal-0-ChS.gpi
@@ -300,6 +313,18 @@
 
 #+call: anfmtfoncf[ :file ./gfx/mtfonCF-ANF.eps ](THRESH=20,FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/") :results none :export none
 
+#+name: mtfonCF-ANF.gpi
+#+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-ANF.gpi  :results none :export none
+  
+  THRESH=20
+  FRATE=130  # 150 ms minus 20 ms onset
+  set output './gfx/mtfonCF-ANF.eps'
+  set term postscript eps size 7,6.5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CTtwodatapath>>
+  <<rtmtfoncf>>
+  !fixbb './gfx/mtfonCF-ANF.eps'
+  
+#+end_src
 
 
 #+name: rtmtfoncf
@@ -438,6 +463,8 @@
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CSdatapath>>
   <<mtfoncf>>
+  !fixbb './gfx/mtfonCF-0-ChS.eps'
+
 #+end_src
 
 #+RESULTS: mtfonCF-0-ChS.gpi
@@ -459,6 +486,8 @@
   dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTonedatapath>>
   <<mtfoncf>>
+  !fixbb './gfx/mtfonCF-0-ChT1.eps'
+
 #+end_src
 
 
@@ -475,6 +504,8 @@
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
   <<mtfoncf>>
+  !fixbb './gfx/mtfonCF-0-ChT2.eps'
+
 #+end_src
 
 
@@ -667,12 +698,13 @@ if (cell=="3"){
 
 #+name: fresponse-vs.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/fresponse-vs.gpi  :results none :export none
- FRATE=100;
- <<datapath>>
- set output './gfx/mtfonCF-0-ChS.eps'
- postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
- dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
- <<fresponse>>
+  FRATE=100;
+  set output './gfx/fresponse-vs.eps'
+  set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CTtwodatapath>>
+  <<fresponse>>
+  !fixbb  './gfx/fresponse-vs.eps'
+  
 #+end_src
 
 
@@ -680,14 +712,7 @@ if (cell=="3"){
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/F0Response/") :results none :export none
 
 
-
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/F0Response/") :results none :export none
-
-
-
-
-
-
 
 
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/F0Response/") :results none :export none
