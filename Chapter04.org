@@ -65,7 +65,6 @@
 
 
 
-
 * Layout                                                           :noexport:
 
  | Section                  |          | Pages | Actual | \%TODO/DONE |
@@ -86,7 +85,6 @@
 
 
 #  \newpage
-
 
 * Introduction
 
@@ -115,6 +113,37 @@ how temporal information is processed and encoded in the auditory
 system. The \CN is a major processing stage between the \AN and higher auditory
 centres, so modelling and numerical analysis of its processes are important for
 developing the necessary insight.
+
+
+
+This chapter presents the \AM coding behaviour of the \CNSM model. It focuses
+specifically on the temporal behaviour in response to sinusoidal \AM stimuli.
+The outputs of the \CNSM model are the \TS cells, which provide a robust
+spectral representation of auditory information and enhanced coding of temporal
+information, especially the pitch in complex environments
+\citep{KeilsonRichardsEtAl:1997}.
+# The \CNSM model contains three inhibitory interneurons, each controlling the
+# rate and temporal response of \TS cells.
+Despite rate saturation of \ANFs\space -- the input to the \CNSM model cells --
+their ability to code temporal information is not disabled.
+# The effects of intrinsic cell properties in the cells of the \CNSM model
+The optimal coding of \AM is still provided across the network, more
+specifically in lateral sidebands around the edges of the response area.
+
+
+
+
+# The analysis study does not include AM parameters modulation
+# depth, and variationin \fc are not included in this study.
+The analysis in this chapter investigates the responses of the \CNSM model to
+variation in sound level and modulation frequency, \fm, using measures of
+envelope synchronisation and average rate.  The analysis measures of \AM
+encoding are introduced in the next section.
+# Measures used to assess the neural output
+# to AM stimuli and the current knowledge of responses in the \AN and neurons of
+# the \CNSM model to AM.
+
+** Definition of Amplitude Modulation
 
 \glsunset{fc}\glsunset{fm}
 Figure \ref{fig:AM:def} shows the general properties of an \AM tone and the
@@ -151,50 +180,6 @@ of low \CF \ANFs.
   [[file:../VowelProcessingChapter/gfx/AMfig.pdf]]
 
 
-
-This chapter presents the \AM coding behaviour of the \CNSM model. It focuses
-specifically on the temporal behaviour in response to sinusoidal \AM stimuli.
-The outputs of the \CNSM model are the \TS cells, which provide a robust
-spectral representation of auditory information and enhanced coding of temporal
-information, especially the pitch in complex environments
-\citep{KeilsonRichardsEtAl:1997}.
-# The \CNSM model contains three inhibitory interneurons, each controlling the
-# rate and temporal response of \TS cells.
-Despite rate saturation of \ANFs\space -- the input to the \CNSM model cells --
-their ability to code temporal information is not disabled.
-# The effects of intrinsic cell properties in the cells of the \CNSM model
-The optimal coding of \AM is still provided across the network, more
-specifically in lateral sidebands around the edges of the response area.
-
-
-
-# Existing \CN neural or netwok models response to \AM
-
-# \note{TODO paragraph on existing AM models }
-
-#   - Inadequate existing \CN models
-#   - Existing models not realistic
-#     - Wiegrebe \& Meddis: Point neurons, strong recurrent connections, operate
-# outside physiological range
-#     - Bahmer \& Lagner: Point neurons, hypothetical network
-#     - New \AN model synchronisation behaviour more accurate
-#   - Zilany \AN model
-#     - accurate synchronisation behaviour
-
-# Modelling work in \CN on AM tones: Manuel C. Eguia Guadalupe C. Garcia a,
-# Sebastian A. Romano b J Neurophys Paris 2009
-
-# The analysis study does not include AM parameters modulation
-# depth, and variationin \fc are not included in this study.
-The analysis in this chapter investigates the responses of the \CNSM model to
-variation in sound level and modulation frequency, \fm, using measures of
-envelope synchronisation and average rate.  The analysis measures of \AM
-encoding are introduced in the next section.
-# Measures used to assess the neural output
-# to AM stimuli and the current knowledge of responses in the \AN and neurons of
-# the \CNSM model to AM.
-
-
 ** Rate and Temporal Measures of Amplitude \protect{Modulation}
 
 The auditory pathway transforms a high-fidelity, metabolically intensive,
@@ -204,10 +189,13 @@ rate-place encoding in the \IC and higher centres
 timing of spikes relative to the envelope of the stimulus, otherwise called
 phase locking.
 
-Rate coding of \AM signals can take the form of 
+Rate coding of \AM signals can take the form of: 
+
  pure rate-place (where neurons encode the stimulus spectrum in their receptive field)
- rate-responder (also called  where neurons fire in each cycle and as the cycle gets shorter the rate increases up to a certain limit - this is common in low CF units in the AN and CN, and onset units in the PVCN. 
- feature-based rate coding, especially \BMF
+
+ rate-responder (where neurons fire in each cycle and as the cycle gets shorter the rate increases up to a certain limit - this is common in low CF units in the AN and CN, and onset units in the PVCN.) 
+
+ specialised feature-based rate coding, especially used to encode \BMF preference in \IC neurons.
 
 \Gls{MTF} is used in auditory neuroscience to measure the output of neurons in
 response to modulated inputs.  The \rMTF measures the output in terms of firing
@@ -225,7 +213,8 @@ Temporal information in neural outputs is measured using the
 \SI (also known as the vector strength)
 \citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
 \SI measures phase-locking relative to the \fm or envelope of the
-stimuli. In this analysis, the \SI values were combined for each modulation
+stimuli. 
+In this analysis, the \SI values were combined for each modulation
 frequency to create the \tMTF.  The \SI measure was calculated 20 ms after the
 onset of the stimulus:
 #+BEGIN_LaTeX
@@ -242,8 +231,8 @@ will give \SI equal to 1 and occurs when all spikes lock to the same phase. An
 Bi-phasic or multi-phasic responses (i.e.\space phase-locking to harmonics of
 the fundamental) degrade the \SI value but the temporal information pertaining to
 \fm is still retained for higher auditory centres.
-# Further measures of temporal information, i.e.\space phase-locking to any
-# frequency, is performed using a fast Fourier transform.
+Further measures of temporal information, i.e.\space phase-locking to any
+frequency, is performed using a fast Fourier transform as in Figure \ref{fig:AMdef}.
 
 # *** The Rayleigh Test
 
@@ -263,15 +252,15 @@ statistically significant result.
 # test were 5.991 for \alpha = 0.05 and 13.816 for \alpha = 0.001
 # \citep{ShannonZengEtAl:1995,MardiaJupp:1999}.
 The method for computing the p-value for the Rayleigh test is using the
-approximation by \citet[p. 617]{Zar:1999}:
+approximation by \citet[p. 617]{Zar:1999}[fn::The code
+was converted to use in NEURON from the CircStat Matlab
+Toolbox \citep{Berens:2009}.]:
 #+BEGIN_LaTeX
 \begin{equation}\label{eq:SIp}
 p = \exp\left(\sqrt{1+4N+4(N^2-R^2)-(1+2N)}\right)
 \end{equation}
 #+END_LaTeX
-\noindent where $R=N\times\mathrm{S}$  [fn::The code
-was converted to use in NEURON from the CircStat Matlab
-Toolbox \citep{Berens:2009}.]  \SI and Rayleigh tests were also calculated using
+\noindent where $R=N\times\mathrm{S}$.    \SI and Rayleigh tests were also calculated using
 a fast Fourier transform of the period histogram to verify the procedure.
 
 # (Further analysis of
@@ -360,8 +349,6 @@ At low to moderate
 
 
 
-
-
 Variation in modulation frequency of \AM signals is characterised by the \MTF.
 
 
@@ -396,6 +383,21 @@ multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
   \end{figure}
 #+END_LaTeX
 
+# Existing \CN neural or netwok models response to \AM
+
+# \note{TODO paragraph on existing AM models }
+
+#   - Inadequate existing \CN models
+#   - Existing models not realistic
+#     - Wiegrebe \& Meddis: Point neurons, strong recurrent connections, operate
+# outside physiological range
+#     - Bahmer \& Lagner: Point neurons, hypothetical network
+#     - New \AN model synchronisation behaviour more accurate
+#   - Zilany \AN model
+#     - accurate synchronisation behaviour
+
+# Modelling work in \CN on AM tones: Manuel C. Eguia Guadalupe C. Garcia a,
+# Sebastian A. Romano b J Neurophys Paris 2009
 
 
 
@@ -441,8 +443,7 @@ observed behaviour of each of the cell types in the model.
 
 #+LATEX: \input{../VowelProcessingChapter/NordlieTemplate.tex}
 
-* Results of Amplitude Modulation
-
+* Results
 
 ** Responses to Changes in Stimulus Intensity
 
@@ -1111,8 +1112,8 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 # - The following results were simulated with the newest Zilany \AN model with a
 # Cat compression audiogram
 
-#- The \fc was simulated at three values corresponding to the \CF of the chopper
-#optimisation models
+# - The \fc was simulated at three values corresponding to the \CF of the chopper
+# optimisation models
 
 *** \fz Response: Variation in Level   :noexport:
 
@@ -1256,7 +1257,6 @@ section
 
 \clearpage
 
-
 * Discussion
 
 The results in this chapter demonstrate the capacity to simulate \AM coding over
@@ -1349,7 +1349,7 @@ synapses for the site of activation at the axon hillock.
 # \cite{RhodeGreenberg:1994,Rhode:1998}
 # \citep{Frisina:2001,FrisinaWaltonEtAl:1993,FrisinaSmithEtAl:1990a}.
 
-** Tuberculoventral cells!
+** Tuberculoventral cells
 
 The results of the \TV cell model show a general enhancement of temporal
 information to \AM tones relative to \ANF inputs.  The strong enhancement may be
