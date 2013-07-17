@@ -6,14 +6,14 @@
 %\noindent%
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{i}{Model Summary}\\\hline
-         \textbf{Populations}          & HSR and LSR ANFs, Golgi, DS, TV and three TS cells \\\hline
+         \textbf{Populations}          & HSR and LSR ANFs, GLG, DS, TV and three TS cells \\\hline
           \textbf{Topology}            & Tono-topicity of the cat AN and CN \\\hline
-        \textbf{Connectivity}          & ANF$\to${Golgi,DS,TV,TS}, Golgi$\to$DS,TS, DS$\to$TV,TS, and TV$\to$TS  \\\hline
+        \textbf{Connectivity}          & ANF$\to${Golgi,DS,TV,TS}, Golgi$\to$DS,TS, DS$\to${TV,TS}, and TV$\to$TS  \\\hline
          \textbf{Input model}          & ANF~model: instantaneous-rate Poisson model \citep{ZilanyBruce:2007} \\\hline
-\multirow{4}{*}{\textbf{Neuron model}} & Golgi: instantaneous-rate Poisson model\\
-                                       & D~stellate cell: HH-like single-compartment type I-II RM model \citep{RothmanManis:2003b}\\ 
-                                       & Tuberculoventral cell:  HH-like single-compartment type I-c RM model \citep{RothmanManis:2003b}\\
-                                       & T~stellate cell: HH-like single-compartment type I-t RM model \citep{RothmanManis:2003b}\\ \hline
+\multirow{4}{*}{\textbf{Neuron model}} & GLG cell: instantaneous-rate Poisson model\\
+                                       & DS cell: HH-like single-compartment Type I-II RM model \citep{RothmanManis:2003b}\\ 
+                                       & TV cell:  HH-like single-compartment Type I-c RM model \citep{RothmanManis:2003b}\\
+                                       & TS cell: HH-like single-compartment Type I-t RM model \citep{RothmanManis:2003b}\\ \hline
        \textbf{Channel models}         & $I_{\textrm{Na}}$, $I_{\textrm{KHT}}$, $I_{\textrm{KLT}}$, $I_{\textrm{KA}}$ and $I_{\textrm{h}}$ \citep{RothmanManis:2003b}\\\hline
         \textbf{Synapse model}         & AMPA (\textit{ExpSyn}), GABA$_{\rm A}$ (\textit{Exp2Syn}), Glycine (\textit{Exp2Syn}) \\\hline
             \textbf{Input}             & Amplitude modulated tones, $f_c=8.91$ Hz ($f_m$ and SPL varied according to stimulus paradigm)\\\hline
@@ -30,9 +30,9 @@
      GLG      &  GLG neural model   & $N_{\text{GLG}}= 1$  per freq.\ channel  \\\hline
      DS       &    Type I-II RM model     & $N_{\text{DS}}= 1$ per freq.\ channel \\\hline
      TV       &  Type I-classic RM model  & $N_{\text{TV}}= 1$ per freq.\ channel\\\hline
-     TS^{\ast} & Type I-transient RM model & $N_{\text{TS}}= 1$ per freq.\ channel\\\hline
+     TS$^{\ast}$ & Type I-transient RM model & $N_{\text{TS}}= 1$ per freq.\ channel\\\hline
 \end{tabularx}
-{\footnotesize ^{\ast} Three chopper subtypes were simulated at different times.}
+{\footnotesize $^{\ast}$ Three chopper subtypes were simulated at different times.}
 \end{table}
 \vspace{1ex}
 \begin{table}[ptb]
@@ -86,7 +86,7 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \vspace{1ex}
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{v}{Input\slash Ouput}\\\hline
-\textbf{Input Stimulus} & AM stimuli with fixed parameters for all paradigms: carrier frequency 8.91 kHz and 100\% modulation depth, 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay. F$_{0}$ response paradigm: \fm=100 Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. MTF paradigm: \fm varied from 50 to 1200 Hz in 50 Hz increments at sound levels 20, 40, 60 and 80 dB SPL.   \\\hline 
+\textbf{Input Stimulus} & AM stimuli with fixed parameters for all paradigms: carrier frequency 8.91 kHz and 100\% modulation depth, 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay. F$_{0}$ response paradigm: $\fm=100$ Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. MTF paradigm: $\fm$ varied from 50 to 1200 Hz in 50 Hz increments at sound levels 20, 40, 60 and 80 dB SPL.   \\\hline 
     \textbf{Input}      & Stimulus induced Poisson spike trains from GLG units, HSR and LSR ANFs.\\\hline
 %\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}
 %\includegraphics[width=0.8\textwidth,keepaspectratio]{./gfx/Notch-Wl-12.5kHz-0.5.eps}

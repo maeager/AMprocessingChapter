@@ -246,11 +246,11 @@ rate-place encoding in the \IC and higher auditory nervous system centres
 timing of spikes relative to the envelope of the stimulus, otherwise called
 phase locking or synchrony.  Rate coding of \AM signals can take the form of
 pure rate-place, rate-responder or feature-based encoding.  Pure rate-place is
-where neurons encode the stumulus' energy spectrum in their receptive field
+where neurons encode the stimulus' energy spectrum in their receptive field
 through simple firing rate changes.  Rate-responder encoding is where neurons
 fire in each envelope cycle and as the cycle gets shorter the rate increases up
 to a certain limit - this is common in low \CF units in the \AN and \CN, and
-onset units (octopus cells) in the \PVCN.  Specialised feature-based rate coding
+onset units (octopus cells) in the \PVCN.  Specialised feature-based rate encoding
 encodes particular features of AM signals, especially \fm, preference in \IC
 neurons.
 
@@ -312,10 +312,30 @@ to 5 kHz and \AM tones up to 2 kHz.
 # \fm are common properties of \AM that are studied.
 
 
-\yellownote{FIXME}
 For reviews of neural encoding of sound-envelope information
 in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
 \citet{JorisSchreinerEtAl:2004}.
+Figure \ref{fig:AM:ANCNSummary} shows the simplified \fz and temporal \MTF responses
+in \ANFs and the comparative transformation of temporal responses in chopper units 
+\citet{JorisSchreinerEtAl:2004}.
+
+\ANFs typically have a 
+
+Sustained choppers were characterised as changing from low-pass tMTF to band-pass tMTF with increasing sound levels.
+
+ to band-pass with high peak in vector strength.
+  - 
+All chopper units have a reduced tMTF cut-off frequency due to slower membrane dynamics and integration of inputs.  
+
+The variations in BMFs in \TS cells are possibly due to a resonance in either the neuron's intrinsic oscillation frequency \citep{WiegrebeMeddis:2004,ManisMolitorEtAl:2003} or 
+recurrent network connections between other \TS cells \cite{BahmerLangner:2006,ManorRinzelEtAl:1997}.
+
+
+ 
+
+
+characteristics rather than network effects.
+  - (Figure \ref{fig:AM:ANCNSummary}).
 
 
 # The \CN begins the transformation
@@ -367,34 +387,14 @@ Variation in modulation frequency of \AM signals is characterised by the \MTF.
 
 
 
-#+LABEL: fig:AM:RG94_AN
-#+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Rate and temporal response in \ANF unit to \AM]{Rate (left) and temporal \MTF response property of a single \HSR~\ANF to \AM stimuli at 30, 50 and 70 dB \SPL. The \rMTF of the \HSR~\ANF unit is an all-pass filter and saturates at 230 spikes per second. The \tMTF is a low pass filter at 30 dB \SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as \SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
- [[../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
+# # + LABEL: fig:AM:RG94_AN
+# # + ATTR_LaTeX: width=0.8\textwidth
+# # + CAPTION: [Rate and temporal response in \ANF unit to \AM]{Rate (left) and temporal \MTF response property of a single \HSR~\ANF to \AM stimuli at 30, 50 and 70 dB \SPL. The \rMTF of the \HSR~\ANF unit is an all-pass filter and saturates at 230 spikes per second. The \tMTF is a low pass filter at 30 dB \SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as \SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
+# [[ ../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 
 \yellownote{TODO refer to Figure \ref{fig:AM:RG94MTF}}
 
-
-Figure \ref{fig:AM:ANCNSummary}B shows the simplified temporal \MTF responses from
-multiple studies in \ANFs and chopper units \citet{JorisSchreinerEtAl:2004}.
-\ANFs typically have a 
-
-Sustained choppers were characterised as changing from low-pass tMTF to band-pass tMTF with increasing sound levels.
-
- to band-pass with high peak in vector strength.
-  - 
-All chopper units have a reduced tMTF cut-off frequency due to slower membrane dynamics and integration of inputs.  
-
-The variations in BMFs in \TS cells are possibly due to a resonance in either the neuron's intrinsic oscillation frequency \citep{WiegrebeMeddis:2004,ManisMolitorEtAl:2003} or 
-recurrent network connections between other \TS cells \cite{BahmerLangner:2006,ManorRinzelEtAl:1997}.
-
-
- 
-
-
-characteristics rather than network effects.
-  - (Figure \ref{fig:AM:ANCNSummary}).
 
 #+BEGIN_LaTeX
   \begin{figure}[htb]
@@ -820,19 +820,22 @@ call_mean_ANFvs()
     modulation transfer function response maps for \AM stimulus sound levels at 40, 60 and 80 dB
     \SPL. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
-      \SPL. F. \tMTF map at 40 dB \SPL. }\label{fig:AM:G}
+      \SPL. F. \tMTF map at 40 dB \SPL. }\label{fig:AM:GMTF}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:G} shows the rate and temporal \MTF across the whole network
-to \AM tone centred at 8.9 kHz. The \GLG cell models \rMTFs were typically
-low-pass, mimicking the rate behaviour of \LSR fibres, its primary source of excitation.
-The Golgi cell units had very low rates for 40 and 60 dB \SPL \AM tones, which
-were limited to a narrow range around the central frequency.
+Figure \ref{fig:AM:GMTF} shows the rate and temporal \MTF across the whole
+network to \AM tone centred at 8.9 kHz. The \GLG cell model's \rMTF on-CF were
+typically flat or low-pass, mimicking the rate behaviour of \LSR fibres, its
+primary source of excitation.  The \rMTF maps of GLG cell responses, Figures
+\ref{fig:AM:G}A, C and E, showed a wider activation of units compared to LSR
+fibres (Figure \ref{fig:AM:LSRMTF}).  The GLG cell units with CFs near to \fc had elevated rates for
+40 and 60 dB \SPL \AM tones, which were limited to a narrow range around the
+central frequency.
 
-The temporal \MTFs of Golgi units were significantly diminished relative to \LSR
+The temporal \MTFs of Golgi units were diminished relative to \LSR
 fibres. The smoothing filter used in the \GLG cell model contributes to the
-reduction of temporal information.  The peak temporal responses of the \GLG cell
+reduction of temporal information, particularly the cut-off frequency.  The peak temporal responses of the \GLG cell
 model occurred at low \fm with a rapid drop off in \SI around 350 Hz.  The on-\CF
 unit had a flat low-pass \tMTF before its Rayleigh test dropped below the
 threshold. Its mean \SI from 50 to 1200 Hz (excluding values when the Rayleigh
@@ -983,7 +986,7 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 
 Figure \ref{fig:AM:TS} shows the final \MTF response of the \ChS \TS units in the
 network.  The spread of excitation in \TS units was narrow around the central
-channel, with greater excitation above \CF around fm=300 Hz. For higher sound
+channel, with greater excitation above \CF around \fm=300 Hz. For higher sound
 levels, the spread of excitation was wider but the rate was steadier for each
 stimuli.  The significant features of the temporal responses in the right of the
 figure are the very poor synchronisation in the central channel and dominant
@@ -1021,7 +1024,7 @@ to 40) had the most dominant temporal response across the \TS cell population.
       \centering
       \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChS.pdf}}\\
       \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT1.pdf}}\\
-      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
+      %\resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
       \caption[Temporal response in \ChS and \ChT$_1$ units on and off \CF]{A. Temporal \MTFs of sustained chopper unit (TS cells) on \CF (unit 65, \CF 8.95 kHz) at four different sound levels. B. \tMTFs of ChS unit off \CF (unit 70, \CF 11.2 kHz). C. \tMTFs of ChT$_1$ unit on \CF.  D. \tMTFs of ChT$_1$ off \CF.   }
     \label{fig:AM:RG94Comparison}
     \end{figure}
