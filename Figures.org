@@ -240,7 +240,7 @@
 
 #+END_SRC
 
-#+name:  ratetemporal-0-ChS.gpi
+#+name:  ratetemporal-0-ChT1.gpi
 #+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChT1.gpi :export none
 
   THRESH=3
@@ -253,13 +253,13 @@
   !fixbb './gfx/ratetemporal-0-ChT1.eps'
 #+END_SRC
 
-#+name:  ratetemporal-0-ChT1.gpi
-#+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChT1.gpi :export none
+#+name:  ratetemporal-0-ChT2.gpi
+#+BEGIN_SRC gnuplot :noweb yes :tangle ./gfx/ratetemporal-0-ChT2.gpi :export none
 
   THRESH=3
   FRATE=25
   INDEX=0
-  set output './gfx/ratetemporal-0-ChT1.eps'
+  set output './gfx/ratetemporal-0-ChT2.eps'
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
   <<ratetemporalC>>
@@ -725,6 +725,7 @@ if (cell=="3"){
 #+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="~/Work/cnstellate/TStellate2_CS/F0Response/") :results none :export none
 
 #+call: fnoughtrate[ :file ./gfx/fresponse-rate.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/F0Response/") :results none :export none
+
 
 
 
@@ -2434,3 +2435,153 @@ done
 #+call: TStellate_rMTF[ :file ./gfx/Dec/CT1_rMTF.png ](subtype="TStellate2_CT1") :results file :exports none
 
 #+call: TStellate_rMTF[ :file ./gfx/Dec/CT2_rMTF.png ](subtype="TStellate2_CT2") :results file :exports none
+
+
+** New Data                                                        :noexport:
+
+# - The following results were simulated with the newest Zilany \AN model with a
+# Cat compression audiogram
+
+# - The \fc was simulated at three values corresponding to the \CF of the chopper
+# optimisation models
+
+*** \fz Response: Variation in Level   :noexport:
+
+- The \fz response is the behaviour characterised in
+\citet{ZilanyBruceEtAl:2009} to describe the variation in sound pressure level
+where the fc is fixed at the \CF of the unit.
+
+#+LABEL: fig:AM:F0_Rayexample
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: [Rayleigh test of \fz response in \HSR units]{Rayleigh test of \fz response in \HSR units at 150 Hz (a) with accompanying mask for statistically significant values (b).  The method for improved presentation of vector strength plots for units in the stellate microcircuit uses the mask in (b).  Amplitude modulated tones at carrier frequency 8.9 kHz and modulated frequency of 150 Hz were presented from 0 to 70 db \SPL ( increments of 5 dB \SPL).}
+#+RESULTS: F0_Rayexample
+[[file:../VowelProcessingChapter/gfx/F0_Rayexample.png]]
+
+
+#+LABEL: fig:AM:F0_Rayexample2
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: Example Rayleigh test of F0 response in HSR units
+#+RESULTS: F0_Rayexample2
+[[file:../VowelProcessingChapter/gfx/F0_Rayexample2.png]]
+
+
+Figure \ref{fig:AM:MTFexample} demonstrates the method for removing noise in the
+vector strength plots using a mask.
+
+#+LABEL: fig:AM:MTFexample
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: Method for improved presentation of vector strength in the stellate microcircuit.  Amplitude modulated tones at  \MTF of the 6 units at 20 db \SPL (top), 40 dB, 60 dB \SPL.
+#+RESULTS: MTF_example
+[[file:../VowelProcessingChapter/gfx/MTF_example.png]]
+
+**** TODO Auditory Nerve units
+
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: PSTH response in \ANFs
+#+LABEL: fig:AM:ANpsth
+#+RESULTS: AN_psth
+[[file:../VowelProcessingChapter/gfx/AN_psth.png]]
+
+
+#+LABEL: fig:AM:anf0
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: \fz response in auditory nerve fibres
+[[file:../VowelProcessingChapter/gfx/AN_f0.png]]
+
+**** Cochlear Nucleus units
+
+**** Golgi, \DS and \TV cell responses to AM
+
+TODO show AN Golgi \DS and \TV in one plot then do the choppers in the next
+section
+
+
+***** Chopper Sustained model: Low Freq (3.9 kHz)
+
+#+LABEL: fig:AM:F0ResponseCS
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: \fz response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
+#+RESULTS: TStellate_CS_F0Response
+[[file:../VowelProcessingChapter/gfx/TStellate_CS_F0Response.png]]
+
+***** Chopper Transient 1: Mid Freq (8.2 kHz)
+
+#+LABEL: fig:AM:F0ResponseCT1
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: \fz response of all 6 units at high carrier frequency (8.2 kHz). TS uses CT1 optimised model configuration.
+#+RESULTS: TStellate_CT1_F0Response
+[[file:../VowelProcessingChapter/gfx/TStellate_CT1_F0Response.png]]
+
+***** Chopper Transient 2 model: High Freq (12.9 kHz)
+
+#+LABEL: fig:AM:F0ResponseCT2
+#+ATTR_LaTeX: width=0.9\linewidth
+#+CAPTION: \fz response of all 6 units at high carrier frequency (12.9 kHz). TS uses CT2 optimised model
+#+RESULTS: TStellate_CT2_F0Response
+[[file:../VowelProcessingChapter/gfx/TStellate_CT2_F0Response.png]]
+
+
+
+\clearpage
+
+*** Modulation Transfer Function 				   :noexport:
+
+
+#+CAPTION:  \MTF of the 6 units at 20 db \SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Low freq $f_{\textrm{m}}$ (3.9 kHz) and CS optimised parameters for the TS model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:AM:CSMTF
+#+RESULTS: TStellate_CS_MTF
+[[file:../VowelProcessingChapter/gfx/TStellate_CS_MTF.png]]
+
+
+#+CAPTION:  \MTF of the 6 units at 20 db \SPL (top), 40 dB, 60 dB, and 80 dB (bottom). Med freq \fm and CT1 model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:AM:CT1MTF
+#+RESULTS: TStellate_CT1_MTF
+[[file:../VowelProcessingChapter/gfx/TStellate_CT1_MTF.png]]
+
+
+#+CAPTION:  \MTF of the 6 units at 20 db \SPL (top), 40 dB, 60 dB, and 80 dB (bottom). High freq \fm and CT2 model.
+#+ATTR_LaTeX: width=0.9\linewidth
+#+LABEL: fig:AM:CT2MTF
+#+RESULTS: TStellate_CT2_MTF
+[[file:../VowelProcessingChapter/gfx/TStellate_CT2_MTF.png]]
+
+\clearpage
+
+
+*** Combined version 						   :noexport:
+
+
+#+CAPTION:  \MTF of the three chopper subtypes units and ANFs at 80 dB (top), 60 dB, 40 dB, and 20 dB \SPL (bottom). Colorbar indicates \SI values from 0 to 1.
+#+ATTR_LaTeX: width=1.0\linewidth  placement=[p!]
+#+LABEL: fig:AM:CombMTF
+#+RESULTS: Combined_MTF
+[[file:../VowelProcessingChapter/gfx/ChComb_MTF.pdf]]
+
+\clearpage
+
+**** Gnuplot versions
+
+#+LABEL: fig:AM:CSMTFg
+#+ATTR_LaTeX: width=0.95\linewidth
+#+CAPTION:    \AM coding in stellate microcircuit: CS parameters
+#+RESULTS: CS_MTF
+[[file:../VowelProcessingChapter/gfx/CS_MTF.png]]
+
+
+#+LABEL: fig:AM:CT1MTFg
+#+ATTR_LaTeX: width=0.95\linewidth
+#+CAPTION:    \AM coding in stellate microcircuit: CT1 parameters
+#+RESULTS: CT1_MTF
+[[file:../VowelProcessingChapter/gfx/CT1_MTF.png]]
+
+
+#+LABEL: fig:AM:CT2MTFg
+#+ATTR_LaTeX: width=0.95\linewidth
+#+CAPTION:    \AM coding in stellate microcircuit: CT2 parameters
+#+RESULTS: CT2_MTF
+[[file:../VowelProcessingChapter/gfx/CT2_MTF.png]]
+
+\clearpage
+
