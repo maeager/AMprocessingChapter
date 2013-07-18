@@ -982,11 +982,11 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
   \caption[Rate and temporal \MTF responses for the \ChS TS cell model]{Rate and temporal \MTF responses for the \ChS TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
       \SPL. F. \tMTF map at 40 dB \SPL.}
-  \label{fig:AM:TS}
+  \label{fig:AM:ChSMTF}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:TS} shows the final \MTF response of the \ChS \TS units in the
+Figure \ref{fig:AM:ChSMTF} shows the final \MTF response of the \ChS \TS units in the
 network.  The spread of excitation in \TS units was narrow around the central
 channel, with greater excitation above \CF around \fm=300 Hz. For higher sound
 levels, the spread of excitation was wider but the rate was steadier for each
@@ -1068,11 +1068,11 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
   \caption[Rate and temporal \MTF responses for the ChT$_1$ TS cell model]{Rate and temporal \MTF responses for the ChT$_1$ TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
       \SPL. F. \tMTF map at 40 dB \SPL.}
-  \label{fig:AM:CTone}
+  \label{fig:AM:CToneMTF}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:CTone} shows the final \MTF response of the \ChTone subtype \TS cell.
+Figure \ref{fig:AM:CToneMTF} shows the final \MTF response of the \ChTone subtype \TS cell.
 # The rate response of the \ChTone model is non-saturating
 \yellownote{More text describing CT 1 \AM responses.}
 
@@ -1096,11 +1096,11 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
   \caption[Rate and temporal \MTF responses for the ChT$_2$ TS cell model]{Rate and temporal \MTF responses for the \ChTtwo TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
       \SPL. F. \tMTF map at 40 dB \SPL.}
-  \label{fig:AM:CTtwo}
+  \label{fig:AM:CTtwoMTF}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:CTtwo} shows the final \MTF response of the \ChTtwo \TS cell.
+Figure \ref{fig:AM:CTtwoMTF} shows the final \MTF response of the \ChTtwo \TS cell.
 
 \yellownote{More text describing CT 2 \AM responses.}
 
