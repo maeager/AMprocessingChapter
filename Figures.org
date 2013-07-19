@@ -629,10 +629,10 @@ where the f_c is fixed at the \CF of the unit.
   reset
   # check input variables
   unset xlabel
-  set ylabel "CF (kHz)" font "Helvetica,16"
+  # Interpolation of the 2D map looks good but not representative of the data points considering large steps in SPL
   set pm3d map  # interpolate 0,0
   set logscale x 10
-  set multiplot layout 3,2
+  set multiplot layout 4,2 scale 1.0,1.25
   set xtics nomirror out ("2" 2, "" 3, "" 4, "5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20, "30" 30, "40" 40)
   unset key
   
@@ -642,22 +642,31 @@ where the f_c is fixed at the \CF of the unit.
   
   set xrange [2:40] #2.805:27.017] #[40:90]
   
-  set label 1 "{/Helvetica-Bold=28 A}   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
-  set label 2 "{/Helvetica-Bold=28 B}   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
-  set label 3 "{/Helvetica-Bold=28 C}   GLG     " at screen 0.1, screen 0.633 font "Helvetica,30" left front
-  set label 4 "{/Helvetica-Bold=28 D}   DS      " at screen 0.6, screen 0.633 font "Helvetica,30" left front
-  set label 5 "{/Helvetica-Bold=28 E}   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
-  set label 6 "{/Helvetica-Bold=28 F}   TS      " at screen 0.6, screen 0.3 font "Helvetica,30" left front
+  # set label 1 "{/Sans-Bold=28 A}   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  # set label 2 "{/Sans-Bold=28 B}   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
+  # set label 3 "{/Helvetica-Bold=28 C}   GLG     " at screen 0.1, screen 0.633 font "Helvetica,30" left front
+  # set label 4 "{/Helvetica-Bold=28 D}   DS      " at screen 0.6, screen 0.633 font "Helvetica,30" left front
+  # set label 5 "{/Helvetica-Bold=28 E}   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
+  # set label 6 "{/Helvetica-Bold=28 F}   TS      " at screen 0.6, screen 0.3 font "Helvetica,30" left front
+  set label 1 "{/Sans-Bold=32 A}   HSR ANF  " at screen 0.1, screen 0.82 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  set label 2 "{/Sans-Bold=32 B}   LSR ANF  " at screen 0.6, screen 0.82 font "Helvetica,30" left front
+  set label 3 "{/Sans-Bold=32 C}   GLG      " at screen 0.1, screen 0.56 font "Helvetica,30" left front
+  set label 4 "{/Sans-Bold=32 D}   DS       " at screen 0.6, screen 0.56 font "Helvetica,30" left front
+  set label 5 "{/Sans-Bold=32 E}   TV       " at screen 0.1, screen 0.32 font "Helvetica,30" left front
+  set label 6 "{/Sans-Bold=32 F}   ChS       " at screen 0.6, screen 0.32 font "Helvetica,30" left front
+  set label 7 "{/Sans-Bold=32 G}   ChT_1       " at screen 0.1, screen 0.08 font "Helvetica,30" left front
+  set label 8 "{/Sans-Bold=32 H}   ChT_2       " at screen 0.6, screen 0.08 font "Helvetica,30" left front
+  
   
   #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
   #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
   #  set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
   set yrange [0:90]
   
-  set ylabel "Synch Index" font "Helvetica,24" #rotate by 0
+  # set ylabel "Synch Index" font "Helvetica,24" #rotate by 0
   set cbrange [0:1];set palette rgbformulae 7,5,15
-  unset xlabel;unset colorbox
-  set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+  unset xlabel;unset colorbox; unset ylabel
+  # set ylabel " Intensity (dB SPL)" font "Helvetica,24";
   set colorbox noborder
   splot  datapath.'/vsSPIKES.4.dat' u ($3/1000):1:($5>5.991?$4:NaN) #($7<0.05?$4:NaN) #
   unset ylabel;
@@ -666,19 +675,33 @@ where the f_c is fixed at the \CF of the unit.
   splot  datapath.'/vsSPIKES.5.dat' u ($3/1000):1:($5>5.991?$4:NaN) #($7<0.05?$4:NaN) #
   
   do for [cell in "3 2 1 0"] {
-  unset xlabel;unset ylabel;
-  if (cell=="1") {
-    set xlabel "CF (kHz)" font "Helvetica,24";
-    set ylabel " Intensity (dB SPL)" font "Helvetica,24";
-  }
-  if (cell=="0"){
-    set xlabel "CF (kHz)" font "Helvetica,24";
-  }
-  if (cell=="3"){
-    set ylabel " Intensity (dB SPL)" font "Helvetica,24";
-  }
+  # unset xlabel;unset ylabel;
+  # if (cell=="1") {
+  #   set xlabel "CF (kHz)" font "Helvetica,24";
+  #   set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+  # }
+  # if (cell=="0"){
+  #   set xlabel "CF (kHz)" font "Helvetica,24";
+  # }
+  # if (cell=="3"){
+  #   set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+  # }
   splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN)
   }
+  
+  cell=0
+  set cblabel "Synch Index" font "Helvetica,20"
+  set xlabel "CF (kHz)" font "Helvetica,24";
+  set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
+  CT1datapath=sprintf("%s../../TStellate2_CT1/F0Response/",datapath)
+  splot  CT1datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN)
+  unset ylabel; unset cblabel
+  CT2datapath=sprintf("%s../../TStellate2_CT2/F0Response/",datapath)
+  splot  CT2datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN)
+  
+  
+  
+  
   unset multiplot
   
 #+END_SRC
@@ -692,53 +715,52 @@ where the f_c is fixed at the \CF of the unit.
   reset
   # check input variables
   unset xlabel
-  set ylabel "CF (kHz)" font "Helvetica,16"
+  #set ylabel "CF (kHz)" font "Helvetica,16"
   set pm3d map  # interpolate 0,0
   set logscale x 10
-  set multiplot layout 4,2
+  set multiplot layout 4,2 scale 1.0,1.25
   # set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
   set xtics nomirror out ("2" 2, "" 3, "" 4, "5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20, "30" 30, "40" 40)
   unset key
   
   set zrange [0:*]
-  set cbrange [0:300]
+  set cbrange [0:*]
   
   # set palette rgbformulae 22,13,-31
   set palette gray negative 
   
   set xrange [2:40] #2.805:27.017] #[40:90]
   
-  set label 1 "A   HSR ANF  " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
-  set label 2 "B   LSR ANF  " at screen 0.6, screen 0.975 font "Helvetica,30" left front
-  set label 3 "C   GLG      " at screen 0.1, screen 0.633 font "Helvetica,30" left front
-  set label 4 "D   DS       " at screen 0.6, screen 0.633 font "Helvetica,30" left front
-  set label 5 "E   TV       " at screen 0.1, screen 0.3 font "Helvetica,30" left front
-  set label 6 "F   TS       " at screen 0.6, screen 0.3 font "Helvetica,30" left front
-  
-  #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
-  #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
-  #  set label 9 "40 dB SPL" at screen 0.25, screen 0.095 font ",30"  tc rgb "#FFFFFF""  center front
+  set label 1 "{/Sans-Bold=32 A}   HSR ANF  " at screen 0.1, screen 0.82 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  set label 2 "{/Sans-Bold=32 B}   LSR ANF  " at screen 0.6, screen 0.82 font "Helvetica,30" left front
+  set label 3 "{/Sans-Bold=32 C}   GLG      " at screen 0.1, screen 0.56 font "Helvetica,30" left front
+  set label 4 "{/Sans-Bold=32 D}   DS       " at screen 0.6, screen 0.56 font "Helvetica,30" left front
+  set label 5 "{/Sans-Bold=32 E}   TV       " at screen 0.1, screen 0.32 font "Helvetica,30" left front
+  set label 6 "{/Sans-Bold=32 F}   ChS       " at screen 0.6, screen 0.32 font "Helvetica,30" left front
+  set label 7 "{/Sans-Bold=32 G}   ChT_1       " at screen 0.1, screen 0.08 font "Helvetica,30" left front
+  set label 8 "{/Sans-Bold=32 H}   ChT_2       " at screen 0.6, screen 0.08 font "Helvetica,30" left front
   
   #set cblabel "Rate" font "Helvetica,16"
   do for [cell in "4 5 3 2 1 0"] {
   
-  # if (cell=="1") {
-  #  set cblabel "Firing Rate (sp/s)" font "Helvetica,16"
-  #  set xlabel "CF (kHz)" font "Helvetica,24";
-  #  set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
-  # } else { unset xlabel;unset ylabel}
-  # if (cell=="3") {   set colorbox noborder } else {unset colorbox}
-  if (cell=="0") {FRATE=FRATE/4}
+  #    if (cell=="1") {
+  #     set cblabel "Firing Rate (sp/s)" font "Helvetica,16"
+  #     set xlabel "CF (kHz)" font "Helvetica,24";
+  #     set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
+  #    } else { unset xlabel;unset ylabel}
+  if (cell=="2") { set cbrange [0:1500]}
+  if (cell=="1") { set cbrange [0:800]}
+  if (cell=="0") { set cbrange [0:400]}
   splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
   }
   cell=0
   
-   set cblabel "Firing Rate (sp/s)" font "Helvetica,20"
-   set xlabel "CF (kHz)" font "Helvetica,24";
-   set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
+  set cblabel "Firing Rate (sp/s)" font "Helvetica,20"
+  set xlabel "CF (kHz)" font "Helvetica,24";
+  set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
   CT1datapath=sprintf("%s../../TStellate2_CT1/F0Response/",datapath)
   splot  CT1datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
-  unset xlabel;unset ylabel; unset cblabel
+  unset ylabel; unset cblabel
   CT2datapath=sprintf("%s../../TStellate2_CT2/F0Response/",datapath)
   splot  CT2datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
   unset multiplot
@@ -755,7 +777,7 @@ where the f_c is fixed at the \CF of the unit.
   FRATE=100
   set output './gfx/fresponse-vs.eps'
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
-  <<CTtwodatapath>>
+  <<CSdatapath>>
   datapath=sprintf("%s/../F0Response/",datapath)
   <<fresponse>>
   !fixbb  './gfx/fresponse-vs.eps'
