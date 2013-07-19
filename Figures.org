@@ -89,12 +89,14 @@
   } else {unset xlabel}
   set zrange [0:*]
   set cbrange [0:*]
-  set palette rgbformulae 22,13,-31
+  # set palette rgbformulae 22,13,-31
+  set palette functions sqrt(gray),sqrt(gray),sqrt(gray) negative
+  # set palette gray negative
   splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
   print "vs "
   unset ylabel
   set cbrange [0:1]
-  set palette rgbformulae 7,5,15
+  set palette rgbformulae 7,5,15 positive
   if (spl =="80"){
     set cblabel "Synch Index" font "Helvetica,16"
   } else {unset cblabel}
@@ -423,8 +425,8 @@
   set multiplot layout 1,2
   set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
 
-  set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
-  set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
+  # set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  # set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
   set xlabel "f_m (kHz)" font "Helvetica,24"
   set xrange [40:1300]
   set yrange [*:*]
