@@ -535,21 +535,26 @@ microcircuits and across frequency channels, and the intrinsic properties of
 each of the cell types are best understood across responses from the whole
 network.
 
-\GLG cells receive a majority of their inputs from \LSR fibres that have high
-temporal information throughput across the response area (Figure
-\ref{fig:fzero}B). Figure \ref{fig:fzero}F shows the \GLG cells' \fz responses
-are moderate to weak over the extent of the response area.  The diminished
-temporal information is a result of the smoothing kernel in the \GLG neural
-model.
+Figure \ref{fig:fzero}F shows the \GLG cells' \fz response map.  \GLG cells
+receive a majority of their inputs from \LSR fibres that have high temporal
+information throughput across their active response area (Figure
+\ref{fig:fzero}B). The \GLG cells' temporal encoding performance was moderate
+near the edges of their response area and deteriorated at high SPL to levels
+below 0.3 SI.  The diminished temporal information is a result of the smoothing kernel in the \GLG neural
+model. Despite this, the GLG cell model is still capable of passing temporal information
+to other cells in the microcircuit (mean SI of 0.52, p\<0.05).
 
-
-Figure \ref{fig:fzero}D shows that the \DS cell \fz response map had a higher
-rate threshold and enhanced the temporal information on-\CF at high intensities
-relative to \HSR and \LSR\space \ANFs.  \Gls{OnC} units recorded from the dorsal
+Figure \ref{fig:fzero}D shows that the \DS cell \fz response map had a broad
+activation and enhanced the temporal information at every level-CF point on the map
+relative to \HSR and \LSR\space \ANFs.  
+\Gls{OnC} units recorded from the dorsal
 acoustic stria in cats have shown high \SI maintained above 0.8 up to 60 dB \SPL
-then slopes down to 0.6 at 80 dB \SPL \citep{JorisSmith:1998}.  Maximum phase
-response for the \DS cell model (results not shown) was linear over \SPL (similar
-to experimental results).
+then slopes down to 0.6 at 80 dB \SPL \citep{JorisSmith:1998}. 
+The on-CF unit peaked at 20 dB SPL with SI of 0.937 and steadily declined with increasing level to 0.443 SI at 90 dB SPL.
+The lowest point in the \DS cell \fz response map was 0.417 at 90 dB SPL (unit 71, CF 11.7) and the mean for all points below 0.05 in the Rayleigh test was 0.77 SI.
+Maximum phase
+response for the \DS cell model (results not shown) was linear over \SPL
+similar to experimental results \citep{JorisSmith:1998}. 
 
 The \fz response of \TV cells (Figure \ref{fig:fzero}E) shows an enhanced V-shape
 map similar to \HSR units.  High \SI values (close to 1) near the rate threshold
@@ -707,9 +712,9 @@ investigated further.
 
 #+BEGIN_LaTeX
   \begin{figure}[t!]
+    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\ 
     \centering
-    {\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\ 
-    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\ \vspace{0.4ex}
+    \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\ \vspace{1ex}
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/rtmtfonCF-ANF.pdf}}
     \caption[Temporal response in ANFs on CF]{Rate and temporal response property
       of \HSR units with the carrier frequency on or nearest to its \CF. A and B
@@ -982,11 +987,11 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
   \caption[Rate and temporal \MTF responses for the \ChS TS cell model]{Rate and temporal \MTF responses for the \ChS TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
       \SPL. F. \tMTF map at 40 dB \SPL.}
-  \label{fig:AM:ChSMTF}
+  \label{fig:AM:CSMTF}
   \end{figure}
 #+END_LaTeX
 
-Figure \ref{fig:AM:ChSMTF} shows the final \MTF response of the \ChS \TS units in the
+Figure \ref{fig:AM:CSMTF} shows the final \MTF response of the \ChS \TS units in the
 network.  The spread of excitation in \TS units was narrow around the central
 channel, with greater excitation above \CF around \fm=300 Hz. For higher sound
 levels, the spread of excitation was wider but the rate was steadier for each
@@ -1026,7 +1031,7 @@ to 40) had the most dominant temporal response across the \TS cell population.
       \centering
       \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChS.pdf}}\\
       \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT1.pdf}}\\
-      %\resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
+      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
       \caption[Temporal response in \ChS and \ChT$_1$ units on and off \CF]{A. Temporal \MTFs of sustained chopper unit (TS cells) on \CF (unit 65, \CF 8.95 kHz) at four different sound levels. B. \tMTFs of ChS unit off \CF (unit 70, \CF 11.2 kHz). C. \tMTFs of ChT$_1$ unit on \CF.  D. \tMTFs of ChT$_1$ off \CF.   }
     \label{fig:AM:RG94Comparison}
     \end{figure}
@@ -1040,7 +1045,7 @@ expand caption.  Still work to do.}
 Figure \ref{fig:AM:RG94Chopper} shows the \tMTF experimental data typical of \ChS
 and \ChT units in cats \citep{RhodeGreenberg:1994}.
 
-By redrawing the results already shown in Figure \ref{fig:AM:TS} for better
+By redrawing the results already shown in Figure \ref{fig:AM:CSMTF} for better
 comparison with Figure \ref{fig:AM:RG94Chopper}, Figure
 \ref{fig:AM:RG94Comparison} shows the \tMTF responses of \ChS and \ChTone units
 on and off \CF.
@@ -1247,7 +1252,8 @@ important features of the acoustic input \citep{PaoliniClareyEtAl:2005}. The
 behaviour of \TS units is influenced by all three interneurons in the stellate
 microcircuit.
 
-\AM rate saturation of \TS units on \CF (Figure \ref{fig:AM:TS}) does not disable
+\yellownote{Discuss (Figure \ref{fig:AM:CSMTF}, \ref{fig:AM:CToneMTF} and \ref{fig:AM:CTtwoMTF})}
+\AM rate saturation of \TS units on \CF does not disable
 their ability to encode temporal information.  Experimental data has shown \TS
 cells generally have low-pass \MTF at low sound level and band-pass \MTF for
 higher sound levels for \AM tones on \CF \citep{RhodeGreenberg:1994}.  The
@@ -1256,9 +1262,6 @@ have been investigated but not fully understood
 \citep{WiegrebeMeddis:2004,BahmerLangner:2006a}.
 
 
- \yellownote{TODO -- the results are from optimised parameters that do not
- explicitly fit in our idea of a chopper neuron.  More work needs to be done on
- the TS cell model in Ch3 before this goes ahead.}
 
 * Conclusion
 

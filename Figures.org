@@ -207,7 +207,7 @@
   INDEX=1
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-1.eps'
-  <<CTtwodatapath>>
+  <<CTonedatapath>>
   <<ratetemporalC>>
   !fixbb './gfx/ratetemporal-1.eps'
 
@@ -325,7 +325,7 @@
   THRESH=20
   FRATE=130  # 150 ms minus 20 ms onset
   set output './gfx/mtfonCF-ANF.eps'
-  set term postscript eps size 7,6.5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  set term postscript eps size 7,5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
   <<rtmtfoncf>>
   !fixbb './gfx/mtfonCF-ANF.eps'
@@ -343,14 +343,14 @@
   # check input variables
   # if (INDEX == "") { print "Index ", INDEX} else{ quit }
   # if (FRATE) {print "FRATE ", FRATE; } else { FRATE=1 }
-  
+  set border 3
   set logscale x 10
   set multiplot layout 2,2
   set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
-  
+  set ytics nomirror out
   set label 1 "{/Helvetica-Bold=32 C}     HSR rMTF      " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
   set label 2 "{/Helvetica-Bold=32 D}     HSR tMTF      " at screen 0.7, screen 1 font "Helvetica,30" center front
-  set xlabel "f_m (kHz)" font "Helvetica,24"
+  set xlabel ""
   set xrange [40:1300]
   
   INDEX=4
@@ -373,6 +373,7 @@
   set label 2 "{/Helvetica-Bold=32 F}     LSR tMTF    " at screen 0.7, screen 0.5 font "Helvetica,30" center front
   
   set yrange [0:*]
+  set xlabel "f_m (kHz)" font "Helvetica,24"
   set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
   plot  '< grep -e ''\s65\s'' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "80" w lp, \
         '< grep -e ''\s65\s'' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "60" w lp, \
@@ -386,7 +387,6 @@
         '< grep -e ''\s65\s'' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "20" w lp
   #   }
   
-  
    unset multiplot
 #+END_SRC
 
@@ -397,7 +397,7 @@
   THRESH=20
   FRATE=130  # 150 ms minus 20 ms onset
   set output './gfx/rtmtfonCF-ANF.eps'
-  set term postscript eps size 7,6.5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  set term postscript eps size 7,5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
   <<rtmtfoncf>>
   !fixbb './gfx/rtmtfonCF-ANF.eps'
@@ -455,8 +455,6 @@
 #+RESULTS: datapath
 
 #+call: mtfoncf[:file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
-
-
 
 
 #+name: mtfonCF-0-ChS.gpi
@@ -625,6 +623,7 @@ where the f_c is fixed at the \CF of the unit.
 #+name: fresponse
 #+header: :term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
 #+BEGIN_SRC gnuplot :export none
+  
   # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
   # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10'
   reset
@@ -645,10 +644,10 @@ where the f_c is fixed at the \CF of the unit.
   
   set label 1 "{/Helvetica-Bold=28 A}   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
   set label 2 "{/Helvetica-Bold=28 B}   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
-  set label 3 "{/Helvetica-Bold=28 C}   TS (ChS)" at screen 0.6, screen 0.3 font "Helvetica,30" left front
-  set label 4 "{/Helvetica-Bold=28 D}   DS (OnC)" at screen 0.6, screen 0.633 font "Helvetica,30" left front
+  set label 3 "{/Helvetica-Bold=28 C}   GLG     " at screen 0.1, screen 0.633 font "Helvetica,30" left front
+  set label 4 "{/Helvetica-Bold=28 D}   DS      " at screen 0.6, screen 0.633 font "Helvetica,30" left front
   set label 5 "{/Helvetica-Bold=28 E}   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
-  set label 6 "{/Helvetica-Bold=28 F}   GLG     " at screen 0.1, screen 0.633 font "Helvetica,30" left front
+  set label 6 "{/Helvetica-Bold=28 F}   TS      " at screen 0.6, screen 0.3 font "Helvetica,30" left front
   
   #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
   #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
@@ -669,14 +668,14 @@ where the f_c is fixed at the \CF of the unit.
   do for [cell in "3 2 1 0"] {
   unset xlabel;unset ylabel;
   if (cell=="1") {
-  set xlabel "CF (kHz)" font "Helvetica,24";
-  set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+    set xlabel "CF (kHz)" font "Helvetica,24";
+    set ylabel " Intensity (dB SPL)" font "Helvetica,24";
   }
   if (cell=="0"){
-  set xlabel "CF (kHz)" font "Helvetica,24";
+    set xlabel "CF (kHz)" font "Helvetica,24";
   }
   if (cell=="3"){
-  set ylabel " Intensity (dB SPL)" font "Helvetica,24";
+    set ylabel " Intensity (dB SPL)" font "Helvetica,24";
   }
   splot  datapath.'/vsSPIKES.'.cell.'.dat' u ($3/1000):1:($7<0.05?$4:NaN)
   }
@@ -696,16 +695,16 @@ where the f_c is fixed at the \CF of the unit.
   set ylabel "CF (kHz)" font "Helvetica,16"
   set pm3d map  # interpolate 0,0
   set logscale x 10
-  set multiplot layout 3,2
+  set multiplot layout 4,2
   # set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
   set xtics nomirror out ("2" 2, "" 3, "" 4, "5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20, "30" 30, "40" 40)
   unset key
   
   set zrange [0:*]
-  set cbrange [0:*]
+  set cbrange [0:300]
   
-  set palette rgbformulae 22,13,-31
-  # set palette gray negative 
+  # set palette rgbformulae 22,13,-31
+  set palette gray negative 
   
   set xrange [2:40] #2.805:27.017] #[40:90]
   
@@ -714,7 +713,7 @@ where the f_c is fixed at the \CF of the unit.
   set label 3 "C   GLG      " at screen 0.1, screen 0.633 font "Helvetica,30" left front
   set label 4 "D   DS       " at screen 0.6, screen 0.633 font "Helvetica,30" left front
   set label 5 "E   TV       " at screen 0.1, screen 0.3 font "Helvetica,30" left front
-  set label 6 "F   TS (ChT1)" at screen 0.6, screen 0.3 font "Helvetica,30" left front
+  set label 6 "F   TS       " at screen 0.6, screen 0.3 font "Helvetica,30" left front
   
   #  set label 7 "80 dB SPL" at screen 0.25, screen 0.755 font ",30"  tc rgb "#FFFFFF""  center front
   #  set label 8 "60 dB SPL" at screen 0.25, screen 0.425 font ",30"  tc rgb "#FFFFFF""  center front
@@ -723,17 +722,29 @@ where the f_c is fixed at the \CF of the unit.
   #set cblabel "Rate" font "Helvetica,16"
   do for [cell in "4 5 3 2 1 0"] {
   
-  if (cell=="1") {
-   set cblabel "Firing Rate (sp/s)" font "Helvetica,16"
-   set xlabel "CF (kHz)" font "Helvetica,24";
-   set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
-  } else { unset xlabel;unset ylabel}
-  #if (cell=="3") {   set colorbox noborder } else {unset colorbox}
+  # if (cell=="1") {
+  #  set cblabel "Firing Rate (sp/s)" font "Helvetica,16"
+  #  set xlabel "CF (kHz)" font "Helvetica,24";
+  #  set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
+  # } else { unset xlabel;unset ylabel}
+  # if (cell=="3") {   set colorbox noborder } else {unset colorbox}
   if (cell=="0") {FRATE=FRATE/4}
   splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
   }
+  cell=0
+  
+   set cblabel "Firing Rate (sp/s)" font "Helvetica,20"
+   set xlabel "CF (kHz)" font "Helvetica,24";
+   set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
+  CT1datapath=sprintf("%s../../TStellate2_CT1/F0Response/",datapath)
+  splot  CT1datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
+  unset xlabel;unset ylabel; unset cblabel
+  CT2datapath=sprintf("%s../../TStellate2_CT2/F0Response/",datapath)
+  splot  CT2datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
   unset multiplot
 #+END_SRC
+
+#+RESULTS: fnoughtrate
 
 
 
@@ -741,15 +752,16 @@ where the f_c is fixed at the \CF of the unit.
 
 #+name: fresponse-vs.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/fresponse-vs.gpi  :results none :export none
-  FRATE=100;
+  FRATE=100
   set output './gfx/fresponse-vs.eps'
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
-  <<CTonedatapath>>
+  <<CTtwodatapath>>
   datapath=sprintf("%s/../F0Response/",datapath)
   <<fresponse>>
   !fixbb  './gfx/fresponse-vs.eps'
   
 #+end_src
+
 
 #+call: fresponse[ :file ./gfx/fresponse-vs.eps ](FRATE=100,datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/F0Response/") :results none :export none
 
@@ -773,7 +785,7 @@ where the f_c is fixed at the \CF of the unit.
   FRATE=100;
   set output './gfx/fresponse-rate.eps'
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
-  <<CTonedatapath>>
+  <<CSdatapath>>
   datapath=sprintf("%s/../F0Response/",datapath)
   <<fnoughtrate>>
   !fixbb  './gfx/fresponse-rate.eps'
