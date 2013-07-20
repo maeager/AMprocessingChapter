@@ -428,15 +428,12 @@ monaurally \citep{MillmanGreenEtAl:2003,CarlyonShamma:2003}.
 # #     - saturation at high sound level
 # #     - poor \SNR in auditory nerve
 
-# \yellownote{TODO}
+
 # At low to moderate
 #   - poor in \AN (note measurements for \fm at \CF in most studies)
 #   - enhanced in T stellate cells at high \SPL
 
 # Variation in modulation frequency of \AM signals is characterised by the \MTF.
-
-# \yellownote{TODO refer to Figure \ref{fig:Ch4:RG94MTF}}
-
 
 
 # Existing \CN neural or netwok models response to \AM
@@ -1142,11 +1139,8 @@ showed band-pass \MTFs except for the central units, which showed limited
 results or a low-pass \MTF.  Outermost active units (channels 65 to 60 and 45
 to 40) had the most dominant temporal response across the \TS cell population.
 
-Figures \ref{fig:Ch4:ChopperONCFMTF}A and B show the \rMTF and \tMTF of the on CF 
-\ChS model.
-\yellownote{work Fig \ref{fig:Ch4:ChopperONCFMTF} into this section}
 
-Refer back to RG94  Figure \ref{fig:Ch4:RG94Chopper}
+
 #+BEGIN_LaTeX
   \begin{figure}[thp]
     \centering
@@ -1165,30 +1159,36 @@ Refer back to RG94  Figure \ref{fig:Ch4:RG94Chopper}
 
 
 #+BEGIN_LaTeX
-    \begin{figure}[thp]
-      \centering
-    {\hspace{0.05\textwidth}\figfont{A}  \ChS\space \rMTF  \hspace{0.3\textwidth}    \figfont{B}  \ChS\space \tMTF   \hspace{0.25\textwidth}\hfill}\\ 
-
-      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChS.pdf}}\\
-      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT1.pdf}}\\
-      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
-      \caption[Temporal response in \ChS and \ChT$_1$ units on and off \CF]{A. Temporal \MTFs of sustained chopper unit (TS cells) on \CF (unit 65, \CF 8.95 kHz) at four different sound levels. B. \tMTFs of ChS unit off \CF (unit 70, \CF 11.2 kHz). C. \tMTFs of ChT$_1$ unit on \CF.  D. \tMTFs of ChT$_1$ off \CF.   }
-    \label{fig:Ch4:RG94Comparison}
-    \end{figure}
+  % \begin{figure}[thp]
+  %   \centering
+  % {\hspace{0.05\textwidth}\figfont{A}  \ChS\space \rMTF  \hspace{0.3\textwidth}    \figfont{B}  \ChS\space \tMTF   \hspace{0.25\textwidth}\hfill}\\ 
+  
+  %   \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChS.pdf}}\\
+  %   \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT1.pdf}}\\
+  %   \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
+  %   \caption[Temporal response in \ChS and \ChT$_1$ units on and off \CF]{A. Temporal \MTFs of sustained chopper unit (TS cells) on \CF (unit 65, \CF 8.95 kHz) at four different sound levels. B. \tMTFs of ChS unit off \CF (unit 70, \CF 11.2 kHz). C. \tMTFs of ChT$_1$ unit on \CF.  D. \tMTFs of ChT$_1$ off \CF.   }
+  % \label{fig:Ch4:RG94Comparison}
+  % \end{figure}
+  
 #+END_LaTeX
 
+Figure \ref{fig:Ch4:ChopperONCFMTF} shows explicitly the on-CF unit's rate and temporal \MTF responses
+of the three TS cell model subtypes otherwise hidden in the \MTF response maps. 
+Figures \ref{fig:Ch4:ChopperONCFMTF}A and B show the
+\ChS model's responses from the \rMTF and \tMTF response maps in Figure \ref{fig:Ch4:CSMTF}.
+The on CF rate MTFs (Figure \ref{fig:Ch4:ChopperONCFMTF}A) are non-linear and decrease their activity with increasing sound level.
+The non-linearity in the \tMTFs at 40 and 60 dB are contrasted by the similarity of the 20 and 80 dB responses (high SI at low \fms and a \BMF at 350 Hz).
+In comparison the sustained choppers in Figure \ref{fig:Ch4:RG94Chopper}, the mean synchronisation
+and cut-off frequency were much higher in the \ChS model.
 
 
-\yellownote{Include RhodeGreenberg fig and my onCF data -- finish paragraph,
-expand caption.  Still work to do.}
+# Figure \ref{fig:Ch4:RG94Chopper} shows the \tMTF experimental data typical of \ChS
+# and \ChT units in cats \citep{RhodeGreenberg:1994}.
 
-Figure \ref{fig:Ch4:RG94Chopper} shows the \tMTF experimental data typical of \ChS
-and \ChT units in cats \citep{RhodeGreenberg:1994}.
-
-By redrawing the results already shown in Figure \ref{fig:Ch4:CSMTF} for better
-comparison with Figure \ref{fig:Ch4:RG94Chopper}, Figure
-\ref{fig:Ch4:RG94Comparison} shows the \tMTF responses of \ChS and \ChTone units
-on and off \CF.
+# By redrawing the results already shown in Figure \ref{fig:Ch4:CSMTF} for better
+# comparison with Figure \ref{fig:Ch4:RG94Chopper}, Figure
+# \ref{fig:Ch4:RG94Comparison} shows the \tMTF responses of \ChS and \ChTone units
+# on and off \CF.
 
 
 #+BEGIN_LaTeX
