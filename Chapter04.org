@@ -190,15 +190,15 @@ onset of the stimulus:
 #+END_LaTeX
 \noindent where $N$ is the number of spikes
 \citep{JorisSchreinerEtAl:2004,KajikawaHackett:2005}.  Each spike was treated as
-a vector of unit length with phase $\theta_i$ between 0 and $2\pi$ measured as
-the spike time modulo of the stimulus period, $1/\fm$.  Perfect synchronisation
-will give \SI equal to 1 and occurs when all spikes lock to the same phase. An
-\SI measure of zero occurs when spikes have a uniform phase distribution.
-Bi-phasic or multi-phasic responses (i.e.\space phase-locking to harmonics of
-the fundamental) degrade the \SI value but the temporal information pertaining to
-\fm is still retained for higher auditory centres.
-Further measures of temporal information, i.e.\space phase-locking to any
-frequency, is performed using a fast Fourier transform as in Figure \ref{fig:Ch4:def}.
+a vector of unit length with phase $\theta_i$ between 0 and $2\pi$ measured as the spike
+time modulo of the stimulus period, $1/\fm$.  Perfect synchronisation will give
+\SI equal to 1 and occurs when all spikes lock to the same phase. An \SI measure
+of zero occurs when spikes have a uniform phase distribution.  Bi-phasic or
+multi-phasic responses (i.e.\space phase-locking to harmonics of the
+fundamental) degrade the \SI value but the temporal information pertaining to
+\fm is still retained for higher auditory centres.  Further measures of temporal
+information, i.e.\space phase-locking to any frequency, is performed using a
+fast Fourier transform as in Figure \ref{fig:Ch4:def}.
 
 # *** The Rayleigh Test
 
@@ -266,15 +266,19 @@ level, typically measured with a fixed \fm and a carrier frequency at a neuron's
 response to variation in \fm.  The \rMTF measures the output in terms of firing
 rate. Temporal encoding of modulation, \tMTF, is measured using \SI at each \fm.
 Figure \ref{fig:Ch4:RG94MTF} shows the filter characteristics of low-pass and
-band-pass \tMTF responses \citep{RhodeGreenberg:1994}.  Low-pass filters
-have a stable \SI response to low \fm stimuli that degrades when \fm increases
-above the corner frequency.  Band-pass filters increase their synchrony to the \fm envelope
-to a peak \SI response, called its \BMF, after which their synchrony deteriorates.  
-
+band-pass \tMTF responses \citep{RhodeGreenberg:1994}.  Low-pass filters have a
+stable \SI response to low \fm stimuli that degrades when \fm increases above
+the corner frequency.  Band-pass filters increase their synchrony to the \fm
+envelope to a peak \SI response, called its \BMF, after which their synchrony
+deteriorates.  The inset figures in Figure \ref{fig:Ch4:RG94MTF} also give more
+information on the nature of the SI statistic. A half-wave rectified sinusoidal
+plot, where spikes occur in only ont half of the cycle period around a single
+phase, has an SI of 0.784. The modulation envelope, where spikes occur across
+the whole period with one dominant phase, has a SI value of 0.5.
 
 #+LABEL: fig:Ch4:RG94MTF
 #+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Temporal modulation transfer function]{Temporal modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. Response synchronization (sic) in the figures is analogous to \SI. }
+#+CAPTION: [Temporal modulation transfer function]{Temporal modulation transfer function. Figure reproduced from \citet{RhodeGreenberg:1994}. Response synchronization (sic) in the figures is analogous to \SI. Inset: Half-wave rectified sinusoidal plot (noted next to f-carr(ref)) indicates spikes occur in only half of the cycle period . Modulation envelope (f-mod(ref))}
   [[../VowelProcessingChapter/gfx/RG94-MTF.png]]
 
 
@@ -299,10 +303,62 @@ segregation of streams of sounds with different fundamental frequencies
 quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
 the individual \ANFs and spectral coding across all \ANFs give a poor
 representation of modulated signals
-\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}. The temporal coding
-of \AM in auditory neurons is using fine timing of spikes locked to the stimulus
-envelope.  Individual \ANFs can encode temporal information of \CF tones up
-to 5 kHz and \AM tones up to 2 kHz.   
+\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}. 
+For reviews of neural encoding of sound-envelope information
+in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
+\citet{JorisSchreinerEtAl:2004}.
+
+
+#+LABEL: fig:Ch4:RG94_AN
+#+ATTR_LaTeX: width=0.8\textwidth
+#+CAPTION: [Rate and temporal response in \ANF unit to \AM]{Rate (left) and temporal \MTF response property of a single \HSR~\ANF to \AM stimuli at 30, 50 and 70 dB \SPL. The \rMTF of the \HSR~\ANF unit is an all-pass filter and saturates at 230 spikes per second. The \tMTF is a low pass filter at 30 dB \SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as \SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
+ [[../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
+
+
+The temporal coding of \AM in auditory neurons is using fine timing of spikes
+locked to the stimulus envelope.  Individual \ANFs can encode temporal
+information of \CF tones up to 5 kHz and \AM tones up to 2 kHz.  Figure
+\ref{fig:Ch4:RG94_AN} shows the characteristic rate and temporal MTF response of
+a HSR ANF to on-CF AM tones.  The HSR ANF rate responses are flat and saturate
+at moderate sound levels. The temporal MTF response in HSR ANFs is low-pass,
+moderate in maximum synchrony, and the synchronisation deteriorates with
+increasing sound intensity.
+
+
+#+BEGIN_LaTeX
+  \begin{figure}[thp]
+    \centering
+    \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}}\\
+   % \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}\\
+   % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}
+    \caption[Temporal response in Choppers on \CF]{Rate and temporal response
+      property of a sustained and transient chopper units (TS cells). Figure
+      reproduced from \citet{RhodeGreenberg:1994}. }
+  \label{fig:Ch4:RG94Chopper}
+  \end{figure}
+#+END_LaTeX
+
+The encoding of AM tones in the mammalian CN is well documented
+\cite{Frisina:1984,FrisinaSmithEtAl:1990a,FrisinaSmithEtAl:1990,Frisina:2001,RhodeGreenberg:1994}.
+Figure \ref{fig:Ch4:RG94Chopper} shows the typical temporal \MTFs of \TS cells
+(\ChS and \ChT) in cats \citet{RhodeGreenberg:1994}.  Sustained choppers are
+characterised as changing from low-pass \tMTF to band-pass \tMTF with increasing
+sound levels.  Transient choppers have a greater enhancement in synchronisation
+to the modulation envelope and are more robust to increases in sound level.  All
+chopper units have a reduced \tMTF cut-off frequency due to slower membrane
+dynamics and integration of inputs.  The variations in BMFs in \TS cells are
+possibly due to a resonance in either the neuron's intrinsic oscillation
+frequency \citep{WiegrebeMeddis:2004,ManisMolitorEtAl:2003} or recurrent network
+connections between other \TS cells
+\citep{BahmerLangner:2006,ManorRinzelEtAl:1997}.  The temporal encoding of \AM
+tones in \CN neurons are preserved in noise, but like pure \AM tones,
+deteriorates at high stimulus intensities
+\citep{JorisYin:1992,FrisinaKarcichEtAl:1996}.  Temporal encoding in \CN units
+is also greatly effected by changes in GABA and glycinergic synapses
+\citep{CasparyPalombiEtAl:2002,BackoffShadduckEtAl:1999}, which is also a good
+candidate to investigate the stellate microcircuit.
+
+
 
 # This temporal information is measured using
 # the synchronisation coefficient or \SI.
@@ -310,88 +366,6 @@ to 5 kHz and \AM tones up to 2 kHz.
 # different properties of \AM signals are varied.  Variation in sound level and
 # \fm are common properties of \AM that are studied.
 
-For reviews of neural encoding of sound-envelope information
-in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
-\citet{JorisSchreinerEtAl:2004}.
-Figure \ref{fig:Ch4:ANCNSummary} shows the simplified \fz and temporal \MTF responses
-in \ANFs and the comparative transformation of temporal responses in chopper units 
-\citet{JorisSchreinerEtAl:2004}.
-
-\ANFs typically have a 
-
-Sustained choppers were characterised as changing from low-pass \tMTF to band-pass \tMTF with increasing sound levels.
-
- to band-pass with high peak in vector strength.
-  - 
-All chopper units have a reduced tMTF cut-off frequency due to slower membrane dynamics and integration of inputs.  
-
-The variations in BMFs in \TS cells are possibly due to a resonance in either the neuron's intrinsic oscillation frequency \citep{WiegrebeMeddis:2004,ManisMolitorEtAl:2003} or 
-recurrent network connections between other \TS cells \citep{BahmerLangner:2006,ManorRinzelEtAl:1997}.
-
-
- 
-
-
-characteristics rather than network effects.
-  - (Figure \ref{fig:Ch4:ANCNSummary}).
-
-
-# The \CN begins the transformation
-
-# The degree of phase locking is measured by the \SI
-# \citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.
-# \SI
-# is a dimensionless measure of phase locking for a particular frequency, where
-# the magnitude of synchronisation at that frequency is divided by the baseline
-# synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
-
-
-[Variation \AM coding to sound level important for loud conversational speech and speech in noise environments]
-
-#  - eg. Spectral/
-Rate coding in \HSR \ANFs give poor representation 
- a poor representation of modulated signals 
-
-AM coding in CN - enhanced relative to ANF
-\citep{KhannaTeich:1989,Moller:1972,Frisina:1983,Frisina:1984,FrisinaSmithEtAl:1990}
-
-AM coding in AN
-\citep{Gibson:1970,Moller:1972,Moller:1973,Moller:1974a,BrittStarr:1976a,Viemeister:1979,Frisina:1983,Frisina:1984}
-
-Early speech recordings in CN
-\citep{MooreCashin:1976}
-
-ANF FM and \AM responses
-\citep{KhannaTeich:1989a,KhannaTeich:1989}
-
-\citep{JorisYin:1992,FrisinaKarcichEtAl:1996}
-
-Effects of GABA and Gly on \AM in \CN units 
-\citep{CasparyPalombiEtAl:2002,BackoffShadduckEtAl:1999}
-
-\citep{MillmanGreenEtAl:2003,CarlyonShamma:2003}
-#     - mean rate of spikes
-#     - saturation at high sound level
-#     - poor \SNR in auditory nerve
-
-\yellownote{TODO}
-At low to moderate
-  - poor in \AN (note measurements for \fm at \CF in most studies)
-  - enhanced in T stellate cells at high \SPL
-
-
-
-Variation in modulation frequency of \AM signals is characterised by the \MTF.
-
-
-
-# # + LABEL: fig:Ch4:RG94_AN
-# # + ATTR_LaTeX: width=0.8\textwidth
-# # + CAPTION: [Rate and temporal response in \ANF unit to \AM]{Rate (left) and temporal \MTF response property of a single \HSR~\ANF to \AM stimuli at 30, 50 and 70 dB \SPL. The \rMTF of the \HSR~\ANF unit is an all-pass filter and saturates at 230 spikes per second. The \tMTF is a low pass filter at 30 dB \SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as \SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
-# [[ ../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
-
-
-\yellownote{TODO refer to Figure \ref{fig:Ch4:RG94MTF}}
 
 
 #+BEGIN_LaTeX
@@ -407,6 +381,63 @@ Variation in modulation frequency of \AM signals is characterised by the \MTF.
     \citet{JorisSchreinerEtAl:2004}.}  \label{fig:Ch4:ANCNSummary}
   \end{figure}
 #+END_LaTeX
+
+
+Figure \ref{fig:Ch4:ANCNSummary} shows the simplified temporal \fz and \MTF
+responses in \ANFs and the comparative transformation of temporal responses in
+chopper units \citet{JorisSchreinerEtAl:2004}.  The general enhancement of
+synchronisation to the stimulus envelope aids in the translation of this
+information to higher auditory centres.  Conversion of temporal MTFs from
+low-pass filters to band-pass filters also aids in BMF selectivity and pitch
+sensitivity in the central nucleus of the \IC
+\cite{JorisSchreinerEtAl:2004,DAngeloSterbingEtAl:2003,ZhangKelly:2003,CasparyPalombiEtAl:2002,LangnerAlbertEtAl:2002,KrishnaSemple:2000,DepireuxShamma:1996}.
+The robustness of \AM coding to sound level important for loud conversational
+speech and speech in noise environments.  The \AN and \CNSM models encode sound
+from one ear and the spectro-temporal processing performed in the network is
+important for detecting pitch, variations in phase and harmonic differences
+monaurally \citep{MillmanGreenEtAl:2003,CarlyonShamma:2003}.
+
+
+# The \CN begins the transformation
+
+# The degree of phase locking is measured by the \SI
+# \citep{GoldbergBrownell:1973,GoldbergBrown:1969,JorisSchreinerEtAl:2004}.
+# \SI
+# is a dimensionless measure of phase locking for a particular frequency, where
+# the magnitude of synchronisation at that frequency is divided by the baseline
+# synchronisation (which is also the average firing rate) \citep{Johnson:1980}.
+
+
+#  - eg. Spectral/
+# Rate coding in \HSR \ANFs give poor representation 
+#  a poor representation of modulated signals 
+
+# AM coding in CN - enhanced relative to ANF
+# \citep{KhannaTeich:1989,Moller:1972,Frisina:1983,Frisina:1984,FrisinaSmithEtAl:1990}
+
+# AM coding in AN
+# \citep{Gibson:1970,Moller:1972,Moller:1973,Moller:1974a,BrittStarr:1976a,Viemeister:1979,Frisina:1983,Frisina:1984}
+
+# Early speech recordings in CN
+# \citep{MooreCashin:1976}
+
+# ANF \FM and \AM responses
+# \citep{KhannaTeich:1989a,KhannaTeich:1989}
+
+# #     - mean rate of spikes
+# #     - saturation at high sound level
+# #     - poor \SNR in auditory nerve
+
+# \yellownote{TODO}
+# At low to moderate
+#   - poor in \AN (note measurements for \fm at \CF in most studies)
+#   - enhanced in T stellate cells at high \SPL
+
+# Variation in modulation frequency of \AM signals is characterised by the \MTF.
+
+# \yellownote{TODO refer to Figure \ref{fig:Ch4:RG94MTF}}
+
+
 
 # Existing \CN neural or netwok models response to \AM
 
@@ -1115,16 +1146,7 @@ Figures \ref{fig:Ch4:ChopperONCFMTF}A and B show the \rMTF and \tMTF of the on C
 \ChS model.
 \yellownote{work Fig \ref{fig:Ch4:ChopperONCFMTF} into this section}
 
-#+BEGIN_LaTeX
-    \begin{figure}[thp]
-      \centering
-      \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}}\\
-     % \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}\\
-     % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}
-      \caption[Temporal response in Choppers on \CF]{Rate and temporal response property of a sustained and transient chopper units (TS cells). Figure reproduced from \citet{RhodeGreenberg:1994}. }
-    \label{fig:Ch4:RG94Chopper}
-    \end{figure}
-#+END_LaTeX
+Refer back to RG94  Figure \ref{fig:Ch4:RG94Chopper}
 #+BEGIN_LaTeX
   \begin{figure}[thp]
     \centering
@@ -1430,7 +1452,6 @@ scope of this chapter but is an open prospect for future research.
 #    - \DS : phasic inhibition
 #    - Golgi : slow level dependent
 #    - \TV : delayed echo suppression
-
 
 * Conclusion
 
