@@ -420,11 +420,11 @@
   # check input variables
   # if (INDEX == "") { print "Index ", INDEX} else{ quit }
   # if (FRATE) {print "FRATE ", FRATE; } else { FRATE=1 }
-
+  set border 3
   set logscale x 10
   set multiplot layout 1,2
   set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
-
+  set ytics nomirror in
   # set label 1 "{/Helvetica-Bold=28 A} Rate " at screen 0.1, screen 1 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
   # set label 2 "{/Helvetica-Bold=28 B} Temporal" at screen 0.7, screen 1 font "Helvetica,30" center front
   set xlabel "f_m (kHz)" font "Helvetica,24"
@@ -455,6 +455,37 @@
 #+END_SRC
 
 #+RESULTS: datapath
+
+
+
+#+name: mtfonCF-1.gpi
+#+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-1.gpi  :results none :export none
+
+  THRESH=20
+  FRATE=100
+  INDEX=1
+  set output './gfx/mtfonCF-1.eps'
+  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CSdatapath>>
+  <<mtfoncf>>
+  !fixbb './gfx/mtfonCF-1.eps'
+
+#+end_src
+
+#+name: mtfonCF-2.gpi
+#+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-2.gpi  :results none :export none
+
+  THRESH=20
+  FRATE=100
+  INDEX=2
+  set output './gfx/mtfonCF-2.eps'
+  set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
+  <<CSdatapath>>
+  <<mtfoncf>>
+  !fixbb './gfx/mtfonCF-2.eps'
+
+#+end_src
+
 
 #+call: mtfoncf[:file ./gfx/mtfonCF-0-ChS.eps ](THRESH=20,FRATE=100,INDEX=0,datapath="~/Work/cnstellate/TStellate2_CS/ModulationTransferFunction/") :results none :export none
 
@@ -644,14 +675,14 @@ where the f_c is fixed at the \CF of the unit.
   
   set xrange [2:40] #2.805:27.017] #[40:90]
   
-  # set label 1 "{/Sans-Bold=28 A}   HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  # set label 1 "{/Sans-Bold=28 A}           HSR ANF " at screen 0.1, screen 0.975 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
   # set label 2 "{/Sans-Bold=28 B}   LSR ANF " at screen 0.6, screen 0.975 font "Helvetica,30" left front
   # set label 3 "{/Helvetica-Bold=28 C}   GLG     " at screen 0.1, screen 0.633 font "Helvetica,30" left front
   # set label 4 "{/Helvetica-Bold=28 D}   DS      " at screen 0.6, screen 0.633 font "Helvetica,30" left front
   # set label 5 "{/Helvetica-Bold=28 E}   TV      " at screen 0.1, screen 0.3 font "Helvetica,30" left front
   # set label 6 "{/Helvetica-Bold=28 F}   TS      " at screen 0.6, screen 0.3 font "Helvetica,30" left front
-  set label 1 "{/Sans-Bold=32 A}   HSR ANF  " at screen 0.1, screen 0.82 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
-  set label 2 "{/Sans-Bold=32 B}   LSR ANF  " at screen 0.6, screen 0.82 font "Helvetica,30" left front
+  set label 1 "{/Sans-Bold=32 A}                      HSR   " at screen 0.1, screen 0.82 font "Helvetica,30" left  front  #  {/Helvetica-Bold=28 A}
+  set label 2 "{/Sans-Bold=32 B}   LSR   " at screen 0.6, screen 0.82 font "Helvetica,30" left front
   set label 3 "{/Sans-Bold=32 C}   GLG      " at screen 0.1, screen 0.56 font "Helvetica,30" left front
   set label 4 "{/Sans-Bold=32 D}   DS       " at screen 0.6, screen 0.56 font "Helvetica,30" left front
   set label 5 "{/Sans-Bold=32 E}   TV       " at screen 0.1, screen 0.32 font "Helvetica,30" left front
