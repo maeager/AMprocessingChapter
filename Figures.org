@@ -41,7 +41,7 @@
   reset
   # check input variables
   # if (INDEX == "" ) { print "Index ", INDEX} else{ quit }
-  # if (FRATE == "" ) {print "FRATE ", FRATE; } else { FRATE=1 }
+  # if (FRATE == "" ) {print "FRATE ", FRATE; } else { FRATE=(1/0.13) }
   # if (THRESH == "" ) {print "THRESH ", THRESH} else {THRESH=40}
   unset xlabel
   set ylabel "CF (kHz)" font "Helvetica,16"
@@ -325,7 +325,7 @@
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-ANF.gpi  :results none :export none
   
   THRESH=20
-  FRATE=130  # 150 ms minus 20 ms onset
+  FRATE=100  
   set output './gfx/mtfonCF-ANF.eps'
   set term postscript eps size 7,5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
@@ -397,7 +397,7 @@
 #+begin_src gnuplot :noweb yes :tangle ./gfx/rtmtfonCF-ANF.gpi  :results none :export none
   
   THRESH=20
-  FRATE=130  # 150 ms minus 20 ms onset
+  FRATE=100  
   set output './gfx/rtmtfonCF-ANF.eps'
   set term postscript eps size 7,5 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   <<CTtwodatapath>>
@@ -431,11 +431,11 @@
   set xrange [40:1300]
   set yrange [*:*]
   set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
-
-  plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "80" w lp, \
-        '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "60" w lp, \
-        '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "40" w lp, \
-        '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4/0.05) t "20" w lp
+  # duration (130 ms, 0.13 s) of response stimuli needs to be included average spikes per stimulus in the response rate output
+  plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "80" w lp, \
+        '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "60" w lp, \
+        '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "40" w lp, \
+        '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "20" w lp
 
   set yrange [0:1]
   set ylabel "Synch Index " font "Helvetica,24"
@@ -462,7 +462,7 @@
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-1.gpi  :results none :export none
 
   THRESH=20
-  FRATE=100
+  FRATE=25
   INDEX=1
   set output './gfx/mtfonCF-1.eps'
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
@@ -476,7 +476,7 @@
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-2.gpi  :results none :export none
 
   THRESH=20
-  FRATE=100
+  FRATE=25
   INDEX=2
   set output './gfx/mtfonCF-2.eps'
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
@@ -494,7 +494,7 @@
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChS.gpi  :results none :export none
 
   THRESH=20
-  FRATE=100
+  FRATE=7.7 #(1/0.13)
   INDEX=0
   set output './gfx/mtfonCF-0-ChS.eps'
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
@@ -516,7 +516,7 @@
 #+name: mtfonCF-0-ChT1.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChT1.gpi  :results none :export none
   THRESH=20;
-  FRATE=100;
+  FRATE=7.7; #(1/0.13)
   INDEX=0;
   set output './gfx/mtfonCF-0-ChT1.eps'
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono \
@@ -535,7 +535,7 @@
 #+name: mtfonCF-0-ChT2.gpi
 #+begin_src gnuplot :noweb yes :tangle ./gfx/mtfonCF-0-ChT2.gpi  :results none :export none
   THRESH=20;
-  FRATE=100;
+  FRATE=7.7  #(1/0.13)
   INDEX=0;
   set output './gfx/mtfonCF-0-ChT2.eps'
   set term postscript eps size 7,3.25 enhanced defaultplex leveldefault mono dashed dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
