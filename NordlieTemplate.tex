@@ -7,14 +7,14 @@
 %\noindent%
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{i}{Model Summary}\\\hline
-         \textbf{Populations}          & HSR and LSR ANFs, GLG, DS, TV and three TS cells \\\hline
-          \textbf{Topology}            & Tono-topicity of the cat AN and CN \\\hline
-        \textbf{Connectivity}          & ANF$\to${Golgi,DS,TV,TS}, Golgi$\to$DS,TS, DS$\to${TV,TS}, and TV$\to$TS  \\\hline
-         \textbf{Input model}          & ANF~model: instantaneous-rate Poisson model \citep{ZilanyBruce:2007} \\\hline
-\multirow{4}{*}{\textbf{Neuron model}} & GLG cell: instantaneous-rate Poisson model\\
-                                       & DS cell: HH-like single-compartment Type I-II RM model \citep{RothmanManis:2003b}\\ 
-                                       & TV cell:  HH-like single-compartment Type I-c RM model \citep{RothmanManis:2003b}\\
-                                       & TS cell: HH-like single-compartment Type I-t RM model \citep{RothmanManis:2003b}\\ \hline
+         \textbf{Populations}          & \HSR and \LSR\space \ANFs, \GLG, \DS, \TV and three \TS cells \\\hline
+          \textbf{Topology}            & Tonotopicity of the cat AN and CN \\\hline
+        \textbf{Connectivity}          & ANF$\to${GLG,DS,TV,TS}, GLG$\to$DS,TS, DS$\to${TV,TS}, and TV$\to$TS  \\\hline
+         \textbf{Input model}          & \ANF~model: instantaneous-rate Poisson model \citep{ZilanyBruce:2007} \\\hline
+\multirow{4}{*}{\textbf{Neuron model}} & \GLG cell: instantaneous-rate Poisson model\\
+                                       & \DS cell: HH-like single-compartment Type I-II \RM model \citep{RothmanManis:2003b}\\ 
+                                       & \TV cell:  HH-like single-compartment Type I-c \RM model \citep{RothmanManis:2003b}\\
+                                       & \TS cell: HH-like single-compartment Type I-t \RM model \citep{RothmanManis:2003b}\\ \hline
        \textbf{Channel models}         & $I_{\textrm{Na}}$, $I_{\textrm{KHT}}$, $I_{\textrm{KLT}}$, $I_{\textrm{KA}}$ and $I_{\textrm{h}}$ \citep{RothmanManis:2003b}\\\hline
         \textbf{Synapse model}         & AMPA (\textit{ExpSyn}), GABA$_{\rm A}$ (\textit{Exp2Syn}), Glycine (\textit{Exp2Syn}) \\\hline
             \textbf{Input}             & Amplitude modulated tones, $f_c=8.91$ Hz ($f_m$ and SPL varied according to stimulus paradigm)\\\hline
@@ -26,12 +26,12 @@
 \begin{tabularx}{\textwidth}{|l|X|X|}\hline
 \hdr{3}{ii}{Populations}\\\hline
 \textbf{Name} &            \textbf{Elements}            & \textbf{Size} \\\hline
-     HSR      &  ANF model (SR=50 Hz)   & $N_{\text{HSR}} = 50$ per freq.\ channel \\\hline
-     LSR      &  ANF model (SR=0.1 Hz)  & $N_{\text{LSR}}= 20$  per freq.\ channel \\\hline
-     GLG      &  GLG neural model   & $N_{\text{GLG}}= 1$  per freq.\ channel  \\\hline
-     DS       &    Type I-II RM model     & $N_{\text{DS}}= 1$ per freq.\ channel \\\hline
-     TV       &  Type I-classic RM model  & $N_{\text{TV}}= 1$ per freq.\ channel\\\hline
-     TS$^{\ast}$ & Type I-transient RM model & $N_{\text{TS}}= 1$ per freq.\ channel\\\hline
+     \HSR      &  \ANF model (SR=50 Hz)   & $N_{\text{HSR}} = 50$ per freq.\ channel \\\hline
+     \LSR      &  \ANF model (SR=0.1 Hz)  & $N_{\text{LSR}}= 20$  per freq.\ channel \\\hline
+     \GLG      &  \GLG neural model   & $N_{\text{GLG}}= 1$  per freq.\ channel  \\\hline
+     \DS       &    Type I-II \RM model     & $N_{\text{DS}}= 1$ per freq.\ channel \\\hline
+     \TV       &  Type I-classic \RM model  & $N_{\text{TV}}= 1$ per freq.\ channel\\\hline
+     \TS$^{\ast}$ & Type I-transient \RM model & $N_{\text{TS}}= 1$ per freq.\ channel\\\hline
 \end{tabularx}
 {\footnotesize $^{\ast}$ Three chopper subtypes were simulated at different times.}
 \end{table}
@@ -44,22 +44,22 @@
 \begin{tabularx}{\textwidth}{|l|l|l|X|}\hline
 \hdr{4}{iii}{Connectivity}\\\hline
  \textbf{Name}   & \textbf{Source} & \textbf{Target} & \textbf{Pattern} \\\hline
-    \ANFGLG      &    HSR, LSR     &       GLG       & 
+    \ANFGLG      &    \HSR, \LSR     &       \GLG       & 
 Gaussian convergence, spread \sLSRGLG \sHSRGLG, weight \wHSRGLG \wLSRGLG, delay \dANFGLG \\\hline
-     \ANFDS      &    HSR, LSR     &       DS        & 
+     \ANFDS      &    \HSR, \LSR     &       \DS        & 
 Skewed Gaussian convergence,  2 octave spread below CF and 1 octave spread above CF, weight \wHSRDS \wLSRDS, number \nHSRDS \nLSRDS, delay \dANFDS \\\hline
-     \ANFTV      &    LSR, HSR     &       TV        & 
+     \ANFTV      &    \LSR, \HSR     &       \TV        & 
 Narrowband connection, weight \wLSRTV and \wHSRTV, number \nLSRTV and \nHSRTV, delay \dANFTV \\\hline
-     \ANFTS      &    LSR, HSR     &       TS        & 
+     \ANFTS      &    \LSR, \HSR     &       \TS        & 
 Narrowband connection, weight \wLSRTS and \wHSRTS, number \nLSRTS and \nHSRTS, delay \dANFTS \\\hline
-     \GLGDS      &       GLG       &       DS        & 
+     \GLGDS      &       \GLG       &       \DS        & 
 Gaussian convergence, spread $\sGLGDS$, uniform weight \wGLGDS, number \nGLGDS, delay \dGLGDS \\\hline
-     \DSTV       &       DS        &       TV        & Gaussian convergence with offset \oDSTV, with spread \sDSTV, weight \wDSTV \\\hline
-     \GLGTS      &       GLG       &       TS        & 
+     \DSTV       &       \DS        &       \TV        & Gaussian convergence with offset \oDSTV, with spread \sDSTV, weight \wDSTV \\\hline
+     \GLGTS      &       \GLG       &       \TS        & 
 Gaussian convergence, spread $\sGLGTS$, weight \wGLGTS, number \nGLGTS, delay $\dGLGTS=0.5$ ms \\\hline
-     \DSTS       &       DS        &       TS        & 
+     \DSTS       &       \DS        &       \TS        & 
 Gaussian convergence, spread $\sDSTS$, weight \wDSTS, number \nDSTS, delay $\dDSTS=0.5$ ms \\\hline
-     \TVTS       &       TV        &       TS        & 
+     \TVTS       &       \TV        &       \TS        & 
 Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTVTS=0.5$ ms \\\hline
 \end{tabularx}
 
@@ -87,8 +87,8 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \vspace{1ex}
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{v}{Input\slash Ouput}\\\hline
-\multirow{3}{*}{\textbf{Input Stimulus}} & AM stimuli with fixed parameters for all paradigms: carrier frequency 8.91 kHz and 100\% modulation depth, 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay.\\ 
-&F$_{0}$ response paradigm: $\fm=100$ Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. \\ 
+\multirow{3}{*}{\textbf{Input Stimulus}} & AM stimuli with fixed parameters for all paradigms: \fc 8.91 kHz and 100\% modulation depth ($m=1$), 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay.\\ 
+&\fz response paradigm: $\fm=100$ Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. \\ 
 &MTF paradigm: $\fm$ varied from 50 to 1200 Hz in 50 Hz increments at sound levels 20, 40, 60 and 80 dB SPL.   \\\hline 
     \textbf{Input}      & Stimulus induced Poisson spike trains from GLG units, HSR and LSR ANFs.\\\hline
 %\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}
