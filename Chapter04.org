@@ -1366,65 +1366,90 @@ The results in this chapter demonstrate the capacity to simulate \AM coding over
 the whole \CN stellate network.
 # In doing so, this work shows the success of the \CNSM model in reproducing
 # responses to complex stimuli.
+The primary physiological mechanisms for \AM detection and envelope encoding lie
+in the inner ear or cochlea \citep{Viemeister:1979,ZwickerFastl:1999}.  The
+cochlea consists of the basilar membrane, the tectoral membrane-outer hair cell
+mechanism, and the inner hair cell-\AN synapse.  The signal processing mechanism
+involves a filterbank of band-pass filters, an active-feedback filter, and a
+half-wave rectifier followed by a low-pass filter.  The
+\citet{ZilanyCarney:2010} \AN model used in this chapter includes of all these
+mechanisms and has been shown in this chapter to provide consistent and
+phenomenologically accurate output in the \HSR and \LSR units. Irregularities
+were only observed in responses to high \fm AM tones at 80 dB SPL.
 
-The primary mechanisms for \AM detection and envelope encoding lie in the inner
-ear or cochlea \citep{Viemeister:1979,ZwickerFastl:1999}.  The cochlea consists
-of the basilar membrane, the tectoral membrane-outer hair cell mechanism, and
-the inner hair cell -- \AN synapse.  Respectably, the signal processing consists
-of a filterbank of bandpass filters, an active-feedback filter, a half-wave
-rectifier followed by a low-pass filter.  The \citet{ZilanyCarney:2010} \AN
-model used in this chapter includes all these mechanisms and has shown to
-provide consistent phenomenologically accurate output in the \HSR and \LSR
-units.
-
-The temporal responses of cells in the \CN are dependant on and are limited by
-the capabilities of the \ANF input responses.  Dependencies on intra-nuclei
-synaptic interactions within isofrequency microcircuits and across frequency
-channels, and the intrinsic properties of each of the cell types are best
-understood by observing responses from across the whole network.
+The temporal responses of cells in the \CN depend on, and are limited by, the
+capabilities of the \ANF input responses.  Intra-nuclei synaptic interactions
+within isofrequency microcircuits and across frequency channels, and the
+intrinsic properties of each of the cell types, are best understood by observing
+responses from across the whole network.  The next sections discuss the results
+and their implications for each cell type simulated in this chapter.
 
 # \citep{JorisLouageEtAl:2006,JorisSchreinerEtAl:2004}.
 
 ** Golgi cells
 
-\GLG cells' influence in the \CNSM model are through \GABA-ergic synapses with
-\DS and \TS cells on their distal dendrites.  GABAergic distal inhibitory \PSPs
-have not been shown in /in vitro/ studies \citep{FerragamoGoldingEtAl:1998a},
-but application of bicuculline significantly increased the number of \APs in \DS
-and \TS cells.  This slow shunting inhibition reduces the amount of \ANF
-excitation reaching the stellate cells' soma and its site of \AP activation.  At
-high \SPL, \HSR fibres are rate-saturated and their temporal \MTF response
-diminishes with increasing sound level.
+\glsset{GABA}
 
-Golgi cells are low-firing monotonic rate-level units that, in the \CNSM model,
-have little to no temporal response to \AM tones.  The results in Figure
-\ref{fig:Ch4:GMTF} show that response of the \GLG cell model to \AM tones is only
-dependent on the sound level and that the temporal response is negligible.  The
-high temporal information from individual \LSR\space \ANFs, the main excitatory
-input of the \GLG cell model, would suggest Golgi cells would pass some of this
-information on.  Convergence of fibres with different \CFs, hence different
-delays, reduces the likelihood of coincident inputs. This mechanism is unlikely
-to cause a severe reduction in temporal information, with the example being \DS
-cells with a wider \CF convergence of \ANFs.  Intrinsic mechanisms in the cell
-membrane play a significant role in limiting temporal information.  The envelope
-of synaptic input is drowned out by the synaptic-dendritic smoothing function of
+The demonstration of the response of \GLG cells in the \CNSM model to AM tones
+in this chapter is limited by the absence of experimental data with which to
+compare it to.
+# The novel \GLG cell neural model proposed that GLG cells diminish timing
+# information contained in their \ANF inputs due to the low pass filtering of its
+# smoothing kernel.  This approach derives from the hypothesis that \GLG cells are
+# purely rate-level encoders and contribute to automatic gain mechanisms in the
+# microcircuit \citep{FerragamoGoldingEtAl:1998}.
+The results in Figure {fig:Ch4:fzerorate}C and Figure \ref{fig:Ch4:GMTF} show
+that response of the \GLG cell model to \AM tones was mainly dependent on the
+sound level.  Temporal information of \GLG cells were toward the edges of its
+response area and was diminished relative to its primary input, \LSR fibres.
+Intrinsic mechanisms in the cell membrane
+play a significant role in limiting temporal information.  The envelope of
+synaptic input is drowned out by the synaptic-dendritic smoothing function of
 the model.  The low-pass filter limits the post-synaptic neuron's ability to
 phase-lock to the modulating frequency, especially at high \fm.
+
+
+The functional influence of \GLG cells in the \CNSM model to AM tones is
+primarily in auto-regulating \DS and \TS cells excitability with a monotonic
+rate responses dependant on stimulus intensity.  At high \SPL, \HSR fibres are
+rate-saturated and their temporal \MTF response diminishes with increasing sound
+level producing a cacophony of background noise in the microcircuit. \GLG cell
+inputs to \DS and \TS cell during \AM tones aid in suppressing elevated,
+unsynchronised, continuous excitation and enhances their synchronous response to modulated
+inputs.
+
+# GABAergic \GLG cell synapses with
+# \DS and \TS cells on their distal dendrites which shunts \ANF excitation on the
+# dendrites without reaching the stellate cells' soma and its site of \AP activation. 
+
+# \GLG cells are low-firing monotonic rate-level units that, in the \CNSM model,
+# have little temporal response to \AM tones. 
 
 ** D stellate cells
 
 \DS cells are critical to the \CNSM model's ability to encode temporal
-information at high sound intensity levels.  More specifically, they enhance the
+information at high sound intensity levels.  
+The cumulative results in this chapter show the typical rate-responder behaviour in the \DS cell model's 
+\rMTF and enhanced, robust \tMTF responses (Figures \ref{fig:Ch4:DSMTF} and \ref{fig:Ch4:DSonCF}).
+
+The enhanced synchronisation of DS cell model relative to \HSR and \LSR\space \ANFs
+ to changes in sound level 
+
+# The envelope synchronisation in \DS units with a \CF above $\fc$ produced
+# band-pass rate \MTFs.  
+
+# The temporal information at the channel with \CF $\fc$
+# (Figure \ref{fig:Ch4:DSMTF}) was diminished by the strong GABAergic inhibition of
+# Golgi cells; however, the majority of active \DS units showed strong
+# synchronisation, which suggests synchronous tuning in \TV and \TS units
+# throughout the \CN.
+
+
+The functional role of \DS cells in the \CNSM model is to provide wide-band, phasic inhibition to \TV and \TS cells.
+More specifically, they enhance the
 entrainment of the \TS cells to complex stimulus envelope through precisely timed
 inhibition
 \citep{JorisSmith:1998,RhodeGreenberg:1994,FrisinaSmithEtAl:1990a,PaoliniClareyEtAl:2005,NeedhamPaolini:2006}.
-The envelope synchronisation in \DS units with a \CF above $\fc$ produced
-band-pass rate \MTFs.  The temporal information at the channel with \CF $\fc$
-(Figure \ref{fig:Ch4:DSMTF}) was diminished by the strong GABAergic inhibition of
-Golgi cells; however, the majority of active \DS units showed strong
-synchronisation, which suggests synchronous tuning in \TV and \TS units
-throughout the \CN.
-
 \DS cells receive a large number of \HSR and \LSR units from a wide range of
 frequency channels; hence, the number of active inputs increases with intensity.
 Correlated on-\CF \LSR units and \HSR inputs from upper and lower side-bands with
