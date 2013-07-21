@@ -1,6 +1,7 @@
 {%\vspace{2ex}
 \small\linespread{0.5}
 \begin{table}[ptb]
+    \centering
     \caption{CNSM Model Summary for AM tones}\label{tab:AMModelSummary}
 %  \end{table}
 %\noindent%
@@ -66,7 +67,7 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \begin{tabularx}{\textwidth}{|l|X|}\hline
 \hdr{2}{iv}{Neuron and Synapse Model}\\\hline
  \textbf{Name} & DS, TV and TS cell models \\\hline
- \textbf{Type} & Na, KA, KHT, Ih, and leak currents \citep{RothmanManis:2003b}, conductance synapse input \\\hline
+ \textbf{Type} & \INa, \IKHT, \IKLT, \IKA, \Ih, and \Ileak currents \citep{RothmanManis:2003b}, conductance synapse input \\\hline
 \raisebox{-4.5ex}{\parbox{0.2\textwidth}{\textbf{Subthreshold dynamics}}}& % \\%&%
 \rule{1em}{0em}\vspace*{-3.5ex}
 \begin{eqnarray*}
@@ -86,7 +87,9 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \vspace{1ex}
 \begin{tabularx}{\textwidth}{|l|X|}\hline %
 \hdr{2}{v}{Input\slash Ouput}\\\hline
-\textbf{Input Stimulus} & AM stimuli with fixed parameters for all paradigms: carrier frequency 8.91 kHz and 100\% modulation depth, 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay. F$_{0}$ response paradigm: $\fm=100$ Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. MTF paradigm: $\fm$ varied from 50 to 1200 Hz in 50 Hz increments at sound levels 20, 40, 60 and 80 dB SPL.   \\\hline 
+\multirow{3}{*}{\textbf{Input Stimulus}} & AM stimuli with fixed parameters for all paradigms: carrier frequency 8.91 kHz and 100\% modulation depth, 150 ms duration, 2 ms cosine squared on\slash off ramp, and 20 ms delay.\\ 
+&F$_{0}$ response paradigm: $\fm=100$ Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. \\ 
+&MTF paradigm: $\fm$ varied from 50 to 1200 Hz in 50 Hz increments at sound levels 20, 40, 60 and 80 dB SPL.   \\\hline 
     \textbf{Input}      & Stimulus induced Poisson spike trains from GLG units, HSR and LSR ANFs.\\\hline
 %\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}
 %\includegraphics[width=0.8\textwidth,keepaspectratio]{./gfx/Notch-Wl-12.5kHz-0.5.eps}
