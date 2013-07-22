@@ -1388,7 +1388,7 @@ and their implications for each cell type simulated in this chapter.
 
 ** Golgi cells
 
-\glsset{GABA}
+\glsunset{GABA}
 
 The demonstration of the response of \GLG cells in the \CNSM model to AM tones
 in this chapter is limited by the absence of experimental data with which to
