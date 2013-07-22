@@ -1507,11 +1507,11 @@ inputs.
 At high sound levels, the strong inhibitory inputs from \DS cells create a
 non-linear response in \TV cells.  \TV cells' temporal response properties in
 experimental studies have been shown to be complex and non-linear
-\citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.  In general, knowledge
-of the role of \TV cells in temporal processing is incomplete.  \TV cells are
+\citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.   \TV cells are
 thought to be responsible for delayed inhibition or echo-suppression
 \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in tuning
-the temporal behaviour in \TS cells at low sound levels.
+the temporal behaviour in \TS cells at low sound levels.  In general, knowledge
+of the role of \TV cells in temporal processing is incomplete.
 
 ** T stellate cells
 
@@ -1560,10 +1560,33 @@ scope of this chapter but is an open prospect for future research.
 
 #  - Transition from temporal to rate coding in auditory pathway
 
+\yellownote{Limitations of CNSM modelling}
+
 Main limitation in this chapter has been the fixed network parameters from the
-optimisation performed in Chapter \ref{sec:Chapter3}.  The output of \TS cells
-in this chapter were not ideal
-snapshot
+optimisation performed in Chapter \ref{sec:Chapter3}.  
+
+The homogeneity of cell-type responses is important for understanding off-CF
+responses simultaneously, however the lack of diversity in responses across the
+network ... blah blah
+
+Homogeneity of synaptic delays, idealises 
+
+The output of \TS cells in this chapter were not ideal
+
+
+# snapshot of parameters in the CN cells' input connections
+
+homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM model
+
+AM coding important  for vocal communication in \fc less than 3kHz - why use 9 kHz (suited the cat model)
+
+benefit versus detriment of inhibition-excitation in Choppers complicated mixture of input synch phase , synch phase combined with delayed input
+inhibition on phase or antiphase   
+
+unsychronised inhibition (like that seen in GLG cells 
+
+synchronised input with laggy 
+
 
 
 * Conclusion
