@@ -635,12 +635,12 @@ contribute to this enhancement.
 # (\Eleak) in the \TV cell model also increases the difference between \RMP and
 # \AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
 # and enhances the AC component of \HSR and \LSR excitatory inputs.
-In the centre of the \TV cell temporal \fz response map (Figure
-\ref{fig:Ch4:fzero}E, units with \CF near \fc at high stimulus intensities), \SI
-values deteriorate to below 0.3. Here, \HSR inputs to the \TV cell model are not
-temporally significant but the combination of \LSR excitation and \DS cell
-inhibition with high temporal precision enhances the \TV cells to encode
-temporally relevant information to cells in the microcircuit.
+# In the centre of the \TV cell temporal \fz response map (Figure
+# \ref{fig:Ch4:fzero}E, units with \CF near \fc at high stimulus intensities), \SI
+# values deteriorate with no firing. At low \SPL, \HSR inputs to the \TV cell model are not
+# temporally significant but the combination of \LSR excitation and \DS cell
+# inhibition with high temporal precision enhances the \TV cells to encode
+# temporally relevant information to cells in the microcircuit.
 
 
 Figure \ref{fig:Ch4:fzero}F shows the \fz response map of \ChS subtype \TS cell
@@ -650,16 +650,21 @@ models. \ChS model cells receive inputs from all the other cell types in the
 response map with elevated temporal responses over the whole map (mean 0.70, min
 0.366, max 0.973).  The \fz response of the unit with \CF at \fc has a sharp
 rise in \SI at rate threshold then falls to 0.216 \SI at 50 dB \SPL, then
-steadily rises to 0.800 \SI at 90 dB \SPL.  The rate response (Figure
-\ref{fig:Ch4:fzero}F) is not stable at sound levels above 60 dB (as shown by the
-white patches in the temporal response) where the firing rate is low.  The
-inhibition to the \ChS model is stronger for units with \CFs below \fc.
-Figure \ref{fig:Ch4:fzero}G shows the \fz response map of \ChTone subtype \TS
-cell models.  This behaviour exaggerates the characteristic robustness of the
-\TS cell \fz response summarised in Figure \ref{fig:Ch4:ANCNSummary}.
-The \fz responses of the final \TS cell in the \CNSM model, \ChTtwo, is shown in Figure
-\ref{fig:Ch4:fzero}H (temporal) and in Figure
-\ref{fig:Ch4:fzerorate}H (rate).
+steadily rises to 0.800 \SI at 90 dB \SPL. The characteristic robustness of the
+\TS cell on-CF \fz response, summarised in Figure \ref{fig:Ch4:ANCNSummary}, is
+appropriately matched by the \ChS model with strong enhancement of temporal
+information at high \SPL.  The rate response (Figure \ref{fig:Ch4:fzero}F) is
+not stable at sound levels above 60 dB (as shown by the white patches in the
+temporal response) where the firing rate is low.  The inhibition to the \ChS
+model is stronger for units with \CFs below \fc.  Figure \ref{fig:Ch4:fzero}G
+shows the \fz response map of \ChTone subtype \TS cell models.  The strong
+firing rate after threshold is equally matched by the strong inhibition at high
+SPL on the \ChTone model, seen in its rate-level response map (Figure
+\ref{fig:Ch4:fzerorate}G) The \fz responses of the final \TS cell in the \CNSM
+model, \ChTtwo, were more robust in its rate response (Figure
+\ref{fig:Ch4:fzerorate}H) with enhanced synchronisation in the lateral sidebands
+(Figure \ref{fig:Ch4:fzero}H). The on-CF \ChTtwo unit peaked at 15 dB SPL with
+SI 0.873 before falling to 0.35 with some irregularities at higher sound levels.
 
 
 
@@ -1120,15 +1125,17 @@ higher \SI values than \HSR\space \ANFs.  Despite low firing rates in stimuli
 above 40 dB SPL, the temporal responses of all GLG cell's in Figure
 \ref{fig:Ch4:TVMTF} and the on-\CF\space \GLG cell in Figure
 \ref{fig:Ch4:TVonCF}B show significant temporal information (Rayleigh test,
-p$<0.05$).  The central channel had corner-off frequencies around 500 Hz (Figure
+p$<0.05$).  
+
+The central channel had corner-off frequencies around 500 Hz (Figure
 \ref{fig:Ch4:TVonCF}B), indicating a limitation in the intrinsic cell properties
 that integrate ANF inputs.  For the 20 dB \SPL stimuli shown in Figure
 \ref{fig:Ch4:TVonCF}B, the \TV cell's \BMF of the band-pass filter at 150 Hz had
 \SI of 0.964, a strongly synchronised response from unit with a high firing
 rate.  The \BMF shifted to 350 Hz at 40 dB SPL, however the firing rate was
-greatly diminished.  The temporally active TV cell units at 60 and 80 dB appear
-highly synchronised but this is an artefact of the single spike in each
-repetition at onset.
+greatly diminished.  The few temporally active TV cell units at 60 and 80 dB
+appear highly synchronised but this is an artefact in a neural group that is
+strongly inhibited across the network at high sound levels.
 
 
 # *Notes*
