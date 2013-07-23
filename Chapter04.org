@@ -13,7 +13,7 @@
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 #+LATEX_HEADER:  %\usepackage[notcite]{showkeys}
-#+BIBLIOGRAPHY: ../org-manuscript/bib/MyBib alphanat
+#+BIBLIOGRAPHY: ../org-manuscript/bib/MyBib plainnat
 
 
 #+LaTeX:\glsresetall[main,acronym]
