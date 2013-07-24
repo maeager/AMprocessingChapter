@@ -1560,27 +1560,21 @@ scope of this chapter but is an open prospect for future research.
 
 #  - Transition from temporal to rate coding in auditory pathway
 
-\yellownote{Limitations of CNSM modelling}
+\yellownote{Limitation para on the optimisation process in Ch3 creating a snapshot of cells and homogeneity in the model}
 
 Main limitation in this chapter has been the fixed network parameters from the
 optimisation performed in Chapter \ref{sec:Chapter3}.  
-
 The homogeneity of cell-type responses is important for understanding off-CF
 responses simultaneously, however the lack of diversity in responses across the
-network ... blah blah
-
-Homogeneity of synaptic delays, idealises 
-
-The output of \TS cells in this chapter were not ideal
-
-
+network limit the realism of the model.  
+[Homogeneity of synaptic delays, idealises ...]
+[The output of \TS cells in this chapter were not ideal ...]
 # snapshot of parameters in the CN cells' input connections
+[homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM
+model]
+[AM coding important for vocal communication in \fc less than 3kHz - why use 9
+kHz (suited the cat model)]
 
-homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM
-model
-
-AM coding important for vocal communication in \fc less than 3kHz - why use 9
-kHz (suited the cat model)
 
 There are many complex temporal processing dynamics in a \BNN model with excitatory and inhibitory
 connections that may be both a benefit and a detriment to the synchronised
