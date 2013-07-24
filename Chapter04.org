@@ -1576,16 +1576,31 @@ The output of \TS cells in this chapter were not ideal
 
 # snapshot of parameters in the CN cells' input connections
 
-homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM model
+homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM
+model
 
-AM coding important  for vocal communication in \fc less than 3kHz - why use 9 kHz (suited the cat model)
+AM coding important for vocal communication in \fc less than 3kHz - why use 9
+kHz (suited the cat model)
 
-benefit versus detriment of inhibition-excitation in Choppers complicated mixture of input synch phase , synch phase combined with delayed input
-inhibition on phase or antiphase   
-
-unsychronised inhibition (like that seen in GLG cells 
-
-synchronised input with laggy 
+There are many complex temporal processing dynamics in a \BNN model with excitatory and inhibitory
+connections that may be both a benefit and a detriment to the synchronised
+output of post-synaptic neurons. 
+# benefit versus detriment of inhibition-excitation in Choppers complicated
+# mixture of input synch phase , synch phase combined with delayed input
+# inhibition on phase or antiphase
+A mixture of modulated inputs are beneficial when they are in phase with each
+other, but are detrimental when they uniformly out of phase .  Unsynchronised
+excitation (like that seen in HSR fibres on CF in moderate to loud AM tones) can
+saturate temporal information and raise firing rates in the post-synaptic unit;
+however it can be entrained to the envelope with fast, phasic,
+highly-synchronised inhibition (like that seen by \DS cells)
+\citep{VreeswijkAbbottEtAl:1995}.  Unsychronised inhibition (like that seen in
+\GLG cells on CF) can be beneficial to a saturated post-synaptic neuron by
+reducing the DC component of synaptic inputs and can also enhance the temporal
+output by rectifying the AC component.  Phase lags, irregularities in synaptic
+delays and dendritic smoothing all contribute to reductions in temporal
+processing, especially at the upper limits of \fm.
+# synchronised input with laggy 
 
 
 
