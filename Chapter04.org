@@ -61,27 +61,6 @@
   (load-file "./init.el")
 #+END_SRC
 
-* Layout                                                           :noexport:
-
- | Section                  |          | Pages | Actual | \%TODO/DONE |
- |--------------------------+----------+-------+--------+-------------|
- | Introduction             |          |       |        | [90%]       |
- | Amplitude Modulation     |          |       |        | [50%]       |
- | \quad F0 response        | AN       |       |        |             |
- |                          | CN units |       |        | [95%]       |
- | \quad \MTF               | AN       |       |        |             |
- |                          | CN units |       |        |             |
- | Temporal Coding in Vowel |          |       |        | ?           |
- |                          | AN       |       |        |             |
- |                          | CN       |       |        |             |
- | Discussion               |          |       |        |             |
- |--------------------------+----------+-------+--------+-------------|
- |                          | Total    |    20 |        |             |
-  #+TBLFM: @19$4=vsum(@3$4..@18$4);
-
-
-#  \newpage
-
 * Introduction
 
 # The next chapter investigates the optimised \CNSM model with more the complex,
