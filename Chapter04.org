@@ -153,24 +153,24 @@ s(t) = [1 + m \sin(2\pi{}f_{\mathrm{m}}t)] \sin (2\pi{}f_{\mathrm{c}}t)
 \end{equation}
 \noindent
 #+END_LaTeX
-where /m/ is the modulation height.  A portion of an \AM stimulus is shown
-in Figure \ref{fig:Ch4:def}A, which is a 100\% modulated sinusoidal \AM tone
-(/m/=1), with \fc 2 kHz and \fm of
-100 Hz.  When transformed to the frequency-domain, the frequency components of
-an \AM tone are a dominant spike at \fc and two components \fc $\pm$ \fm with
-half the height of the component at \fc (Figure \ref{fig:Ch4:def}B).  In the \CNSM model, the
-\citet{ZilanyCarney:2010} \AN model was processed using an \AM tone (150 ms 65 dB
-\SPL) with 100 frequency channels from 200 Hz to 40 kHz (centre frequencies
+where /m/ is the modulation height.  A portion of an \AM stimulus is shown in
+Figure \ref{fig:Ch4:def}A, which is a 100\% modulated sinusoidal \AM tone
+(/m/=1), with \fc 2 kHz and \fm of 100 Hz.  When transformed to the
+frequency-domain, the frequency components of an \AM tone are a dominant spike
+at \fc and two components \fc $\pm$ \fm with half the height of the component at
+\fc (Figure \ref{fig:Ch4:def}B).  In the \CNSM model, the
+\citet{ZilanyCarney:2010} \AN model was processed using an \AM tone (150 ms 65
+dB \SPL) with 100 frequency channels from 200 Hz to 40 kHz (centre frequencies
 determined by the cat Greenwood function, see Section \ref{sec:Methods:ANFs})
 and 20 \HSR fibres per frequency channel.  Figure \ref{fig:Ch4:def}C shows a
-portion of the spike time histogram of 2000 \HSR\space \ANFs to a 150 ms \AM stimulus
-as shown in Figure \ref{fig:Ch4:def}A.  A fast-fourier transform was applied to
-the all-unit histogram (excluding the first 20 ms) and a spike time histogram of
-the unit with \CF closest to \fc. The peaks in the all-unit fast-fourier
-transform (arrows in Figure \ref{fig:Ch4:def}D) are the \fm (100 Hz) and its
-harmonics.  The frequency components of \HSR fibres with \CF closest to \fc
-(dotted line in Figure \ref{fig:Ch4:def}D) show synchronisation to \fc, which is typical
-of low \CF\space \ANFs.
+portion of the spike time histogram of 2000 \HSR\space \ANFs to a 150 ms \AM
+stimulus as shown in Figure \ref{fig:Ch4:def}A.  A fast-fourier transform was
+applied to the all-unit histogram (excluding the first 20 ms) and a spike time
+histogram of the unit with \CF closest to \fc. The peaks in the all-unit
+fast-fourier transform (arrows in Figure \ref{fig:Ch4:def}D) are the \fm (100
+Hz) and its harmonics.  The frequency components of \HSR fibres with \CF closest
+to \fc (dotted line in Figure \ref{fig:Ch4:def}D) show synchronisation to \fc,
+which is typical of low \CF\space \ANFs.
 
 ** Temporal Measures of Amplitude \protect{Modulation}
 
@@ -178,9 +178,9 @@ Temporal information in neural outputs is measured using the
 \SI (also known synchronisation coefficient or vector strength)
 \citep{GoldbergBrown:1969,ShannonZengEtAl:1995,MardiaJupp:1999,JorisSchreinerEtAl:2004}.
 \SI measures phase-locking relative to the \fm or envelope of the
-stimuli. 
+stimuli.
 # In this analysis, the \SI values were combined for each modulation
-# frequency to create the \tMTF.  
+# frequency to create the \tMTF.
 The \SI measure was calculated 20 ms after the
 onset of the stimulus:
 #+BEGIN_LaTeX
@@ -226,8 +226,9 @@ Toolbox \citep{Berens:2009}.]:
 p = \exp\left(\sqrt{1+4N+4(N^2-R^2)-(1+2N)}\right)
 \end{equation}
 #+END_LaTeX
-\noindent where $R=N\times\mathrm{S}$. In this analysis, \SI and Rayleigh tests were also calculated
-using a fast Fourier transform of the period histogram to verify the procedure.
+\noindent where $R=N\times\mathrm{S}$. In this analysis, \SI and Rayleigh tests were
+also calculated using a fast Fourier transform of the period histogram to verify
+the procedure.
 
 # (Further analysis of
 # the critical values see W. Rhode's analysis on the vector
@@ -256,25 +257,26 @@ rate encoding encodes particular features of \AM signals, especially \fm in \IC
 neurons.
 
 
-To investigate the response of \CNSM model neurons to \AM tones, we tested 
+To investigate the response of \CNSM model neurons to \AM tones, we tested
 variations in sound level and variations in \fm.
 The \fz response illustrates the encoding with respect to the stimulus sound
 level, typically measured with a fixed \fm and a carrier frequency at a neuron's
 \CF.
-# effects of synchrony and rate to the stimulus  envelope (\fm) 
+# effects of synchrony and rate to the stimulus  envelope (\fm)
 \Gls{MTF} is used in auditory neuroscience to measure the output of neurons in
-response to variation in \fm.  The rate \MTF (\rMTF) measures the output in terms of firing
-rate. Temporal encoding of modulation, \tMTF, is measured using \SI at each \fm.
-Figure \ref{fig:Ch4:RG94MTF} shows the filter characteristics of low-pass and
-band-pass \tMTF responses \citep{RhodeGreenberg:1994}.  Low-pass filters have a
-stable \SI response to low \fm stimuli that degrades when \fm increases above
-the corner frequency.  Band-pass filters increase their synchrony to the \fm
-envelope to a peak \SI response, called its \BMF, after which their synchrony
-deteriorates.  The inset figures in Figure \ref{fig:Ch4:RG94MTF} provide more
-information on the nature of the SI statistic. A half-wave rectified sinusoidal
-plot, where spikes occur in only half of the cycle period around a single
-phase, has an SI of 0.784. The modulation envelope, where spikes occur across
-the whole period with one dominant phase, has a theoretical \SI of 0.5.
+response to variation in \fm.  The rate \MTF (\rMTF) measures the output in
+terms of firing rate. Temporal encoding of modulation, \tMTF, is measured using
+\SI at each \fm.  Figure \ref{fig:Ch4:RG94MTF} shows the filter characteristics
+of low-pass and band-pass \tMTF responses \citep{RhodeGreenberg:1994}.  Low-pass
+filters have a stable \SI response to low \fm stimuli that degrades when \fm
+increases above the corner frequency.  Band-pass filters increase their
+synchrony to the \fm envelope to a peak \SI response, called its \BMF, after
+which their synchrony deteriorates.  The inset figures in Figure
+\ref{fig:Ch4:RG94MTF} provide more information on the nature of the SI
+statistic. A half-wave rectified sinusoidal plot, where spikes occur in only
+half of the cycle period around a single phase, has an SI of 0.784. The
+modulation envelope, where spikes occur across the whole period with one
+dominant phase, has a theoretical \SI of 0.5.
 
 #+LABEL: fig:Ch4:RG94MTF
 #+ATTR_LaTeX: width=0.8\textwidth
@@ -303,7 +305,7 @@ segregation of streams of sounds with different fundamental frequencies
 quality or stimulus feature, as shown in other sensory pathways.  Rate coding in
 the individual \ANFs and spectral coding across all \ANFs give a poor
 representation of modulated signals
-\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}. 
+\citep{Frisina:1983,JorisYin:1992,JorisSchreinerEtAl:2004}.
 For reviews of neural encoding of sound-envelope information
 in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
 \citet{JorisSchreinerEtAl:2004}.
@@ -315,12 +317,12 @@ in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
  [[../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 
-The temporal coding of \AM in auditory neurons uses fine timing of spikes
-locked to the stimulus envelope.  Individual \ANFs can encode temporal
-information of \CF tones up to 5 kHz and \AM tones up to 2 kHz.  Figure
-\ref{fig:Ch4:RG94_AN} shows the characteristic rate and temporal MTF response of
-an \HSR\space \ANF to on-\CF\space \AM tones.  The HSR ANF rate responses are flat and saturate
-at moderate sound levels. The temporal \MTF response in HSR ANFs is low-pass,
+The temporal coding of \AM in auditory neurons uses fine timing of spikes locked
+to the stimulus envelope.  Individual \ANFs can encode temporal information of
+\CF tones up to 5 kHz and \AM tones up to 2 kHz.  Figure \ref{fig:Ch4:RG94_AN}
+shows the characteristic rate and temporal MTF response of an \HSR\space \ANF to
+on-\CF\space \AM tones.  The HSR ANF rate responses are flat and saturate at
+moderate sound levels. The temporal \MTF response in HSR ANFs is low-pass,
 moderate in maximum synchrony, and the synchronisation deteriorates with
 increasing sound intensity.
 
@@ -408,8 +410,8 @@ important for detecting pitch, variations in phase and harmonic differences
 
 
 #  - eg. Spectral/
-# Rate coding in \HSR \ANFs give poor representation 
-#  a poor representation of modulated signals 
+# Rate coding in \HSR \ANFs give poor representation
+#  a poor representation of modulated signals
 
 # AM coding in CN - enhanced relative to ANF
 # \citep{KhannaTeich:1989,Moller:1972,Frisina:1983,Frisina:1984,FrisinaSmithEtAl:1990}
@@ -514,7 +516,7 @@ stimulus was presented to the AN and \CNSM model with duration of 150 ms and
 repeated 50 times.  Spiking outputs 20 ms after the stimulus onset were used to
 measure firing rate and \SI.
 
-#+BEGIN_LaTeX  
+#+BEGIN_LaTeX
   \begin{figure}[pt]
     \centering
     % See Figures.org  fresponse source block
@@ -560,17 +562,17 @@ channels to a single presentation of the stimulus to the \CNSM model at a fixed
 intensity. The rate level response maps for the same stimuli are
 shown in Figure \ref{fig:Ch4:fzerorate}.
 
-Figures \ref{fig:Ch4:fzero}A and B show the \fz response map of the \HSR and \LSR cell
-types in the \CNSM model. The rate level response maps of \ANFs are
-shown in Figure \ref{fig:Ch4:fzerorate}A and B. \HSR\space \ANFs have a non-linear \fz response, with
-\SI peaking around 0.6 at intensities 20-30 dB above threshold, then reducing to
-below 0.2 for intensities 60 dB above rate threshold \citep{JorisYin:1992}.
-Loss of \fz response in \ANFs is typically due to saturation at the inner hair
-cell to \AN synapse or the encoding of higher harmonics rather than
-the envelope.  The \citet{ZilanyBruceEtAl:2009} \ANF model was designed to
-replicate \AM responses and the \fz response.  The V-like \fz response map of
-the \HSR fibres (Figure \ref{fig:Ch4:fzero}A) shows the strong non-linear temporal
-behaviour at each frequency channel surrounding the \fc.
+Figures \ref{fig:Ch4:fzero}A and B show the \fz response map of the \HSR and
+\LSR cell types in the \CNSM model. The rate level response maps of \ANFs are
+shown in Figure \ref{fig:Ch4:fzerorate}A and B. \HSR\space \ANFs have a
+non-linear \fz response, with \SI peaking around 0.6 at intensities 20-30 dB
+above threshold, then reducing to below 0.2 for intensities 60 dB above rate
+threshold \citep{JorisYin:1992}.  Loss of \fz response in \ANFs is typically due
+to saturation at the inner hair cell to \AN synapse or the encoding of higher
+harmonics rather than the envelope.  The \citet{ZilanyBruceEtAl:2009} \ANF model
+was designed to replicate \AM responses and the \fz response.  The V-like \fz
+response map of the \HSR fibres (Figure \ref{fig:Ch4:fzero}A) shows the strong
+non-linear temporal behaviour at each frequency channel surrounding the \fc.
 # at high
 # intensities when the carrier frequency is centred on a unit's \CF.
 For the on-\CF unit (8.91 kHz), the peak \SI was 0.775 at 15 dB \SPL and then
@@ -603,9 +605,10 @@ moderate near the edges of their response area and deteriorated at high SPL to
 levels below 0.3 SI.  The diminished temporal information is a result of the
 smoothing kernel in the \GLG neural model. Despite this, the GLG cell model was
 still capable of passing temporal information to other cells in the microcircuit
-(mean SI=0.52, p$<0.05$); however, the GLG cells' monotonic rate-level response shows
-that they are very good at encoding stimulus intensity in \AM tones and using their slower
-GABAergic synapses to control excitability within the \CNSM model.
+(mean SI=0.52, p$<0.05$); however, the \GLG cells' monotonic rate-level response
+shows that they are very good at encoding stimulus intensity in \AM tones and
+using their slower GABAergic synapses to control excitability within the \CNSM
+model.
 
 Figures \ref{fig:Ch4:fzero}D and \ref{fig:Ch4:fzerorate}D show the \DS cells'
 temporal and rate \fz response maps, respectively. Both the rate and temporal
@@ -622,15 +625,15 @@ linear over \SPL similar to experimental results \citep{JorisSmith:1998}.
 
 The \fz response of \TV cells (Figure \ref{fig:Ch4:fzero}E) shows an enhanced
 temporal response but due to the cell's non-linear rate response (Figure
-\ref{fig:Ch4:fzerorate}E) its activity was only effective at sound levels below 50 dB SPL.
+\ref{fig:Ch4:fzerorate}E) its activity was only effective at sound levels below
+50 dB SPL.
 # High \SI values (close to 1) near the rate
 # threshold boundary occur where \HSR units are at their peak in Figure
 # \ref{fig:Ch4:fzero}A.
-\TV cells receive strong inhibition from \DS cells, especially at higher sound levels.
-At lower sound levels, TV cells process only HSR and LSR ANF inputs.
- This implicates intrinsic mechanisms in the
-\TV cell model and integration of \ANF inputs within the dynamic range that
-contribute to this enhancement.
+\TV cells receive strong inhibition from \DS cells, especially at higher sound
+levels.  At lower sound levels, TV cells process only HSR and LSR ANF inputs.
+This implicates intrinsic mechanisms in the \TV cell model and integration of
+\ANF inputs within the dynamic range that contribute to this enhancement.
 # contribute to a high input resistance at \RMP.  The lower leak potential
 # (\Eleak) in the \TV cell model also increases the difference between \RMP and
 # \AP threshold.  These mechanisms remove the DC component of uncorrelated inputs
@@ -718,28 +721,28 @@ at each intensity.  For \HSR units with \CFs above \fc, rate increases with \fm
 and peaks around 600 Hz.  The rate peak occurs in unit 75 (CF 14 kHz) with rate
 30\% greater than the unit closest to \fc (unit 65, \CF 8.9 kHz).
 
-Temporal information in \HSR units at each of the corresponding stimulus intensities
-(Figures \ref{fig:Ch4:HSRMTF}B, D and F) is strongest near the edges of
-excitation with a low-pass \tMTF extending beyond 1.2 kHz (the maximum range \fm
-is this study).  At 80 dB \SPL (Figure \ref{fig:Ch4:HSRMTF}B), units with \CFs
-15.26 kHz to 18.2 kHz had mean \SI of 0.75 with a peak of 0.814.  Moving toward \fc,
-the \HSR units lose low modulation frequency information to become band-pass
-\tMTF filters until 11.7 kHz where the salient temporal information ceases.
-Units between 11.7 kHz and 8.18 kHz (two frequency channels below the centre
-unit) show a rapid deterioration of temporal information despite being at the
-centre of the stimulus' energy.  Below the centre channel, band-pass \tMTF
+Temporal information in \HSR units at each of the corresponding stimulus
+intensities (Figures \ref{fig:Ch4:HSRMTF}B, D and F) is strongest near the edges
+of excitation with a low-pass \tMTF extending beyond 1.2 kHz (the maximum range
+\fm is this study).  At 80 dB \SPL (Figure \ref{fig:Ch4:HSRMTF}B), units with
+\CFs 15.26 kHz to 18.2 kHz had mean \SI of 0.75 with a peak of 0.814.  Moving
+toward \fc, the \HSR units lose low modulation frequency information to become
+band-pass \tMTF filters until 11.7 kHz where the salient temporal information
+ceases.  Units between 11.7 kHz and 8.18 kHz (two frequency channels below the
+centre unit) show a rapid deterioration of temporal information despite being at
+the centre of the stimulus' energy.  Below the centre channel, band-pass \tMTF
 responses increase in mean and peak values further away from the centre with the
 apex at unit 54 (CF 5.43 kHz, mean \SI of 0.697, max \SI 0.785).
 
 The \tMTF response observed at 60 dB \SPL (Figure \ref{fig:Ch4:HSRMTF}D) looks
 similar to the 80 dB \SPL response with a reduced number of frequency channels
-reflecting the reduced rate excitation range in Figure \ref{fig:Ch4:HSRMTF}C. The
-dominant frequency channels below (unit 59, \CF 6.27 kHz, mean \SI 0.666, max \SI
-0.805) and above (unit 75, \CF 13.97 kHz, mean \SI 0.741, max \SI 0.787) are at
-the border of rate threshold, showing a gradual increase of temporal information
-in units further from the centre \CF unit. At 40 dB \SPL, the two salient
-information bands begin to merge as the range of excited frequency channels get
-closer to the centre \CF.
+reflecting the reduced rate excitation range in Figure
+\ref{fig:Ch4:HSRMTF}C. The dominant frequency channels below (unit 59, \CF 6.27
+kHz, mean \SI 0.666, max \SI 0.805) and above (unit 75, \CF 13.97 kHz, mean \SI
+0.741, max \SI 0.787) are at the border of rate threshold, showing a gradual
+increase of temporal information in units further from the centre \CF unit. At
+40 dB \SPL, the two salient information bands begin to merge as the range of
+excited frequency channels get closer to the centre \CF.
 
 
 
@@ -756,47 +759,47 @@ closer to the centre \CF.
   \end{figure}
 #+END_LaTeX
 
-\Gls{LSR} fibers' rate responses to \AM tones were non-saturating and centred on the
-\fc (Figures \ref{fig:Ch4:LSRMTF}A, C and E). The \rMTF of the on-\CF
-unit was typically low-pass but did fluctuate at modulation frequencies above
-400 Hz for each stimulus intensity.
-Figures \ref{fig:Ch4:LSRMTF}B, D and F show that \LSR fibres in the \AN model were
-better at encoding temporal information than \HSR\space \ANFs. This has been
-observed previously in cat \ANFs \citep{JorisYin:1992}.  The low-pass \tMTF is typical of
-\ANFs and can be seen at each stimulus intensity, particularly in units above
-the \fc. The \fm cut-off frequency for \LSR units was beyond the 1.2 kHz range
-used in this study.  At 80 dB \SPL (Figure \ref{fig:Ch4:LSRMTF}B), \LSR units had
-higher mean and peak \SI values than \HSR units (mean 0.74, max 0.937) above \fc
-and the low-pass \tMTF response was maintained.  For the on-\CF unit (unit 65, \CF
-8.91 kHz), its mean \SI 0.415 with a peak of 0.673 was the lowest of all salient
-temporal response channels.  Below \fc, an unusual temporal response at high \fm
-may relate to the rate fluctuations in Figure \ref{fig:Ch4:LSRMTF}A or a
-reduction in the \fm cut-off frequency. The high gain, low-pass \tMTF responses
-were observed at 60 and 40 dB \SPL stimulus intensities (Figures
-\ref{fig:Ch4:LSRMTF}D and F).
+\Gls{LSR} fibers' rate responses to \AM tones were non-saturating and centred on
+the \fc (Figures \ref{fig:Ch4:LSRMTF}A, C and E). The \rMTF of the on-\CF unit
+was typically low-pass but did fluctuate at modulation frequencies above 400 Hz
+for each stimulus intensity.  Figures \ref{fig:Ch4:LSRMTF}B, D and F show that
+\LSR fibres in the \AN model were better at encoding temporal information than
+\HSR\space \ANFs. This has been observed previously in cat \ANFs
+\citep{JorisYin:1992}.  The low-pass \tMTF is typical of \ANFs and can be seen
+at each stimulus intensity, particularly in units above the \fc. The \fm cut-off
+frequency for \LSR units was beyond the 1.2 kHz range used in this study.  At 80
+dB \SPL (Figure \ref{fig:Ch4:LSRMTF}B), \LSR units had higher mean and peak \SI
+values than \HSR units (mean 0.74, max 0.937) above \fc and the low-pass \tMTF
+response was maintained.  For the on-\CF unit (unit 65, \CF 8.91 kHz), its mean
+\SI 0.415 with a peak of 0.673 was the lowest of all salient temporal response
+channels.  Below \fc, an unusual temporal response at high \fm may relate to the
+rate fluctuations in Figure \ref{fig:Ch4:LSRMTF}A or a reduction in the \fm
+cut-off frequency. The high gain, low-pass \tMTF responses were observed at 60
+and 40 dB \SPL stimulus intensities (Figures \ref{fig:Ch4:LSRMTF}D and F).
 
 
 Figures \ref{fig:Ch4:RG94ANF}A and B shows the on-\CF rate and temporal \MTF
 responses of \HSR\space \ANF experimental data \citep{RhodeGreenberg:1994}.  All
 stimulus levels but the lowest (20 dB \SPL) showed saturated rate responses in
-the on-\CF\space \rMTF response of the \HSR\space \ANF (Figure \ref{fig:Ch4:RG94ANF}C).
-The sensitivity to \fm at 20 dB \SPL shows the typical rate-following
-characteristic by phase-locking to each cycle and following the increase in the
-number of cycles.  Temporal information was also more substantial at 20 dB for
-the on-\CF\space \HSR fibres \tMTF response (Figure \ref{fig:Ch4:RG94ANF}D).  As shown in
-Figure \ref{fig:Ch4:HSRMTF}, the on-\CF\space \tMTF response becomes insignificant with
-increasing sound level.  The \LSR\space \ANF model's rate responses increased
-with sound level but were insensitive to changes in \fm with flat \rMTF
-responses (Figure \ref{fig:Ch4:RG94ANF}E).  The on-\CF\space \tMTF responses of
-simulated \LSR\space \ANFs were low-pass and linearly decreased with increasing
-sound levels but still maintained moderate temporal information (Figure
+the on-\CF\space \rMTF response of the \HSR\space \ANF (Figure
+\ref{fig:Ch4:RG94ANF}C).  The sensitivity to \fm at 20 dB \SPL shows the typical
+rate-following characteristic by phase-locking to each cycle and following the
+increase in the number of cycles.  Temporal information was also more
+substantial at 20 dB for the on-\CF\space \HSR fibres \tMTF response (Figure
+\ref{fig:Ch4:RG94ANF}D).  As shown in Figure \ref{fig:Ch4:HSRMTF}, the
+on-\CF\space \tMTF response becomes insignificant with increasing sound level.
+The \LSR\space \ANF model's rate responses increased with sound level but were
+insensitive to changes in \fm with flat \rMTF responses (Figure
+\ref{fig:Ch4:RG94ANF}E).  The on-\CF\space \tMTF responses of simulated
+\LSR\space \ANFs were low-pass and linearly decreased with increasing sound
+levels but still maintained moderate temporal information (Figure
 \ref{fig:Ch4:RG94ANF}F).  The irregular errors in \HSR and \LSR\space \ANF
 responses at high \SPL and high \fm are an artefact of the
 \citet{ZilanyBruceEtAl:2009} AN model.
 
 #+BEGIN_LaTeX
   \begin{figure}[t!]
-    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\ 
+    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\
     \centering
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\ \vspace{1ex}
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/rtmtfonCF-ANF.pdf}}
@@ -818,7 +821,7 @@ responses at high \SPL and high \fm are an artefact of the
 
 #+name: mean_ANF_vsSPIKES_onCF
 #+header: :exports none  :results raw replace
-#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat  
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat
   BEGIN{count=0;total=0;max=0; min=""}
   {if ($2 == 65){if ($5>5.99){if ($4>max){max=$4};total+=$4; count+=1}}}
   END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
@@ -831,7 +834,7 @@ responses at high \SPL and high \fm are an artefact of the
 
 #+name: mean_vsSPIKES_onCF
 #+header: :exports none  :results raw replace
-#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat  
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
   BEGIN{count=0;total=0;max=0; maxfm=0;min=""}
   {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4;maxfm=$1};total+=$4; count+=1}}}
   END{printf("%0.3g, %0.3g, %d, %d",total/count,max, count, maxfm)}
@@ -874,7 +877,7 @@ call_mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStel
 | 0.208 | 0.553 | 24 |
 
 
-#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat 
+#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
 | 0.252 | 0.539 | 24 |
 
 
@@ -882,14 +885,14 @@ call_mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStel
 
 call_mean_ANF_vsSPIKES_onCF()[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat ]
 
-#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat 
+#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat
 | 0.392 | 0.608 | 24 |
 
 
 #+name: mean_ANFvs
 #+BEGIN_SRC sh :exports none :results raw replace  :var datapath=~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2 :var SPL=60 :var CELL=4
   vsfile=${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.${CELL}.dat
- echo $vsfile 
+ echo $vsfile
   grep -e '\s65\s' ${vsfile} | awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
 #+END_SRC
 
@@ -904,7 +907,7 @@ call_mean_ANFvs()
 
 #+BEGIN_LaTeX
   \begin{figure}[tb]
-  \centering 
+  \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-3.pdf}}
   \caption[GLG cell rate and temporal MTF responses for three stimulus sound levels]{\GLG cell rate (\rMTF, left column) and temporal (\tMTF, right column)
     modulation transfer function response maps for \AM stimulus sound levels at 40, 60 and 80 dB
@@ -950,36 +953,36 @@ low \fm.
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace
 | 0.39 | 0.748 | 14 | 100 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace
 | 0.393 | 0.7 | 14 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace
 | 0.393 | 0.7 | 14 | 100 |
 
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace
 | 0.218 | 0.345 | 10 | 100 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace
 | 0.275 | 0.377 | 8 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace
 | 0.275 | 0.377 | 8 | 150 |
 
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.3.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.3.dat ]() :results raw replace
 | 0.146 | 0.247 | 7 | 50 |
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.3.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.3.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.3.dat ]() :results raw replace
 | 0.11 | 0.155 | 11 | 100 |
 
 
@@ -1010,12 +1013,12 @@ rate \MTF responses at low \fm, a peak between 300-400 Hz and falling off to a
 stable rate at high \fm.  This behaviour is called "rate-responder" due to the
 linear increase in firing-rate being dictated to by shortening of the \fm
 envelope period.  This is similar to ideal onset units (octopus cells) in the
-\PVCN but the corner- and cut-off frequencies of the \DS cell's \rMTF are typically
-lower.
+\PVCN but the corner- and cut-off frequencies of the \DS cell's \rMTF are
+typically lower.
 
 #+BEGIN_LaTeX
   \begin{figure}[th!]
-    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\ 
+    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\
     \centering
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-2.pdf}}
     \caption[On CF rate and temporal MTFs of DS cells]{Rate and temporal MTF response properties
@@ -1031,16 +1034,16 @@ lower.
 The temporal responses of \DS units were predominantly band-pass, with higher
 \SI values than \ANFs.  For lower \SPL, the responses were consistent across
 active units with a falling cut-off frequency with falling \CF.  For high \SPL,
-the \DS units were divided along the central channel. The central unit (Figure \ref{fig:Ch4:DSonCF}B, with \CF
-closest to the carrier frequency) had mean SI values of 0.827, 0.566, 0.41 and
-0.485 for \tMTF responses at 20, 40, 60 and 80 dB \SPL, respectively. The
-cut-off frequency for significant SI values (Rayleigh test, p$<0.05$) was above
-the maximum \fm we used in this study (1200 Hz). The maximum values were 0.945
-(\fm=100 Hz), 0.826 (\fm=150 Hz), 0.713 (\fm=250 Hz) and 0.704 (\fm=250 Hz). The
-\DS units above the central channel had the strongest synchronisation and
-cut-off frequencies near the upper limit of the \AN model.  The \DS units below
-the central channel had cut-off frequencies around 400 Hz, similar to \TS and
-\TV units.
+the \DS units were divided along the central channel. The central unit (Figure
+\ref{fig:Ch4:DSonCF}B, with \CF closest to the carrier frequency) had mean SI
+values of 0.827, 0.566, 0.41 and 0.485 for \tMTF responses at 20, 40, 60 and 80
+dB \SPL, respectively. The cut-off frequency for significant SI values (Rayleigh
+test, p$<0.05$) was above the maximum \fm we used in this study (1200 Hz). The
+maximum values were 0.945 (\fm=100 Hz), 0.826 (\fm=150 Hz), 0.713 (\fm=250 Hz)
+and 0.704 (\fm=250 Hz). The \DS units above the central channel had the
+strongest synchronisation and cut-off frequencies near the upper limit of the
+\AN model.  The \DS units below the central channel had cut-off frequencies
+around 400 Hz, similar to \TS and \TV units.
 
 
 # - Enhanced low-pass temporal \MTF
@@ -1100,14 +1103,15 @@ received similar \ANF inputs, but the inhibition limited the activity at low
 sound level and then to a narrow range at higher \SPL.  The temporal responses
 of \TV units had enhanced synchronisation and sharper cut-off.  The outer edges
 of active units provided the best temporal response with little to no temporal
-information at the \fc units.  The rate \MTF responses on the on-\CF TV cell in Figure \ref{fig:Ch4:TVonCF}A showed a marked drop in spike
-output after 20 dB SPL.  This non-linearity in \TV cell responses to \AM tones reflects 
-the inconclusive status of the relevant experimental data
+information at the \fc units.  The rate \MTF responses on the on-\CF TV cell in
+Figure \ref{fig:Ch4:TVonCF}A showed a marked drop in spike output after 20 dB
+\SPL.  This non-linearity in \TV cell responses to \AM tones reflects the
+inconclusive status of the relevant experimental data
 \citep{SpirouDavisEtAl:1999,NeuertVerheyEtAl:2004,ZhaoLiang:1997,FrisinaSmithEtAl:1990}.
 
 #+BEGIN_LaTeX
   \begin{figure}[t!]
-    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\ 
+    {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\
     \centering
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-1.pdf}}
     \caption[On CF rate and temporal MTFs of TV cells]{Rate and temporal MTF response properties
@@ -1125,7 +1129,7 @@ higher \SI values than \HSR\space \ANFs.  Despite low firing rates in stimuli
 above 40 dB SPL, the temporal responses of all GLG cell's in Figure
 \ref{fig:Ch4:TVMTF} and the on-\CF\space \GLG cell in Figure
 \ref{fig:Ch4:TVonCF}B show significant temporal information (Rayleigh test,
-p$<0.05$).  
+p$<0.05$).
 
 The central channel had corner-off frequencies around 500 Hz (Figure
 \ref{fig:Ch4:TVonCF}B), indicating a limitation in the intrinsic cell properties
@@ -1151,30 +1155,30 @@ strongly inhibited across the network at high sound levels.
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.1.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.1.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.1.dat ]() :results raw replace
 | 0.437 | 0.964 | 22 | 150 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.1.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.1.dat ]() :results raw replace
 | 0.467 | 0.968 | 20 | 150 |
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.1.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.1.dat ]() :results raw replace
 | 0.492 | 0.967 | 19 | 150 |
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.1.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.1.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.1.dat ]() :results raw replace
 | 0.445 | 0.884 | 24 | 400 |
 
 | 0.445 | 0.884 | 24 | 400 |
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.1.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.1.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/60/vsSPIKES.1.dat ]() :results raw replace
 | 0.887 | 1 | 11 | 100 |
 
 | 0.887 | 1 | 11 | 100 |
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.1.dat ]()[ :results raw replace ]
 
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.1.dat ]() :results raw replace 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.1.dat ]() :results raw replace
 | 0.94 | 1 | 3 | 50 |
 
 | 0.94 | 1 | 3 | 50 |
@@ -1205,21 +1209,21 @@ units above \CF (channels 55 to 58) had low-pass \tMTFs.  For 60 dB \SPL, most
 active units showed band-pass \MTFs except for the central units, which showed
 limited results or a low-pass \MTF.  Outermost active units (above and below
 \fc) had the highest synchronisation across the \TS cell population similarly to
-\HSR and \LSR excitatory input responses and the phasic inhibitory inputs from \GLG and
-\DS cells.
+\HSR and \LSR excitatory input responses and the phasic inhibitory inputs from
+\GLG and \DS cells.
 
 
 
 #+BEGIN_LaTeX
   \begin{figure}[thp]
     \centering
-  {\figfont{A}\space \space      \textsf{ \ChS\space   \rMTF }    \hspace{0.25\textwidth}    \figfont{B}\space \space      \textsf{  \ChS\space    \tMTF }     \hspace{0.35\textwidth}}\\ 
+  {\figfont{A}\space \space      \textsf{ \ChS\space   \rMTF }    \hspace{0.25\textwidth}    \figfont{B}\space \space      \textsf{  \ChS\space    \tMTF }     \hspace{0.35\textwidth}}\\
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}\\
-  {\figfont{C}\space \space      \textsf{  \ChTone\space   \rMTF }  \hspace{0.25\textwidth}    \figfont{D}\space \space     \textsf{  \ChTone\space   \tMTF }  \hspace{0.35\textwidth}}\\ 
+  {\figfont{C}\space \space      \textsf{  \ChTone\space   \rMTF }  \hspace{0.25\textwidth}    \figfont{D}\space \space     \textsf{  \ChTone\space   \tMTF }  \hspace{0.35\textwidth}}\\
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}}\\
-  {\figfont{E}\space \space      \textsf{  \ChTtwo\space   \rMTF }   \hspace{0.25\textwidth}    \figfont{F}\space \space     \textsf{  \ChTtwo\space   \tMTF }  \hspace{0.35\textwidth}}\\ 
+  {\figfont{E}\space \space      \textsf{  \ChTtwo\space   \rMTF }   \hspace{0.25\textwidth}    \figfont{F}\space \space     \textsf{  \ChTtwo\space   \tMTF }  \hspace{0.35\textwidth}}\\
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT2.pdf}}\\
-    \caption[Rate and temporal MTF responses in \ChS and \ChT$_1$ units on \CF]{A. Rate \MTFs of sustained chopper (ChS) model (unit 65, \CF 8.95 kHz) on-CF to sound levels 20, 40, 60 and 80 dB SPL. B. 
+    \caption[Rate and temporal MTF responses in \ChS and \ChT$_1$ units on \CF]{A. Rate \MTFs of sustained chopper (ChS) model (unit 65, \CF 8.95 kHz) on-CF to sound levels 20, 40, 60 and 80 dB SPL. B.
    Temporal \MTFs of the \ChS model on \CF (unit 65, \CF 8.95 kHz) at four different sound levels.   C. \rMTFs of the on-CF \ChTone model. D. \rMTFs of the on-CF \ChTone model. E. \rMTFs of the on-CF \ChTtwo model. F. \tMTFs of the on-CF \ChTtwo model.  \tMTF data points that failed the Rayleigh test (p$<0.05$) were not plotted.
     }
   \label{fig:Ch4:ChopperONCFMTF}
@@ -1230,19 +1234,19 @@ limited results or a low-pass \MTF.  Outermost active units (above and below
 #+BEGIN_LaTeX
   % \begin{figure}[thp]
   %   \centering
-  % {\hspace{0.05\textwidth}\figfont{A}  \ChS\space \rMTF  \hspace{0.3\textwidth}    \figfont{B}  \ChS\space \tMTF   \hspace{0.25\textwidth}\hfill}\\ 
-  
+  % {\hspace{0.05\textwidth}\figfont{A}  \ChS\space \rMTF  \hspace{0.3\textwidth}    \figfont{B}  \ChS\space \tMTF   \hspace{0.25\textwidth}\hfill}\\
+
   %   \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChS.pdf}}\\
   %   \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT1.pdf}}\\
   %   \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonoffCF-0-ChT2.pdf}}\\
   %   \caption[Temporal response in \ChS and \ChT$_1$ units on and off \CF]{A. Temporal \MTFs of sustained chopper unit (TS cells) on \CF (unit 65, \CF 8.95 kHz) at four different sound levels. B. \tMTFs of ChS unit off \CF (unit 70, \CF 11.2 kHz). C. \tMTFs of ChT$_1$ unit on \CF.  D. \tMTFs of ChT$_1$ off \CF.   }
   % \label{fig:Ch4:RG94Comparison}
   % \end{figure}
-  
+
 #+END_LaTeX
 
-Figure \ref{fig:Ch4:ChopperONCFMTF} shows the on-\CF unit's rate and
-temporal \MTF responses of the three TS cell model subtypes that are otherwise hidden in
+Figure \ref{fig:Ch4:ChopperONCFMTF} shows the on-\CF unit's rate and temporal
+\MTF responses of the three TS cell model subtypes that are otherwise hidden in
 the \MTF response maps.  Figures \ref{fig:Ch4:ChopperONCFMTF}A and B show the
 \ChS model's responses from the \rMTF and \tMTF response maps in Figure
 \ref{fig:Ch4:CSMTF}.  The on-\CF\space unit's \rMTFs (Figure
@@ -1250,8 +1254,8 @@ the \MTF response maps.  Figures \ref{fig:Ch4:ChopperONCFMTF}A and B show the
 increasing sound level.  The non-linearity in the \tMTFs at 40 and 60 dB
 contrasts with the similarity of the 20 and 80 dB responses (high SI at low \fms
 and a \BMF at 350 Hz).  In comparison to the sustained choppers in Figure
-\ref{fig:Ch4:RG94Chopper}, synchronisation at low \fms and cut-off frequency were
-much higher in the \ChS model. 
+\ref{fig:Ch4:RG94Chopper}, synchronisation at low \fms and cut-off frequency
+were much higher in the \ChS model.
 
 
 # Figure \ref{fig:Ch4:RG94Chopper} shows the \tMTF experimental data typical of \ChS
@@ -1280,15 +1284,15 @@ diminished due to its mixture of strong inhibitory inputs. The low firing rate
 is not visible at higher \fm, but can be seen in the range of activated units in
 the \tMTF maps.  The temporal \MTF response maps of the \ChTone model have a
 high degree of synchrony to the envelope and cut-off frequencies above 1200 Hz.
-The mean synchronisation of the on-\CF unit was very high (mean 0.713, 0.771, 0.721, 0.79) across
-the range of levels tested (20, 40, 60, and 80 dB SPL).  The filter
-characteristics of the on-\CF unit changed from band-pass at 40 and 60 dB SPL
-(Figure \ref{fig:Ch4:CToneMTF}D and F) to low-pass at 80 dB SPL (Figure
+The mean synchronisation of the on-\CF unit was very high (mean 0.713, 0.771,
+0.721, 0.79) across the range of levels tested (20, 40, 60, and 80 dB \SPL).  The
+filter characteristics of the on-\CF unit changed from band-pass at 40 and 60 dB
+SPL (Figure \ref{fig:Ch4:CToneMTF}D and F) to low-pass at 80 dB SPL (Figure
 \ref{fig:Ch4:CToneMTF}B).  The \BMF of the on-\CF band-pass filters at 350 Hz at
 40 dB SPL and 300 Hz at 60 dB SPL had SI values 0.979 and 0.971, respectively.
-Further investigation on the parameters of the \ChTone model, with regard to increasing
-the firing rate, will help to explain more rigorous outputs of the model and
- its temporal characteristics.
+Further investigation on the parameters of the \ChTone model, with regard to
+increasing the firing rate, will help to explain more rigorous outputs of the
+model and its temporal characteristics.
 
 
 #+BEGIN_LaTeX
@@ -1405,15 +1409,15 @@ compare it to.
 # smoothing kernel.  This approach derives from the hypothesis that \GLG cells are
 # purely rate-level encoders and contribute to automatic gain mechanisms in the
 # microcircuit \citep{FerragamoGoldingEtAl:1998}.
-The results in Figure {fig:Ch4:fzerorate}C and Figure \ref{fig:Ch4:GMTF} show
-that response of the \GLG cell model to \AM tones was mainly dependent on the
-sound level.  Temporal information of \GLG cells were toward the edges of its
-response area and was diminished relative to its primary input, \LSR fibres.
-Intrinsic mechanisms in the cell membrane
-play a significant role in limiting temporal information.  The envelope of
-synaptic input is drowned out by the synaptic-dendritic smoothing function of
-the model.  The low-pass filter limits the post-synaptic neuron's ability to
-phase-lock to the modulating frequency, especially at high \fm.
+The results in Figure \ref{fig:Ch4:fzerorate}C and Figure \ref{fig:Ch4:GMTF}
+show that response of the \GLG cell model to \AM tones was mainly dependent on
+the sound level.  Temporal information of \GLG cells were toward the edges of
+its response area and was diminished relative to its primary input, \LSR fibres.
+Intrinsic mechanisms in the cell membrane play a significant role in limiting
+temporal information.  The envelope of synaptic input is drowned out by the
+synaptic-dendritic smoothing function of the model.  The low-pass filter limits
+the post-synaptic neuron's ability to phase-lock to the modulating frequency,
+especially at high \fm.
 
 
 The functional influence of \GLG cells in the \CNSM model to AM tones is
@@ -1422,28 +1426,27 @@ rate responses dependant on stimulus intensity.  At high \SPL, \HSR fibres are
 rate-saturated and their temporal \MTF response diminishes with increasing sound
 level producing a cacophony of background noise in the microcircuit. \GLG cell
 inputs to \DS and \TS cell during \AM tones aid in suppressing elevated,
-unsynchronised, continuous excitation and enhances their synchronous response to modulated
-inputs.
+unsynchronised, continuous excitation and enhances their synchronous response to
+modulated inputs.
 
 # GABAergic \GLG cell synapses with
 # \DS and \TS cells on their distal dendrites which shunts \ANF excitation on the
-# dendrites without reaching the stellate cells' soma and its site of \AP activation. 
+# dendrites without reaching the stellate cells' soma and its site of \AP activation.
 
 # \GLG cells are low-firing monotonic rate-level units that, in the \CNSM model,
-# have little temporal response to \AM tones. 
+# have little temporal response to \AM tones.
 
 ** D stellate cells
 
 \DS cells are critical to the \CNSM model's ability to encode temporal
-information at high sound intensity levels.  
-The cumulative results in this chapter show the typical rate-responder behaviour in the \DS cell model's 
-\rMTF and enhanced, robust \tMTF responses (Figures \ref{fig:Ch4:DSMTF} and \ref{fig:Ch4:DSonCF}).
-
-The enhanced synchronisation of DS cell model relative to \HSR and \LSR\space \ANFs
- to changes in sound level 
-
+information at high sound intensity levels.  The cumulative results in this
+chapter show the typical rate-responder behaviour in the \DS cell model's \rMTF
+and enhanced, robust \tMTF responses (Figures \ref{fig:Ch4:DSMTF} and
+\ref{fig:Ch4:DSonCF}).  The enhanced synchronisation of DS cell model relative
+to \HSR and \LSR\space \ANFs to changes in sound level
+\yellownote{fix sentence above}
 # The envelope synchronisation in \DS units with a \CF above $\fc$ produced
-# band-pass rate \MTFs.  
+# band-pass rate \MTFs.
 
 # The temporal information at the channel with \CF $\fc$
 # (Figure \ref{fig:Ch4:DSMTF}) was diminished by the strong GABAergic inhibition of
@@ -1452,18 +1455,18 @@ The enhanced synchronisation of DS cell model relative to \HSR and \LSR\space \A
 # throughout the \CN.
 
 
-The functional role of \DS cells in the \CNSM model is to provide wide-band, phasic inhibition to \TV and \TS cells.
-More specifically, they enhance the
-entrainment of the \TS cells to complex stimulus envelope through precisely timed
-inhibition
+The functional role of \DS cells in the \CNSM model is to provide wide-band,
+phasic inhibition to \TV and \TS cells.  More specifically, they enhance the
+entrainment of the \TS cells to complex stimulus envelope through precisely
+timed inhibition
 \citep{JorisSmith:1998,RhodeGreenberg:1994,FrisinaSmithEtAl:1990a,PaoliniClareyEtAl:2005,NeedhamPaolini:2006}.
 \DS cells receive a large number of \HSR and \LSR units from a wide range of
 frequency channels; hence, the number of active inputs increases with intensity.
-Correlated on-\CF \LSR units and \HSR inputs from upper and lower side-bands with
-high \SI help to encode the stimulus envelope; however dendritic smoothing and
-uncorrelated on-\CF \HSR units are capable of diminishing the entrainment of \DS
-cells to the envelope. The \DS cell model does not have dendritic compartments
-or equivalent smoothing filter as in other models
+Correlated on-\CF\space \LSR units and \HSR inputs from upper and lower
+side-bands with high \SI help to encode the stimulus envelope; however dendritic
+smoothing and uncorrelated on-\CF\space \HSR units are capable of diminishing
+the entrainment of \DS cells to the envelope. The \DS cell model does not have
+dendritic compartments or equivalent smoothing filter as in other models
 \citep{KalluriDelgutte:2003,WangSachs:1995}.  This model does have a jitter (0.1
 ms standard deviation) in the \ANF inputs to emulate the variable distance of
 synapses for the site of activation at the axon hillock.
@@ -1495,9 +1498,9 @@ The results of the \TV cell model show a general enhancement of temporal
 information to \AM tones relative to \ANF inputs at low sound levels.  The
 strong enhancement may be due to a combination of intrinsic mechanisms, afferent
 excitation and inhibition by \DS units.  The \fz response map of \TV cells in
-Figure \ref{fig:Ch4:fzero}E showed high \SI values near boundaries of its response
-area.  \TV cells receive strong inhibition from \DS cell, but \DS cell input
-inactive in this area. Intrinsic mechanisms in the \TV cell model (Type I
+Figure \ref{fig:Ch4:fzero}E showed high \SI values near boundaries of its
+response area.  \TV cells receive strong inhibition from \DS cell, but \DS cell
+input inactive in this area. Intrinsic mechanisms in the \TV cell model (Type I
 classic \RM model) contribute to a high input resistance at \RMP.  The lower
 leak potential (\Eleak) in the \TV cell model also increases the difference
 between \RMP and \AP threshold.  These mechanisms remove the DC component of
@@ -1522,21 +1525,21 @@ important features of the acoustic input \citep{PaoliniClareyEtAl:2005}. The
 behaviour of \TS units is influenced by all three interneurons in the stellate
 microcircuit.
 
-\AM rate responses of \TS units on \CF were fairly weak but does not disable
+\AM rate responses of \TS units on-\CF were fairly weak but does not disable
 their ability to encode temporal information.  Experimental data has shown \TS
 cells generally have low-pass \MTF at low sound level and band-pass \MTF for
-higher sound levels for \AM tones on \CF \citep{RhodeGreenberg:1994}.  The
+higher sound levels for on-\CF\space \AM tones \citep{RhodeGreenberg:1994}.  The
 implications for the \AM coding in \TS cell output is important for higher-order
 auditory centres The band-pass temporal responses of different types of TS cells
 aid in the transformation from a low-pass, temporal encoding of AM in ANFs to a
 more robust rate encoding in the \IC based on preference for different \BMFs
-\citep{JorisSchreinerEtAl:2004,Frisina:2001}.  
+\citep{JorisSchreinerEtAl:2004,Frisina:2001}.
 
-Figures \ref{fig:Ch4:CSMTF}, \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF} show
-snapshot of the possible response characteristics in TS cells. Given the network
-parameters were optimised to chopping characteristics for pure \CF tones, the
-results of the TS cell subtypes must be viewed from the that perspective.
-Current \TS cell models have investigated AM responses
+Figures \ref{fig:Ch4:CSMTF}, \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF}
+show snapshot of the possible response characteristics in TS cells. Given the
+network parameters were optimised to chopping characteristics for pure \CF
+tones, the results of the TS cell subtypes must be viewed from the that
+perspective.  Current \TS cell models have investigated AM responses
 \citep{WiegrebeMeddis:2004,BahmerLangner:2006a} but their inaccurate
 physiological design are not a good basis to fully understand temporal encoding
 in the \CNSM model.  An exploration the parameter space in \TS cells of the
@@ -1563,10 +1566,10 @@ scope of this chapter but is an open prospect for future research.
 \yellownote{Limitation para on the optimisation process in Ch3 creating a snapshot of cells and homogeneity in the model}
 
 Main limitation in this chapter has been the fixed network parameters from the
-optimisation performed in Chapter \ref{sec:Chapter3}.  
+optimisation performed in Chapter \ref{sec:Chapter3}.
 The homogeneity of cell-type responses is important for understanding off-CF
 responses simultaneously, however the lack of diversity in responses across the
-network limit the realism of the model.  
+network limit the realism of the model.
 [Homogeneity of synaptic delays, idealises ...]
 [The output of \TS cells in this chapter were not ideal ...]
 # snapshot of parameters in the CN cells' input connections
@@ -1576,25 +1579,22 @@ model]
 kHz (suited the cat model)]
 
 
-There are many complex temporal processing dynamics in a \BNN model with excitatory and inhibitory
-connections that may be both a benefit and a detriment to the synchronised
-output of post-synaptic neurons. 
-# benefit versus detriment of inhibition-excitation in Choppers complicated
-# mixture of input synch phase , synch phase combined with delayed input
-# inhibition on phase or antiphase
-A mixture of modulated inputs are beneficial when they are in phase with each
-other, but are detrimental when they uniformly out of phase .  Unsynchronised
-excitation (like that seen in HSR fibres on CF in moderate to loud AM tones) can
-saturate temporal information and raise firing rates in the post-synaptic unit;
-however it can be entrained to the envelope with fast, phasic,
-highly-synchronised inhibition (like that seen by \DS cells)
-\citep{VreeswijkAbbottEtAl:1995}.  Unsychronised inhibition (like that seen in
-\GLG cells on CF) can be beneficial to a saturated post-synaptic neuron by
-reducing the DC component of synaptic inputs and can also enhance the temporal
-output by rectifying the AC component.  Phase lags, irregularities in synaptic
-delays and dendritic smoothing all contribute to reductions in temporal
-processing, especially at the upper limits of \fm.
-# synchronised input with laggy 
+There are many complex temporal processing dynamics in a \BNN model with
+excitatory and inhibitory connections that may be both a benefit and a detriment
+to the synchronised output of post-synaptic neurons.  A mixture of modulated
+inputs are beneficial when they are in phase with each other, but are
+detrimental when they uniformly out of phase .  Unsynchronised excitation (like
+that seen in HSR fibres on CF in moderate to loud AM tones) can saturate
+temporal information and raise firing rates in the post-synaptic unit; however
+it can be entrained to the envelope with fast, phasic, highly-synchronised
+inhibition (like that seen by \DS cells) \citep{VreeswijkAbbottEtAl:1995}.
+Unsychronised inhibition (like that seen in \GLG cells on CF) can be beneficial
+to a saturated post-synaptic neuron by reducing the DC component of synaptic
+inputs and can also enhance the temporal output by rectifying the AC component.
+Phase lags, irregularities in synaptic delays and dendritic smoothing all
+contribute to reductions in temporal processing, especially at the upper limits
+of \fm.
+
 
 
 
@@ -1623,7 +1623,7 @@ transformations performed within the stellate microcircuit.
 
 
 # Stellate microcircuit provides a robust and enhanced temporal encoding of
-# amplitude modulation in the output of \TS cells.  
+# amplitude modulation in the output of \TS cells.
 #    - enhancement of \SNR relative to individual \ANFs
 #  - Spectral/Rate representation in speech and speech in noise
 #    - lateral inhibition
