@@ -1425,6 +1425,7 @@ chapter show the typical rate-responder behaviour in the \DS cell model's \rMTF
 and enhanced, robust \tMTF responses (Figures \ref{fig:Ch4:DSMTF} and
 \ref{fig:Ch4:DSonCF}).  The enhanced synchronisation of DS cell model relative
 to \HSR and \LSR\space \ANFs to changes in sound level
+
 \yellownote{fix sentence above}
 # The envelope synchronisation in \DS units with a \CF above $\fc$ produced
 # band-pass rate \MTFs.
@@ -1496,7 +1497,7 @@ to be responsible for delayed inhibition or echo-suppression
 \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in tuning
 the temporal behaviour in \TS cells at low sound levels.  In general, knowledge
 of the role of \TV cells has been further expanded through the \CNSM model but
-further investigations are needed to explain inconsistencies in temporal
+further investigation is required to explain inconsistencies in temporal
 processing of TV cells.
 
 ** T stellate cells
@@ -1553,37 +1554,76 @@ scope of this chapter but is an open prospect for future research.
 
 #  - Transition from temporal to rate coding in auditory pathway
 
-\yellownote{Limitation para on the optimisation process in Ch3 creating a snapshot of cells and homogeneity in the model}
-
-Main limitation in this chapter has been the fixed network parameters from the
-optimisation performed in Chapter \ref{sec:Chapter3}.
-The homogeneity of cell-type responses is important for understanding off-CF
-responses simultaneously, however the lack of diversity in responses across the
-network limit the realism of the model.
-[Homogeneity of synaptic delays, idealises ...]
-[The output of \TS cells in this chapter were not ideal ...]
-# snapshot of parameters in the CN cells' input connections
-[homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM
-model]
-[AM coding important for vocal communication in \fc less than 3kHz - why use 9
-kHz (suited the cat model)]
+The limitations of the CNSM model discussed in Chapter 3 are equally relevant to
+the study of AM encoding presented in this chapter, The performance of the
+\citet{ZilanyCarney:2010} AN model has not been verified with AM tones but the
+model remains the most phenomenologically-realistic in terms of AM encoding for
+use in this study.
 
 
-There are many complex temporal processing dynamics in a \BNN model with
-excitatory and inhibitory connections that may be both a benefit and a detriment
-to the synchronised output of post-synaptic neurons.  A mixture of modulated
-inputs are beneficial when they are in phase with each other, but are
-detrimental when they uniformly out of phase .  Unsynchronised excitation (like
-that seen in HSR fibres on CF in moderate to loud AM tones) can saturate
-temporal information and raise firing rates in the post-synaptic unit; however
-it can be entrained to the envelope with fast, phasic, highly-synchronised
-inhibition (like that seen by \DS cells) \citep{VreeswijkAbbottEtAl:1995}.
-Unsychronised inhibition (like that seen in \GLG cells on CF) can be beneficial
-to a saturated post-synaptic neuron by reducing the DC component of synaptic
-inputs and can also enhance the temporal output by rectifying the AC component.
-Phase lags, irregularities in synaptic delays and dendritic smoothing all
-contribute to reductions in temporal processing, especially at the upper limits
-of \fm.
+A further set of limitations are specifically relevant to AM encoding as studied
+in this chapter.  Most importantly, synaptic delays in the CNSM model are known
+to play a role in modulating the delay of responses.  The \CNSM model includes a
+topographical delay from \ANFs to \CN neurons, as well as intrinsic connection
+delays within the stellate microcircuit.  Timing of inhibitory synaptic inputs
+have a major role of regulating the latency of responses in CN neurons,
+particularly in \TS cells with the transient \IKA current
+\citep{KanoldManis:2005,KanoldManis:2001}.  Further work is required in
+understanding the effects of synaptic delays in the CNSM model in response to AM
+tones and stimuli, particularly with respect to synchronised \DS cell inhibition
+of \TS cells.
+
+
+# What can be done better in further work
+
+# \yellownote{Limitation para on the optimisation process in Ch3 creating a snapshot of cells and homogeneity in the model}
+
+# The major limitation of this chapter arises out of the fixed network parameter
+# set generated in  Chapter \ref{sec:Chapter3}.
+# The homogeneity of cell-type responses in the CNSM model limits its realism.
+
+
+# is important for understanding off-CF
+# responses simultaneously, however the lack of diversity in responses across the
+# network limit the realism of the model.  [Homogeneity of synaptic delays,
+# idealises ...]  [The output of \TS cells in this chapter were not ideal ...]
+# # snapshot of parameters in the CN cells' input connections
+# [homogeneous ANFs split into two SR groups - does this effect outcome in the CNSM
+# model]
+# [AM coding important for vocal communication in \fc less than 3kHz - why use 9
+# kHz (suited the cat model)]
+
+# As discussed in Chapter 3, the limitations of the AN model in terms of AM
+# encoding, have a strong influence over the limitations of the CNSM model.
+
+
+# Timing of inhibitory synaptic inputs have a major role of regulating responses in CN neurons
+# \cite{KanoldManis:2005,KanoldManis:2001}.  The presence of \IKA in \TS cells influences the
+# phasic output
+
+
+
+# These effects
+
+
+
+
+
+# Paradoxically, the complex temporal processing dynamics in a \BNN model with
+# excitatory and inhibitory connections can be both a benefit and a detriment for
+# the synchronised output of post-synaptic neurons.  A mixture of modulated inputs
+# is beneficial when they are in phase with each other, but can be detrimental
+# when they are uniformly out of phase. Unsynchronised excitation (like that seen
+# in HSR fibres on CF in moderate to loud AM tones) can saturate temporal
+# information and raise firing rates in the post-synaptic unit. Simultaneously, it
+# can be entrained to the envelope with fast, phasic, highly-synchronised
+# inhibition (like that seen in \DS cells) \citep{VreeswijkAbbottEtAl:1995}.
+# Unsychronised inhibition (like that seen in \GLG cells on CF) can be beneficial
+# to a saturated post-synaptic neuron by reducing the DC component of synaptic
+# inputs.  Unsynchronised inhibition can also enhance the temporal output by
+# rectifying the AC component.  Phase lags, irregularities in synaptic delays and
+# dendritic smoothing all contribute to reductions in temporal processing,
+# especially at the upper limits of \fm.
 
 
 
