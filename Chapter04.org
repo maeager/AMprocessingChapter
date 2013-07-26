@@ -1501,31 +1501,38 @@ processing of TV cells.
 
 ** T stellate cells
 
-The inhomogeneous population of \TS cells are classified into different
+The inhomogeneous population of \TS cells are classified into
 subgroups, namely sustained or transient choppers.  Intrinsic membrane
 properties and synaptic connections enable \TS units to be enhanced or tuned to
 important features of the acoustic input \citep{PaoliniClareyEtAl:2005}. The
 behaviour of \TS units is influenced by all three interneurons in the stellate
 microcircuit.
 
-\AM rate responses of \TS units on-\CF were fairly weak but does not disable
+\yellownote{More of my work}
+
+\AM rate responses of \TS units on-\CF were fairly weak but this did not disable
 their ability to encode temporal information.  Experimental data has shown \TS
 cells generally have low-pass \MTF at low sound level and band-pass \MTF for
-higher sound levels for on-\CF\space \AM tones \citep{RhodeGreenberg:1994}.  The
+higher sound levels for on-\CF\space \AM tones \citep{RhodeGreenberg:1994}.
+
+The
 implications for the \AM coding in \TS cell output is important for higher-order
-auditory centres The band-pass temporal responses of different types of TS cells
+auditory centres \yellownote{ finish sentence}
+
+
+The band-pass temporal responses of different types of TS cells
 aid in the transformation from a low-pass, temporal encoding of AM in ANFs to a
 more robust rate encoding in the \IC based on preference for different \BMFs
 \citep{JorisSchreinerEtAl:2004,Frisina:2001}.
 
 Figures \ref{fig:Ch4:CSMTF}, \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF}
-show snapshot of the possible response characteristics in TS cells. Given the
+show snapshots of the possible response characteristics in TS cells. Given the
 network parameters were optimised to chopping characteristics for pure \CF
 tones, the results of the TS cell subtypes must be viewed from the that
 perspective.  Current \TS cell models have investigated AM responses
 \citep{WiegrebeMeddis:2004,BahmerLangner:2006a} but their inaccurate
-physiological design are not a good basis to fully understand temporal encoding
-in the \CNSM model.  An exploration the parameter space in \TS cells of the
+physiological design is not a good basis to fully understand temporal encoding
+in the \CN stellate microcircuit.  An exploration of the parameter space in the \TS cells of the
 \CNSM model and their effects on the temporal characteristics was not in the
 scope of this chapter but is an open prospect for future research.
 
