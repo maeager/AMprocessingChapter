@@ -9,7 +9,7 @@
 #+LANGUAGE: en_GB-ise-wo_accents
 #+LaTeX_CLASS: UoM-draft-org-article
 #+LaTeX_CLASS_OPTIONS: [a4paper,11pt,twopage,openright]
-#+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/gfx/}{/media/data/Work/cnstellate/}{/media/data/Work/cnstellate/ResponsesNoComp/ModulationTransferFunction/}}
+#+LATEX_HEADER:\graphicspath{{../VowelProcessingChapter/gfx/}}
 #+LATEX_HEADER:\setcounter{secnumdepth}{5}
 #+LATEX_HEADER:\lfoot{\footnotesize\today\ at \thistime}
 #+LATEX_HEADER:  %\usepackage[notcite]{showkeys}
@@ -1352,8 +1352,8 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 
 * Discussion
 
-The results in this chapter demonstrate the capacity to simulate \AM coding over
-the whole \CN stellate network.
+The results in this chapter demonstrate the sucessful simulation of \AM coding over
+the whole \CNSM model.
 # In doing so, this work shows the success of the \CNSM model in reproducing
 # responses to complex stimuli.
 The primary physiological mechanisms for \AM detection and envelope encoding lie
@@ -1371,7 +1371,7 @@ The temporal responses of cells in the \CN depend on, and are limited by, the
 capabilities of the \ANF input responses.  Intra-nuclei synaptic interactions
 within isofrequency microcircuits and across frequency channels, and the
 intrinsic properties of each of the cell types, are best understood by observing
-responses from across the whole network.  The next sections discuss the results
+responses across the whole network.  The next sections discuss the results
 and their implications for each cell type simulated in this chapter.
 
 # \citep{JorisLouageEtAl:2006,JorisSchreinerEtAl:2004}.
@@ -1382,31 +1382,33 @@ and their implications for each cell type simulated in this chapter.
 
 The demonstration of the response of \GLG cells in the \CNSM model to AM tones
 in this chapter is limited by the absence of experimental data with which to
-compare it to.
+make a comparison.
 # The novel \GLG cell neural model proposed that GLG cells diminish timing
 # information contained in their \ANF inputs due to the low pass filtering of its
 # smoothing kernel.  This approach derives from the hypothesis that \GLG cells are
 # purely rate-level encoders and contribute to automatic gain mechanisms in the
 # microcircuit \citep{FerragamoGoldingEtAl:1998}.
 The results in Figure \ref{fig:Ch4:fzerorate}C and Figure \ref{fig:Ch4:GMTF}
-show that response of the \GLG cell model to \AM tones was mainly dependent on
-the sound level.  Temporal information of \GLG cells were toward the edges of
-its response area and was diminished relative to its primary input, \LSR fibres.
-Intrinsic mechanisms in the cell membrane play a significant role in limiting
-temporal information.  The envelope of synaptic input is drowned out by the
-synaptic-dendritic smoothing function of the model.  The low-pass filter limits
-the post-synaptic neuron's ability to phase-lock to the modulating frequency,
-especially at high \fm.
+show that the spectro-temporal response of the \GLG cell model to \AM tones was
+mainly dependent on the sound level and the spectral component of the stimulus.
+The temporal component of \GLG cell output information was located toward the
+edges of its response area and was diminished relative to its primary input,
+\LSR fibres.  Intrinsic mechanisms in the cell membrane play a significant role
+in limiting temporal information.  The envelope of synaptic input is drowned out
+by the synaptic-dendritic smoothing function of the model.  The low-pass filter
+limits the post-synaptic neuron's ability to phase-lock to the modulating
+frequency, especially at high \fm.
 
 
-The functional influence of \GLG cells in the \CNSM model to AM tones is
-primarily in auto-regulating \DS and \TS cells excitability with a monotonic
-rate responses dependant on stimulus intensity.  At high \SPL, \HSR fibres are
-rate-saturated and their temporal \MTF response diminishes with increasing sound
-level producing a cacophony of background noise in the microcircuit. \GLG cell
-inputs to \DS and \TS cell during \AM tones aid in suppressing elevated,
-unsynchronised, continuous excitation and enhances their synchronous response to
-modulated inputs.
+The primary functional influence of \GLG cells on the \CNSM model in response to
+AM tones is the automatic gain regulation of \DS and \TS cells.  \GLG cells'
+monotonic rate-level response and their \GABAa inhibitory synapses control the
+excitability in both stellate cells linearly dependent on stimulus intensity.
+At high \SPL, \HSR fibres are rate-saturated and their temporal \MTF response
+diminishes with increasing sound level, producing a cacophony of background
+noise in the microcircuit. \GLG cell inputs to \DS and \TS cells during \AM
+tones aid in suppressing elevated, unsynchronised, continuous excitation and
+enhance their synchronous response to modulated inputs.
 
 # GABAergic \GLG cell synapses with
 # \DS and \TS cells on their distal dendrites which shunts \ANF excitation on the
@@ -1436,11 +1438,11 @@ to \HSR and \LSR\space \ANFs to changes in sound level
 
 The functional role of \DS cells in the \CNSM model is to provide wide-band,
 phasic inhibition to \TV and \TS cells.  More specifically, they enhance the
-entrainment of the \TS cells to complex stimulus envelope through precisely
+entrainment of the \TS cells to complex stimulus envelopes through precisely
 timed inhibition
 \citep{JorisSmith:1998,RhodeGreenberg:1994,FrisinaSmithEtAl:1990a,PaoliniClareyEtAl:2005,NeedhamPaolini:2006}.
 \DS cells receive a large number of \HSR and \LSR units from a wide range of
-frequency channels; hence, the number of active inputs increases with intensity.
+frequency channels; consequently, the number of active inputs increases with intensity.
 Correlated on-\CF\space \LSR units and \HSR inputs from upper and lower
 side-bands with high \SI help to encode the stimulus envelope; however dendritic
 smoothing and uncorrelated on-\CF\space \HSR units are capable of diminishing
@@ -1474,26 +1476,28 @@ synapses for the site of activation at the axon hillock.
 ** Tuberculoventral cells
 
 The results of the \TV cell model show a general enhancement of temporal
-information to \AM tones relative to \ANF inputs at low sound levels.  The
+information in response to \AM tones relative to \ANF inputs at low sound levels.  The
 strong enhancement may be due to a combination of intrinsic mechanisms, afferent
 excitation and inhibition by \DS units.  The \fz response map of \TV cells in
 Figure \ref{fig:Ch4:fzero}E showed high \SI values near boundaries of its
-response area.  \TV cells receive strong inhibition from \DS cell, but \DS cell
-input inactive in this area. Intrinsic mechanisms in the \TV cell model (Type I
-classic \RM model) contribute to a high input resistance at \RMP.  The lower
+response area.  \TV cells receive strong inhibition from \DS cells, but \DS cell
+input is inactive in this area. Intrinsic mechanisms in the \TV cell model (Type I
+classic \RM model) contribute to a high input resistance at the \RMP.  The lower
 leak potential (\Eleak) in the \TV cell model also increases the difference
 between \RMP and \AP threshold.  These mechanisms remove the DC component of
-uncorrelated inputs and enhances the AC component of \HSR and \LSR excitatory
+uncorrelated inputs and enhance the AC component of \HSR and \LSR excitatory
 inputs.
 
 At high sound levels, the strong inhibitory inputs from \DS cells create a
 non-linear response in \TV cells.  \TV cells' temporal response properties in
 experimental studies have been shown to be complex and non-linear
-\citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.   \TV cells are
-thought to be responsible for delayed inhibition or echo-suppression
+\citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.  \TV cells are thought
+to be responsible for delayed inhibition or echo-suppression
 \citep{WickesbergOertel:1990} in \VCN units, but can also be involved in tuning
 the temporal behaviour in \TS cells at low sound levels.  In general, knowledge
-of the role of \TV cells in temporal processing is incomplete.
+of the role of \TV cells has been further expanded through the \CNSM model but
+further investigations are needed to explain inconsistencies in temporal
+processing of TV cells.
 
 ** T stellate cells
 
