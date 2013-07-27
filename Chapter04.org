@@ -796,7 +796,7 @@ responses at high \SPL and high \fm are an artefact of the
 
 \clearpage
 
-**** Source blocks 						   :noexport:
+**** Source blocks                                                 :noexport:
 
 #+name: mean_ANF_vsSPIKES_onCF
 #+header: :exports none  :results raw replace
@@ -928,7 +928,7 @@ low \fm.
 
 \clearpage
 
-**** Source block calls :noexport:
+**** Source block calls                                            :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
 
@@ -963,7 +963,6 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 
 #+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.3.dat ]() :results raw replace
 | 0.11 | 0.155 | 11 | 100 |
-
 
 
 *** DS cell model
@@ -1042,7 +1041,7 @@ around 400 Hz, similar to \TS and \TV units.
 
 \clearpage
 
-**** Source block calls 					   :noexport:
+**** Source block calls                                            :noexport:
 
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.2.dat ]()[ :results raw replace ]
@@ -1130,7 +1129,7 @@ strongly inhibited across the network at high sound levels.
 
 \clearpage
 
-**** Source block calls 					   :noexport:
+**** Source block calls                                            :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.1.dat ]()[ :results raw replace ]
 
@@ -1161,7 +1160,6 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 | 0.94 | 1 | 3 | 50 |
 
 | 0.94 | 1 | 3 | 50 |
-
 
 *** TS cell model
 
@@ -1306,8 +1304,8 @@ sound levels and higher cut-off frequencies.
 
 \clearpage
 
-*** TS source blocks 						   :noexport:
-**** ChS Source block calls 					   :noexport:
+*** TS source blocks                                               :noexport:
+**** ChS Source block calls                                        :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.593 | 0.914 | 22 | 50 |
@@ -1326,8 +1324,7 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 
 | 0.451 | 0.8 | 24 |
 
-
-**** CT1 Source block calls 					   :noexport:
+**** CT1 Source block calls                                        :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.713 | 0.955 | 24 | 100 |
@@ -1338,8 +1335,7 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/80/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.79 | 0.996 | 24 | 100 |
 
-
-**** ChT2 Source block calls 					   :noexport:
+**** ChT2 Source block calls                                       :noexport:
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.0.dat ]()[ :results raw replace ]
 | 0.671 | 0.933 | 22 | 100 |
@@ -1508,34 +1504,49 @@ properties and synaptic connections enable \TS units to be enhanced or tuned to
 important features of the acoustic input \citep{PaoliniClareyEtAl:2005}. The
 behaviour of \TS units is influenced by all three interneurons in the stellate
 microcircuit.
-
-\yellownote{More of my work}
-
 \AM rate responses of \TS units on-\CF were fairly weak but this did not disable
 their ability to encode temporal information.  Experimental data has shown \TS
 cells generally have low-pass \MTF at low sound level and band-pass \MTF for
 higher sound levels for on-\CF\space \AM tones \citep{RhodeGreenberg:1994}.
-
-The
-implications for the \AM coding in \TS cell output is important for higher-order
-auditory centres \yellownote{ finish sentence}
-
-
 The band-pass temporal responses of different types of TS cells
 aid in the transformation from a low-pass, temporal encoding of AM in ANFs to a
 more robust rate encoding in the \IC based on preference for different \BMFs
 \citep{JorisSchreinerEtAl:2004,Frisina:2001}.
 
-Figures \ref{fig:Ch4:CSMTF}, \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF}
-show snapshots of the possible response characteristics in TS cells. Given the
-network parameters were optimised to chopping characteristics for pure \CF
-tones, the results of the TS cell subtypes must be viewed from the that
-perspective.  Current \TS cell models have investigated AM responses
-\citep{WiegrebeMeddis:2004,BahmerLangner:2006a} but their inaccurate
+Figures \ref{fig:Ch4:fzero}, \ref{fig:Ch4:fzerorate}, \ref{fig:Ch4:CSMTF},
+ \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF} show snapshots of the
+ possible response characteristics in \TS cell models with a view point across
+ all cells in the network.  In the \fz response analysis, the \ChS type \TS cell
+ models near the centre of the AM response area had moderate rate and strong
+ enhancement at high SPL. The \ChTone model was strongly inhibited on-CF at
+ higher \SPL but did have high firing rates and high \SI response near the edges
+ of the V-shaped response area.  The \ChTtwo models's \fz response was less
+ robust at higher SPL on-CF but had similar V-shaped enhanced temporal output
+ across different \CFs.  In the \MTF analysis, the \tMTF response maps of \TS
+ cells showed insights into the complex spectro-temporal processing being
+ performed in the stellate microcrcuit.  At 20 dB SPL (only shown in Figure
+ \ref{fig:Ch4:ChopperONCFMTF}), the on-CF \tMTF responses were similar for each
+ subtype with high synchronisation at low SPL, a dip in \SI at 300 Hz and a
+ second peak above 0.8 SI at 500 Hz.  At higher sound levels, the \MTF response
+ characteristics of the chopper subtypes diverged. \ChS models had lower cut-off
+ frequencies than both the \ChT type models.  The \ChTone model had primarily
+ low-pass \tMTF responses but strong inhibition on CF and suppression of its
+ rate at higher \fm limit the conclusiveness of this model.  The \ChTtwo had a
+ more consistent rate response and \tMTF responses that varied from band pass
+ on-CF to strongly enhanced low-pass in its lateral sidebands.
+
+
+Given the \TS cell subtypes' network parameters were optimised to chopping
+characteristics for pure \CF tones, the results of the \CNSM model must be
+viewed from the that perspective.  Current \TS cell models have investigated AM
+responses \citep{WiegrebeMeddis:2004,BahmerLangner:2006a} but their inaccurate
 physiological design is not a good basis to fully understand temporal encoding
-in the \CN stellate microcircuit.  An exploration of the parameter space in the \TS cells of the
-\CNSM model and their effects on the temporal characteristics was not in the
-scope of this chapter but is an open prospect for future research.
+in the \CN stellate microcircuit.  An exploration of the parameter space in the
+\TS cells of the \CNSM model and their effects on the temporal characteristics
+was not in the scope of this chapter but is an open prospect for future
+research.
+
+
 
 
 # - Notes
@@ -1549,7 +1560,6 @@ scope of this chapter but is an open prospect for future research.
 #    - Golgi : slow level dependent
 #    - \TV : delayed echo suppression
 
-
 ** Limitation of the CNSM model in modelling AM encoding
 
 #  - Transition from temporal to rate coding in auditory pathway
@@ -1559,6 +1569,7 @@ the study of AM encoding presented in this chapter, The performance of the
 \citet{ZilanyCarney:2010} AN model has not been verified with AM tones but the
 model remains the most phenomenologically-realistic in terms of AM encoding for
 use in this study.
+
 
 
 A further set of limitations are specifically relevant to AM encoding as studied
@@ -1576,11 +1587,16 @@ of \TS cells.
 
 # What can be done better in further work
 
-# \yellownote{Limitation para on the optimisation process in Ch3 creating a snapshot of cells and homogeneity in the model}
-
-# The major limitation of this chapter arises out of the fixed network parameter
-# set generated in  Chapter \ref{sec:Chapter3}.
-# The homogeneity of cell-type responses in the CNSM model limits its realism.
+The major limitation of this chapter arises out of the fixed network parameter
+ set generated in Chapter \ref{sec:ModelChapter}. The output of \TS cells in
+ this chapter were routinely suppressed at high SPL by strong inhibition from
+ \DS cells. Whether the design of the optimisation stimuli used in Chapter
+ \ref{sec:ModelChapter} fully encompassed the influence of DS cells or that the
+ phasic responses of DS cells to AM tones provides more effective inhibition is
+ still an open question.  Also, the homogeneity of cell-type parameters and
+ their responses in the CNSM model limits its realism and further work is
+ required to understand variability within cell types of the stellate
+ microcircuit.
 
 
 # is important for understanding off-CF
@@ -1608,22 +1624,25 @@ of \TS cells.
 
 
 
+** Implications for Temporal Processing in BNN Models
 
-# Paradoxically, the complex temporal processing dynamics in a \BNN model with
-# excitatory and inhibitory connections can be both a benefit and a detriment for
-# the synchronised output of post-synaptic neurons.  A mixture of modulated inputs
-# is beneficial when they are in phase with each other, but can be detrimental
-# when they are uniformly out of phase. Unsynchronised excitation (like that seen
-# in HSR fibres on CF in moderate to loud AM tones) can saturate temporal
-# information and raise firing rates in the post-synaptic unit. Simultaneously, it
-# can be entrained to the envelope with fast, phasic, highly-synchronised
-# inhibition (like that seen in \DS cells) \citep{VreeswijkAbbottEtAl:1995}.
-# Unsychronised inhibition (like that seen in \GLG cells on CF) can be beneficial
-# to a saturated post-synaptic neuron by reducing the DC component of synaptic
-# inputs.  Unsynchronised inhibition can also enhance the temporal output by
-# rectifying the AC component.  Phase lags, irregularities in synaptic delays and
-# dendritic smoothing all contribute to reductions in temporal processing,
-# especially at the upper limits of \fm.
+Paradoxically, the complex temporal processing dynamics in a \BNN model with
+excitatory and inhibitory connections can be both a benefit and a detriment for
+the synchronised output of post-synaptic neurons.  A mixture of modulated inputs
+is beneficial when they are in phase with each other, but can be detrimental
+when they are uniformly out of phase. Unsynchronised excitation (like that seen
+in HSR fibres on CF in moderate to loud AM tones) can saturate temporal
+information and raise firing rates in the post-synaptic unit. Simultaneously, it
+can be entrained to the envelope with fast, phasic, highly-synchronised
+inhibition (like that seen in \DS cells) \citep{VreeswijkAbbottEtAl:1995}.
+Unsychronised inhibition (like that seen in \GLG cells on CF) can be beneficial
+to a saturated post-synaptic neuron by reducing the DC component of synaptic
+inputs.  Unsynchronised inhibition can also enhance the temporal output by
+rectifying the AC component.  Phase lags, irregularities in synaptic delays and
+dendritic smoothing all contribute to reductions in temporal processing,
+especially at the upper limits of \fm.
+
+
 
 
 
