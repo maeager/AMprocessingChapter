@@ -1419,10 +1419,13 @@ enhance their synchronous response to modulated inputs.
 information at high sound intensity levels.  The cumulative results in this
 chapter show the typical rate-responder behaviour in the \DS cell model's \rMTF
 and enhanced, robust \tMTF responses (Figures \ref{fig:Ch4:DSMTF} and
-\ref{fig:Ch4:DSonCF}).  The enhanced synchronisation of DS cell model relative
-to \HSR and \LSR\space \ANFs to changes in sound level
+\ref{fig:Ch4:DSonCF}).  The enhanced synchronisation of DS cell model's on-CF
+\tMTF changed from low-pass to band-pass with increase in sound level.  Consistently, \DS cell
+responses in adjacent frequency channels increase their temporal information
+further from \fc up to the limit of their response area.
 
-\yellownote{fix sentence above}
+# Due to the wide spread of connections from DS cells to TS and TV cells, the observation and recording of \DS cell responses across the network
+# is im
 # The envelope synchronisation in \DS units with a \CF above $\fc$ produced
 # band-pass rate \MTFs.
 
