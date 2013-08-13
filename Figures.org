@@ -7,6 +7,8 @@
 #+name: CSdatapath
 #+BEGIN_SRC gnuplot :noweb tangle :export none
   datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/"
+  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/"
+
 #+END_SRC
 
 #+name: CTonedatapath
@@ -29,8 +31,8 @@
  ${CNSTELLATEPATH}/second_level_si_rate.sh &
  cd ${CSdatapath}/F0Response/
  ${CNSTELLATEPATH}/first_level_si_rate.sh &
-#+END_SRC
-
+#q+END_SRC
+q
 
 # + header: :term pdfcairo enhanced color solid font "Helvetica,18" linewidth 2.0 butt dashlength 1.0 size 7,7.86
 # + header : :term pngcairo size 700,1200 enhanced font 'Verdana,10'
