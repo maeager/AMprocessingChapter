@@ -349,8 +349,6 @@ is also greatly affected by changes in GABA and glycinergic synapses
 # different properties of \AM signals are varied.  Variation in sound level and
 # \fm are common properties of \AM that are studied.
 
-
-
 #+BEGIN_LaTeX
   \begin{figure}[htb]
   \centering
@@ -657,7 +655,7 @@ SI 0.873 before falling to 0.35 with some irregularities at higher sound levels.
 # comparison to experimental data has been made here. }
 
 
-\clearpage
+# \clearpage
 
 ** Responses to Changes in Modulation Frequency
 
@@ -729,8 +727,6 @@ increase of temporal information in units further from the centre \CF unit. At
 40 dB \SPL, the two salient information bands begin to merge as the range of
 excited frequency channels get closer to the centre \CF.
 
-
-
 #+BEGIN_LaTeX
   \begin{figure}[pt!]
     \centering
@@ -783,7 +779,7 @@ responses at high \SPL and high \fm are an artefact of the
 \citet{ZilanyBruceEtAl:2009} AN model.
 
 #+BEGIN_LaTeX
-  \begin{figure}[t!]
+  \begin{figure}[tp!]
     {\hspace{0.05\textwidth}\figfont{A}\hspace{0.45\textwidth}\figfont{B}\hspace{0.45\textwidth}\hfill}\\
     \centering
     \resizebox{0.95\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-AN_MTF.png}}\\ \vspace{1ex}
@@ -800,7 +796,7 @@ responses at high \SPL and high \fm are an artefact of the
   \end{figure}
 #+END_LaTeX
 
-\clearpage
+# \clearpage
 
 **** Source blocks                                                 :noexport:
 
@@ -891,7 +887,7 @@ call_mean_ANFvs()
 
 
 #+BEGIN_LaTeX
-  \begin{figure}[tb]
+  \begin{figure}[tp!]
   \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-3.pdf}}
   \caption[GLG cell rate and temporal MTF responses for three stimulus sound levels]{\GLG cell rate (\rMTF, left column) and temporal (\tMTF, right column)
@@ -932,7 +928,7 @@ low \fm.
 # 40dB \SPL  unit 77 15.26 kHz 0.948
 # the on \CF unit had a mean \SI response of 0.218
 
-\clearpage
+# \clearpage
 
 **** Source block calls                                            :noexport:
 
@@ -974,7 +970,7 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 *** DS cell model
 
 #+BEGIN_LaTeX
-  \begin{figure}[tb]
+  \begin{figure}[tp!]
   \centering %{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} \tMTF}\\
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-2.pdf}}
   \caption[Rate and temporal \MTF responses for \DS cells at three stimulus sound
@@ -1045,7 +1041,7 @@ around 400 Hz, similar to \TS and \TV units.
 # type IV).  Median max \SI = 0.93 (n=12), 3dB cutoff \CFs>10kHz comparable to ANFs
 # ~1000Hz.
 
-\clearpage
+# \clearpage
 
 **** Source block calls                                            :noexport:
 
@@ -1064,13 +1060,10 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 | 0.485 | 0.722 | 23 | 250 |
 
 
-
-
-\clearpage
 *** TV cell model
 
 #+BEGIN_LaTeX
-  \begin{figure}[tb]
+  \begin{figure}[tp!]
   \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-1.pdf}}
   \caption[Rate and temporal \MTF response maps for three stimulus sound
@@ -1133,7 +1126,7 @@ strongly inhibited across the network at high sound levels.
 #     - \DS inhibition phasic
 #  - Level dependent
 
-\clearpage
+# \clearpage
 
 **** Source block calls                                            :noexport:
 
@@ -1170,7 +1163,7 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 *** TS cell model
 
 #+BEGIN_LaTeX
-  \begin{figure}[tb]
+  \begin{figure}[tp!]
   \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChS.pdf}}
   \caption[Rate and temporal \MTF responses for the \ChS~\TS cell model]{Rate and temporal \MTF responses for the \ChS \TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
@@ -1251,7 +1244,7 @@ were much higher in the \ChS model.
 
 
 #+BEGIN_LaTeX
-  \begin{figure}[tb]
+  \begin{figure}[tp!]
   \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChT1.pdf}}
   \caption[Rate and temporal \MTF responses for the ChT$_1$ \TS cell model]{Rate and temporal \MTF responses for the ChT$_1$ TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
@@ -1279,7 +1272,7 @@ model and its temporal characteristics.
 
 
 #+BEGIN_LaTeX
-  \begin{figure}[tb]
+  \begin{figure}[tp!]
   \centering %\caption{TS Rate (spks/s) and \SI 60 dB}
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChT2.pdf}}
   \caption[Rate and temporal \MTF responses for the ChT$_2$ \TS cell model]{Rate and temporal \MTF responses for the \ChTtwo \TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
@@ -1308,7 +1301,7 @@ model. The transient chopper \tMTF response in Figure \ref{fig:Ch4:RG94Chopper}E
 was more comparable with the \ChTtwo model with a broader band-pass peak at high
 sound levels and higher cut-off frequencies.
 
-\clearpage
+# \clearpage
 
 *** TS source blocks                                               :noexport:
 **** ChS Source block calls                                        :noexport:
