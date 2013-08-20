@@ -304,6 +304,9 @@ on-\CF\space \AM tones.  The HSR ANF rate responses are flat and saturate at
 moderate sound levels. The temporal \MTF response in HSR ANFs is low-pass,
 moderate in maximum synchrony, and the synchronisation deteriorates with
 increasing sound intensity.
+The \citet{ZilanyBruceEtAl:2009} AN model has shown accurate replication of experimental AM responses in cat ANFs \citep{JorisYin:1992}
+including synchronisation changes to modulation depth, sound level and modulation frequency. 
+# The \citet{ZilanyCarney:2010} AN model used in this chapter, expanded the \citet{ZilanyBruceEtAl:2009} model
 
 
 #+BEGIN_LaTeX
@@ -680,13 +683,14 @@ in white if the Rayleigh coefficient was not statistically significant (p $<
     \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-4.pdf}}\\
     \caption[Rate and temporal MTF maps of HSR ANFs]{Rate and temporal modulation
       transfer functions (MTF) maps of \HSR ANFs at 40, 60 and 80 dB \SPL to AM
-      tones with carrier frequency 8.91 kHz. Rate (right column) and temporal
-      (left) \MTF maps of modulation frequency ($f_\mathsf{m}$) against the \CF of
-      the \HSR units.  The corresponding temporal \MTF maps show their \SI with range
-      0 to 1. The white mask over the \tMTF graphs show where the Rayleigh test's
-      p-value was above 0.05.  A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
-      C. \rMTF map at 60 dB \SPL. D. \tMTF map at 80 dB \SPL. E. \rMTF map at 40 dB
-      \SPL. F. \tMTF map at 40 dB \SPL. }  \label{fig:Ch4:HSRMTF}
+      tones with carrier frequency 8.91 kHz. Rate (left column) and temporal
+      (right) \MTF maps of modulation frequency ($f_\mathsf{m}$) against the \CF
+      of the \HSR units.  The corresponding temporal \MTF maps show their \SI with
+      range 0 to 1. The white regions on the \tMTF figures show where the Rayleigh
+      test's were insignificant (p-value $>$ 0.05).  A. \rMTF map at 80 dB
+      \SPL. B. \tMTF map at 80 dB \SPL.  C. \rMTF map at 60 dB \SPL. D. \tMTF map
+      at 80 dB \SPL. E. \rMTF map at 40 dB \SPL. F. \tMTF map at 40 dB
+      \SPL. }  \label{fig:Ch4:HSRMTF}
   \end{figure}
 #+END_LaTeX
 
@@ -712,6 +716,8 @@ centre unit) show a rapid deterioration of temporal information despite being at
 the centre of the stimulus' energy.  Below the centre channel, band-pass \tMTF
 responses increase in mean and peak values further away from the centre with the
 apex at unit 54 (CF 5.43 kHz, mean \SI of 0.697, max \SI 0.785).
+Synchronisation at 80 dB SPL for \fm = 50 Hz was evident across different CFs
+due to the low frequency tail in the AN tuning curve.
 
 The \tMTF response observed at 60 dB \SPL (Figure \ref{fig:Ch4:HSRMTF}D) looks
 similar to the 80 dB \SPL response with a reduced number of frequency channels
@@ -1396,12 +1402,12 @@ limits the post-synaptic neuron's ability to phase-lock to the modulating
 frequency, especially at high \fm.
 
 
-The primary functional influence of \GLG cells on the \CNSM model in response to
-AM tones is the automatic gain regulation of \DS and \TS cells.  \GLG cells'
-monotonic rate-level response and their \GABAa inhibitory synapses control the
-excitability in both stellate cells linearly dependent on stimulus intensity.
+The functional influence of \GLG cells on the \CNSM model in response to
+AM tones is the automatic gain regulation of \DS and \TS cells.  \GLG cells
+monotonic rate-level responses and their \GABAa inhibitory synapses control the
+excitability in both stellate cells in a way that is linearly dependent on stimulus intensity.
 At high \SPL, \HSR fibres are rate-saturated and their temporal \MTF response
-diminishes with increasing sound level, producing a cacophony of background
+diminishes with increasing sound level, producing background synaptic
 noise in the microcircuit. \GLG cell inputs to \DS and \TS cells during \AM
 tones aid in suppressing elevated, unsynchronised, continuous excitation and
 enhance their synchronous response to modulated inputs.
@@ -1444,10 +1450,10 @@ timed inhibition
 \DS cells receive a large number of \HSR and \LSR units from a wide range of
 frequency channels; consequently, the number of active inputs increases with intensity.
 Correlated on-\CF\space \LSR units and \HSR inputs from upper and lower
-side-bands with high \SI help to encode the stimulus envelope; however dendritic
+side-bands with high \SI help to encode the stimulus envelope; however, dendritic
 smoothing and uncorrelated on-\CF\space \HSR units are capable of diminishing
 the entrainment of \DS cells to the envelope. The \DS cell model does not have
-dendritic compartments or equivalent smoothing filter as in other models
+dendritic compartments or an equivalent smoothing filter as in other models
 \citep{KalluriDelgutte:2003,WangSachs:1995}.  This model does have a jitter (0.1
 ms standard deviation) in the \ANF inputs to emulate the variable distance of
 synapses for the site of activation at the axon hillock.
@@ -1480,8 +1486,10 @@ information in response to \AM tones relative to \ANF inputs at low sound levels
 strong enhancement may be due to a combination of intrinsic mechanisms, afferent
 excitation and inhibition by \DS units.  The \fz response map of \TV cells in
 Figure \ref{fig:Ch4:fzero}E showed high \SI values near boundaries of its
-response area.  \TV cells receive strong inhibition from \DS cells, but \DS cell
-input is inactive in this area. Intrinsic mechanisms in the \TV cell model (Type I
+response area.  
+# \TV cells receive strong inhibition from \DS cells, but \DS cell
+# input is inactive in this area. 
+Intrinsic mechanisms in the \TV cell model (Type I
 classic \RM model) contribute to a high input resistance at the \RMP.  The lower
 leak potential (\Eleak) in the \TV cell model also increases the difference
 between \RMP and \AP threshold.  These mechanisms remove the DC component of
@@ -1489,7 +1497,7 @@ uncorrelated inputs and enhance the AC component of \HSR and \LSR excitatory
 inputs.
 
 At high sound levels, the strong inhibitory inputs from \DS cells create a
-non-linear response in \TV cells.  \TV cells' temporal response properties in
+non-monotonic response in \TV cells.  \TV cells' temporal response properties in
 experimental studies have been shown to be complex and non-linear
 \citep{SpirouDavisEtAl:1999,JorisSmith:1998,Rhode:1999}.  \TV cells are thought
 to be responsible for delayed inhibition or echo-suppression
@@ -1497,59 +1505,55 @@ to be responsible for delayed inhibition or echo-suppression
 the temporal behaviour in \TS cells at low sound levels.  In general, knowledge
 of the role of \TV cells has been further expanded through the \CNSM model but
 further investigation is required to explain inconsistencies in temporal
-processing of TV cells.
+processing of \TV cells.
 
 ** T stellate cells
 
-The inhomogeneous population of \TS cells are classified into
-subgroups, namely sustained or transient choppers.  Intrinsic membrane
-properties and synaptic connections enable \TS units to be enhanced or tuned to
-important features of the acoustic input \citep{PaoliniClareyEtAl:2005}. The
-behaviour of \TS units is influenced by all three interneurons in the stellate
-microcircuit.
-\AM rate responses of \TS units on-\CF were fairly weak but this did not disable
-their ability to encode temporal information.  Experimental data has shown \TS
-cells generally have low-pass \MTF at low sound level and band-pass \MTF for
-higher sound levels for on-\CF\space \AM tones \citep{RhodeGreenberg:1994}.
-The band-pass temporal responses of different types of TS cells
-aid in the transformation from a low-pass, temporal encoding of AM in ANFs to a
-more robust rate encoding in the \IC based on preference for different \BMFs
-\citep{JorisSchreinerEtAl:2004,Frisina:2001}.
+The inhomogeneous population of \TS cells are classified into subgroups, namely
+sustained and transient choppers.  Intrinsic membrane properties and synaptic
+connections enable \TS units to be tuned to important features of the acoustic
+input \citep{PaoliniClareyEtAl:2005}. The behaviour of \TS units is influenced
+by all three interneurons in the stellate microcircuit.  \AM rate responses of
+on-\CF \TS cell models were fairly weak but temporal information was still
+present.  Experimental data has shown \TS cells generally have low-pass \MTF at
+low sound level and band-pass \MTF for higher sound levels for on-\CF\space \AM
+tones \citep{RhodeGreenberg:1994}.  The band-pass temporal responses of
+different types of TS cells aid in the transformation from a low-pass, temporal
+encoding of AM in ANFs to a more robust rate encoding in the \IC based on
+preference for different \BMFs \citep{JorisSchreinerEtAl:2004,Frisina:2001}.
 
-Figures \ref{fig:Ch4:fzero}, \ref{fig:Ch4:fzerorate}, \ref{fig:Ch4:CSMTF},
- \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF} show snapshots of the
- possible response characteristics in \TS cell models with a view point across
- all cells in the network.  In the \fz response analysis, the \ChS type \TS cell
- models near the centre of the AM response area had moderate rate and strong
- enhancement at high SPL. The \ChTone model was strongly inhibited on-CF at
- higher \SPL but did have high firing rates and high \SI response near the edges
- of the V-shaped response area.  The \ChTtwo models's \fz response was less
- robust at higher SPL on-CF but had similar V-shaped enhanced temporal output
- across different \CFs.  In the \MTF analysis, the \tMTF response maps of \TS
- cells showed insights into the complex spectro-temporal processing being
- performed in the stellate microcrcuit.  At 20 dB SPL (only shown in Figure
- \ref{fig:Ch4:ChopperONCFMTF}), the on-CF \tMTF responses were similar for each
- subtype with high synchronisation at low SPL, a dip in \SI at 300 Hz and a
- second peak above 0.8 SI at 500 Hz.  At higher sound levels, the \MTF response
- characteristics of the chopper subtypes diverged. \ChS models had lower cut-off
- frequencies than both the \ChT type models.  The \ChTone model had primarily
- low-pass \tMTF responses but strong inhibition on CF and suppression of its
- rate at higher \fm limit the conclusiveness of this model.  The \ChTtwo had a
- more consistent rate response and \tMTF responses that varied from band pass
- on-CF to strongly enhanced low-pass in its lateral sidebands.
+The \fz  (Figures \ref{fig:Ch4:fzero}, \ref{fig:Ch4:fzerorate}) and \MTF (Figures \ref{fig:Ch4:CSMTF},
+\ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF}) figures show snapshots of the possible
+response characteristics in \TS cell models across all cells
+in the network.  In the \fz response analysis, the \ChS type \TS cell models
+near the centre of the AM response area had moderate rate and strong enhancement
+at high SPL. The \ChTone model was strongly inhibited on-CF at higher \SPL but
+did have high firing rates and high \SI response near the edges of the V-shaped
+response area.  The \ChTtwo models's \fz response was less robust at higher SPL
+on-CF but had similar V-shaped enhanced temporal output across different \CFs.
+In the \MTF analysis, the \tMTF response maps of \TS cells showed insights into
+the complex spectro-temporal processing being performed in the stellate
+microcrcuit.  At 20 dB SPL (only shown in Figure \ref{fig:Ch4:ChopperONCFMTF}),
+the on-CF \tMTF responses were similar for each subtype with high
+synchronisation at low SPL, a dip in \SI at 300 Hz and a second peak above 0.8
+SI at 500 Hz.  At higher sound levels, the \MTF response characteristics of the
+chopper subtypes diverged. \ChS models had lower cut-off frequencies than both
+the \ChT type models.  The \ChTone model had primarily low-pass \tMTF responses
+but strong inhibition on CF and suppression of its rate at higher \fm limit the
+conclusiveness of this model.  The \ChTtwo had a more consistent rate response
+and \tMTF responses that varied from band pass on-CF to strongly enhanced
+low-pass in its lateral sidebands.
 
 
 Given the \TS cell subtypes' network parameters were optimised to chopping
 characteristics for pure \CF tones, the results of the \CNSM model must be
-viewed from the that perspective.  Current \TS cell models have investigated AM
+viewed from that perspective.  Current \TS cell models have investigated AM
 responses \citep{WiegrebeMeddis:2004,BahmerLangner:2006a} but their inaccurate
 physiological design is not a good basis to fully understand temporal encoding
 in the \CN stellate microcircuit.  An exploration of the parameter space in the
 \TS cells of the \CNSM model and their effects on the temporal characteristics
 was not in the scope of this chapter but is an open prospect for future
 research.
-
-
 
 
 # - Notes
@@ -1568,11 +1572,10 @@ research.
 #  - Transition from temporal to rate coding in auditory pathway
 
 The limitations of the CNSM model discussed in Chapter 3 are equally relevant to
-the study of AM encoding presented in this chapter, The performance of the
-\citet{ZilanyCarney:2010} AN model has not been verified with AM tones but the
-model remains the most phenomenologically-realistic in terms of AM encoding for
-use in this study.
-
+the study of AM encoding presented in this chapter. The performance of the
+\citet{ZilanyCarney:2010} AN model has been verified against AM responses in cat
+ANFs \citep{ZilanyBruceEtAl:2009,JorisYin:1992} and the model remains the most
+phenomenologically-realistic in terms of AM encoding for use in this study.
 
 
 A further set of limitations are specifically relevant to AM encoding as studied
@@ -1587,19 +1590,17 @@ understanding the effects of synaptic delays in the CNSM model in response to AM
 tones and stimuli, particularly with respect to synchronised \DS cell inhibition
 of \TS cells.
 
-
-# What can be done better in further work
+# What can be done better in future work?
 
 The major limitation of this chapter arises out of the fixed network parameter
- set generated in Chapter \ref{sec:ModelChapter}. The output of \TS cells in
- this chapter were routinely suppressed at high SPL by strong inhibition from
- \DS cells. Whether the design of the optimisation stimuli used in Chapter
- \ref{sec:ModelChapter} fully encompassed the influence of DS cells or that the
- phasic responses of DS cells to AM tones provides more effective inhibition is
- still an open question.  Also, the homogeneity of cell-type parameters and
- their responses in the CNSM model limits its realism and further work is
- required to understand variability within cell types of the stellate
- microcircuit.
+set generated in Chapter \ref{sec:ModelChapter}. The output of \TS cells in this
+chapter were routinely suppressed at high SPL by strong inhibition from \DS
+cells. Whether the design of the optimisation stimuli used in Chapter
+\ref{sec:ModelChapter} fully encompassed the influence of DS cells or that the
+phasic responses of DS cells to AM tones provides more effective inhibition is
+still an open question.  Also, the homogeneity of cell-type parameters and their
+responses in the CNSM model limits its realism and further work is required to
+understand variability within cell types of the stellate microcircuit.
 
 
 # is important for understanding off-CF
@@ -1615,22 +1616,14 @@ The major limitation of this chapter arises out of the fixed network parameter
 # As discussed in Chapter 3, the limitations of the AN model in terms of AM
 # encoding, have a strong influence over the limitations of the CNSM model.
 
-
 # Timing of inhibitory synaptic inputs have a major role of regulating responses in CN neurons
 # \cite{KanoldManis:2005,KanoldManis:2001}.  The presence of \IKA in \TS cells influences the
 # phasic output
 
-
-
-# These effects
-
-
-
-
 ** Implications for Temporal Processing in BNN Models
 
 Paradoxically, the complex temporal processing dynamics in a \BNN model with
-excitatory and inhibitory connections can be both a benefit and a detriment for
+excitatory and inhibitory connections can be both a benefit and a detriment to
 the synchronised output of post-synaptic neurons.  A mixture of modulated inputs
 is beneficial when they are in phase with each other, but can be detrimental
 when they are uniformly out of phase. Unsynchronised excitation (like that seen
@@ -1646,10 +1639,6 @@ dendritic smoothing all contribute to reductions in temporal processing,
 especially at the upper limits of \fm.
 
 
-
-
-
-
 * Conclusion
 
 By drawing on the CNSM model's strong bio-physiological realism, this chapter
@@ -1657,7 +1646,7 @@ has demonstrated a viable approach for generating improved insight into AM
 encoding in the stellate microcircuit. The \CNSM model provides a more
 realistic representation of \AM coding in the output of \GLG, \DS and \TV cells
 than previous models. While the results of the three \TS cell analyses were
-less convincing, they nonetheless provided a valid example of the diversity in
+less convincing, they nonetheless provide a valid example of the diversity in
 \AM encoding by chopper units.
 
 
@@ -1690,8 +1679,6 @@ transformations performed within the stellate microcircuit.
 # The effects of blocking \GABA and glycine neurotransmitters on AM encoding
 # \citep{EvansZhao:1998,EvansZhao:1993a,BackoffShadduckEtAl:1999,CasparyBackoffEtAl:1994,PalombiCaspary:1992}
 # have been studied in the \CN with varying degrees of specificity.
-
-
 
 
 #+BEGIN_LaTeX
