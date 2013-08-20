@@ -292,7 +292,7 @@ in the \AN and \CN, see \citet{FrisinaWaltonEtAl:1994} and
 
 #+LABEL: fig:Ch4:RG94_AN
 #+ATTR_LaTeX: width=0.8\textwidth
-#+CAPTION: [Rate and temporal response in \ANF unit to \AM]{Rate (left) and temporal (right) \MTF response properties of a single HSR ANF to \AM stimuli at 30, 50 and 70 dB \SPL. The \rMTF of the HSR ANF unit is an all-pass filter and saturates at 230 spikes per second. The \tMTF is a low pass filter at 30 dB \SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as \SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
+#+CAPTION: [Rate and temporal response in ANF unit to AM]{Rate (left) and temporal (right) \MTF response properties of a single HSR ANF to \AM stimuli at 30, 50 and 70 dB \SPL. The \rMTF of the HSR ANF unit is an all-pass filter and saturates at 230 spikes per second. The \tMTF is a low pass filter at 30 dB \SPL and strength of synchronisation reduces dramatically with increase in sound intensity  (Sync. Coeff. is the same as \SI).   Figure reproduced from \citet{RhodeGreenberg:1994}. }
  [[../VowelProcessingChapter/gfx/RG94-AN_MTF.png]]
 
 
@@ -315,7 +315,7 @@ including synchronisation changes to modulation depth, sound level and modulatio
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/RG94-Choppers_MTF.png}}\\
    % \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChS.pdf}}\\
    % \includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}
-    \caption[Temporal response in Choppers on \CF]{Rate and temporal response
+    \caption[Temporal response in choppers on-CF]{Rate and temporal response
       properties of sustained and transient chopper units (TS cells). Figure
       reproduced from \citet{RhodeGreenberg:1994}. }
   \label{fig:Ch4:RG94Chopper}
@@ -883,7 +883,7 @@ call_mean_ANFvs()
 #+RESULTS: mean_ANFvs()
 : nil
 
-*** Golgi cell model
+*** Golgi Cell Model
 
 
 #+BEGIN_LaTeX
@@ -967,13 +967,13 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 | 0.11 | 0.155 | 11 | 100 |
 
 
-*** DS cell model
+*** DS Cell Model
 
 #+BEGIN_LaTeX
   \begin{figure}[tp!]
   \centering %{\hspace{0.2\columnwidth}rMTF (sp/s) \hspace{0.35\columnwidth} \tMTF}\\
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-2.pdf}}
-  \caption[Rate and temporal \MTF responses for \DS cells at three stimulus sound
+  \caption[Rate and temporal MTF responses for DS cells at three stimulus sound
     levels]{Rate and temporal \MTF responses for \DS cells at three stimulus sound
     levels. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
@@ -1060,14 +1060,14 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 | 0.485 | 0.722 | 23 | 250 |
 
 
-*** TV cell model
+*** TV Cell Model
 
 #+BEGIN_LaTeX
   \begin{figure}[tp!]
   \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-1.pdf}}
-  \caption[Rate and temporal \MTF response maps for three stimulus sound
-  levels of the \TV cell model]{Rate (rMTF) and temporal (tMTF) responses for three stimulus sound
+  \caption[Rate and temporal MTF response maps for three stimulus sound
+  levels of the TV cell model]{Rate (rMTF) and temporal (tMTF) responses for three stimulus sound
   levels of the \TV cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
       \SPL. F. \tMTF map at 40 dB \SPL.}\label{fig:Ch4:TVMTF}
@@ -1160,13 +1160,13 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 
 | 0.94 | 1 | 3 | 50 |
 
-*** TS cell model
+*** TS Cell Model
 
 #+BEGIN_LaTeX
   \begin{figure}[tp!]
   \centering
   \resizebox{\columnwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/ratetemporal-0-ChS.pdf}}
-  \caption[Rate and temporal \MTF responses for the \ChS~\TS cell model]{Rate and temporal \MTF responses for the \ChS \TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
+  \caption[Rate and temporal MTF responses for the ChS model]{Rate and temporal \MTF responses for the \ChS~\TS cell model. A. \rMTF map at 80 dB \SPL. B. \tMTF map at 80 dB \SPL.
       C. \rMTF map at 60 dB \SPL. D. \tMTF map at 60 dB \SPL. E. \rMTF map at 40 dB
       \SPL. F. \tMTF map at 40 dB \SPL.}
   \label{fig:Ch4:CSMTF}
@@ -1199,7 +1199,7 @@ limited results or a low-pass \MTF.  Outermost active units (above and below
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT1.pdf}}\\
   {\figfont{E}\space \space      \textsf{  \ChTtwo\space   \rMTF }   \hspace{0.25\textwidth}    \figfont{F}\space \space     \textsf{  \ChTtwo\space   \tMTF }  \hspace{0.35\textwidth}}\\
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT2.pdf}}\\
-    \caption[Rate and temporal MTF responses in \ChS and \ChT$_1$ units on \CF]{A. Rate \MTFs of sustained chopper (ChS) model (unit 65, \CF 8.95 kHz) on-CF to sound levels 20, 40, 60 and 80 dB SPL. B.
+    \caption[Rate and temporal MTF responses in ChS and ChT$_1$ units on-CF]{A. Rate \MTFs of sustained chopper (ChS) model (unit 65, \CF 8.95 kHz) on-CF to sound levels 20, 40, 60 and 80 dB SPL. B.
    Temporal \MTFs of the \ChS model on \CF (unit 65, \CF 8.95 kHz) at four different sound levels.   C. \rMTFs of the on-CF \ChTone model. D. \rMTFs of the on-CF \ChTone model. E. \rMTFs of the on-CF \ChTtwo model. F. \tMTFs of the on-CF \ChTtwo model.  \tMTF data points that failed the Rayleigh test (p$<0.05$) were not plotted.
     }
   \label{fig:Ch4:ChopperONCFMTF}
@@ -1371,7 +1371,7 @@ and their implications for each cell type simulated in this chapter.
 
 # \citep{JorisLouageEtAl:2006,JorisSchreinerEtAl:2004}.
 
-** Golgi cells
+** Golgi Cells
 
 \glsunset{GABA}
 
@@ -1412,7 +1412,7 @@ enhance their synchronous response to modulated inputs.
 # \GLG cells are low-firing monotonic rate-level units that, in the \CNSM model,
 # have little temporal response to \AM tones.
 
-** D stellate cells
+** D Stellate Cells
 
 \DS cells are critical to the \CNSM model's ability to encode temporal
 information at high sound intensity levels.  The cumulative results in this
@@ -1472,7 +1472,7 @@ synapses for the site of activation at the axon hillock.
 # \citep{RhodeGreenberg:1994,Rhode:1998}
 # \citep{Frisina:2001,FrisinaWaltonEtAl:1993,FrisinaSmithEtAl:1990a}.
 
-** Tuberculoventral cells
+** Tuberculoventral Cells
 
 The results of the \TV cell model show a general enhancement of temporal
 information in response to \AM tones relative to \ANF inputs at low sound levels.  The
@@ -1500,7 +1500,7 @@ of the role of \TV cells has been further expanded through the \CNSM model but
 further investigation is required to explain inconsistencies in temporal
 processing of \TV cells.
 
-** T stellate cells
+** T Stellate Cells
 
 The inhomogeneous population of \TS cells are classified into subgroups, namely
 sustained and transient choppers.  Intrinsic membrane properties and synaptic
@@ -1560,7 +1560,7 @@ research.
 #    - Golgi : slow level dependent
 #    - \TV : delayed echo suppression
 
-** Limitation of the CNSM model in modelling AM encoding
+** Limitation of the CNSM Model in Modelling AM Encoding
 
 #  - Transition from temporal to rate coding in auditory pathway
 
