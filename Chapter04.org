@@ -966,7 +966,6 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 #+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.3.dat ]() :results raw replace
 | 0.11 | 0.155 | 11 | 100 |
 
-
 *** DS Cell Model
 
 #+BEGIN_LaTeX
@@ -1058,7 +1057,6 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.2.dat ]()[ :results raw replace ]
 | 0.485 | 0.722 | 23 | 250 |
-
 
 *** TV Cell Model
 
@@ -1630,7 +1628,6 @@ inputs.  Unsynchronised inhibition can also enhance the temporal output by
 rectifying the AC component.  Phase lags, irregularities in synaptic delays and
 dendritic smoothing all contribute to reductions in temporal processing,
 especially at the upper limits of \fm.
-
 
 * Conclusion
 

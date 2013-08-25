@@ -2,7 +2,6 @@
 
 * Chapter 4 Appendix
 
-
 ** Rate f0 response 
 
 Figure \ref{fig:Fzerorate} shows the average rate of units to increasing stimulus intensity (the rate aspect of f_0 response results shown in Figure \ref{fig:fzero}). 

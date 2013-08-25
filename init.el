@@ -255,7 +255,7 @@
        \\lfoot{\\footnotesize\\today\\ at \\thistime}"
 ; [NO-DEFAULT-PACKAGES]
 ;       [NO-PACKAGES]" 
-	       ("\\newpage\n\\section{%s}" . "\n\\newpage\n\\section{%s}")
+	       ("\n\n\\section{%s}" . "\n\n\\section{%s}")
 	       ("\\subsection{%s}"         . "\n\\subsection{%s}") 
 	       ("\\subsubsection{%s}"      . "\n\\subsubsection{%s}") 
 	       ("\\paragraph{%s}"          . "\n\\paragraph{%s}"))) 
