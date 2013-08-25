@@ -7,18 +7,22 @@
 #+name: CSdatapath
 #+BEGIN_SRC gnuplot :noweb tangle :export none
   datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/"
-  #  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/"
+  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/"
 
 #+END_SRC
 
 #+name: CTonedatapath
 #+BEGIN_SRC gnuplot :noweb tangle :export none
   datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
+  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
+
 #+END_SRC
 
 #+name: CTtwodatapath
 #+BEGIN_SRC gnuplot :noweb tangle :export none
   datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
+  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
+
 #+END_SRC
 
 
@@ -50,6 +54,7 @@
   set pm3d map # interpolate 0,0
   set logscale x 10
   set colorbox noborder
+
   set multiplot layout 3,2
   set xtics nomirror out #("" 50, "" 60, "" 70, "" 80, "" 90, "0.1" 100, "" 200, "" 300, "" 400, "" 500, "" 600, "" 700, "" 800, "" 900, "1" 1000, "" 1100, "" 1200)
   unset key
@@ -94,7 +99,7 @@
   # set palette rgbformulae 22,13,-31
   set palette functions sqrt(gray),sqrt(gray),sqrt(gray) negative
   # set palette gray negative
-  splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE)
+  splot [50:1200] datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4)
   print "vs "
   unset ylabel
   set cbrange [0:1]
@@ -167,7 +172,7 @@
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid \
   dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-3.eps'
-  <<CTtwodatapath>>
+  <<CSdatapath>>
   <<ratetemporalC>>
   !fixbb './gfx/ratetemporal-3.eps'
 
@@ -188,7 +193,7 @@
   INDEX=2
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-2.eps'
-  <<CTtwodatapath>>
+  <<CSdatapath>>
   <<ratetemporalC>>
   !fixbb './gfx/ratetemporal-2.eps'
 
@@ -211,7 +216,7 @@
   INDEX=1
   set term postscript eps size 7,7.86 enhanced defaultplex leveldefault colour solid dashlength 1.0 linewidth 2.0 butt noclip  palfuncparam 2000,0.003  "Helvetica" 18
   set output './gfx/ratetemporal-1.eps'
-  <<CTonedatapath>>
+  <<CSdatapath>>
   <<ratetemporalC>>
   !fixbb './gfx/ratetemporal-1.eps'
 
@@ -316,7 +321,7 @@
        '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "40" w lp, \
        '< grep '' 65 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "20" w lp
   #   }
-  # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+  # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4), \
   
   unset multiplot
 #+END_SRC
@@ -360,10 +365,10 @@
   INDEX=4
   set yrange [0:*]
   set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
-  plot  '< grep -e ''\s65\s'' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "80" w lp, \
-        '< grep -e ''\s65\s'' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "60" w lp, \
-        '< grep -e ''\s65\s'' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "40" w lp, \
-        '< grep -e ''\s65\s'' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "20" w lp
+  plot  '< grep -e ''\s65\s'' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4) not "80" w lp, \
+        '< grep -e ''\s65\s'' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4) not "60" w lp, \
+        '< grep -e ''\s65\s'' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4) not "40" w lp, \
+        '< grep -e ''\s65\s'' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4) not "20" w lp
   
   set yrange [0:1]
   set ylabel "Synch Index " font "Helvetica,24"  
@@ -379,10 +384,10 @@
   set yrange [0:*]
   set xlabel "f_m (kHz)" font "Helvetica,24"
   set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
-  plot  '< grep -e ''\s65\s'' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "80" w lp, \
-        '< grep -e ''\s65\s'' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "60" w lp, \
-        '< grep -e ''\s65\s'' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "40" w lp, \
-        '< grep -e ''\s65\s'' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) not "20" w lp
+  plot  '< grep -e ''\s65\s'' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4) not "80" w lp, \
+        '< grep -e ''\s65\s'' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4) not "60" w lp, \
+        '< grep -e ''\s65\s'' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4) not "40" w lp, \
+        '< grep -e ''\s65\s'' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4) not "20" w lp
   set yrange [0:1]
   set ylabel "Synch Index " font "Helvetica,24"  
   plot  '< grep -e ''\s65\s'' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($5>5.991?$4:NaN) t "80" w lp, \
@@ -433,15 +438,15 @@
   set xrange [40:1300]
   set yrange [*:*]
   set ylabel "Firing Rate (sp/s) " font "Helvetica,24"
-  # duration (130 ms, 0.13 s) of response stimuli needs to be included average spikes per stimulus in the response rate output
-  plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "80" w lp, \
-        '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "60" w lp, \
-        '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "40" w lp, \
-        '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4*FRATE) t "20" w lp
+
+  plot  '< grep '' 65 '' '.datapath.'80/response_area.'.INDEX.'.dat ' u 1:($4) t "80" w lp, \
+        '< grep '' 65 '' '.datapath.'60/response_area.'.INDEX.'.dat ' u 1:($4) t "60" w lp, \
+        '< grep '' 65 '' '.datapath.'40/response_area.'.INDEX.'.dat ' u 1:($4) t "40" w lp, \
+        '< grep '' 65 '' '.datapath.'20/response_area.'.INDEX.'.dat ' u 1:($4) t "20" w lp
   unset key
   set yrange [0:1]
   set ylabel "Synch Index " font "Helvetica,24"
-
+  ## Block si values where rayleigh test pval less than 0.05 and si greater than 0.98 ()
   plot  '< grep '' 65 '' '.datapath.'80/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?($4>0.98?NaN:$4):NaN) t "80" w lp, \
         '< grep '' 65 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?($4>0.98?NaN:$4):NaN) t "60" w lp, \
         '< grep '' 65 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?($4>0.98?NaN:$4):NaN) t "40" w lp, \
@@ -590,7 +595,7 @@
         '< grep '' 70 '' '.datapath.'60/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "60" w lp, \
         '< grep '' 70 '' '.datapath.'40/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "40" w lp, \
         '< grep '' 70 '' '.datapath.'20/vsSPIKES.'.INDEX.'.dat ' u 1:($7<0.05?$4:NaN) t "20" w lp
-  # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4*FRATE), \
+  # datapath.spl.'/response_area.'.INDEX.'.dat' u 1:($3/1000):($4), \
   
    unset multiplot
 #+END_SRC
@@ -786,7 +791,7 @@ where the f_c is fixed at the \CF of the unit.
   if (cell=="2") { set cbrange [0:1500]}
   if (cell=="1") { set cbrange [0:800]}
   if (cell=="0") { set cbrange [0:400]}
-  splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
+  splot  datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4)
   }
   cell=0
   
@@ -794,10 +799,10 @@ where the f_c is fixed at the \CF of the unit.
   set xlabel "CF (kHz)" font "Helvetica,24";
   set ylabel "Sound Level (dB SPL)" font "Helvetica,24"
   CT1datapath=sprintf("%s../../TStellate2_CT1/F0Response/",datapath)
-  splot  CT1datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
+  splot  CT1datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4)
   unset ylabel; unset cblabel
   CT2datapath=sprintf("%s../../TStellate2_CT2/F0Response/",datapath)
-  splot  CT2datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4*FRATE)
+  splot  CT2datapath.'/response_area.'.cell.'.dat' u ($3/1000):1:($4)
   unset multiplot
 #+END_SRC
 
