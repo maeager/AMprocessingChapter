@@ -200,9 +200,7 @@ statistically significant result.
 # test were 5.991 for \alpha = 0.05 and 13.816 for \alpha = 0.001
 # \citep{ShannonZengEtAl:1995,MardiaJupp:1999}.
 The p-value for the Rayleigh test is computed using the
-approximation by \citet[p.~617]{Zar:1999}{}[fn::The code
-was converted for use in NEURON from the CircStat Matlab
-Toolbox \citep{Berens:2009}.]:
+approximation by \citet[p.~617]{Zar:1999}:[fn:: The code was converted for use in NEURON from the CircStat Matlab Toolbox \citep{Berens:2009}.]
 #+BEGIN_LaTeX
 \begin{equation}\label{eq:SIp}
 p = \exp\left(\sqrt{1+4N+4(N^2-R^2)-(1+2N)}\right)
@@ -509,7 +507,7 @@ calculate the firing rate and \SI of each of the \CNSM model units.
       \protect{\ensuremath{f_0}} response map of each cell in the CNSM model to AM
       tones of different stimulus intensities and units with different CFs. The
       colour bar shows the synchronisation index from 0 to 1, with white
-      representing areas with Rayleigh test not statistically significant (p
+      representing areas with Rayleigh test not statistically significant (p-value
       $<0.05$). The stimuli were \AM tones with $f_\mathsf{c} = 8.9$ kHz,
       $f_\mathsf{m} = 150$ Hz, duration 150 msec, 20 msec delay, and 2 msec on-off
       ramp. SI calculations used spikes in the last 130 msec of the stimulus. A. HSR
@@ -560,7 +558,7 @@ non-linear temporal behaviour at each frequency channel surrounding the \fc.
 # at high
 # intensities when the carrier frequency is centred on a unit's \CF.
 For the on-\CF unit (8.91 kHz), the peak \SI was 0.775 at 15 dB \SPL and then
-subsequently fell below the Rayleigh test of statistical significance (p
+subsequently fell below the Rayleigh test of statistical significance (p-value
 $<0.05$) when the unit reached maximum firing rate at 40 dB \SPL.  Adjacent
 network channels showed similar behaviour with an adjustment in rise and
 fall of \SI based on excitation from the cochlea filter.  These results are
@@ -661,6 +659,295 @@ SI 0.873 before falling to 0.35 with some irregularities at higher sound levels.
 
 # \clearpage
 
+
+**** Source blocks                                                 :noexport:
+
+#+name: mean_ANF_vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat
+  BEGIN{count=0;total=0;max=0; min=""}
+  {if ($2 == 65){if ($5>5.99){if ($4>max){max=$4};total+=$4; count+=1}}}
+  END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
+#+END_SRC
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF
+| 0.392 | 0.608 | 24 |
+
+#+name: mean_Gvs
+#+BEGIN_SRC sh :exports none :results raw replace :var datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/" :var SPL=60 :var CELL=4
+  grep -e '\s65\s' ${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
+#+END_SRC
+
+#+name: vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
+  BEGIN{count=0;total=0;max=0; maxfm=0;min=""}
+  {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4;maxfm=$1};total+=$4; count+=1}}}
+  END{printf("%0.3g, %0.3g, %d, %d",total/count,max, count, maxfm)}
+#+END_SRC
+
+
+#+name: CSdatapath
+#+BEGIN_SRC sh :noweb tangle :export none
+  datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/"
+  datapath="${HOME}/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/"
+#+END_SRC
+
+#+name: CTonedatapath
+#+BEGIN_SRC gnuplot :noweb tangle :export none
+  datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
+  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CT1/ModulationTransferFunction/"
+#+END_SRC
+
+#+name: CTtwodatapath
+#+BEGIN_SRC gnuplot :noweb tangle :export none
+  datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
+  datapath="~/mnt/m2p38/eagerm/cnstellate/TStellate2_CT2/ModulationTransferFunction/"
+#+END_SRC
+
+#+name: MTFmax_onCF
+#+header:  :results raw :export none
+#+BEGIN_SRC sh :var spl="80" :var cell="0" :var Ch="S" :noweb yes
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{max=0;maxfm=50}{if ($2 == 65){if($7<0.05){if ($4>max){max=$4;maxfm=$1}}}}END{printf("%0.3g at \\fm %d Hz",max,maxfm)}' \
+  ${datapath}/ModulationTransferFunction/${spl}/vsSPIKES.${cell}.dat
+#+END_SRC
+
+# call _ MTFmax _ onCF(spl="80",cell="2")[ :results replace raw ]
+
+#+name: MTFmean_onCF
+#+header:  :results raw :export none
+#+BEGIN_SRC sh :var spl="80" :var cell="0" :var Ch="S" :noweb yes
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{total=0;count=0}{if ($2 == 65){if($7<0.05){total+=$4;count+=1}}}END{if(count == 0){printf("0")}else{printf("%0.3g",total/count)}}' \
+  ${datapath}/ModulationTransferFunction/${spl}/vsSPIKES.${cell}.dat
+#+END_SRC
+
+# call _ MTFmean _ onCF(spl="80",cell="2")[ :results replace raw ]
+
+
+#+name: MTFmaxpos
+#+header:  :results raw :export none
+#+BEGIN_SRC sh :var spl="80" :var cell="0" :var Ch="S" :noweb yes
+ # Find maximum point in MTF map excluding p>0.05 and N<50
+ # Input file format: 
+ # <fm|Channel|CF|SI|RaylTest|N|pval>
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{max=0;maxfm=0;maxcf=0}
+  {if($7<0.05 && $5>50){if(max<$4){max=$4;maxfm=$1;maxcf=$3;}}}
+  END{printf("%0.3g at \\CF=%0.3g kHz and \\fm=%.3g Hz",max,maxcf/1000,maxfm)}' \
+  ${datapath}/ModulationTransferFunction/${spl}/vsSPIKES.${cell}.dat
+#+END_SRC
+
+# call _ MTFmax _ onCF(spl="80",cell="2")[ :results replace raw ]
+
+
+#+name: F0maxpos
+#+header:  :results raw :export none
+#+BEGIN_SRC sh  :var cell="0" :var Ch="S" :noweb yes
+ # Find maximum point in F0 map excluding pval>0.05 and N<50
+ # Input file format: 
+ # <SPL|Channel|CF|SI|RaylTest|N|pval>
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{max=0;maxspl=0;maxcf=0}
+  {if($7<0.05 && $5>50){if(max<$4){max=$4;maxspl=$1;maxcf=$3;}}}
+  END{printf("%0.3g %0.3g kHz at %d dB SPL",max,maxcf/1000,maxspl)}' \
+ ${datapath}/F0Response/vsSPIKES.${cell}.dat
+#+END_SRC
+
+# call _ F0maxpos _ onCF(cell="2",Ch="S")[ :results replace raw ]
+
+
+
+#+name: MTFmax_onCF
+#+header:  :results raw :export none
+#+BEGIN_SRC sh :var spl="80" :var cell="0" :var Ch="S" :noweb yes
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{max=0}{if ($2 == 65){if($7<0.05){if ($4>max){max=$4}}}}END{printf("%0.3g",max)}' \
+  ${datapath}/ModulationTransferFunction/${spl}/vsSPIKES.${cell}.dat
+#+END_SRC
+
+
+#+name: MTFmean_onCF
+#+header:  :results raw :export none
+#+BEGIN_SRC sh :var spl="80" :var cell="0" :var Ch="S" :noweb yes
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{total=0;count=0}{if ($2 == 65){if($7<0.05){total+=$4;count+=1}}}END{if(count == 0){printf("0")}else{printf("%0.3g",total/count)}}' \
+  ${datapath}/ModulationTransferFunction/${spl}/vsSPIKES.${cell}.dat
+#+END_SRC
+
+#+name: F0max_onCF
+#+header:  :results raw :export none
+#+BEGIN_SRC sh  :var cell="0" :var Ch="S" :noweb yes
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{max=0}{if ($2 == 65){if($7<0.05){if ($4>max){max=$4}}}}END{printf("%0.3g",max)}' \
+  ${datapath}/F0Response/vsSPIKES.${cell}.dat
+#+END_SRC
+
+# call _ F0max _ onCF(cell="2",Ch="S")[ :results replace raw ]
+
+#+name: F0mean_onCF
+#+header:  :results raw :export none
+#+BEGIN_SRC sh  :var cell="0" :var Ch="S" :noweb yes
+ <<CSdatapath>>;
+ datapath=$(echo ${datapath}|sed 's/_CS/_C'$Ch'/')
+ awk 'BEGIN{total=0;count=0;}
+  {if ($2 == 65){if($7<0.05){total+=$4;count+=1;}}}
+  END{if(count == 0){print 0}else{printf("%0.3g",total/count)}}' \
+ ${datapath}/F0Response/vsSPIKES.${cell}.dat
+#+END_SRC
+
+# call _ F0mean _ onCF(cell="2",Ch="S")[ :results replace raw ]
+
+
+#+name: mean_vsSPIKES_onCFb
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
+  BEGIN{count=0;total=0;max=0; maxfm=0;min=""}
+  {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4;maxfm=$1};total+=$4; count+=1}}}
+  END{printf("%0.3g, %0.3g, %d, %d",total/count,max, count, maxfm)}
+#+END_SRC
+
+#+RESULTS: mean_vsSPIKES_onCFb
+| 0.559 | 0.863 | 19 | 350 |
+
+#+name: mean_vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
+  BEGIN{count=0;total=0;}
+  {if ($2 == 65){if ($7<0.05){total+=$4; count+=1}}}
+  END{printf("%0.3g",total/count)}
+#+END_SRC
+
+#+name: max_vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
+  BEGIN{max=0;}
+  {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4};}}}
+  END{printf("%0.3g",max)}
+#+END_SRC
+
+#+name: maxpos_vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
+  BEGIN{max=0; maxfm=0;}
+  {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4;maxfm=$1};}}}
+  END{printf("%d",maxfm)}
+#+END_SRC
+
+#+name: count_vsSPIKES_onCF
+#+header: :exports none  :results raw replace
+#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
+  BEGIN{count=0;}
+  {if ($2 == 65){if ($7<0.05){count+=1}}}
+  END{printf("%d",count)}
+#+END_SRC
+
+
+# + BEGIN_SRC sh :noweb yes
+#  awk '<<mean_vsSPIKES_onCF>>' ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
+# + END_SRC
+
+
+call_mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+| 0.008 | 0.0276 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0297 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0297 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0308 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+| 0.00822 | 0.0308 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
+| 0.00794 | 0.0242 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+| 0.156 | 0.343 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+| 0.208 | 0.553 | 24 |
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
+| 0.208 | 0.553 | 24 |
+
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
+| 0.252 | 0.539 | 24 |
+
+call_mean_ANF_vsSPIKES_onCF()[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat ]
+
+#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat
+| 0.392 | 0.608 | 24 |
+
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]() :results raw replace 
+| 0.525 | 0.746 | 24 | 250 |
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]() :results raw replace 
+| 0.129 | 0.197 | 24 | 250 |
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.4.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.4.dat ]() :results raw replace 
+| 0.0261 | 0.0314 | 24 | 500 |
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.4.dat ]()[ :results raw replace ]
+| 0.0602 | 0.391 | 22 | 500 |
+
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.5.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.5.dat ]() :results raw replace 
+| 0.452 | 0.737 | 24 | 50 |
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]() :results raw replace 
+| 0.384 | 0.619 | 24 | 150 |
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.5.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.5.dat ]() :results raw replace 
+| 0.326 | 0.478 | 24 | 250 |
+
+call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat ]()[ :results raw replace ]
+
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat ]() :results raw replace 
+| 0.362 | 0.516 | 24 | 500 |
+
+
+#+name: mean_ANFvs
+#+BEGIN_SRC sh :exports none :results raw replace  :var datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/" :var SPL=60 :var CELL=4
+  vsfile=${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.${CELL}.dat
+  echo $vsfile
+  grep -e '\s65\s' ${vsfile} | awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
+#+END_SRC
+
+# call _ mean _ ANFvs()
+
+#+RESULTS: mean_ANFvs()
+: nil
+
+
 ** Responses to Changes in Modulation Frequency
 
 The figures in this section show the rate and temporal \MTF response maps,
@@ -669,7 +956,7 @@ frequency 8.91 kHz.  Modulation frequency ranged from 50 to 1200 Hz in 50 Hz
 steps and the \SPL was set to four appropriate levels (20, 40, 60 and 80 dB SPL).
 Each figure shows the \rMTF on the left and \tMTF on the right.  The \SI values
 were masked in white if the Rayleigh coefficient was not statistically
-significant (p $< 0.05$).
+significant (p-value $< 0.05$).
 
 # The sound level of each stimulus
 # was set to 40 dB \SPL for the top row and 60 dB \SPL for the bottom row.
@@ -690,7 +977,7 @@ significant (p $< 0.05$).
       (right) \MTF maps of modulation frequency ($f_\mathsf{m}$) against the \CF
       of the \HSR units are shown.  The corresponding temporal \MTF maps show their \SI with
       range 0 to 1. The white regions on the \tMTF figures show where the Rayleigh
-      coefficient were insignificant (p-value $>$ 0.05).  A. \rMTF map at 80 dB
+      test was insignificant (p-value $> 0.05$).  A. \rMTF map at 80 dB
       \SPL. B. \tMTF map at 80 dB \SPL.  C. \rMTF map at 60 dB \SPL. D. \tMTF map
       at 80 dB \SPL. E. \rMTF map at 40 dB \SPL. F. \tMTF map at 40 dB
       \SPL. }  \label{fig:Ch4:HSRMTF}
@@ -803,130 +1090,6 @@ responses at high \SPL and high \fm are an artefact of the
 
 # \clearpage
 
-**** Source blocks                                                 :noexport:
-
-#+name: mean_ANF_vsSPIKES_onCF
-#+header: :exports none  :results raw replace
-#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat
-  BEGIN{count=0;total=0;max=0; min=""}
-  {if ($2 == 65){if ($5>5.99){if ($4>max){max=$4};total+=$4; count+=1}}}
-  END{printf("%0.3g, %0.3g, %d",total/count,max, count)}
-#+END_SRC
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF
-| 0.392 | 0.608 | 24 |
-
-#+name: mean_Gvs
-#+BEGIN_SRC sh :exports none :results raw replace :var datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/" :var SPL=60 :var CELL=4
-  grep -e '\s65\s' ${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.3.dat |awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
-#+END_SRC
-
-#+name: mean_vsSPIKES_onCF
-#+header: :exports none  :results raw replace
-#+BEGIN_SRC awk :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.0.dat
-  BEGIN{count=0;total=0;max=0; maxfm=0;min=""}
-  {if ($2 == 65){if ($7<0.05){if ($4>max){max=$4;maxfm=$1};total+=$4; count+=1}}}
-  END{printf("%0.3g, %0.3g, %d, %d",total/count,max, count, maxfm)}
-#+END_SRC
-
-
-
-# + BEGIN_SRC sh :noweb yes
-#  awk '<<mean_vsSPIKES_onCF>>' ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
-# + END_SRC
-
-
-call_mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
-| 0.008 | 0.0276 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
-| 0.00822 | 0.0297 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()
-| 0.00822 | 0.0297 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
-| 0.00822 | 0.0308 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
-| 0.00822 | 0.0308 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.4.dat ]()
-| 0.00794 | 0.0242 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
-| 0.156 | 0.343 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
-| 0.208 | 0.553 | 24 |
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.5.dat ]()
-| 0.208 | 0.553 | 24 |
-
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.4.dat
-| 0.252 | 0.539 | 24 |
-
-call_mean_ANF_vsSPIKES_onCF()[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat ]
-
-#+RESULTS: mean_ANF_vsSPIKES_onCF() :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/80/vsSPIKES.4.dat
-| 0.392 | 0.608 | 24 |
-
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.4.dat ]() :results raw replace 
-| 0.525 | 0.746 | 24 | 250 |
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.4.dat ]() :results raw replace 
-| 0.129 | 0.197 | 24 | 250 |
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.4.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.4.dat ]() :results raw replace 
-| 0.0261 | 0.0314 | 24 | 500 |
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.4.dat ]()[ :results raw replace ]
-| 0.0602 | 0.391 | 22 | 500 |
-
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.5.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/20/vsSPIKES.5.dat ]() :results raw replace 
-| 0.452 | 0.737 | 24 | 50 |
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/40/vsSPIKES.5.dat ]() :results raw replace 
-| 0.384 | 0.619 | 24 | 150 |
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.5.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/60/vsSPIKES.5.dat ]() :results raw replace 
-| 0.326 | 0.478 | 24 | 250 |
-
-call_mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat ]()[ :results raw replace ]
-
-#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/mnt/m2p38/eagerm/cnstellate/TStellate2_CS/ModulationTransferFunction/80/vsSPIKES.5.dat ]() :results raw replace 
-| 0.362 | 0.516 | 24 | 500 |
-
-
-#+name: mean_ANFvs
-#+BEGIN_SRC sh :exports none :results raw replace  :var datapath="~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/" :var SPL=60 :var CELL=4
-  vsfile=${datapath}/ModulationTransferFunction/${SPL}/vsSPIKES.${CELL}.dat
-  echo $vsfile
-  grep -e '\s65\s' ${vsfile} | awk 'BEGIN{total=0;count=0} {if ($5>5.99){total+=$4; count+=1}} END{printf("%0.3g\n",total/count)}'
-#+END_SRC
-
-# call _ mean _ ANFvs()
-
-#+RESULTS: mean_ANFvs()
-: nil
-
 *** Golgi Cell Model
 
 
@@ -959,12 +1122,14 @@ cut-off frequency.  The peak temporal responses of the \GLG cell model occurred
 at low \fm with a rapid drop off in \SI around 350 Hz.  The on-\CF unit had a
 flat low-pass \tMTF before its Rayleigh test dropped below the threshold. Its
 mean \SI from 50 to 1200 Hz (excluding values when the Rayleigh test was below
-threshold) was 0.39, 0.275, 0.146, and 0.11 at stimulus intensities 20, 40, 60,
+threshold) was 0.39, 0.275, 0.146, and 0.11 
+at stimulus intensities 20, 40, 60,
 and 80 dB \SPL, respectively.  The cut-off frequency for the on-\CF unit was
 consistently at 250 Hz, after which the \GLG cells output was unsynchronised to
 the envelope of the stimulus. At the highest intensity, 80 dB \SPL in Figure
-\ref{fig:Ch4:GMTF}B, units furthest from the \fc had greater
-temporal information (max \SI 0.715, unit 77 \CF 15.27 kHz). With firing rates
+\ref{fig:Ch4:GMTF}B, units furthest from the \fc and active had greater
+temporal information with the maximum \SI value  
+call_MTFmaxpos(spl="80",cell="3")[ :results replace raw ]. With firing rates
 near threshold in high SI regions and the low cut-off frequencies, the temporal
 effects of \GLG cells on other neurons in the \CNSM model are predominantly at
 low \fm.
@@ -978,6 +1143,19 @@ low \fm.
 
 call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
 
+#+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace 
+0.393
+
+call_max_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
+
+#+RESULTS: max_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace 
+0.7
+
+call_maxpos_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]()[ :results raw replace ]
+
+#+RESULTS: maxpos_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace 
+100
+
 #+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/20/vsSPIKES.3.dat ]() :results raw replace
 | 0.39 | 0.748 | 14 | 100 |
 
@@ -988,7 +1166,18 @@ call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate
 | 0.393 | 0.7 | 14 | 100 |
 
 
-call_mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]()[ :results raw replace ]
+call_mean_vsSPIKES_onCFb[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]()[ :results raw ]
+
+#+RESULTS: mean_vsSPIKES_onCFb[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw 
+| 0.275 | 0.377 | 8 | 150 |
+
+#+RESULTS: mean_vsSPIKES_onCFb[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results output 
+
+#+RESULTS: mean_vsSPIKES_onCFb[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]()
+| 0.275 | 0.377 | 8 | 150 |
+
+#+RESULTS: mean_vsSPIKES_onCFb[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT2/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace 
+| 0.275 | 0.377 | 8 | 150 |
 
 #+RESULTS: mean_vsSPIKES_onCF[ :in-file ~/Work/cnstellate/MASSIVE/cnstellate/TStellate2_CT1/ModulationTransferFunction/40/vsSPIKES.3.dat ]() :results raw replace
 | 0.218 | 0.345 | 10 | 100 |
@@ -1083,11 +1272,25 @@ the \DS units were divided along the central channel. The central unit (Figure
 values of 0.827, 0.566, 0.41 and 0.485 for \tMTF responses at 20, 40, 60 and 80
 dB \SPL, respectively. The cut-off frequency for significant SI values (Rayleigh
 test, p$<0.05$) was above the maximum \fm we used in this study (1200 Hz). The
-maximum values were 0.945 (\fm = 100 Hz), 0.826 (\fm = 150 Hz), 0.713 (\fm = 250 Hz)
-and 0.704 (\fm = 250 Hz). The \DS units above the central channel had the
+maximum SI values in the on-\CF CS cell were strongly synchronised and decreased slightly with increasing SPL (
+call_MTFmax_onCF(spl="20",cell="2")[ :results replace raw ],
+call_MTFmax_onCF(spl="40",cell="2")[ :results replace raw ],
+call_MTFmax_onCF(spl="60",cell="2")[ :results replace raw ],
+call_MTFmax_onCF(spl="80",cell="2")[ :results replace raw ] for 20, 40, 60 and 80 dB SPL, respectively).
+# 0.945 (\fm = 100 Hz), 
+# 0.826 (\fm = 150 Hz), 
+# 0.713 (\fm = 250 Hz)
+# and 0.704 (\fm = 250 Hz). 
+# 20 dB: SI = call _ MTFmaxpos(spl="20",cell="2")[ :results replace raw ] 0.935 at \CF=11.7 kHz and \fm=100 Hz;
+# 40 dB call _ MTFmaxpos(spl="40",cell="2")[ :results replace raw ] 0.832 at \CF=12.8 kHz and \fm=150 Hz;
+# 60 dB call _ MTFmaxpos(spl="60",cell="2")[ :results replace raw ]; and
+# 80 dB call _ MTFmaxpos(spl="80",cell="2")[ :results replace raw ] 0.874 at \CF=21.7 kHz and \fm=100 Hz).
+The \DS units above the central channel had the
 strongest synchronisation and cut-off frequencies near the upper limit of the
-\AN model.  The \DS units below the central channel had cut-off frequencies
-around 400 Hz, similar to \TS and \TV units.
+\AN model. The maximum unit across all DS cells at 80 dB SPL was
+call_MTFmaxpos(spl="80",cell="2")[ :results replace raw ].
+The \DS units below the central channel had cut-off frequencies
+around 400 Hz.
 
 
 # - Enhanced low-pass temporal \MTF
@@ -1190,11 +1393,31 @@ higher \SI values than \HSR\space \ANFs.  Despite low firing rates in stimuli
 above 40 dB SPL, the temporal responses of all GLG cell's in Figure
 \ref{fig:Ch4:TVMTF} and the on-\CF\space \GLG cell in Figure
 \ref{fig:Ch4:TVonCF}B show significant temporal information (Rayleigh test,
-p$<0.05$).
+p$<0.05$). The
+maximum SI values in the on-\CF TV cell were moderately synchronised at 20 dB SPL
+( call_MTFmax_onCF(spl="20",cell="1")[ :results replace raw ])
+and decreased to a stable level and higher intensities (
+call_MTFmax_onCF(spl="40",cell="1")[ :results replace raw ],
+call_MTFmax_onCF(spl="60",cell="1")[ :results replace raw ],
+call_MTFmax_onCF(spl="80",cell="1")[ :results replace raw ] for 40, 60 and 80 dB SPL, respectively).
+# 0.945 (\fm = 100 Hz), 
+# 0.826 (\fm = 150 Hz), 
+# 0.713 (\fm = 250 Hz)
+# and 0.704 (\fm = 250 Hz). 
+# 20 dB: SI = call _ MTFmaxpos(spl="20",cell="2")[ :results replace raw ] 0.935 at \CF=11.7 kHz and \fm=100 Hz;
+# 40 dB call _ MTFmaxpos(spl="40",cell="2")[ :results replace raw ] 0.832 at \CF=12.8 kHz and \fm=150 Hz;
+# 60 dB call _ MTFmaxpos(spl="60",cell="2")[ :results replace raw ]; and
+# 80 dB call _ MTFmaxpos(spl="80",cell="2")[ :results replace raw ] 0.874 at \CF=21.7 kHz and \fm=100 Hz).
+The \TV units below the central channel had
+stronger synchronisation for high sound levels (maximum SI at 80 dB SPL call_MTFmaxpos(spl="80",cell="1")[ :results replace raw ] 
+and 60 dB SPL maximum SI call_MTFmaxpos(spl="60",cell="1")[ :results replace raw ]).
+The maximum unit across all TV cells at lower intensities had a CF above the central channel
+(40 dB SPL maximum SI call_MTFmaxpos(spl="40",cell="1")[ :results replace raw ],
+20 dB SPL maximum SI call_MTFmaxpos(spl="20",cell="1")[ :results replace raw ]).
 
-The central channel had corner-off frequencies around 500 Hz (Figure
+The central channel had corner-frequencies less than 500 Hz (Figure
 \ref{fig:Ch4:TVonCF}B), indicating a limitation in the intrinsic cell properties
-that integrate ANF inputs.  For the 20 dB \SPL stimuli shown in Figure
+that integrate ANF inputs and strong phasic inhibition for this input modulation.  For the 20 dB \SPL stimuli shown in Figure
 \ref{fig:Ch4:TVonCF}B, the \TV cell's \BMF of the band-pass filter at 150 Hz had
 \SI of 0.964, a strongly synchronised response from a unit with a high firing
 rate.  The \BMF shifted to 350 Hz at 40 dB SPL, however the firing rate was
@@ -1289,12 +1512,16 @@ channel and dominant synchronous responses at the outer edge of excitation.  For
 40 dB \SPL, most active units showed a band-pass \tMTF; however, the dominant
 units above \CF (channels 55 to 58) had low-pass \tMTFs.  For 60 dB \SPL, most
 active units showed band-pass \MTFs except for the central units, which showed
-limited results or a low-pass \MTF.  Outermost active units (above and below
+limited results or a low-pass \MTF. The maximum SI values in the on-\CF CS cell were strongly synchronised and decreased with increasing SPL 
+(
+call_MTFmax_onCF(spl="20",cell="0")[ :results replace raw ],
+call_MTFmax_onCF(spl="40",cell="0")[ :results replace raw ],
+call_MTFmax_onCF(spl="60",cell="0")[ :results replace raw ],
+call_MTFmax_onCF(spl="80",cell="0")[ :results replace raw ]  for intensities 20, 40, 60 and 80 dB SPL, respectively).
+ Outermost active units (above and below
 \fc) had the highest synchronisation across the \TS cell population, similar to
 \HSR and \LSR excitatory input responses and the phasic inhibitory inputs from
 \GLG and \DS cells.
-
-
 
 #+BEGIN_LaTeX
   \begin{figure}[thp]
@@ -1306,7 +1533,7 @@ limited results or a low-pass \MTF.  Outermost active units (above and below
   {\figfont{E}\space \space      \textsf{  \ChTtwo\space   \rMTF }   \hspace{0.25\textwidth}    \figfont{F}\space \space     \textsf{  \ChTtwo\space   \tMTF }  \hspace{0.35\textwidth}}\\
     \resizebox{0.9\textwidth}{!}{\includegraphics{../VowelProcessingChapter/gfx/mtfonCF-0-ChT2.pdf}}\\
     \caption[Rate and temporal MTF responses in ChS and ChT$_1$ units on-CF]{A. Rate \MTFs of sustained chopper (ChS) model (unit 65, \CF 8.95 kHz) on-CF to sound levels 20, 40, 60 and 80 dB SPL. B.
-   Temporal \MTFs of the \ChS model on \CF (unit 65, \CF 8.95 kHz) at four different sound levels.   C. \rMTFs of the on-CF \ChTone model. D. \rMTFs of the on-CF \ChTone model. E. \rMTFs of the on-CF \ChTtwo model. F. \tMTFs of the on-CF \ChTtwo model.  \tMTF data points that failed the Rayleigh test (p$<0.05$) were not plotted.
+   Temporal \MTFs of the \ChS model on \CF (unit 65, \CF 8.95 kHz) at four different sound levels.   C. \rMTFs of the on-CF \ChTone model. D. \rMTFs of the on-CF \ChTone model. E. \rMTFs of the on-CF \ChTtwo model. F. \tMTFs of the on-CF \ChTtwo model.  \tMTF data points that failed the Rayleigh test (p-value $<0.05$) were not plotted.
     }
   \label{fig:Ch4:ChopperONCFMTF}
   \end{figure}
