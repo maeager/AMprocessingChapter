@@ -1859,31 +1859,40 @@ processing of \TV cells.
 
 ** T Stellate Cells
 
-The inhomogeneous population of \TS cells are classified into subgroups, namely
-sustained and transient choppers.  Intrinsic membrane properties and synaptic
-connections enable \TS units to be tuned to important features of the acoustic
+# The inhomogeneous population of \TS cells are classified into subgroups, namely
+# sustained and transient choppers.  
+Intrinsic membrane properties and fast, synaptic
+connections enable \TS units to be tuned to important temporal features of the acoustic
 input \citep{PaoliniClareyEtAl:2005}. The behaviour of \TS units is influenced
 by all three interneurons in the stellate microcircuit.  \AM rate responses of
 on-\CF\space \TS cell models were fairly weak but temporal information was still
-present.  Experimental data has shown \TS cells generally have low-pass \MTF at
-low sound level and band-pass \MTF for higher sound levels for on-\CF\space \AM
-tones \citep{RhodeGreenberg:1994}.  The band-pass temporal responses of
-different types of TS cells aid in the transformation from a low-pass, temporal
-encoding of AM in ANFs to a more robust rate encoding in the \IC based on
-preference for different \BMFs \citep{JorisSchreinerEtAl:2004,Frisina:2001}.
+present.  
+In the \fz and \MTF analysis, the response of the \TS
+cell subtypes showed insights into the complex spectro-temporal processing being
+performed in the stellate microcircuit.
 
+In the literature, robustness of temporal information to increased intensity or
+in background noise was greatest in \ChT units compared to \ChS units
+\citep{RhodeGreenberg:1994,Frisina:2001,JorisSchreinerEtAl:2004,FrisinaSmithEtAl:1990,FrisinaSmithEtAl:1990a,FrisinaWaltonEtAl:1993}.
 The \fz (Figures \ref{fig:Ch4:fzero}, \ref{fig:Ch4:fzerorate}) and \MTF (Figures
 \ref{fig:Ch4:CSMTF}, \ref{fig:Ch4:CToneMTF} and \ref{fig:Ch4:CTtwoMTF}) figures
 show snapshots of the response characteristics in \TS cell models across all
 cells in the network.  In the \fz response analysis, the \ChS type \TS cell
-models near the centre of the AM response area had moderate rate and strong
-enhancement at high SPL. The \ChTone model was strongly inhibited on-CF at
-higher \SPL but did have high firing rates and high \SI response near the edges
-of the V-shaped response area.  The \ChTtwo models's \fz response was less
-robust at higher SPL on-CF but had similar V-shaped enhanced temporal output
-across different \CFs.  In the \MTF analysis, the \tMTF response maps of \TS
-cells showed insights into the complex spectro-temporal processing being
-performed in the stellate microcrcuit.  At 20 dB SPL (only shown in Figure
+models near the centre of the AM response area had moderate rate and moderate
+enhancement at high SPL centred around \fc. The temporal response of the \ChTone
+model was robust to increases in sound level. This unit did have high firing
+rates and high \SI response near its response area edges, a V-shaped response
+similar to the \HSR units.  The \ChTtwo models's \fz response was less robust at
+higher SPL on-CF but had similar V-shaped enhanced temporal output across
+different \CFs.
+
+Experimental data has shown \TS cells generally have low-pass \MTF at
+low sound level and band-pass \MTF for higher sound levels for on-\CF\space \AM
+tones \citep{FrisinaSmithEtAl:1990,RhodeGreenberg:1994}.  The band-pass temporal responses of
+different types of TS cells aid in the transformation from a low-pass, temporal
+encoding of AM in ANFs to a more robust rate encoding in the \IC based on
+preference for different \BMFs \citep{JorisSchreinerEtAl:2004,Frisina:2001}.
+At 20 dB SPL (only shown in Figure
 \ref{fig:Ch4:ChopperONCFMTF}), the on-CF \tMTF responses were similar for each
 subtype with high synchronisation at low SPL, a dip in \SI at 300 Hz and a
 second peak above 0.8 SI at 500 Hz.  At higher sound levels, the \MTF response
