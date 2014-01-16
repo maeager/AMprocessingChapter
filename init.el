@@ -23,22 +23,6 @@
 
 (setq vc-handled-backends nil)           ; reduce save time
 
-
-;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-;;(load "/usr/local/share/emacs/site-lisp/gnuplot.el" nil t t)
-;;(autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
-;;(autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot-mode" t)
-;;(add-to-list 'auto-mode-alist '("\\.gnu\\'" . gnuplot-mode))
-;;(add-to-list 'auto-mode-alist '("\\.gpi\\'" . gnuplot-mode))
-;;(add-to-list 'auto-mode-alist '("\\.gp\\'" . gnuplot-mode))
-;;(global-set-key [(f9)] 'gnuplot-make-buffer)
-
-
-
-
-
-
-
 ;; ORG directory
 ;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
 ;(add-to-list 'load-path "~/elisp/org-mode/contrib/")
@@ -51,13 +35,14 @@
 
 
 ;; org-babel
-					;(add-to-list 'load-path "~/elisp/org-mode/contrib/babel/")
-					;(add-to-list 'load-path "~/elisp/org-mode/contrib/babel/lisp/")
-					;(add-to-list 'load-path "~/elisp/org-mode/contrib/babel/lisp/langs/")
+;(add-to-list 'load-path "~/elisp/org-mode/contrib/babel/")
+;(add-to-list 'load-path "~/elisp/org-mode/contrib/babel/lisp/")
+;(add-to-list 'load-path "~/elisp/org-mode/contrib/babel/lisp/langs/")
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((R . t)
+ '(
+   ;;(R . t)
    (C . t)
    (awk . t)
    ;;     (ditaa . t)
@@ -85,7 +70,7 @@
 ;					 (:exports . "none")))
 
 
-
+(org-babel-lob-ingest "~/elisp/org-mode/doc/library-of-babel.org")
 
 
 ;; don't use the full set of Org-mode latex packages
@@ -255,7 +240,7 @@
        \\lfoot{\\footnotesize\\today\\ at \\thistime}"
 ; [NO-DEFAULT-PACKAGES]
 ;       [NO-PACKAGES]" 
-	       ("\n\n\\section{%s}" . "\n\n\\section{%s}")
+	       ("\n\\section{%s}" . "\n\n\\section{%s}")
 	       ("\\subsection{%s}"         . "\n\\subsection{%s}") 
 	       ("\\subsubsection{%s}"      . "\n\\subsubsection{%s}") 
 	       ("\\paragraph{%s}"          . "\n\\paragraph{%s}"))) 
