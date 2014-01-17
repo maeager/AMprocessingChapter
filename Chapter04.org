@@ -1274,7 +1274,8 @@ the \DS units were divided along the central channel. The central unit (Figure
 values of 0.827, 0.566, 0.41 and 0.485 for \tMTF responses at 20, 40, 60 and 80
 dB \SPL, respectively. The cut-off frequency for significant SI values (Rayleigh
 test, p$<0.05$) was above the maximum \fm we used in this study (1200 Hz). The
-maximum \SI values in the on-\CF \DS cell were strongly synchronised and decreased slightly with increasing SPL (
+maximum \SI values in the on-\CF\space \DS cell were strongly synchronised and
+decreased slightly with increasing \SPL (
 call_MTFmax_onCF(spl="20",cell="2")[ :results replace raw ],
 call_MTFmax_onCF(spl="40",cell="2")[ :results replace raw ],
 call_MTFmax_onCF(spl="60",cell="2")[ :results replace raw ],
@@ -1395,7 +1396,8 @@ above 40 dB \SPL, the temporal responses of all \TV cell's in Figure
 \ref{fig:Ch4:TVMTF} and the on-\CF\space \TV cell in Figure
 \ref{fig:Ch4:TVonCF}B show irregular temporal information.
 The maximum SI values in the on-\CF\space \TV cell were moderately
-synchronised (call_MTFmax_onCF(spl="20",cell="1")[ :results replace raw ]) 
+synchronised (
+call_MTFmax_onCF(spl="20",cell="1")[ :results replace raw ]) 
 at 20 dB \SPL and decreased to a stable level and higher intensities (
 call_MTFmax_onCF(spl="40",cell="1")[ :results replace raw ],
 call_MTFmax_onCF(spl="60",cell="1")[ :results replace raw ],
@@ -1516,8 +1518,8 @@ channel and dominant synchronous responses at the outer edge of excitation. For
 units above \CF had low-pass \tMTFs. For 60 dB \SPL, most
 active units showed band-pass \MTFs except for the central units, which showed
 limited results or a low-pass \MTF. The maximum \SI values in the on-\CF\space \ChS 
-model were strongly synchronised and decreased with increasing \SPL
-(call_MTFmax_onCF(spl="20",cell="0")[ :results replace raw ],
+model were strongly synchronised and decreased with increasing \SPL (
+call_MTFmax_onCF(spl="20",cell="0")[ :results replace raw ],
 call_MTFmax_onCF(spl="40",cell="0")[ :results replace raw ],
 call_MTFmax_onCF(spl="60",cell="0")[ :results replace raw ],
 call_MTFmax_onCF(spl="80",cell="0")[ :results replace raw ]  for intensities 20, 40, 60 and 80 dB \SPL, respectively).
@@ -1570,11 +1572,13 @@ contrasts with the similarity of the 20 and 80 dB responses (high \SI at low \fm
 and a \BMF at 350 Hz).
 
 The \citet{RhodeGreenberg:1994} sustained choppers in Figures
-\ref{fig:Ch4:RG94Chopper}A and B had similar band-pass \tMTF responses to the \ChS model (Figure
-\ref{fig:Ch4:ChopperONCFMTF}B).
-The \SI of the \BMF in the on-\CF \ChTone model decreased from a peak at 20 dB SPL
-( call_MTFmax_onCF(spl="20",cell="0",Ch="T1")[ :results replace raw ]) before degrading
-the \SI value and increasing the \BMF (call_MTFmax_onCF(spl="40",cell="0",Ch="T1")[ :results replace raw ]
+\ref{fig:Ch4:RG94Chopper}A and B had similar band-pass \tMTF responses to 
+the \ChS model (Figure \ref{fig:Ch4:ChopperONCFMTF}B).
+The \SI of the \BMF in the on-\CF \ChTone model decreased from a peak at 20 
+dB \SPL (
+call_MTFmax_onCF(spl="20",cell="0",Ch="T1")[ :results replace raw ]) before degrading
+the \SI value and increasing the \BMF (
+call_MTFmax_onCF(spl="40",cell="0",Ch="T1")[ :results replace raw ]
 call_MTFmax_onCF(spl="60",cell="0",Ch="T1")[ :results replace raw ],
 call_MTFmax_onCF(spl="80",cell="0",Ch="T1")[ :results replace raw ] for intensities 40, 60 and 80 dB \SPL, respectively).
 
@@ -1615,8 +1619,9 @@ filter characteristics of the on-\CF unit changed from band-pass at 40 and 60 dB
 # Further investigation on the parameters of the \ChTone model, with regard to
 # increasing the firing rate, will help to explain more rigorous outputs of the
 # model and its temporal characteristics.
-The BMF of the on-CF unit in Figure \ref{fig:Ch4:RG94Chopper}D followed a similar pattern to the \ChS
-(call_MTFmax_onCF(spl="20",cell="0",Ch="T1")[ :results replace raw ]
+The BMF of the on-CF unit in Figure \ref{fig:Ch4:RG94Chopper}D followed a similar 
+pattern to the \ChS (
+call_MTFmax_onCF(spl="20",cell="0",Ch="T1")[ :results replace raw ],
 call_MTFmax_onCF(spl="40",cell="0",Ch="T1")[ :results replace raw ],
 call_MTFmax_onCF(spl="60",cell="0",Ch="T1")[ :results replace raw ],
 call_MTFmax_onCF(spl="80",cell="0",Ch="T1")[ :results replace raw ] at sound levels 20, 40, 60 and 80 dB \SPL, respectively)
@@ -1649,7 +1654,7 @@ bands.
 The \BMF of the central unit was around 350 Hz for each of the stimulus levels
 above 40 dB \SPL (
 call_MTFmax_onCF(spl="40",cell="0",Ch="T1")[ :results replace raw ],
- call_MTFmax_onCF(spl="60",cell="0",Ch="T1")[ :results replace raw ],
+call_MTFmax_onCF(spl="60",cell="0",Ch="T1")[ :results replace raw ],
 call_MTFmax_onCF(spl="80",cell="0",Ch="T1")[ :results replace raw ] for 40, 60
 and 80 dB \SPL, respectively). The subtle variation in synaptic strength to the
 \ChTtwo model increased the \BMF by 100 Hz relative to the \ChTone model. The
