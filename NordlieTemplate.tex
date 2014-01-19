@@ -82,15 +82,20 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 \end{tabularx}
 \end{table}
 \vspace{1ex}
+
 \begin{table}[ptb]
   {CNSM Model Summary for AM tones -- continued}\\ 
 \vspace{1ex}
-\begin{tabularx}{\textwidth}{|l|X|}\hline %
+\begin{tabularx}{0.99\textwidth}{|l|X|}\hline %
 \hdr{2}{v}{Input\slash Ouput}\\\hline
-\multirow{3}{*}{\textbf{Input Stimulus}} & AM stimuli with fixed parameters for all paradigms: \fc 8.91 kHz and 100\% modulation depth ($m=1$), 150 msec duration, 2 msec cosine squared on\slash off ramp, and 20 msec delay.\\ 
-&\fz response paradigm: $\fm=100$ Hz, with 5 dB \SPL increments from 0 to 90 dB SPL. \\ 
-&MTF paradigm: $\fm$ varied from 50 to 1200 Hz in 50 Hz increments at sound levels 20, 40, 60 and 80 dB SPL.   \\\hline 
-    \textbf{Input}      & Stimulus induced Poisson spike trains from GLG units, HSR and LSR ANFs.\\\hline
+\multirow{3}{*}{\textbf{Input Stimulus}} & AM stimuli with fixed parameters: 
+\fc 8.91 kHz and 100\% modulation depth ($m=1$), 150 msec duration,
+ 2 msec cosine squared on\slash off ramp, and 20 msec delay. \\ 
+& \fz response paradigm: $\fm=100$ Hz, from 0 to 90 dB SPL, 5 dB \SPL increments. \\ 
+& MTF paradigm: $\fm$ varied from 50 to 1200 Hz in 50 Hz increments at 
+sound levels 20, 40, 60 and 80 dB SPL. \\\hline 
+    \textbf{Input}      & Stimulus induced Poisson spike trains from 
+GLG units, HSR and LSR ANFs. \\\hline
 %\multicolumn{2}{|c|}{\begin{minipage}[c]{0.8\textwidth}
 %\includegraphics[width=0.8\textwidth,keepaspectratio]{./gfx/Notch-Wl-12.5kHz-0.5.eps}
 %\end{minipage}}\\\hline
@@ -101,9 +106,9 @@ Gaussian convergence, spread $\sTVTS$, weight \wTVTS, number \nTVTS, delay $\dTV
 %\textbf{Measurements}    & PSTH sampled at each click for 2 msec to measure click recovery\\\hline
 %\textbf{Optimisation}    & Parameters for \GLGDS are optimised based on experimental click recovery date from \citet{BackoffPalombiEtAl:1997}. The praxis method is used for optimisation.  \\\hline
 \textbf{Measurements}    &  
-Mean rate and synchronisation index were calculated from each AN and CN unit for each stimuli over 50 repetitions.
+Mean rate and synchronisation index were calculated from each AN and CN unit 
+for each stimuli over 50 repetitions. \\\hline
 % Synchronisation index was calculated relative to the modulation frequency using the vector strength method \citep{KajikawaHackett:2005}.
-\\\hline
 \end{tabularx}
 \end{table}
 }
